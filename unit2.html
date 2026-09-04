@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EEDM Unit 2 — Water Supply System | RTU Exam Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#050c0f;--surface:#0c1c28;--surface2:#102230;
+  --border:#193344;--border2:#0d1f2e;
+  --cc:#10b981;--cc2:#6ee7b7;--cc3:#d1fae5;
+  --u1:#22d3ee;--u2:#f97316;--u3:#ef4444;--u4:#a78bfa;--u5:#10b981;--u6:#3b82f6;
+  --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
+  --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
+  --sidebar-w:310px;
+  --content-max:1900px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.82;overflow-x:hidden;}
+
+/* ── RESPONSIVE FONT SCALING — bigger base + fills wide screens ── */
+html{font-size:clamp(18px,1.3vw,22px);}
+@media(min-width:1200px){html{font-size:clamp(19px,1.35vw,23px);}}
+@media(min-width:1600px){html{font-size:clamp(20px,1.25vw,25px);}}
+@media(min-width:1900px){html{font-size:clamp(21px,1.2vw,27px);}}
+@media(min-width:2200px){html{font-size:clamp(22px,1.15vw,29px);}}
+@media(max-width:900px){html{font-size:18px;}}
+@media(max-width:600px){html{font-size:17px;}}
+
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ── LAYOUT ── */
+.layout{display:flex;max-width:100%;}
+.content{
+  flex:1;
+  padding:clamp(28px,2.5vw,52px) clamp(28px,3vw,64px);
+  max-width:100%;
+  overflow-x:hidden;
+  min-width:0;
+}
+@media(min-width:1400px){.content{padding:clamp(32px,2.2vw,58px) clamp(36px,3.5vw,84px);}}
+@media(min-width:1800px){.content{padding:clamp(36px,2vw,64px) clamp(48px,4vw,110px);}}
+@media(min-width:2200px){.content{padding:clamp(40px,1.8vw,70px) clamp(56px,4.2vw,130px);}}
+
+/* ── TOP NAV ── */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.topnav::-webkit-scrollbar{display:none;}
+.tnlabel{font-family:var(--mono);font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--cc);padding:15px 14px 15px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.tnlink{font-family:var(--mono);font-size:.68rem;padding:8px 14px;border-radius:6px;text-decoration:none;color:var(--dim2);white-space:nowrap;flex-shrink:0;transition:all .18s;border:1px solid transparent;}
+.tnlink:hover{color:var(--text);background:var(--surface2);}
+.tnlink.active{color:var(--cc);background:rgba(16,185,129,.1);border-color:rgba(16,185,129,.3);}
+.tnlink.pyq{color:var(--u3);background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.22);}
+.tnlink.pred{color:var(--upred);background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.35);font-weight:600;}
+
+/* ── CREDIT BAND ── */
+.credit-band{background:#060f18;border-bottom:1px solid var(--border2);padding:11px 32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.credit-text{font-family:var(--mono);font-size:.7rem;color:var(--dim2);}
+.credit-text span{color:var(--cc);font-weight:600;}
+.credit-link{font-family:var(--mono);font-size:.68rem;padding:4px 14px;border-radius:5px;border:1px solid var(--border);color:var(--dim2);text-decoration:none;transition:all .2s;}
+.credit-link:hover{border-color:var(--cc);color:var(--cc);}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:clamp(50px,5vw,88px) clamp(28px,4vw,80px) clamp(44px,4vw,70px);background:var(--bg);}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(16,185,129,.09) 1px,transparent 1px),radial-gradient(circle,rgba(34,211,238,.04) 1px,transparent 1px);background-size:44px 44px,88px 88px;background-position:0 0,22px 22px;animation:dotDrift 30s linear infinite;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 10% 50%,rgba(16,185,129,.1) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 85% 15%,rgba(34,211,238,.05) 0%,transparent 60%);pointer-events:none;}
+@keyframes dotDrift{0%{transform:translate(0,0);}100%{transform:translate(44px,44px);}}
+.hero-inner{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto;}
+.hero-tag{font-family:var(--mono);font-size:.72rem;color:var(--cc);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--cc);box-shadow:0 0 14px var(--cc);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(32px,5vw,76px);line-height:1.02;color:#fff;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero h1 span{color:var(--cc);}
+.hero h1 em{color:var(--u1);font-style:normal;}
+.hero-sub{color:var(--dim2);font-size:clamp(15px,1.4vw,20px);max-width:1000px;line-height:1.8;margin-bottom:22px;}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:.68rem;padding:5px 14px;border-radius:5px;border:1px solid;}
+.badge-r{color:var(--u3);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);}
+.badge-v{color:var(--cc);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08);}
+.badge-g{color:var(--u1);border-color:rgba(34,211,238,.35);background:rgba(34,211,238,.08);}
+.badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+.badge-p{color:var(--u4);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08);}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);padding:28px 18px;border-right:1px solid var(--border);position:sticky;top:44px;height:calc(100vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;flex-shrink:0;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sidebar-title{font-family:var(--mono);font-size:.62rem;color:var(--cc);letter-spacing:2px;text-transform:uppercase;}
+.sidebar-close{display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim2);cursor:pointer;padding:2px 9px;font-family:var(--mono);font-size:.68rem;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:7px;cursor:pointer;font-family:var(--head);font-size:.88rem;font-weight:600;color:var(--dim2);transition:all .2s;margin-bottom:3px;text-decoration:none;line-height:1.3;}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text);}
+.nav-item.active{color:var(--cc);border-left:2px solid var(--cc);padding-left:10px;}
+.nav-imp{margin-left:auto;font-family:var(--mono);font-size:.6rem;padding:2px 7px;border-radius:3px;background:var(--surface2);white-space:nowrap;}
+.nav-imp.high{color:var(--u3);}
+.nav-imp.med{color:var(--upred);}
+.sidebar-toggle{display:none;position:fixed;bottom:22px;right:22px;z-index:1000;width:52px;height:52px;border-radius:50%;background:var(--cc);border:none;cursor:pointer;font-size:22px;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(16,185,129,.45);transition:transform .2s;}
+.sidebar-toggle:hover{transform:scale(1.1);}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:98;backdrop-filter:blur(3px);}
+.sidebar-overlay.visible{display:block;}
+
+/* ── CONTENT SECTIONS ── */
+.section{margin-bottom:80px;scroll-margin-top:64px;}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.section-num{font-family:var(--mono);font-size:.72rem;color:var(--cc);background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);padding:5px 10px;border-radius:5px;min-width:40px;text-align:center;}
+.section-title{font-family:var(--head);font-size:clamp(22px,2.5vw,36px);font-weight:800;color:#fff;}
+
+/* ── THEORY BLOCKS ── */
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:clamp(22px,2.5vw,40px) clamp(24px,3vw,48px);margin-bottom:22px;}
+.theory-block h3{font-family:var(--head);font-size:clamp(17px,1.7vw,24px);font-weight:700;color:var(--cc);margin-bottom:14px;}
+.theory-block h3.orange{color:var(--u2);}
+.theory-block h3.red{color:var(--u3);}
+.theory-block h3.cyan{color:var(--u1);}
+.theory-block h3.purple{color:var(--u4);}
+.theory-block h3.blue{color:var(--u6);}
+.theory-block p{margin-bottom:14px;font-size:1rem;line-height:1.92;}
+.theory-block p:last-child{margin-bottom:0;}
+.theory-block ul,.theory-block ol{padding-left:26px;margin:12px 0;}
+.theory-block li{margin-bottom:10px;font-size:1rem;line-height:1.82;}
+h4{font-family:var(--head);font-size:1.05rem;font-weight:700;color:var(--text);margin:20px 0 10px;}
+
+/* ── LAYMAN BOX ── */
+.layman{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-left:3px solid var(--cc);border-radius:8px;padding:16px 20px;font-family:var(--mono);font-size:.83rem;color:#a7f3d0;margin:16px 0;line-height:1.78;}
+.layman::before{content:'💬 LAYMAN: ';color:var(--cc);font-weight:700;font-size:.85rem;}
+
+/* ── FORMULA BOX ── */
+.fbox{background:#030c14;border:1px solid rgba(16,185,129,.22);border-left:3px solid var(--cc);border-radius:9px;padding:18px 22px;margin:18px 0;font-family:var(--mono);font-size:.83rem;color:#6ee7b7;overflow-x:auto;line-height:1.72;}
+.fbox .flbl{font-size:.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;display:block;}
+.fbox .fl{color:#a7f3d0;font-size:.87rem;display:block;}
+.fbox .fn{color:var(--dim2);font-size:.76rem;margin-top:8px;display:block;font-style:italic;}
+
+/* ── TIP BOXES ── */
+.tip-box{border-radius:9px;padding:18px 20px;margin:16px 0;display:flex;gap:14px;}
+.tip-box.trick{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25);}
+.tip-box.connect{background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.25);}
+.tip-box.warning{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);}
+.tip-box.valid{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.25);}
+.tip-box.pred-tip{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);}
+.tip-icon{font-size:21px;flex-shrink:0;margin-top:3px;}
+.tip-content{flex:1;}
+.tip-title{font-family:var(--head);font-size:.85rem;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px;}
+.tip-box.trick .tip-title{color:var(--gold);}
+.tip-box.connect .tip-title{color:var(--u1);}
+.tip-box.warning .tip-title{color:var(--u3);}
+.tip-box.valid .tip-title{color:var(--u4);}
+.tip-box.pred-tip .tip-title{color:var(--upred);}
+.tip-content p{font-size:.93rem;color:var(--text);margin:0;line-height:1.78;}
+
+/* ── TABLES ── */
+.comp-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.92rem;display:block;overflow-x:auto;}
+.comp-table th{background:var(--surface2);padding:12px 16px;text-align:left;font-family:var(--head);font-weight:700;color:var(--cc);border-bottom:1px solid var(--border);white-space:nowrap;}
+.comp-table td{padding:11px 16px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:var(--surface2);}
+
+/* ── PYQ SECTION ── */
+.pyq-section{background:#06101a;border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:clamp(20px,2.5vw,30px) clamp(22px,3vw,36px);margin-top:26px;}
+.pyq-header{font-family:var(--head);font-size:1.02rem;font-weight:700;color:var(--upred);margin-bottom:18px;}
+.pyq-item{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:18px 20px;margin-bottom:16px;}
+.pyq-q-text{font-family:var(--head);font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.45;}
+.pyq-meta{font-family:var(--mono);font-size:.68rem;color:var(--dim2);margin-bottom:12px;display:flex;gap:12px;flex-wrap:wrap;}
+.topic-tag{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:var(--cc);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pred-tag{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--upred);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.unit-tag{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);color:var(--u1);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.verified-tag{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);color:var(--cc);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pyq-toggle{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 16px;cursor:pointer;font-family:var(--mono);font-size:.74rem;color:var(--upred);margin-top:12px;transition:all .2s;}
+.pyq-toggle:hover{background:var(--upred);color:#000;}
+.answer-content{display:none;margin-top:16px;font-size:.96rem;line-height:1.92;}
+.answer-content.open{display:block;}
+.answer-content strong{color:var(--cc2);}
+.answer-content ul,.answer-content ol{padding-left:22px;margin:10px 0;}
+.answer-content li{margin-bottom:8px;}
+
+/* ── PRED BANNER ── */
+.pred-banner{background:linear-gradient(135deg,rgba(245,158,11,.09),rgba(245,158,11,.03));border:1px solid rgba(245,158,11,.35);border-left:3px solid var(--upred);border-radius:9px;padding:14px 18px;margin:16px 0;font-family:var(--mono);font-size:.81rem;color:var(--upred);display:flex;gap:12px;align-items:flex-start;}
+.pred-banner .pb-text{line-height:1.72;}
+
+/* ── IMPORTANCE BARS ── */
+.imp-bar-wrap{margin-bottom:12px;}
+.imp-bar-label{font-family:var(--mono);font-size:.76rem;color:var(--dim2);margin-bottom:5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.imp-bar{height:7px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.imp-bar-fill{height:100%;border-radius:4px;}
+.ibf-hot{background:var(--u3);}
+.ibf-high{background:var(--cc);}
+.ibf-med{background:var(--upred);}
+
+/* ── DIAGRAM WRAP ── */
+.diagram-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin:18px 0;text-align:center;overflow-x:auto;}
+.diagram-cap{font-family:var(--mono);font-size:.73rem;color:var(--dim2);margin-top:12px;}
+
+/* ── HIGHLIGHT HELPERS ── */
+.hl-v{color:var(--cc2);font-weight:600;}
+.hl-o{color:var(--u2);font-weight:600;}
+.hl-r{color:var(--u3);font-weight:600;}
+.hl-g{color:var(--cc);font-weight:600;}
+.hl-c{color:var(--u1);font-weight:600;}
+.hl-p{color:var(--u4);font-weight:600;}
+code{font-family:var(--mono);background:var(--surface2);padding:2px 7px;border-radius:4px;font-size:.82rem;color:var(--cc2);}
+
+/* ── PREDICTED SECTION ── */
+.predicted-section{background:linear-gradient(135deg,rgba(5,12,15,1) 0%,rgba(16,185,129,.04) 100%);border-top:1px solid rgba(16,185,129,.2);border-bottom:1px solid rgba(16,185,129,.2);}
+.pred-inner{max-width:100%;margin:0 auto;padding:clamp(40px,4vw,72px) clamp(28px,3.5vw,80px);}
+@media(min-width:1600px){.pred-inner{padding:clamp(50px,3.5vw,80px) clamp(48px,4.5vw,110px);}}
+.pred-badge{display:inline-block;font-family:var(--mono);font-size:.75rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:5px 14px;border-radius:5px;margin-bottom:14px;}
+.pred-sec-title{font-family:var(--head);font-size:clamp(24px,3.2vw,42px);font-weight:800;color:#fff;margin-bottom:6px;}
+.pred-sec-sub{font-family:var(--mono);font-size:.72rem;color:var(--dim2);letter-spacing:1px;margin-bottom:14px;}
+.pred-intro{font-family:var(--mono);font-size:.79rem;color:var(--dim2);max-width:1150px;line-height:1.75;margin-bottom:18px;}
+.disc-box{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:14px 18px;margin-bottom:22px;display:flex;gap:10px;align-items:flex-start;}
+.disc-box p{font-size:.87rem;color:var(--text);}
+.pred-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:18px;margin-top:24px;}
+.pred-card{background:var(--surface);border:1px solid rgba(245,158,11,.2);border-radius:12px;border-top:3px solid var(--upred);overflow:hidden;}
+.pred-card-head{padding:20px 22px 14px;}
+.pred-part{font-family:var(--mono);font-size:.67rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pred-unit{font-family:var(--mono);font-size:.67rem;color:var(--u1);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pred-q{font-family:var(--head);font-size:clamp(.96rem,1.05vw,1.1rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
+.pred-reason{font-size:clamp(.83rem,.92vw,.96rem);color:var(--dim2);line-height:1.7;margin-bottom:10px;}
+.pred-conf{font-family:var(--mono);font-size:.68rem;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+.pred-conf.high{color:var(--u3);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);}
+.pred-conf.med{color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);}
+.pred-answer-toggle{width:100%;padding:10px 22px;background:var(--surface2);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.72rem;color:var(--cc);text-align:left;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.pred-answer-toggle:hover{background:var(--cc);color:#000;}
+.pred-answer{display:none;padding:20px 22px;border-top:1px solid var(--border);background:var(--bg);}
+.pred-answer.open{display:block;}
+.pred-answer p{font-size:.93rem;line-height:1.92;margin-bottom:12px;}
+.pred-answer strong{color:var(--cc2);}
+.pred-answer ul,.pred-answer ol{padding-left:22px;margin:10px 0;}
+.pred-answer li{margin-bottom:8px;font-size:.91rem;}
+.fbox.inside-pred{background:#030c14;border:1px solid rgba(16,185,129,.22);border-left:3px solid var(--cc);border-radius:8px;padding:14px 18px;margin:10px 0;font-family:var(--mono);font-size:.79rem;color:#6ee7b7;overflow-x:auto;line-height:1.7;}
+.fbox.inside-pred .fl{color:#a7f3d0;display:block;}
+.fbox.inside-pred .fn{color:var(--dim2);font-size:.7rem;margin-top:6px;display:block;font-style:italic;}
+.dbox{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;margin:14px 0;overflow-x:auto;}
+.dcap{font-family:var(--mono);font-size:.71rem;color:var(--dim2);margin-top:8px;text-align:center;}
+
+/* ── PREP BOX ── */
+.prep-box{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.25);border-radius:10px;padding:22px 28px;margin-top:28px;}
+.prep-box h3{font-family:var(--head);font-size:clamp(1rem,1.15vw,1.3rem);font-weight:700;color:var(--cc);margin-bottom:14px;}
+.prep-box p{font-size:.93rem;line-height:1.88;margin-bottom:10px;}
+.prep-box strong{color:#fff;}
+
+/* ── FOOTER ── */
+.site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:28px 5vw;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--dim);}
+.site-footer a{color:var(--dim2);text-decoration:none;margin:0 12px;transition:color .2s;}
+.site-footer a:hover{color:var(--cc);}
+.footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
+
+/* ── MOBILE ── */
+@media(max-width:1100px){:root{--sidebar-w:280px;}}
+@media(max-width:900px){
+  .sidebar{position:fixed;top:0;left:0;height:100vh;z-index:99;background:var(--bg);transform:translateX(-100%);border-right:1px solid var(--border);transition:transform .3s ease;width:var(--sidebar-w);}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 40px rgba(0,0,0,.9);}
+  .sidebar-close{display:block;}
+  .sidebar-toggle{display:flex;}
+  .content{max-width:100%;padding:28px 20px;}
+  .pred-inner{padding:44px 20px;}
+  .pred-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .hero{padding:44px 18px 40px;}
+  .theory-block{padding:20px 16px;}
+  .pyq-section{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="tnlabel">EEDM · RTU</span>
+  <a class="tnlink" href="index.html">🏠 Home</a>
+  <a class="tnlink" href="unit1.html">🌱 U1: Introduction</a>
+  <a class="tnlink active" href="unit2.html">🚰 U2: Water Supply System</a>
+  <a class="tnlink" href="unit3.html">💧 U3: Drinking Water Quality</a>
+  <a class="tnlink" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+  <a class="tnlink" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink pyq" href="pyq.html">📋 Solved PYQs</a>
+  <a class="tnlink pred" href="#predicted">🔮 Predicted 2026</a>
+</nav>
+
+<div class="credit-band">
+  <div class="credit-text">Crafted by <span>Mahansh Gaur</span> · B.Tech RTU Jaipur</div>
+  <a class="credit-link" href="https://www.instagram.com/mahaanshgaur_6513" target="_blank">📸 @mahaanshgaur_6513</a>
+  <a class="credit-link" href="https://github.com/mahanshstarktech" target="_blank">🐙 GitHub</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>🚰 B.Tech VII Sem · RTU Kota · 7AG6-60.2 (Open Elective-I) · Unit 2</div>
+    <h1>Water Supply <span>System</span> —<br>Demand, <em>Sources &amp; Intakes</em></h1>
+    <p class="hero-sub">Complete Unit 2 coverage, explained from absolute scratch — Importance of safe water supply, domestic water requirement for urban &amp; rural India, every source of water (surface + underground), intake structures (river/reservoir/lake/canal), and transportation of water. Every RTU PYQ solved, layman explanations, exam tricks, all diagrams &amp; formulas your faculty checks for, and the 2026 Mid-Term 1 predicted questions from this unit.</p>
+    <div class="hero-badges">
+      <span class="badge badge-r">🔥 Mid-Term 1 Core Unit — 3 of 7 Qs</span>
+      <span class="badge badge-gold">🔮 2026 Predicted Qs Inside</span>
+      <span class="badge badge-v">Diagram-Heavy — 5 Diagrams</span>
+      <span class="badge badge-g">Urban vs Rural LPCD — Most Repeated Q</span>
+      <span class="badge badge-p">River / Reservoir / Lake / Canal Intake</span>
+    </div>
+  </div>
+</section>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Unit 2 Topics</div>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <a class="nav-item" href="#overview">📊 Importance Overview</a>
+  <a class="nav-item" href="#importance">💧 Importance of Safe Water Supply<span class="nav-imp high">100%</span></a>
+  <a class="nav-item" href="#demand">🚰 Domestic Water Demand &amp; LPCD<span class="nav-imp high">100%</span></a>
+  <a class="nav-item" href="#factors">⚖️ Factors Affecting Demand<span class="nav-imp med">70%</span></a>
+  <a class="nav-item" href="#sources-overview">🌊 Sources of Water — Overview<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#surface-sources">🏞️ Surface Sources<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#ground-sources">🕳️ Underground Sources<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#intakes">🛠️ Intake Structures<span class="nav-imp high">60%</span></a>
+  <a class="nav-item" href="#transportation">🚧 Transportation of Water<span class="nav-imp med">40%</span></a>
+  <a class="nav-item" href="#predicted">🔮 2026 Predicted Paper</a>
+  <a class="nav-item" href="#pyq-master">📝 All PYQs — Master List</a>
+</nav>
+
+<main class="content">
+
+<!-- ═══════ SECTION 00: OVERVIEW ═══════ -->
+<section class="section" id="overview">
+  <div class="section-header"><span class="section-num">00</span><h2 class="section-title">Topic Importance — Unit 2</h2></div>
+  <div class="theory-block">
+    <p><strong>Why Unit 2 matters so much:</strong> Unit 2 is the <strong>backbone of Mid-Term 1</strong>. Out of the 7 questions in the real Aug-2025 Mid-Term 1 paper, <strong>3 belong entirely to Unit 2</strong> (Q2, Q3, Q5) and a 4th (Q6) is a Part C option from this unit — that's up to 16 of the 20 marks touching this unit if you choose the Unit-2 Part C question. In the End-Term, this unit contributes at least one guaranteed Part A question and usually one Part B/C question every single year. If you master only two units for your mid-term, make this one of them.</p>
+    <div class="imp-bar-wrap" style="margin-top:18px">
+      <div class="imp-bar-label"><span>Domestic Water Requirement — Urban vs Rural (demand + LPCD)</span><span style="color:#ef4444">100% 🔮 CERTAIN Mid-Term Part B</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:100%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Importance of Safe Water Supply System</span><span style="color:#ef4444">100% — Mid-Term Part A, every paper</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:100%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Intakes — River / Reservoir / Lake / Canal (with diagram)</span><span style="color:#ef4444">60% 🔮 CERTAIN in some form (Mid-Term Part C)</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:60%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Sources of Water Supply — classification &amp; details</span><span style="color:#06b6d4">80% — appears almost every End-Term year</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:80%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Factors Affecting Water Demand</span><span style="color:#f59e0b">70%</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:70%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Transportation of Water (channels/aqueducts/tunnels/pipes)</span><span style="color:#f59e0b">40%</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:40%"></div></div>
+    </div>
+    <div class="tip-box connect" style="margin-top:20px">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection — Unit 1 → Unit 2</div>
+        <p>In Unit 1 you learnt that <strong>Environmental Engineering = applying engineering principles to protect human health and improve environmental quality</strong>. Unit 2 is the first real, practical demonstration of that definition — a safe water supply system directly protects human health (prevents water-borne disease) and directly improves quality of life. Everything from here on is you actually "doing" environmental engineering, not just defining it. Keep this connection in mind — several Part C questions literally ask you to link "importance of EE" with "water supply."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 01: IMPORTANCE OF SAFE WATER SUPPLY ═══════ -->
+<section class="section" id="importance">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Importance of Safe Water Supply System</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Mid-Term Part A):</strong> "State two reasons why a safe water supply system is important for community health" was Q3 in the real Aug-2025 Mid-Term 1 paper (2 marks). This topic is a guaranteed Part A "reasons/importance" question every single mid-term — it's the easiest 2 marks in the whole paper if you know the list below cold.</div></div>
+  <div class="theory-block">
+    <h3>What is a "Water Supply System" and why start here?</h3>
+    <p>Before any formula or diagram, get the basic picture straight: a <span class="hl-v">water supply system</span> is the complete engineered chain that takes water from nature (a river, a well, a lake) and delivers it — clean, in enough quantity, at enough pressure — to every tap in a town. Unit 2 covers the <em>first half</em> of that chain: how much water do we need (demand), where do we get it from (sources), and how do we safely pull it out (intakes) and move it (transportation). Unit 3, next, covers the <em>second half</em>: how do we make sure that water is actually safe to drink (quality + treatment).</p>
+    <div class="layman">Think of a city's water system like the plumbing of a giant house, except the house is the whole town. Before you install any pipe, you must first answer three questions: "How much water will this house use per day?" (demand), "Where is the water coming from — a tank on the roof, a borewell, or the municipal line?" (source), and "How do I safely tap into that supply without contaminating it?" (intake). Unit 2 answers exactly these three questions for an entire city.</p>
+
+    <h3 class="cyan">Why Water is a Basic Need — The Big Picture</h3>
+    <p>Water is required for far more than just drinking. Any RTU answer on "importance of water supply" scores extra marks by listing the full range of uses, not just drinking:</p>
+    <div class="fbox">
+      <span class="flbl">Uses of Water — Full List (write as many as you can recall)</span>
+      <div class="fl">(a) Drinking and cooking          (b) Bathing and washing</div>
+      <div class="fl">(c) Watering lawns and gardens     (d) Heating and air-conditioning systems</div>
+      <div class="fl">(e) Growing of crops               (f) Street washing</div>
+      <div class="fl">(g) Fire fighting                  (h) Recreation — swimming pools, fountains, cascades</div>
+      <div class="fl">(i) Steam power and various industrial processes</div>
+      <div class="fn">Exam trick: even a 2-mark "define/list" question scores better if you name 4-5 of these uses instead of just "drinking" — it shows breadth of understanding.</div>
+    </div>
+    <div class="layman">"Best of all things is water" — the Greek poet Pindar said this almost 2500 years ago, and RTU examiners love this quote in model answers. It means: no matter how advanced technology gets, nothing can replace water — you can live without electricity, without the internet, even without most food for weeks, but without water, survival is measured in days.</div>
+
+    <h3 class="orange">The Global Water Scarcity Picture (great for a "why is safe water important" answer)</h3>
+    <div class="fbox">
+      <span class="flbl">Key Statistics — Use these to justify "importance"</span>
+      <div class="fl">Earth's surface covered by water         : &gt; 70%</div>
+      <div class="fl">Of that, available as usable FRESH water : &lt; 1% (rest is saline/ocean/ice)</div>
+      <div class="fl">People worldwide lacking safe drinking water : &gt; 1 billion (mostly developing countries)</div>
+      <div class="fl">WHO: without access to improved sanitation    : ~2.4 billion people</div>
+      <div class="fl">WHO: without access to safe drinking water    : ~1.1 billion people</div>
+      <div class="fn">Where does Earth's water actually sit? Oceans 97.3% (saline) · Ice caps 2.0% · Groundwater 0.68% · Freshwater lakes 0.009% · Rivers only 0.0001%. This is why groundwater and rivers — tiny fractions — are so precious and so heavily engineered.</div>
+    </div>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Fast-Recall Trick — "&lt;1% freshwater" number</div>
+        <p>If you remember only ONE statistic for this topic, remember: <strong>"more than 70% of Earth is water, but less than 1% of that is usable fresh water."</strong> This single sentence answers "why is water scarce/important" in any 2-mark question and can open any longer answer as a strong first line.</p>
+      </div>
+    </div>
+
+    <h3 class="cyan">Objectives / Importance of a Safe Water Supply System — The Core List</h3>
+    <p>This is the single most repeated list in Unit 2. It has appeared as a direct Part A question ("state two reasons...") and as the opening paragraph of many Part B/C answers. Memorise all five points:</p>
+    <div class="fbox">
+      <span class="flbl">5 Objectives of Safe Water Supply — MUST MEMORISE</span>
+      <div class="fl">1. To supply SAFE water to consumers (free from disease-causing organisms/chemicals)</div>
+      <div class="fl">2. To supply water in SUFFICIENT QUANTITY (enough LPCD for all needs)</div>
+      <div class="fl">3. To supply water at CONVENIENT points and timings (accessible, reliable schedule)</div>
+      <div class="fl">4. To supply water at REASONABLE COST to the users (affordable)</div>
+      <div class="fl">5. To encourage PERSONAL &amp; HOUSEHOLD CLEANLINESS of the user</div>
+      <div class="fn">Memory trick: "S-S-C-C-C" → Safe, Sufficient, Convenient, Cost-reasonable, Cleanliness. Five C/S words, five points.</div>
+    </div>
+
+    <h4>Requirements of a good Distribution System (extra depth for Part B/C)</h4>
+    <ul>
+      <li>Delivers water with the right <strong>quality, quantity and pressure</strong> to every consumer</li>
+      <li>Water quality must <strong>not deteriorate</strong> inside the distribution pipes</li>
+      <li>Must supply requisite water for <strong>fire-fighting</strong> at all times</li>
+      <li>No consumer should be left without water during <strong>repair</strong> of any part of the system (looped/zoned layout)</li>
+      <li>Distribution pipes should be laid <strong>at least 1 metre away or above</strong> the sewer line (to avoid cross-contamination if a pipe leaks)</li>
+      <li>The system should be <strong>fairly water-tight</strong> to keep leakage losses to a minimum</li>
+    </ul>
+    <div class="tip-box valid">
+      <div class="tip-icon">✅</div>
+      <div class="tip-content">
+        <div class="tip-title">Answer-Validation Trick</div>
+        <p>If you're asked "why is a safe water supply important for community health" and your answer doesn't mention <strong>disease prevention</strong> (water-borne diseases like cholera, typhoid, diarrhoea) anywhere, you've missed the core point — go back and add it. A correct answer must connect "safe water" → "prevents disease" → "protects community health," because that causal chain IS the definition of the question.</p>
+      </div>
+    </div>
+
+    <h3 class="red">🖊️ THE Diagram — Typical Layout of a Domestic Water Supply System</h3>
+    <p>This exact diagram was asked verbatim as <strong>Mid-Term 1 Q2 (Aug-2025): "Draw a typical layout of domestic water supply system"</strong> — a full 2 marks for a diagram alone. It is also the single most useful diagram in the entire unit because every other topic (sources, intakes, transportation) is just one box in this picture. Learn this diagram first — it gives you a mental map for the whole unit.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 780 300" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="390" y="22" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="13" font-weight="bold">Typical Layout of a Domestic Water Supply System</text>
+        <defs>
+          <marker id="arwB" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#5a8aa0"/>
+          </marker>
+        </defs>
+        <!-- Source -->
+        <rect x="10" y="55" width="105" height="55" rx="7" fill="#081820" stroke="#22d3ee" stroke-width="1.6"/>
+        <text x="62" y="78" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="10" font-weight="bold">SOURCE</text>
+        <text x="62" y="93" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">River / Reservoir</text>
+        <text x="62" y="102" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">Lake / Well</text>
+        <line x1="115" y1="82" x2="143" y2="82" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <!-- Intake -->
+        <rect x="146" y="55" width="100" height="55" rx="7" fill="#081820" stroke="#10b981" stroke-width="1.6"/>
+        <text x="196" y="78" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="10" font-weight="bold">INTAKE</text>
+        <text x="196" y="93" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">Withdraws raw</text>
+        <text x="196" y="102" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">water safely</text>
+        <line x1="246" y1="82" x2="274" y2="82" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <!-- Pumping station 1 -->
+        <rect x="277" y="55" width="110" height="55" rx="7" fill="#081820" stroke="#f97316" stroke-width="1.6"/>
+        <text x="332" y="74" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="9.5" font-weight="bold">RAW WATER</text>
+        <text x="332" y="86" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="9.5" font-weight="bold">PUMPING STN</text>
+        <text x="332" y="100" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">lifts water to plant</text>
+        <line x1="387" y1="82" x2="415" y2="82" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <!-- Treatment plant -->
+        <rect x="418" y="45" width="125" height="75" rx="7" fill="#081820" stroke="#a78bfa" stroke-width="2"/>
+        <text x="480" y="70" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="10" font-weight="bold">TREATMENT</text>
+        <text x="480" y="83" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="10" font-weight="bold">PLANT</text>
+        <text x="480" y="98" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">Screening→Sediment.</text>
+        <text x="480" y="108" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">→Filtration→Disinfect.</text>
+        <line x1="543" y1="82" x2="571" y2="82" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <!-- Clear water reservoir -->
+        <rect x="574" y="55" width="105" height="55" rx="7" fill="#081820" stroke="#22d3ee" stroke-width="1.6"/>
+        <text x="626" y="74" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="9" font-weight="bold">CLEAR WATER</text>
+        <text x="626" y="87" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="9" font-weight="bold">RESERVOIR</text>
+        <text x="626" y="100" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">stores treated water</text>
+        <!-- down arrow to distribution -->
+        <line x1="626" y1="110" x2="626" y2="150" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <text x="655" y="132" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">clear-water</text>
+        <text x="655" y="141" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">pumping stn</text>
+        <!-- Distribution network -->
+        <rect x="200" y="153" width="480" height="52" rx="7" fill="#0a1c28" stroke="#f59e0b" stroke-width="1.8"/>
+        <text x="440" y="175" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono" font-size="10.5" font-weight="bold">DISTRIBUTION NETWORK</text>
+        <text x="440" y="191" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7.5">Water tower / overhead tank → branching pipe grid across the city</text>
+        <line x1="440" y1="205" x2="440" y2="233" stroke="#5a8aa0" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <!-- Consumers -->
+        <rect x="120" y="236" width="90" height="46" rx="7" fill="#081820" stroke="#6ee7b7" stroke-width="1.4"/>
+        <text x="165" y="264" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9" font-weight="bold">HOUSEHOLDS</text>
+        <rect x="230" y="236" width="90" height="46" rx="7" fill="#081820" stroke="#6ee7b7" stroke-width="1.4"/>
+        <text x="275" y="264" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9" font-weight="bold">INDUSTRIES</text>
+        <rect x="340" y="236" width="90" height="46" rx="7" fill="#081820" stroke="#6ee7b7" stroke-width="1.4"/>
+        <text x="385" y="264" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9" font-weight="bold">PUBLIC USE</text>
+        <rect x="450" y="236" width="90" height="46" rx="7" fill="#081820" stroke="#6ee7b7" stroke-width="1.4"/>
+        <text x="495" y="257" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9" font-weight="bold">FIRE</text>
+        <text x="495" y="269" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="9" font-weight="bold">HYDRANTS</text>
+        <line x1="165" y1="236" x2="165" y2="218" stroke="#5a8aa0" stroke-width="1.4"/>
+        <line x1="440" y1="218" x2="165" y2="218" stroke="#5a8aa0" stroke-width="1.4"/>
+        <line x1="275" y1="236" x2="275" y2="218" stroke="#5a8aa0" stroke-width="1.4"/>
+        <line x1="385" y1="236" x2="385" y2="218" stroke="#5a8aa0" stroke-width="1.4"/>
+        <line x1="495" y1="236" x2="495" y2="218" stroke="#5a8aa0" stroke-width="1.4"/>
+        <text x="690" y="285" fill="#2a4858" font-family="JetBrains Mono" font-size="8">Transportation (open channel / aqueduct / tunnel / pipe) links every arrow above.</text>
+      </svg>
+      <div class="diagram-cap">Fig — Source → Intake → Raw-water Pumping → Treatment Plant → Clear-water Reservoir → Distribution Network → Consumers. Reproduce this box-and-arrow skeleton for Mid-Term Q2-style questions; label every box.</div>
+    </div>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick — Reproduce This Diagram From Memory</div>
+        <p>You do NOT need artistic skill. Draw 7 rectangles in a line (or an L-shape if space is tight), connect them with arrows, and label them: <strong>Source → Intake → Pumping Station → Treatment Plant → Clear Water Reservoir → Distribution Network → Consumer.</strong> That's a complete, correct 2-mark diagram answer. If asked to elaborate, add one line under each box (exactly like the mini-labels above) for Part B/C marks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Importance of Safe Water Supply</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q3. State two reasons why a safe water supply system is important for community health.</div>
+      <div class="pyq-meta"><span>Mid-Term 1, Aug-2025 · Part A Q3 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Importance of Water Supply</span><span class="verified-tag">✔ VERIFIED — from your real paper</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Two reasons a safe water supply system is important for community health:</strong><br><br>
+        1. <strong>Prevents water-borne diseases:</strong> A safe, properly treated water supply is free from pathogenic bacteria, viruses and harmful chemicals — this directly prevents diseases such as cholera, typhoid, diarrhoea and dysentery, which spread rapidly through contaminated water in a community.<br><br>
+        2. <strong>Encourages personal and household cleanliness:</strong> When water is supplied in sufficient quantity, at convenient points and reasonable cost, people bathe, wash and clean more regularly — improving overall community hygiene and reducing the spread of skin and other hygiene-related infections.<br><br>
+        <em>(Any two of the 5 core objectives — safe, sufficient, convenient, reasonable cost, promotes cleanliness — answered with a health angle will fetch full marks.)</em>
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q2. Draw a typical layout of domestic water supply system.</div>
+      <div class="pyq-meta"><span>Mid-Term 1, Aug-2025 · Part A Q2 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">System Layout Diagram</span><span class="verified-tag">✔ VERIFIED — from your real paper</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        See the labelled diagram above: <strong>Source → Intake → Pumping Station → Treatment Plant → Clear Water Reservoir → Distribution Network → Consumer.</strong> Draw 7 boxes connected by arrows in that order; label each box. This single diagram is worth memorising perfectly since it can be reused to illustrate almost any Unit 2/3 answer that needs a "system overview."
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 02: DOMESTIC WATER REQUIREMENT & LPCD ═══════ -->
+<section class="section" id="demand">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Domestic Water Requirement — Urban &amp; Rural, LPCD</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Mid-Term Part B):</strong> "A town is rapidly expanding into a city, while a nearby village continues its traditional lifestyle... explain two fundamental differences in (a) domestic water requirements and (b) infrastructure needed" was Q5 in the real Aug-2025 paper (4 marks). This is <strong>THE most repeated theme in the entire Unit 2 / EEDM PYQ set</strong> — it is guaranteed to reappear, reworded, in 2026.</div></div>
+  <div class="theory-block">
+    <h3>The 5 Categories of Water Demand — Start Here</h3>
+    <p>When an engineer plans a town's water supply, "water demand" is not a single number — it's the sum of five different categories. Understanding this split is the foundation for every calculation and every "explain water requirement" question in this unit.</p>
+    <div class="fbox">
+      <span class="flbl">5 Categories of Total Water Demand for a Town</span>
+      <div class="fl">1. DOMESTIC purposes        (drinking, cooking, bathing, washing, sanitary use — ~50% of total)</div>
+      <div class="fl">2. CIVIC or PUBLIC purposes (road washing, sanitation, fountains, fire demand)</div>
+      <div class="fl">3. INDUSTRIAL purposes      (factories, power stations, railways)</div>
+      <div class="fl">4. BUSINESS / TRADE purposes(hotels, dairies, laundries, restaurants)</div>
+      <div class="fl">5. LOSS AND WASTE           (leakage in mains/valves, unauthorised connections, wastage)</div>
+      <div class="fn">Memory trick: "D-C-I-B-L" → Domestic, Civic, Industrial, Business, Loss. Say it as "Doctors Cure Illness By Listening" if that helps you recall the order.</div>
+    </div>
+    <div class="layman">Imagine you're the mayor and you must estimate how many litres of water the whole town needs tomorrow. You can't just ask "how much do people drink" — you must add up FIVE separate buckets: what households use, what the municipality uses for roads/parks/fire trucks, what factories use, what hotels/shops use, AND — very important — how much will simply leak out of old pipes or get stolen through illegal connections before it even reaches anyone. All five buckets together = total demand.</div>
+
+    <h3 class="cyan">1. Domestic Purposes — The Detailed Breakdown</h3>
+    <p>This is the category examiners test most, because it directly determines the famous "150 LPCD" and "55 LPCD" numbers. The human body is about 70% water — every one of the sub-uses below exists to keep a person healthy and clean.</p>
+    <div class="fbox">
+      <span class="flbl">Domestic Water Use — Per Capita Per Day (LPCD) Breakdown</span>
+      <div class="fl">Drinking                          :  ~2 litres/day   (small qty, but must be HIGH purity)</div>
+      <div class="fl">Cooking                           :  ~5 litres/day</div>
+      <div class="fl">Bathing (ordinary Indian bath)     :  30–40 litres/day</div>
+      <div class="fl">Bathing (tub bath)                 :  50–80 litres/day</div>
+      <div class="fl">Washing hands, face, etc.          :  5–10 litres/day</div>
+      <div class="fl">Household sanitary purposes         :  50–60 litres/day (washing clothes, floors, utensils)</div>
+      <div class="fl">Animals &amp; private vehicles         :  ~13.5 litres/day</div>
+      <div class="fl">Private gardening/irrigation       :  usually NOT counted in public supply schemes</div>
+      <div class="fl"></div>
+      <div class="fl">TOTAL domestic requirement (minimum) : 135 LITRES per capita per day</div>
+      <div class="fl">This 135 LPCD = about 50% of the TOTAL per capita water demand of a town</div>
+      <div class="fn">Exam-validation trick: 2+5+35+8+55+13.5 ≈ 118-135 — roughly adds up to the stated 135 LPCD minimum. If your answer's sub-totals don't roughly sum near 135, re-check your numbers before submitting.</div>
+    </div>
+    <div class="layman">Why is drinking water only 2 litres but bathing needs 30-80 litres? Because purity requirements are inversely related to quantity here — you need a TINY amount of ultra-pure water for drinking (it goes straight into your body), but a LARGE amount of "good enough" water for bathing/washing. This is exactly why treatment plants are designed for the full quantity, but disinfection (the final, most careful step) matters most for the fraction that gets consumed.</div>
+
+    <h3 class="orange">2. Civic or Public Purposes</h3>
+    <ul>
+      <li><strong>Road washing:</strong> sprinkling dusty roads — about 5 litres per capita per day</li>
+      <li><strong>Sanitation purposes:</strong> cleaning public toilets, large markets, carrying liquid waste — about 2–3 litres per capita per day</li>
+      <li><strong>Ornamental purposes:</strong> fountains, decorative lakes/ponds — usually negligible for Indian towns (water is too scarce to "waste" on decoration)</li>
+      <li><strong>Fire demand:</strong> water must always be available in the storage reservoir for fire-fighting — fires mostly occur in factories/stores, and this demand must be met INSTANTLY, so it's stored, not calculated per-day</li>
+    </ul>
+
+    <h3 class="purple">3. Industrial Purposes</h3>
+    <p>Industrial demand has <strong>no direct relationship with population</strong> — a small town with a large factory can have huge industrial demand. Each industry must therefore be studied independently. As a rule of thumb, for a city with moderate factories, <strong>20–25% of per-capita domestic consumption</strong> is added for industrial use.</p>
+    <div class="fbox">
+      <span class="flbl">Water Consumption — Selected Industries (per unit product)</span>
+      <div class="fl">Fertilizer  : 80–200 kilolitres water per TON of fertilizer</div>
+      <div class="fl">Paper       : 200–400 kilolitres water per TON of paper</div>
+      <div class="fl">Steel       : 200–500 kilolitres water per TON of steel</div>
+      <div class="fl">Alcohol     : 122–170 kilolitres water per kilolitre of alcohol</div>
+      <div class="fl">Vehicle     : ~40 kilolitres water per vehicle manufactured</div>
+      <div class="fl">Textile     : 8–14 kilolitres water per 100 kg textile</div>
+      <div class="fn">Note: power stations use huge quantities but are usually sited away from cities, so they rarely burden the public supply. Railways generally arrange their own water — also excluded from public supply calculations.</div>
+    </div>
+
+    <h3 class="cyan">4. Business / Trade Purposes &amp; 5. Loss and Waste</h3>
+    <p><strong>Business/trade:</strong> Dairies, hotels, laundries, motor garages, restaurants, stables — trades needing hygienic conditions. For a moderate city, about <strong>15–25 litres per capita per day</strong> is allowed for this category.</p>
+    <p><strong>Loss and waste (the "unaccounted-for" category):</strong> Includes careless use, leakage in mains/valves/fittings, unauthorised connections, and miscellaneous waste. This can't be predicted precisely, so it's estimated at about <strong>30–40% of per capita consumption</strong> — a surprisingly large chunk that many students forget to mention.</p>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Fast-Recall Trick — Remembering all 5 Category Percentages</div>
+        <p>Domestic ≈ <strong>50%</strong> · Industrial ≈ <strong>20-25%</strong> · Loss &amp; waste ≈ <strong>30-40%</strong> · Business/trade and Civic are the smaller remaining slices. If a question asks "which category takes the largest share of total demand," the answer is always <strong>Domestic purposes</strong> — that's the anchor fact to build the rest of your answer around.</p>
+      </div>
+    </div>
+
+    <h4>Institutional Water Requirements (useful supporting data, LPD = litres per head per day)</h4>
+    <table class="comp-table">
+      <tr><th>Institution</th><th>Requirement</th></tr>
+      <tr><td>Hospital (&gt;100 beds, incl. laundry)</td><td>450 L / bed / day</td></tr>
+      <tr><td>Hospital (≤100 beds)</td><td>340 L / bed / day</td></tr>
+      <tr><td>Hotels</td><td>180 L / bed / day</td></tr>
+      <tr><td>Hostels, nurses' homes, boarding schools</td><td>135 L / head / day</td></tr>
+      <tr><td>Restaurants</td><td>70 L / seat / day</td></tr>
+      <tr><td>Day schools / colleges, offices, factories</td><td>45 L / head / day</td></tr>
+      <tr><td>Cinemas, concert halls, theatres</td><td>15 L / seat / day</td></tr>
+    </table>
+    <div class="layman">Notice hospitals need the most water per person (340–450 L) — that's because of laundry (bedsheets, gowns), sterilisation, and higher hygiene needs. A cinema hall needs the least (15 L) because people just sit and watch — barely any water-consuming activity happens there.</div>
+
+    <h3 class="red">Per Capita Demand — Definition &amp; Formula</h3>
+    <div class="fbox">
+      <span class="flbl">Per Capita Demand — Definition &amp; Formula</span>
+      <div class="fl">DEFINITION: The amount of water required by ONE person for ONE day,</div>
+      <div class="fl">            based on the ANNUAL AVERAGE consumption of the town.</div>
+      <div class="fl">            It includes: domestic use + industrial/commercial use + public use</div>
+      <div class="fl">            + fire demand + losses and thefts — i.e. it is the TOTAL, not just domestic.</div>
+      <div class="fl"></div>
+      <div class="fl">        Total quantity of water required by a town in a year (litres)</div>
+      <div class="fl">Per Capita Demand (LPCD) =  ─────────────────────────────────────────────</div>
+      <div class="fl">                              365  ×  Population of the town</div>
+      <div class="fn">This is THE most important formula of Unit 2 — write it exactly like this if a numerical/definition question appears. "LPCD" = Litres Per Capita per Day.</div>
+    </div>
+
+    <h3 class="orange">🎯 The Number Every RTU Student Must Know — Urban vs Rural LPCD</h3>
+    <div class="fbox">
+      <span class="flbl">Standard Domestic Consumption (Indian Cities) — LEARN THIS PAIR</span>
+      <div class="fl">URBAN AREAS  :  150  LPCD   (Litres Per Capita per Day)</div>
+      <div class="fl">RURAL AREAS  :   55  LPCD</div>
+      <div class="fl"></div>
+      <div class="fl">Minimum domestic-only requirement (any area) : 135 LPCD (≈50% of total per capita demand)</div>
+      <div class="fn">Validation check: Urban MUST always be higher than Rural — never write it the other way around. Urban includes piped distribution, civic use, fire demand and a share of industrial/commercial use that rural areas simply don't have.</div>
+    </div>
+    <div class="layman">Why is urban consumption almost 3x rural? A city dweller has a flush toilet, a shower, maybe a washing machine, a car to wash, and lives in a building protected by fire hydrants. A villager mostly draws water from a hand pump or well for drinking, cooking and basic washing — no flush toilets in many cases, no piped fire protection, no large-scale civic infrastructure consuming water on their behalf. More infrastructure = more water used per person, even before anyone's personal habits change.</div>
+
+    <h3 class="cyan">Urban vs Rural — Full Comparison Table (the exact Q5 answer structure)</h3>
+    <table class="comp-table">
+      <tr><th>Aspect</th><th>Urban Area (rapidly growing city)</th><th>Rural Area (traditional village)</th></tr>
+      <tr><td>Per capita demand</td><td>135–150 LPCD</td><td>40–55 LPCD</td></tr>
+      <tr><td>Uses covered</td><td>Domestic + civic + fire-fighting + share of industrial/commercial</td><td>Mostly drinking, cooking, bathing, washing &amp; basic sanitary use only</td></tr>
+      <tr><td>Infrastructure</td><td>Treatment plant, pumped/piped distribution network, storage/service reservoirs, fire hydrant provision</td><td>Hand pumps / open wells, simple gravity stand-posts, minimal or no treatment, no fire demand infrastructure</td></tr>
+      <tr><td>Sanitation habits</td><td>Flush toilets, showers, washing machines common</td><td>Traditional practices, lower fixture-based consumption</td></tr>
+      <tr><td>Growth trend</td><td>Rising fast — with development, standard of living rises</td><td>Relatively stable, changes slowly</td></tr>
+    </table>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick — Writing a Fast, Full-Marks Urban-vs-Rural Answer</div>
+        <p>Whenever this question appears (in ANY wording — "compare," "differences," "town vs village"), draw a 2-column table exactly like the one above with headers "Urban" / "Rural" and rows "LPCD," "Uses covered," "Infrastructure." Examiners award marks fast for a clean comparison table — it's faster to write AND faster to grade than a paragraph, and it's very hard to miss a point when working in table format.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Domestic Water Requirement / LPCD</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q5. A town is rapidly expanding into a city, while a nearby village continues its traditional lifestyle. As a planning official, explain two fundamental differences each in: (a) the domestic water requirements (demand and use), and (b) the infrastructure needed for the water supply systems.</div>
+      <div class="pyq-meta"><span>Mid-Term 1, Aug-2025 · Part B Q5 · 4 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Urban vs Rural Demand</span><span class="verified-tag">✔ VERIFIED — from your real paper</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>(a) Two differences in domestic water requirement (demand &amp; use):</strong><br>
+        1. <strong>Quantity (LPCD):</strong> Urban areas require about 135–150 LPCD while rural areas require only about 40–55 LPCD — nearly three times less.<br>
+        2. <strong>Nature of use:</strong> Urban demand includes flush toilets, showers, washing machines and civic/fire uses; rural demand is largely limited to drinking, cooking, bathing and basic household sanitary use, with little to no fire or large civic component.<br><br>
+        <strong>(b) Two differences in infrastructure needed:</strong><br>
+        1. <strong>Treatment &amp; distribution:</strong> Urban systems need a full treatment plant, pumping stations, and a pressurised piped distribution network reaching every household; rural systems often rely on simple hand pumps, open wells or gravity-fed stand-posts with minimal or no treatment.<br>
+        2. <strong>Storage &amp; fire protection:</strong> Urban systems need large service/clear-water reservoirs sized to also meet sudden fire-fighting demand; rural systems have no dedicated fire-fighting storage since such infrastructure is uneconomical for small, scattered populations.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q1 (Part B). Compare the domestic water requirements of urban and rural areas with suitable examples.</div>
+      <div class="pyq-meta"><span>RTU End-Term 2025 · Part B · 4 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Urban vs Rural Demand</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Use the exact comparison table above (LPCD, uses covered, infrastructure, sanitation habits). <strong>Example:</strong> A metro like Jaipur supplies ~150 LPCD through a piped treated network with overhead tanks in every colony, while a Rajasthan village may depend on a community hand pump delivering ~50 LPCD used almost entirely for drinking, cooking and bathing, with no piped distribution at all.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q2 (Part B). Write in brief, the domestic water requirements for urban and rural areas of India, and state the per capita demand formula.</div>
+      <div class="pyq-meta"><span>Pattern question — theme repeated across multiple end-terms · 4 marks ⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Per Capita Demand</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Domestic consumption:</strong> Urban India = 150 LPCD, Rural India = 55 LPCD (under normal conditions). <strong>Per capita demand</strong> is the amount of water required by one person per day, based on the annual average, including domestic + industrial/commercial + public use + losses/thefts + fire demand.<br><br>
+        <strong>Formula:</strong> Per Capita Demand (LPCD) = Total annual quantity required (litres) ÷ (365 × Population).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 03: FACTORS AFFECTING DEMAND ═══════ -->
+<section class="section" id="factors">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Factors Affecting Water Demand</h2></div>
+  <div class="theory-block">
+    <h3>Why This Topic Exists — Connection to Section 02</h3>
+    <p>Section 02 gave you the standard numbers (150 LPCD urban, 55 LPCD rural). But those are just <em>averages</em> — real consumption varies from town to town and season to season. This section explains <strong>why</strong> the number moves up or down. It's a natural follow-up question after any "what is per capita demand" question, so the two topics are frequently asked together or back-to-back.</p>
+    <div class="layman">Think of your own house's water/electricity bill — it's not the same every month. It's higher in summer, lower in winter; higher if the water company charges less; higher if your neighbourhood has old leaking pipes. A whole town behaves the same way, just scaled up. This section lists the six reasons a town's bill (its water demand) rises or falls.</div>
+
+    <h3 class="cyan">The 6 Factors — Memorise This List</h3>
+    <div class="fbox">
+      <span class="flbl">6 Factors Affecting Rate of Water Demand</span>
+      <div class="fl">1. CLIMATIC CONDITIONS      — hot/dry season needs more water than cold/rainy season</div>
+      <div class="fl">2. COST OF WATER             — higher price → lower consumption, and vice-versa</div>
+      <div class="fl">3. DISTRIBUTION PRESSURE     — higher pressure → more consumption (more loss &amp; waste at taps)</div>
+      <div class="fl">4. HABITS &amp; STANDARD OF LIVING — high-value premises use more; slum areas use much less</div>
+      <div class="fl">5. PRESENCE OF INDUSTRIES    — industries add demand with NO direct link to population</div>
+      <div class="fl">6. POLICY OF METERING        — metered connections reduce wasteful consumption</div>
+      <div class="fn">Memory trick: "C-C-D-H-I-M" → Climate, Cost, Distribution pressure, Habits, Industries, Metering. Six factors, six letters — say "Cats Chase Dogs, Humans Ignore Meters" as a silly sentence if it helps you recall the order under exam pressure.</div>
+    </div>
+
+    <h4>1. Climatic Conditions</h4>
+    <p>Water requirement is more in summer than winter, and more in hot/dry places than cool/humid places. Even in extreme cold, people sometimes leave taps running slightly to prevent pipes from freezing — this paradoxically <em>increases</em> consumption in winter in very cold regions.</p>
+
+    <h4>2. Cost of Water</h4>
+    <p>The rate at which water is charged to consumers affects how much they use — higher tariff, lower usage (people become careful); lower tariff, higher usage (people don't bother conserving).</p>
+
+    <h4>3. Distribution Pressure</h4>
+    <p>Consumption rises when distribution pressure is higher, because loss and waste of water at taps/fittings increases with pressure — a leaking tap under high pressure wastes far more water than the same leak under low pressure.</p>
+
+    <h4>4. Habits of Population / Standard of Living</h4>
+    <p>High-value premises (bungalows, posh colonies) → higher consumption due to better living standards (more bathrooms, gardens, washing machines). Middle-class premises → average consumption. Slum areas → much lower consumption due to limited access and fixtures.</p>
+
+    <h4>5. Industries</h4>
+    <p>Industrial presence has <strong>no direct relationship with population</strong> — a small town with a large factory can suddenly have very high demand. Present and future industrial requirements must be studied and planned separately, not simply scaled with population.</p>
+
+    <h4>6. Policy of Metering</h4>
+    <p>When a water meter is installed and the consumer is charged based on actual usage, consumption drops — people become conscious of every litre used. Un-metered ("flat rate") connections tend to encourage wastage.</p>
+
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection Forward — Factors → Sources &amp; Intakes</div>
+        <p>These factors don't just change the demand NUMBER — they directly influence which <strong>source</strong> and <strong>intake type</strong> an engineer chooses (next two sections). E.g. a city with strong seasonal demand swings (climatic factor) needs a <strong>storage reservoir</strong> source (built specifically to store monsoon excess for the dry season) rather than a small stream that might run dry exactly when demand peaks.</p>
+      </div>
+    </div>
+    <div class="tip-box valid">
+      <div class="tip-icon">✅</div>
+      <div class="tip-content">
+        <div class="tip-title">Answer-Validation Trick</div>
+        <p>If a question asks you to "list factors affecting water demand" and you find yourself writing more than 6-7 points, you've likely started repeating ideas (e.g. "habits" and "standard of living" are the same factor, not two). Stick to the 6 core factors above — quality over quantity scores better than a padded, repetitive list.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Factors Affecting Demand</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">List and briefly explain the factors affecting the rate of demand of water in a town.</div>
+      <div class="pyq-meta"><span>Recurring theme, various end-terms · 4 marks ⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Factors Affecting Demand</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Use the 6-factor list above: Climatic conditions, Cost of water, Distribution pressure, Habits/standard of living, Presence of industries, Policy of metering — with one line of explanation for each (see theory above). Add the memory trick "C-C-D-H-I-M" to your rough work first so you don't forget any factor while writing under time pressure.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 04: SOURCES OF WATER — OVERVIEW ═══════ -->
+<section class="section" id="sources-overview">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Sources of Water Supply — Overview &amp; Classification</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — VERY HIGH (Mid-Term Part A):</strong> "List the sources of water supply" was 2021 Part A Q5 (verbatim), reappeared as "list two main sources of surface water supply" in the 2025 End-Term Part A, and as a full Part B question ("describe different sources of water supply") in the 2023 End-Term. Present in 3 of 4 papers analysed — never yet asked in the Mid-Term sample, making it the strongest "new" Part A candidate for 2026.</div></div>
+  <div class="theory-block">
+    <h3>Where Does a Town's Water Actually Come From?</h3>
+    <p>Once you know HOW MUCH water a town needs (Section 02) and WHY that number changes (Section 03), the next natural question is: WHERE does the town get it from? Every possible origin of water for a public supply scheme falls into just four broad classes.</p>
+    <div class="fbox">
+      <span class="flbl">Classification of Sources of Water — The Big Picture</span>
+      <div class="fl">1. RAIN WATER      — direct collection of precipitation</div>
+      <div class="fl">2. SURFACE WATER    — Rivers, Lakes &amp; streams, Ponds, Storage reservoirs</div>
+      <div class="fl">3. GROUND WATER     — Open wells, Tube wells, Artesian wells, Springs, Infiltration galleries</div>
+      <div class="fl">4. SEA WATER        — needs desalination before use (last resort, expensive)</div>
+      <div class="fn">Memory trick: "R-S-G-S" → Rain, Surface, Ground, Sea. If a question asks to "list the sources," write these 4 category headers FIRST, then list 2-3 examples under each — this structure alone earns most of the marks even before detail.</div>
+    </div>
+    <div class="layman">Imagine four different taps a city could connect to: Tap 1 = the sky itself (rainwater harvesting), Tap 2 = whatever is flowing or standing on the ground (rivers, lakes, reservoirs), Tap 3 = what's hidden underground (wells, springs), and Tap 4 = the ocean, but you'd need to remove the salt first (expensive, so it's the last resort). Every water supply scheme in the world uses some combination of Taps 1-3; Tap 4 is used only where the other three fail (e.g., some Gulf countries).</div>
+
+    <h3 class="cyan">Surface Water vs Ground Water — First Comparison</h3>
+    <table class="comp-table">
+      <tr><th>Aspect</th><th>Surface Water</th><th>Ground Water</th></tr>
+      <tr><td>Examples</td><td>Rivers, lakes, ponds, streams, storage reservoirs</td><td>Open wells, tube wells, artesian wells, springs, infiltration galleries</td></tr>
+      <tr><td>Quality</td><td>Contains silt, suspended impurities; often contaminated by upstream sewage discharge</td><td>Naturally filtered by soil layers — generally purer, but can pick up dissolved minerals/salts</td></tr>
+      <tr><td>Reliability</td><td>Variable — depends on season, rainfall, upstream withdrawal</td><td>More stable, though can dry up if over-extracted or if strata slope is unfavourable</td></tr>
+      <tr><td>Treatment needed</td><td>Extensive (screening, sedimentation, filtration, disinfection)</td><td>Often minimal disinfection is enough (but must check for hardness, fluoride, arsenic, etc. — see Unit 3)</td></tr>
+      <tr><td>Typical use</td><td>Large cities (rivers, storage reservoirs)</td><td>~75–85% of India's population still depends on wells</td></tr>
+    </table>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Fast-Recall Number — 75 to 85%</div>
+        <p>If asked "what is the chief source of water supply in India," the number-backed answer is: <strong>wells (75–85% of India's population depends on them)</strong>. This single statistic is a strong, specific fact that upgrades a generic answer into a well-supported one.</p>
+      </div>
+    </div>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection Forward — Sources → Unit 3 (Drinking Water Quality)</div>
+        <p>The source you choose directly decides how much treatment is needed next (Unit 3). River water = high turbidity + possible sewage contamination = needs the FULL treatment train (screening → sedimentation → filtration → disinfection). Groundwater from a good aquifer = naturally filtered = may need only disinfection. This is exactly why RTU Part C questions often combine "compare sources/intakes" with "how does it affect water quality" — the two units are directly linked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 05: SURFACE SOURCES ═══════ -->
+<section class="section" id="surface-sources">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">Surface Sources of Water</h2></div>
+  <div class="theory-block">
+    <h3>Lakes &amp; Streams</h3>
+    <p>A natural lake is a large body of water on land with an <strong>impervious bed</strong> (so water doesn't seep away) — this makes it usable as a source for nearby localities. Streams are formed by surface run-off; their flow is high in the rainy season but can shrink to nothing in the hot season.</p>
+    <ul>
+      <li>Catchment area of lakes/streams is usually <strong>very small</strong> → quantity of available water is low</li>
+      <li>NOT suitable as the principal source for large cities, but perfectly fine for <strong>hilly areas and small towns</strong></li>
+      <li>Water from lakes/streams is generally <strong>free from undesirable impurities</strong> and can often be used for drinking with minimal treatment</li>
+    </ul>
+    <div class="layman">A lake is like a big natural bathtub with a sealed bottom — water collects and stays. A stream is more like an overflow drain — strong after rain, but can run bone dry in peak summer. Neither can reliably supply a big city (too small a catchment), but they're perfect for a hill station or a small town.</div>
+
+    <h3 class="orange">Ponds</h3>
+    <p>A pond is a <strong>man-made</strong> body of standing water, smaller than a lake — typically formed by digging for roads/house construction, then filled by rainwater. Ponds contain <strong>very small quantity</strong> and <strong>many impurities</strong>.</p>
+    <div class="tip-box warning">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-content">
+        <div class="tip-title">Common Exam Trap — Ponds are NOT a Water Supply Source</div>
+        <p>A pond <strong>cannot</strong> be adopted as a source of public water supply — its water is only fit for washing clothes or animals. If asked to "list sources of water supply," do NOT include ponds — this is a classic examiner trap to check if you actually understood the material rather than just listing every water body you know.</p>
+      </div>
+    </div>
+
+    <h3 class="cyan">Rivers — The Principal Source for Large Cities</h3>
+    <p>Large rivers are the <strong>principal source</strong> for many cities. Rivers are of two types:</p>
+    <ul>
+      <li><strong>Perennial rivers:</strong> snow-fed, so water flows in all seasons</li>
+      <li><strong>Non-perennial rivers:</strong> dry up wholly or partly in summer, then flood heavily in monsoon. For these, dams are built to store excess flood water for use in summer.</li>
+    </ul>
+    <div class="fbox">
+      <span class="flbl">Concerns with River Water — Why Rivers Need Careful Treatment</span>
+      <div class="fl">1. Quantity from non-perennial rivers is VARIABLE — falls exactly when demand is highest (summer)</div>
+      <div class="fl">2. Quality is UNRELIABLE — contains silt and suspended impurities</div>
+      <div class="fl">3. Upstream sewage discharge (treated or partly-treated) → high contamination risk</div>
+      <div class="fl">4. Requires EXHAUSTIVE treatment before it is fit for drinking</div>
+      <div class="fn">4 Points to check when planning a river water supply: (i) adequacy of purified-water storage for turbid flood periods, (ii) efficiency of the purification stages adopted, (iii) general nature/flow rate of the river and distance of pollution sources from the intake, (iv) proportion of polluting matter relative to the river's MINIMUM flow.</div>
+    </div>
+    <div class="layman">A perennial river is like a tap that's always on (fed by melting snow high in the mountains, all year round). A non-perennial river is like a tap that's only on during the rainy season and dry the rest of the year — so engineers build a dam to "store up" the monsoon's water like filling a bucket while the tap runs, to use later when it's off.</div>
+
+    <h3 class="purple">Storage Reservoirs</h3>
+    <p>An <strong>artificial lake</strong> formed by constructing a dam across a valley — the main source of water for very big cities where a natural perennial river isn't available or reliable enough.</p>
+    <div class="fbox">
+      <span class="flbl">3 Essential Parts of a Storage Reservoir — MUST MEMORISE</span>
+      <div class="fl">1. A DAM         — to hold back and store the water</div>
+      <div class="fl">2. A SPILLWAY    — to safely let excess (flood) water flow out without damaging the dam</div>
+      <div class="fl">3. A GATE CHAMBER — houses valves that regulate the outflow of water</div>
+      <div class="fn">Multi-purpose reservoirs additionally serve irrigation and power generation, not just water supply — a common Part B/C add-on point.</div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Surface Sources</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q5. List the sources of water supply.</div>
+      <div class="pyq-meta"><span>RTU 2021, Feb-Mar (Agri. Engg OE-I) · Part A Q5 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Sources of Water</span><span class="verified-tag">✔ VERIFIED — from your 2021 paper</span><span class="pred-tag">🔮 VERY HIGH 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Sources of Water Supply:</strong><br>
+        <strong>Surface sources:</strong> Rivers, Lakes &amp; Streams, Ponds, Storage Reservoirs<br>
+        <strong>Ground sources:</strong> Open Wells, Tube Wells, Artesian Wells, Springs, Infiltration Galleries<br>
+        <strong>Others:</strong> Rain water, Sea water (requires desalination)<br><br>
+        Rivers and storage reservoirs are the principal sources for large cities; lakes/streams suit hilly areas and small towns; wells remain the chief source for 75-85% of India's population.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">List two main sources of surface water supply.</div>
+      <div class="pyq-meta"><span>RTU End-Term 2025 · Part A · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Surface Sources</span><span class="pred-tag">🔮 VERY HIGH 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Two main sources of surface water supply:</strong> (1) <strong>Rivers</strong> — the principal source for large cities, and (2) <strong>Storage Reservoirs</strong> — artificial lakes formed by dams, used where river flow alone is not guaranteed year-round. (Lakes/streams and ponds are secondary/limited-use sources.)
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Describe different sources of water supply.</div>
+      <div class="pyq-meta"><span>RTU End-Term 2023 · Part B · 4 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Sources of Water</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Structure the answer under the 4 categories (Rain, Surface, Ground, Sea) as in the fbox above, then give 2-3 lines describing each surface source (lakes/streams, ponds, rivers, storage reservoirs) using the theory in this section, and each ground source (covered in the next section). A full 4-mark answer needs at least the classification plus one distinguishing fact per source (e.g. "ponds cannot be used as a principal source," "rivers may be perennial or non-perennial").
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 06: UNDERGROUND SOURCES ═══════ -->
+<section class="section" id="ground-sources">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Underground (Ground Water) Sources</h2></div>
+  <div class="theory-block">
+    <h3>How Does Water Get Underground? Infiltration vs Percolation</h3>
+    <p>Before the 4 types of underground sources, understand HOW water gets underground in the first place — this basic mechanism is often asked as a stand-alone 2-mark question.</p>
+    <div class="fbox">
+      <span class="flbl">Infiltration vs Percolation — Don't Confuse These</span>
+      <div class="fl">INFILTRATION : The downward entry of rain/melted-snow water THROUGH the soil surface.</div>
+      <div class="fl">               Occurs close to the surface, near the plant root zone.</div>
+      <div class="fl">               Importance: replenishes SOIL MOISTURE.</div>
+      <div class="fl"></div>
+      <div class="fl">PERCOLATION  : The further MOVEMENT of that water downward through soil particles,</div>
+      <div class="fl">               between the unsaturated zone and the saturated zone.</div>
+      <div class="fl">               Importance: replenishes UNDERGROUND AQUIFERS.</div>
+      <div class="fn">Memory trick: "Infiltration IN, Percolation Progresses (downward)." Infiltration is the entry; percolation is the continued journey deeper down.</div>
+    </div>
+
+    <h3 class="cyan">Aquifers — The Water-Bearing Layer</h3>
+    <p>The earth's surface is made of <strong>alternating pervious and impervious layers (strata)</strong>. A <strong>pervious</strong> layer lets water pass through easily; an <strong>impervious</strong> layer blocks water. The pervious, water-holding layer is called an <strong>aquifer</strong> (water-bearing stratum).</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 260" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="310" y="20" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Underground Water — Strata &amp; Aquifer Cross-Section</text>
+        <!-- ground surface -->
+        <rect x="30" y="45" width="560" height="18" fill="#152432" stroke="#6ee7b7" stroke-width="1"/>
+        <text x="45" y="58" fill="#6ee7b7" font-family="JetBrains Mono" font-size="8">GROUND SURFACE</text>
+        <!-- rain arrows -->
+        <line x1="120" y1="30" x2="120" y2="45" stroke="#22d3ee" stroke-width="1.6" marker-end="url(#arwB)"/>
+        <line x1="160" y1="30" x2="160" y2="45" stroke="#22d3ee" stroke-width="1.6" marker-end="url(#arwB)"/>
+        <text x="140" y="24" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="7.5">rain — INFILTRATION</text>
+        <!-- pervious layer (topsoil, unsaturated) -->
+        <rect x="30" y="63" width="560" height="45" fill="#0c2030" stroke="#5a8aa0" stroke-width="1"/>
+        <text x="45" y="80" fill="#a7f3d0" font-family="JetBrains Mono" font-size="8" font-weight="bold">PERVIOUS LAYER (unsaturated) — sand/gravel</text>
+        <text x="45" y="93" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">water PERCOLATES further down through here</text>
+        <line x1="300" y1="63" x2="300" y2="108" stroke="#22d3ee" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#arwB)"/>
+        <!-- water table -->
+        <line x1="30" y1="108" x2="590" y2="108" stroke="#22d3ee" stroke-width="1.6" stroke-dasharray="6,3"/>
+        <text x="500" y="104" fill="#22d3ee" font-family="JetBrains Mono" font-size="7.5">WATER TABLE</text>
+        <!-- aquifer layer (saturated pervious) -->
+        <rect x="30" y="111" width="560" height="55" fill="#0a1c28" stroke="#10b981" stroke-width="1.6"/>
+        <text x="45" y="130" fill="#10b981" font-family="JetBrains Mono" font-size="9" font-weight="bold">AQUIFER (saturated pervious layer — sand/gravel/limestone)</text>
+        <text x="45" y="145" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">stores usable ground water — tapped by wells, springs, galleries</text>
+        <!-- impervious base -->
+        <rect x="30" y="166" width="560" height="40" fill="#152016" stroke="#f59e0b" stroke-width="1.4"/>
+        <text x="45" y="188" fill="#f59e0b" font-family="JetBrains Mono" font-size="8" font-weight="bold">IMPERVIOUS LAYER (clay / rock) — stops water from going further</text>
+        <!-- well -->
+        <rect x="450" y="63" width="18" height="103" fill="#081420" stroke="#a78bfa" stroke-width="1.6"/>
+        <text x="459" y="222" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="8" font-weight="bold">WELL</text>
+        <text x="459" y="234" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="7">draws from aquifer</text>
+      </svg>
+      <div class="diagram-cap">Fig — Rain infiltrates the topsoil, percolates down to the water table, and saturates the aquifer (pervious layer) sitting above an impervious base. Wells, springs and galleries all tap into this same aquifer.</div>
+    </div>
+    <ul>
+      <li>Aquifer of <strong>sand and gravel</strong> → gives a good supply of drinking water</li>
+      <li>Aquifer of <strong>limestone</strong> → can also supply good water, but only if cracks/fissures are present in it</li>
+    </ul>
+
+    <h3 class="orange">The 4 Forms of Underground Sources — MUST MEMORISE</h3>
+    <div class="fbox">
+      <span class="flbl">4 Forms of Underground Water Sources</span>
+      <div class="fl">1. INFILTRATION GALLERIES</div>
+      <div class="fl">2. INFILTRATION WELLS</div>
+      <div class="fl">3. SPRINGS  (Artesian / Gravity / Surface)</div>
+      <div class="fl">4. WELLS    (open wells, tube wells, etc.)</div>
+      <div class="fn">Memory trick: "GI-SW" (like a name) → Galleries, Infiltration wells, Springs, Wells.</div>
+    </div>
+
+    <h4>1. Infiltration Galleries</h4>
+    <p>A <strong>horizontal (or nearly horizontal) tunnel</strong> constructed through a water-bearing stratum, usually along a river bank — sometimes called a "horizontal well." Built of brick walls with a slab roof. Porous drain pipes (wrapped in gravel/pebble to filter out fine material) collect water into the gallery.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 600 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="300" y="20" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Infiltration Gallery — River Bank Cross-Section</text>
+        <!-- river -->
+        <rect x="20" y="45" width="150" height="130" fill="#0a1c28" stroke="#22d3ee" stroke-width="1.4"/>
+        <text x="95" y="65" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="9" font-weight="bold">RIVER</text>
+        <path d="M30 90 q30 8 60 0 t60 0" fill="none" stroke="#22d3ee" stroke-width="1" opacity=".6"/>
+        <path d="M30 115 q30 8 60 0 t60 0" fill="none" stroke="#22d3ee" stroke-width="1" opacity=".6"/>
+        <!-- bank / strata -->
+        <rect x="170" y="45" width="410" height="130" fill="#0c2030" stroke="#5a8aa0" stroke-width="1"/>
+        <text x="380" y="62" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="8">WATER-BEARING STRATA (bank of river)</text>
+        <!-- gallery tunnel -->
+        <rect x="200" y="128" width="330" height="30" fill="#081420" stroke="#f97316" stroke-width="1.8"/>
+        <text x="365" y="147" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="9" font-weight="bold">INFILTRATION GALLERY (brick walls + slab roof, laid at a slope)</text>
+        <!-- porous pipes -->
+        <circle cx="220" cy="128" r="3" fill="none" stroke="#6ee7b7" stroke-width="1"/>
+        <circle cx="260" cy="128" r="3" fill="none" stroke="#6ee7b7" stroke-width="1"/>
+        <circle cx="300" cy="128" r="3" fill="none" stroke="#6ee7b7" stroke-width="1"/>
+        <text x="260" y="118" text-anchor="middle" fill="#6ee7b7" font-family="JetBrains Mono" font-size="6.5">porous pipes (gravel-wrapped)</text>
+        <!-- manhole -->
+        <rect x="440" y="108" width="16" height="20" fill="#152432" stroke="#a78bfa" stroke-width="1.4"/>
+        <text x="448" y="102" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="6.5">manhole</text>
+        <!-- sump -->
+        <rect x="540" y="128" width="40" height="47" fill="#081420" stroke="#22d3ee" stroke-width="1.6"/>
+        <text x="560" y="185" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="7.5" font-weight="bold">SUMP</text>
+        <line x1="530" y1="143" x2="538" y2="143" stroke="#5a8aa0" stroke-width="1.4" marker-end="url(#arwB)"/>
+        <text x="300" y="200" text-anchor="middle" fill="#2a4858" font-family="JetBrains Mono" font-size="8">Gallery laid at 5–10 m depth, sloped toward the sump → water pumped to treatment after collection</text>
+      </svg>
+      <div class="diagram-cap">Fig — Infiltration gallery: a horizontal tunnel drawing water through porous pipes into a sump, from where it is pumped for treatment.</div>
+    </div>
+    <p>Useful when groundwater is available in sufficient quantity <strong>just below ground level</strong> — usually constructed at a depth of about <strong>5 to 10 metres</strong>. Manholes are provided along the gallery for cleaning and inspection.</p>
+
+    <h4>2. Infiltration Wells</h4>
+    <p>Shallow wells built along a river bank to collect river water seeping through the <strong>bottom</strong> — constructed of brick masonry with open joints, closed at the top, open at the bottom. Several are sunk in series for larger quantities. As the water passes through a sand bed to reach the well, it gets <strong>partially purified</strong> along the way.</p>
+    <div class="fbox">
+      <span class="flbl">Infiltration Wells — Key Facts</span>
+      <div class="fl">Connected by porous pipes to a collecting sump called a JACK WELL</div>
+      <div class="fl">Water flows BY GRAVITY from infiltration wells into the jack well</div>
+      <div class="fl">From jack well → pumped to the purification plant</div>
+      <div class="fl">Advantage: NOT affected by floods, silt/sand loads, or extremely low river flow</div>
+      <div class="fn">Manholes provided in the top cover for inspection — remember "jack well" also reappears later in the River Intake section (Section 07) — same term, related concept.</div>
+    </div>
+
+    <h4>3. Springs — Where Groundwater Reaches the Surface</h4>
+    <p>When groundwater naturally appears at the surface, a <strong>spring</strong> is formed. Springs serve small towns, especially near hills. Some discharge <strong>hot water</strong> (due to sulphur/mineral presence) — not usable for domestic supply, though sometimes valued for treating human ailments.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 680 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="340" y="20" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Three Types of Springs</text>
+        <!-- Artesian -->
+        <rect x="10" y="35" width="205" height="165" rx="6" fill="#081420" stroke="#22d3ee" stroke-width="1.5"/>
+        <text x="112" y="53" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="9" font-weight="bold">1. ARTESIAN SPRING</text>
+        <rect x="25" y="65" width="175" height="14" fill="#152016" stroke="#f59e0b" stroke-width="1"/>
+        <text x="112" y="75" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono" font-size="6.5">Impervious (I)</text>
+        <rect x="25" y="79" width="175" height="30" fill="#0a1c28" stroke="#10b981" stroke-width="1"/>
+        <text x="112" y="98" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="6.5">Pervious (P) — under pressure</text>
+        <rect x="25" y="109" width="175" height="14" fill="#152016" stroke="#f59e0b" stroke-width="1"/>
+        <text x="112" y="119" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono" font-size="6.5">Impervious (I)</text>
+        <path d="M100 65 L100 40" fill="none" stroke="#22d3ee" stroke-width="2" marker-end="url(#arwB)"/>
+        <text x="112" y="150" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">Water rises to surface</text>
+        <text x="112" y="162" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">under NATURAL PRESSURE</text>
+        <text x="112" y="177" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="6.5">(sandwiched P-layer between</text>
+        <text x="112" y="188" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="6.5">2 impervious I-layers)</text>
+        <!-- Gravity -->
+        <rect x="230" y="35" width="205" height="165" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="332" y="53" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="9" font-weight="bold">2. GRAVITY SPRING</text>
+        <path d="M245 130 Q330 90 420 130" fill="none" stroke="#5a8aa0" stroke-width="1.4"/>
+        <line x1="245" y1="130" x2="420" y2="130" stroke="#22d3ee" stroke-width="1.4" stroke-dasharray="4,2"/>
+        <text x="332" y="145" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="6.5">water table OVERFLOWS at slope</text>
+        <rect x="270" y="150" width="60" height="20" fill="#0a1c28" stroke="#a78bfa" stroke-width="1"/>
+        <text x="300" y="163" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="6">trench (storage)</text>
+        <text x="332" y="188" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">Flow VARIES with rise/fall</text>
+        <text x="332" y="199" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">of the water table</text>
+        <!-- Surface -->
+        <rect x="450" y="35" width="220" height="165" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="560" y="53" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="9" font-weight="bold">3. SURFACE SPRING</text>
+        <path d="M465 110 L590 110 L620 90 L670 90" fill="none" stroke="#f59e0b" stroke-width="1.6"/>
+        <text x="560" y="105" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono" font-size="6.5">impervious layer OUTCROP</text>
+        <path d="M600 90 L600 65" fill="none" stroke="#22d3ee" stroke-width="1.8" marker-end="url(#arwB)"/>
+        <text x="560" y="140" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">Sub-soil water EXPOSED</text>
+        <text x="560" y="152" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">by an impervious layer</text>
+        <text x="560" y="164" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="7">meeting the ground surface</text>
+      </svg>
+      <div class="diagram-cap">Fig — Artesian spring (pressurised, P-layer between two I-layers), Gravity spring (water table overflow, needs a storage trench), Surface spring (impervious layer forces sub-soil water out at surface).</div>
+    </div>
+    <div class="fbox">
+      <span class="flbl">Factors to Check Before Adopting a Spring as a Source</span>
+      <div class="fl">1. Easier/cheaper/surer to develop than any other source in that locality</div>
+      <div class="fl">2. Flow should be ADEQUATE even in dry weather</div>
+      <div class="fl">3. Spring must be adequately PROTECTED from pollution sources</div>
+      <div class="fl">4. Should be located to allow NATURAL GRAVITY FLOW (saves pumping cost)</div>
+      <div class="fl">5. Water should be of GOOD QUALITY</div>
+      <div class="fn">Spring water quality depends on geological/topographical conditions — can be hard/soft, pure/polluted, even saline. Yield is often inadequate except for small supplies. Undisturbed spring water is usually clear and pleasant-tasting.</div>
+    </div>
+
+    <h4>4. Wells — India's Chief Water Source</h4>
+    <p>A well is an artificial hole or pit made in the ground to tap water. In India, wells supply <strong>75-85% of the population</strong>. Three factors form the basis of "well theory":</p>
+    <div class="fbox">
+      <span class="flbl">3 Factors — Theory of Wells</span>
+      <div class="fl">1. GEOLOGICAL CONDITIONS   — slope of water-bearing strata: TOWARDS the well = water even in hot season;</div>
+      <div class="fl">                             AWAY from the well = well dries up quickly, water only in monsoon</div>
+      <div class="fl">2. POROSITY of layers      — more porous aquifer = well fills faster, collects more water</div>
+      <div class="fl">3. STORAGE CAPACITY        — aquifer's ability to absorb &amp; store water = determines supply rate to the well</div>
+      <div class="fn">Well types (common knowledge, brief): Open wells (shallow, wide-diameter, dug by hand); Tube wells (deep, narrow-bore, drilled, fitted with pump); Artesian wells (tap a confined, pressurised aquifer — water rises on its own, sometimes even flows out at the top without pumping).</div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Underground Sources</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Explain the four forms in which underground sources of water are found, with the help of a diagram.</div>
+      <div class="pyq-meta"><span>Recurring theme · 4-6 marks ⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Underground Sources</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        The four forms: <strong>Infiltration galleries</strong> (horizontal tunnel through water-bearing strata near a river bank), <strong>Infiltration wells</strong> (shallow wells along the bank connected to a jack well by gravity), <strong>Springs</strong> (Artesian, Gravity, Surface — see the 3-panel diagram above), and <strong>Wells</strong> (open/tube/artesian, governed by 3 factors: geological slope, porosity, storage capacity). Draw the infiltration gallery diagram or the springs diagram above for full marks — RTU explicitly checks diagrams.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Differentiate between infiltration and percolation.</div>
+      <div class="pyq-meta"><span>Definition-style · 2 marks ⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Infiltration vs Percolation</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Infiltration</strong> is the downward entry of water through the soil surface, occurring close to the surface near the root zone — it replenishes soil moisture. <strong>Percolation</strong> is the continued movement of that infiltrated water downward, between the unsaturated and saturated zones — it replenishes underground aquifers.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 07: INTAKE STRUCTURES ═══════ -->
+<section class="section" id="intakes">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Intakes for Water Supply</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Mid-Term Part C):</strong> "Compare river and reservoir water intakes. Explain how each type affects water quality and what problems can occur when moving water to treatment plants" was Q6 in the real Aug-2025 paper (6 marks, Part C — attempt any 1 of 2). This exact theme — intake comparison + effect on quality — is also RTU's single longest-covered topic in the syllabus deck. Expect it again in 2026, very possibly extended to include lake and canal intakes too.</div></div>
+  <div class="theory-block">
+    <h3>What is an Intake? Why Does It Need Its Own Engineering?</h3>
+    <p>Once you've chosen a <strong>source</strong> (Sections 05-06), you can't just dip a bucket in — you need a permanent engineered structure to safely and reliably withdraw water, 365 days a year, in all conditions (floods, droughts, pollution events). That structure is called an <strong>Intake</strong>.</p>
+    <div class="fbox">
+      <span class="flbl">Definition — Intake</span>
+      <div class="fl">An Intake is the device/structure installed to draw water from the chosen source.</div>
+      <div class="fl">Its basic function: safely withdraw water from the source, and discharge it into the</div>
+      <div class="fl">withdrawal conduit through which it reaches the water treatment plant.</div>
+      <div class="fn">Look back at the "Typical Layout" diagram in Section 01 — Intake is literally box #2 in that chain, right after Source.</div>
+    </div>
+    <div class="layman">If the source is the ocean of water available to a city, the intake is the "straw" the city uses to sip from it — except this straw must be strong enough to survive floods, smart enough to avoid the dirtiest patch of water, and reliable enough to never run dry even in the worst drought.</div>
+
+    <h3 class="cyan">Selecting the Intake Location — 6 Factors</h3>
+    <div class="fbox">
+      <span class="flbl">6 Factors for Selecting Intake Site — MUST MEMORISE</span>
+      <div class="fl">1. Site should be NEAR the treatment plant → reduces conveyance (pipe/channel) cost</div>
+      <div class="fl">2. Intake located in the PUREST ZONE of the source → best quality water, less load on treatment</div>
+      <div class="fl">3. NEVER near a waste-water disposal point → avoids drawing polluted water</div>
+      <div class="fl">4. NEVER near navigation channels → reduces pollution risk from ship waste discharge</div>
+      <div class="fl">5. Must draw water even during the DRIEST period of the year → guarantees reliability</div>
+      <div class="fl">6. Site must remain EASILY ACCESSIBLE during floods, and must not itself get flooded</div>
+      <div class="fn">Memory trick — think of it as choosing a house: live close to work (near plant), in the cleanest part of town (purest zone), far from the sewage plant and the busy shipping docks (avoid pollution/navigation), somewhere that never runs out of water even in a drought, and somewhere that never floods.</div>
+    </div>
+
+    <h3 class="orange">Design Considerations for an Intake</h3>
+    <ul>
+      <li>Must be <strong>sufficiently heavy</strong> — should not float due to the upward thrust (buoyancy) of water</li>
+      <li>All expected forces (water pressure, current, wave action) must be carefully analysed and designed for</li>
+      <li>Foundation must go <strong>sufficiently deep</strong> to avoid overturning</li>
+      <li><strong>Strainers</strong> (wire mesh) fitted on all inlets to stop large floating debris from entering</li>
+      <li>Sized and located so sufficient water can always be drawn, in ALL circumstances</li>
+    </ul>
+
+    <h3 class="purple">Types of Intakes by Construction — Submerged / Wet / Dry</h3>
+    <div class="fbox">
+      <span class="flbl">3 Construction Types of Intake</span>
+      <div class="fl">SUBMERGED INTAKE : Constructed entirely UNDER water — common for drawing from a lake</div>
+      <div class="fl">EXPOSED INTAKE   : Built as a well/tower near (or away from) the river bank, above water</div>
+      <div class="fl">  → (a) WET INTAKE : water level inside the tower = water level of the source (a "jack well") — MOST COMMON</div>
+      <div class="fl">  → (b) DRY INTAKE : NO water inside the tower — water goes straight into conveying pipes;</div>
+      <div class="fl">                     the dry tower is only used to operate valves etc.</div>
+    </div>
+
+    <h3 class="red">The 4 Types of Intake by Source — With Full Diagram</h3>
+    <p>This is the exact content examined by Mid-Term Q6. Learn each type's structure, then the comparison table right after for the "quality effect" part of the answer.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 230" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="380" y="18" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Four Types of Intake — River / Reservoir / Lake / Canal</text>
+        <!-- River -->
+        <rect x="8" y="30" width="175" height="180" rx="6" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="95" y="48" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono" font-size="9" font-weight="bold">RIVER INTAKE</text>
+        <rect x="30" y="60" width="130" height="22" fill="none" stroke="#6090a8" stroke-width="1"/>
+        <text x="95" y="75" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">river (upstream of city)</text>
+        <line x1="35" y1="90" x2="155" y2="90" stroke="#22d3ee" stroke-width="1" opacity=".6"/>
+        <rect x="82" y="100" width="26" height="45" fill="#152432" stroke="#10b981" stroke-width="1.5"/>
+        <text x="95" y="97" text-anchor="middle" fill="#5a8aa0" font-family="JetBrains Mono" font-size="6">inlet pipe</text>
+        <text x="95" y="155" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">jack well +</text>
+        <text x="95" y="165" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">inlet well</text>
+        <text x="95" y="185" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">3 parts: inlet well +</text>
+        <text x="95" y="196" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">inlet pipe + jack well</text>
+        <!-- Reservoir -->
+        <rect x="192" y="30" width="180" height="180" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="282" y="48" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono" font-size="9" font-weight="bold">RESERVOIR INTAKE</text>
+        <path d="M210 60 L210 145 L355 145 L355 95 L305 60 Z" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+        <text x="282" y="72" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6">dam slope</text>
+        <line x1="216" y1="80" x2="350" y2="80" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="216" y1="105" x2="350" y2="105" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+        <line x1="216" y1="130" x2="350" y2="130" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="282" y="158" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">multi-level intake pipes</text>
+        <text x="282" y="185" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">tower on dam's upstream</text>
+        <text x="282" y="196" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">face — deepest point</text>
+        <!-- Lake -->
+        <rect x="384" y="30" width="175" height="180" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="471" y="48" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono" font-size="9" font-weight="bold">LAKE INTAKE</text>
+        <ellipse cx="471" cy="105" rx="72" ry="38" fill="none" stroke="#10b981" stroke-width="1.5"/>
+        <circle cx="471" cy="105" r="9" fill="#152432" stroke="#22d3ee" stroke-width="1.5"/>
+        <text x="471" y="160" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">submerged pipe + bell mouth</text>
+        <text x="471" y="171" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">protected by timber/concrete crib</text>
+        <text x="471" y="190" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">cheap construction —</text>
+        <text x="471" y="200" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">used where bank is shallow</text>
+        <!-- Canal -->
+        <rect x="568" y="30" width="184" height="180" rx="6" fill="#081420" stroke="#f97316" stroke-width="1.5"/>
+        <text x="660" y="48" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="9" font-weight="bold">CANAL INTAKE</text>
+        <rect x="585" y="60" width="150" height="22" fill="none" stroke="#6090a8" stroke-width="1"/>
+        <text x="660" y="75" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">irrigation canal</text>
+        <rect x="620" y="90" width="80" height="45" fill="#152432" stroke="#f97316" stroke-width="1.5"/>
+        <text x="660" y="112" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="6">intake chamber</text>
+        <text x="660" y="123" text-anchor="middle" fill="#f97316" font-family="JetBrains Mono" font-size="6">(coarse screen)</text>
+        <circle cx="660" cy="146" r="6" fill="none" stroke="#6ee7b7" stroke-width="1.2"/>
+        <text x="660" y="163" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono" font-size="6.5">bell mouth + fine screen</text>
+        <text x="660" y="185" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">used for small towns near</text>
+        <text x="660" y="196" text-anchor="middle" fill="#a7f3d0" font-family="JetBrains Mono" font-size="6.5">an irrigation canal</text>
+      </svg>
+      <div class="diagram-cap">Fig — River intake (upstream, jack well), Reservoir intake (dam-slope tower, multiple levels), Lake intake (submerged, cheap construction), Canal intake (screened chamber inside the canal bank).</div>
+    </div>
+
+    <h4>River Intake — 3 Components</h4>
+    <p>Located <strong>upstream of the city</strong> to minimise pollution. Either positioned well inside the river channel (to guarantee flow in all seasons) or near the bank where sufficient depth is available. Sometimes an approach channel leads water to the tower; if river level is too low, a weir may be built to raise the level.</p>
+    <div class="fbox">
+      <span class="flbl">River Intake — 3 Components (MUST MEMORISE)</span>
+      <div class="fl">(a) An INLET WELL</div>
+      <div class="fl">(b) An INLET PIPE (intake pipe)</div>
+      <div class="fl">(c) A JACK WELL</div>
+    </div>
+
+    <h4>Reservoir Intake</h4>
+    <p>Used when river flow is not guaranteed year-round — a dam (earthen/masonry/concrete) is built to store water. The reservoir intake is <strong>similar to the river intake</strong>, but positioned near the <strong>upstream face of the dam</strong> where the maximum depth is available. Since reservoir <strong>water level changes seasonally</strong>, intake pipes are provided at <strong>multiple levels</strong> so the best-quality layer can always be drawn.</p>
+
+    <h4>Lake Intake</h4>
+    <p>Similar to reservoir intake <em>if</em> the water near the bank is reasonably deep. If the bank is shallow but the centre is deep, a <strong>submerged intake</strong> is used — a pipe with a bell-mouth opening, protected by a timber or concrete crib, built directly on the lake bed. Water flows into a sump well and is then pumped to the treatment plant. Lake intakes are <strong>cheap to construct</strong>.</p>
+
+    <h4>Canal Intake</h4>
+    <p>Used when a small town's source is a nearby irrigation canal. Consists of a concrete/masonry rectangular intake chamber with a <strong>coarse screen</strong> at entry and a <strong>fine screen</strong> over the bell-mouth outlet pipe (placed below the canal's expected low water level). Built so as NOT to obstruct the normal canal flow — the canal is usually lined near the intake location.</p>
+
+    <h3 class="cyan">River vs Reservoir Intake — Effect on Water Quality (the exact Mid-Term Q6 answer)</h3>
+    <table class="comp-table">
+      <tr><th>Aspect</th><th>River Intake</th><th>Reservoir Intake</th></tr>
+      <tr><td>Water quality variation</td><td>Fluctuates strongly with season — high turbidity/silt in monsoon, upstream sewage risk always present</td><td>More stable overall, but stratifies by depth/temperature through the year — multi-level pipes let you pick the best layer</td></tr>
+      <tr><td>Reliability of flow</td><td>Can reduce sharply in summer for non-perennial rivers</td><td>Reliable — the dam exists specifically to guarantee supply through dry periods</td></tr>
+      <tr><td>Problems moving water to treatment plant</td><td>Sudden turbidity spikes during floods can overload sedimentation/filtration units; treatment plant must be designed for the worst-case (flood) turbidity</td><td>Water is comparatively clearer/steadier so treatment load is more predictable, but stagnant layers (algae, low oxygen at depth) may need to be avoided by picking the correct intake level</td></tr>
+      <tr><td>Location logic</td><td>Sited upstream of the city, away from pollution/navigation</td><td>Sited near upstream dam face at the point of maximum depth</td></tr>
+    </table>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick — Full 6-Mark Intake Answer Structure</div>
+        <p>Definition of intake (1) + site-selection factors, at least 3 (1) + draw the 4-type diagram, labelling river &amp; reservoir clearly (2) + comparison table with at least 3 rows on quality/reliability/problems (2) = 6 marks. Always mention "3 components of river intake" (inlet well, inlet pipe, jack well) by name — examiners specifically look for these exact terms.</p>
+      </div>
+    </div>
+    <div class="tip-box valid">
+      <div class="tip-icon">✅</div>
+      <div class="tip-content">
+        <div class="tip-title">Answer-Validation Trick</div>
+        <p>If your intake comparison answer doesn't mention "multiple levels / multi-level pipes" for the reservoir intake, you've missed the single most-tested distinguishing fact between river and reservoir intakes — river intakes typically have ONE intake point, reservoir intakes need SEVERAL levels because reservoir water quality/level changes with depth and season.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Intake Structures</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q6. Compare river and reservoir water intakes. Explain how each type affects water quality and what problems can occur when moving water to treatment plants.</div>
+      <div class="pyq-meta"><span>Mid-Term 1, Aug-2025 · Part C Q6 (attempt 1 of 2) · 6 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Intake Comparison</span><span class="verified-tag">✔ VERIFIED — from your real paper</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Use the full structure from the "Exam Trick" box above: definition → site-selection factors → 4-type diagram (label river + reservoir) → the River vs Reservoir comparison table (quality variation, reliability, treatment-plant problems, location logic). Mention river intake's 3 components (inlet well, inlet pipe, jack well) and reservoir intake's multi-level pipes explicitly — these exact terms are what examiners check for.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Discuss the requirements for urban and rural water supply system. How does intake and transportation of water affect its quality?</div>
+      <div class="pyq-meta"><span>RTU 2021, Feb-Mar (Agri. Engg OE-I) · Part C Q2 · 15 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Demand + Intake + Transportation</span><span class="verified-tag">✔ VERIFIED — from your 2021 paper</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        This is a combined question spanning three parts of Unit 2: (1) Urban vs rural water requirements — use the comparison table from Section 02; (2) Intake's effect on quality — a well-sited intake (purer zone, away from pollution/navigation, per the 6 site-selection factors) directly reduces raw-water contamination and treatment load; (3) Transportation's effect on quality — open channels risk contamination/seepage/algae growth along the route, while closed pipes/aqueducts protect water quality much better during conveyance (see Section 08 for full detail).
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Explain the different types of intakes used in water supply with neat diagrams.</div>
+      <div class="pyq-meta"><span>Recurring theme, various end-terms · 4-6 marks ⭐⭐</span><span class="unit-tag">Unit 2</span><span class="topic-tag">Types of Intakes</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Cover all 4 types — River, Reservoir, Lake, Canal — using the theory and 4-panel diagram above. For extra marks, also mention the construction classification: Submerged intake (fully underwater, used for lakes) vs Exposed intake, which is further split into Wet intake (water level = source level, most common, aka jack well) and Dry intake (no water inside, only valve operation).
+      </div>
+    </div>
+  </div>
+</section>
