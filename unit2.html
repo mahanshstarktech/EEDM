@@ -82,6 +82,13 @@ html{font-size:clamp(18px,1.3vw,22px);}
 .badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
 .badge-p{color:var(--u4);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08);}
 
+/* ── STATS STRIP ── */
+.stats-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-inner{max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));padding:26px clamp(22px,4vw,80px);}
+.stat-item{text-align:center;padding:8px 0;}
+.stat-num{font-family:var(--head);font-size:clamp(24px,3.6vw,38px);font-weight:800;color:var(--cc);line-height:1;display:block;margin-bottom:5px;}
+.stat-label{font-family:var(--mono);font-size:.62rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1.4px;}
+
 /* ── SIDEBAR ── */
 .sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);padding:28px 18px;border-right:1px solid var(--border);position:sticky;top:44px;height:calc(100vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;flex-shrink:0;}
 .sidebar::-webkit-scrollbar{width:4px;}
@@ -296,6 +303,17 @@ code{font-family:var(--mono);background:var(--surface2);padding:2px 7px;border-r
     </div>
   </div>
 </section>
+
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Core Topics</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">RTU Papers Used</span></div>
+    <div class="stat-item"><span class="stat-num">16</span><span class="stat-label">PYQs Solved</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Demand Topic Weight</span></div>
+    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Labelled Diagrams</span></div>
+    <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Predicted 2026 Qs</span></div>
+  </div>
+</div>
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 <div class="layout">
