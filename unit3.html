@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 3 — Drinking Water Quality | EEDM RTU Exam Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#050c0f;--bg2:#07121a;--surface:#0c1c28;--surface2:#102230;
+  --border:#193344;--border2:#0d1f2e;
+  --ds:#06b6d4;--ds2:#22d3ee;--dsdim:rgba(6,182,212,.12);
+  --u1:#22d3ee;--u2:#10b981;--u3:#ef4444;--u4:#a78bfa;--u5:#f97316;
+  --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
+  --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
+  --sidebar-w:300px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.82;overflow-x:hidden;}
+
+/* ── RESPONSIVE FONT SCALING — bumped up, fills more of big screens ── */
+html{font-size:clamp(17px,1.35vw,22px);}
+@media(min-width:1200px){html{font-size:clamp(19px,1.45vw,25px);}}
+@media(min-width:1600px){html{font-size:clamp(21px,1.4vw,28px);}}
+@media(min-width:1900px){html{font-size:clamp(23px,1.35vw,31px);}}
+@media(min-width:2300px){html{font-size:clamp(25px,1.3vw,35px);}}
+@media(max-width:900px){html{font-size:18px;}}
+@media(max-width:600px){html{font-size:17px;}}
+
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ── LAYOUT — no artificial content cap, so it fills the screen ── */
+.layout{display:flex;max-width:100%;}
+.content{flex:1;padding:clamp(28px,2.6vw,56px) clamp(28px,3.4vw,72px);max-width:100%;overflow-x:hidden;min-width:0;}
+@media(min-width:1400px){.content{padding:clamp(34px,2.4vw,64px) clamp(40px,3.8vw,96px);}}
+@media(min-width:1800px){.content{padding:clamp(40px,2.2vw,72px) clamp(52px,4.2vw,128px);}}
+@media(min-width:2300px){.content{padding:clamp(46px,2vw,80px) clamp(60px,4.5vw,160px);}}
+
+/* ── TOP NAV ── */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.topnav::-webkit-scrollbar{display:none;}
+.tnlabel{font-family:var(--mono);font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--ds2);padding:15px 14px 15px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.tnlink{font-family:var(--mono);font-size:.68rem;padding:8px 14px;border-radius:6px;text-decoration:none;color:var(--dim2);white-space:nowrap;flex-shrink:0;transition:all .18s;border:1px solid transparent;}
+.tnlink:hover{color:var(--text);background:var(--surface2);}
+.tnlink.active{color:var(--ds2);background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.3);}
+.tnlink.pred{color:var(--upred);background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.35);font-weight:600;}
+
+/* ── CREDIT BAND ── */
+.credit-band{background:#060f18;border-bottom:1px solid var(--border2);padding:11px 32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.credit-text{font-family:var(--mono);font-size:.7rem;color:var(--dim2);}
+.credit-text span{color:var(--ds2);font-weight:600;}
+.credit-link{font-family:var(--mono);font-size:.68rem;padding:4px 14px;border-radius:5px;border:1px solid var(--border);color:var(--dim2);text-decoration:none;transition:all .2s;}
+.credit-link:hover{border-color:var(--ds2);color:var(--ds2);}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:clamp(50px,5vw,88px) clamp(28px,4vw,80px) clamp(44px,4vw,70px);background:var(--bg);}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(6,182,212,.09) 1px,transparent 1px),radial-gradient(circle,rgba(239,68,68,.04) 1px,transparent 1px);background-size:44px 44px,88px 88px;background-position:0 0,22px 22px;animation:dotDrift 30s linear infinite;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 10% 50%,rgba(6,182,212,.09) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 85% 15%,rgba(239,68,68,.05) 0%,transparent 60%);pointer-events:none;}
+@keyframes dotDrift{0%{transform:translate(0,0);}100%{transform:translate(44px,44px);}}
+.hero-inner{position:relative;z-index:1;max-width:1800px;margin:0 auto;}
+.hero-tag{font-family:var(--mono);font-size:.72rem;color:var(--ds2);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--ds2);box-shadow:0 0 14px var(--ds2);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(32px,5vw,76px);line-height:1.03;color:#fff;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero h1 span{color:var(--ds2);}
+.hero h1 em{color:var(--u3);font-style:normal;}
+.hero-sub{color:var(--dim2);font-size:clamp(15px,1.4vw,20px);max-width:920px;line-height:1.8;margin-bottom:22px;}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:.68rem;padding:5px 14px;border-radius:5px;border:1px solid;}
+.badge-r{color:var(--u3);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);}
+.badge-v{color:var(--ds2);border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.08);}
+.badge-g{color:var(--u2);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08);}
+.badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+.badge-p{color:var(--u4);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08);}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);padding:28px 18px;border-right:1px solid var(--border);position:sticky;top:44px;height:calc(100vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;flex-shrink:0;}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sidebar-title{font-family:var(--mono);font-size:.62rem;color:var(--ds2);letter-spacing:2px;text-transform:uppercase;}
+.sidebar-close{display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim2);cursor:pointer;padding:2px 9px;font-family:var(--mono);font-size:.68rem;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:7px;cursor:pointer;font-family:var(--head);font-size:.88rem;font-weight:600;color:var(--dim2);transition:all .2s;margin-bottom:3px;text-decoration:none;line-height:1.3;}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text);}
+.nav-item.active{color:var(--ds2);border-left:2px solid var(--ds2);padding-left:10px;}
+.nav-imp{margin-left:auto;font-family:var(--mono);font-size:.62rem;padding:2px 7px;border-radius:3px;background:var(--surface2);white-space:nowrap;}
+.nav-imp.high{color:var(--u3);}
+.nav-imp.med{color:var(--upred);}
+.sidebar-toggle{display:none;position:fixed;bottom:22px;right:22px;z-index:1000;width:52px;height:52px;border-radius:50%;background:var(--ds2);border:none;cursor:pointer;font-size:22px;color:#000;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(34,211,238,.45);transition:transform .2s;}
+.sidebar-toggle:hover{transform:scale(1.1);}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:98;backdrop-filter:blur(3px);}
+.sidebar-overlay.visible{display:block;}
+
+/* ── CONTENT SECTIONS ── */
+.section{margin-bottom:80px;scroll-margin-top:64px;}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.section-num{font-family:var(--mono);font-size:.72rem;color:var(--ds2);background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.3);padding:5px 10px;border-radius:5px;min-width:40px;text-align:center;}
+.section-title{font-family:var(--head);font-size:clamp(22px,2.5vw,36px);font-weight:800;color:#fff;}
+
+/* ── THEORY BLOCKS ── */
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:clamp(22px,2.5vw,40px) clamp(24px,3vw,48px);margin-bottom:22px;}
+.theory-block h3{font-family:var(--head);font-size:clamp(17px,1.7vw,24px);font-weight:700;color:var(--ds2);margin-bottom:14px;}
+.theory-block h3.orange{color:var(--u5);}
+.theory-block h3.red{color:var(--u3);}
+.theory-block h3.cyan{color:var(--u1);}
+.theory-block h3.purple{color:var(--u4);}
+.theory-block h3.green{color:var(--u2);}
+.theory-block p{margin-bottom:14px;font-size:1rem;line-height:1.92;}
+.theory-block p:last-child{margin-bottom:0;}
+.theory-block ul,.theory-block ol{padding-left:26px;margin:12px 0;}
+.theory-block li{margin-bottom:10px;font-size:1rem;line-height:1.82;}
+h4{font-family:var(--head);font-size:1.05rem;font-weight:700;color:var(--text);margin:20px 0 10px;}
+
+/* ── LAYMAN BOX ── */
+.layman{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.2);border-left:3px solid var(--ds2);border-radius:8px;padding:16px 20px;font-family:var(--mono);font-size:.83rem;color:#a5f3fc;margin:16px 0;line-height:1.78;}
+.layman::before{content:'💬 LAYMAN: ';color:var(--ds2);font-weight:700;font-size:.85rem;}
+
+/* ── FORMULA BOX ── */
+.fbox{background:#030c14;border:1px solid rgba(6,182,212,.22);border-left:3px solid var(--ds2);border-radius:9px;padding:18px 22px;margin:18px 0;font-family:var(--mono);font-size:.83rem;color:#67e8f9;overflow-x:auto;line-height:1.72;}
+.fbox .flbl{font-size:.66rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;display:block;}
+.fbox .fl{color:#a5f3fc;font-size:.87rem;display:block;}
+.fbox .fn{color:var(--dim2);font-size:.76rem;margin-top:8px;display:block;font-style:italic;}
+
+/* ── TIP BOXES ── */
+.tip-box{border-radius:9px;padding:18px 20px;margin:16px 0;display:flex;gap:14px;}
+.tip-box.trick{background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25);}
+.tip-box.connect{background:rgba(34,211,238,.07);border:1px solid rgba(34,211,238,.25);}
+.tip-box.warning{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);}
+.tip-box.validate{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.25);}
+.tip-box.pred-tip{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);}
+.tip-icon{font-size:21px;flex-shrink:0;margin-top:3px;}
+.tip-content{flex:1;}
+.tip-title{font-family:var(--head);font-size:.85rem;font-weight:700;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px;}
+.tip-box.trick .tip-title{color:var(--gold);}
+.tip-box.connect .tip-title{color:var(--u1);}
+.tip-box.warning .tip-title{color:var(--u3);}
+.tip-box.validate .tip-title{color:var(--u4);}
+.tip-box.pred-tip .tip-title{color:var(--upred);}
+.tip-content p{font-size:.93rem;color:var(--text);margin:0;line-height:1.78;}
+
+/* ── TABLES ── */
+.comp-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.88rem;display:block;overflow-x:auto;}
+.comp-table th{background:var(--surface2);padding:11px 15px;text-align:left;font-family:var(--head);font-weight:700;color:var(--ds2);border-bottom:1px solid var(--border);white-space:nowrap;}
+.comp-table td{padding:10px 15px;border-bottom:1px solid var(--border);vertical-align:top;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:var(--surface2);}
+.comp-table td.num{font-family:var(--mono);color:#67e8f9;white-space:nowrap;}
+
+/* ── PYQ SECTION ── */
+.pyq-section{background:#06101a;border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:clamp(20px,2.5vw,30px) clamp(22px,3vw,36px);margin-top:26px;}
+.pyq-header{font-family:var(--head);font-size:1.02rem;font-weight:700;color:var(--upred);margin-bottom:18px;}
+.pyq-item{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:18px 20px;margin-bottom:16px;}
+.pyq-q-text{font-family:var(--head);font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.45;}
+.pyq-meta{font-family:var(--mono);font-size:.68rem;color:var(--dim2);margin-bottom:12px;display:flex;gap:12px;flex-wrap:wrap;}
+.topic-tag{background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);color:var(--ds2);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pred-tag{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:var(--upred);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.unit-tag{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:var(--u3);padding:2px 9px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pyq-toggle{background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:7px 16px;cursor:pointer;font-family:var(--mono);font-size:.74rem;color:var(--upred);margin-top:12px;transition:all .2s;}
+.pyq-toggle:hover{background:var(--upred);color:#000;}
+.answer-content{display:none;margin-top:16px;font-size:.96rem;line-height:1.92;}
+.answer-content.open{display:block;}
+.answer-content strong{color:var(--ds2);}
+.answer-content ul,.answer-content ol{padding-left:22px;margin:10px 0;}
+.answer-content li{margin-bottom:8px;}
+
+/* ── PRED BANNER ── */
+.pred-banner{background:linear-gradient(135deg,rgba(245,158,11,.09),rgba(245,158,11,.03));border:1px solid rgba(245,158,11,.35);border-left:3px solid var(--upred);border-radius:9px;padding:14px 18px;margin:16px 0;font-family:var(--mono);font-size:.81rem;color:var(--upred);display:flex;gap:12px;align-items:flex-start;}
+.pred-banner .pb-text{line-height:1.72;}
+
+/* ── IMPORTANCE BARS ── */
+.imp-bar-wrap{margin-bottom:12px;}
+.imp-bar-label{font-family:var(--mono);font-size:.76rem;color:var(--dim2);margin-bottom:5px;display:flex;justify-content:space-between;gap:10px;}
+.imp-bar{height:7px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.imp-bar-fill{height:100%;border-radius:4px;}
+.ibf-hot{background:var(--u3);}
+.ibf-high{background:var(--ds2);}
+.ibf-med{background:var(--upred);}
+
+/* ── DIAGRAM WRAP ── */
+.diagram-wrap{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin:18px 0;text-align:center;overflow-x:auto;}
+.diagram-cap{font-family:var(--mono);font-size:.73rem;color:var(--dim2);margin-top:12px;}
+
+/* ── HIGHLIGHT HELPERS ── */
+.hl-v{color:var(--ds2);font-weight:600;}
+.hl-o{color:var(--u5);font-weight:600;}
+.hl-r{color:var(--u3);font-weight:600;}
+.hl-g{color:var(--u2);font-weight:600;}
+.hl-p{color:var(--u4);font-weight:600;}
+code{font-family:var(--mono);background:var(--surface2);padding:2px 7px;border-radius:4px;font-size:.82rem;color:var(--ds2);}
+
+/* ── PREDICTED SECTION ── */
+.predicted-section{background:linear-gradient(135deg,rgba(5,12,15,1) 0%,rgba(6,182,212,.04) 100%);border-top:1px solid rgba(6,182,212,.2);border-bottom:1px solid rgba(6,182,212,.2);}
+.pred-inner{max-width:100%;margin:0 auto;padding:clamp(40px,4vw,72px) clamp(28px,3.5vw,80px);}
+@media(min-width:1600px){.pred-inner{padding:clamp(50px,3.5vw,84px) clamp(48px,4.5vw,120px);}}
+.pred-badge{display:inline-block;font-family:var(--mono);font-size:.75rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:5px 14px;border-radius:5px;margin-bottom:14px;}
+.pred-sec-title{font-family:var(--head);font-size:clamp(24px,3.2vw,42px);font-weight:800;color:#fff;margin-bottom:6px;}
+.pred-sec-sub{font-family:var(--mono);font-size:.72rem;color:var(--dim2);letter-spacing:1px;margin-bottom:14px;}
+.pred-intro{font-family:var(--mono);font-size:.79rem;color:var(--dim2);max-width:1150px;line-height:1.78;margin-bottom:18px;}
+.disc-box{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:14px 18px;margin-bottom:22px;display:flex;gap:10px;align-items:flex-start;}
+.disc-box p{font-size:.87rem;color:var(--text);}
+.pred-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:18px;margin-top:24px;}
+.pred-card{background:var(--surface);border:1px solid rgba(245,158,11,.2);border-radius:12px;border-top:3px solid var(--upred);overflow:hidden;}
+.pred-card-head{padding:20px 22px 14px;}
+.pred-part{font-family:var(--mono);font-size:.67rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pred-unit{font-family:var(--mono);font-size:.67rem;color:var(--ds2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pred-q{font-family:var(--head);font-size:clamp(.96rem,1.05vw,1.1rem);font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px;}
+.pred-reason{font-size:clamp(.83rem,.92vw,.96rem);color:var(--dim2);line-height:1.7;margin-bottom:10px;}
+.pred-conf{font-family:var(--mono);font-size:.68rem;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+.pred-conf.high{color:var(--u3);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);}
+.pred-conf.med{color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);}
+.pred-answer-toggle{width:100%;padding:10px 22px;background:var(--surface2);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.72rem;color:var(--ds2);text-align:left;transition:all .2s;display:flex;align-items:center;gap:8px;}
+.pred-answer-toggle:hover{background:var(--ds2);color:#000;}
+.pred-answer{display:none;padding:20px 22px;border-top:1px solid var(--border);background:var(--bg);}
+.pred-answer.open{display:block;}
+.pred-answer p{font-size:.93rem;line-height:1.92;margin-bottom:12px;}
+.pred-answer strong{color:var(--ds2);}
+.pred-answer ul,.pred-answer ol{padding-left:22px;margin:10px 0;}
+.pred-answer li{margin-bottom:8px;font-size:.91rem;}
+.fbox.inside-pred{background:#030c14;border:1px solid rgba(6,182,212,.22);border-left:3px solid var(--ds2);border-radius:8px;padding:14px 18px;margin:10px 0;font-family:var(--mono);font-size:.79rem;color:#67e8f9;overflow-x:auto;line-height:1.7;}
+.fbox.inside-pred .fl{color:#a5f3fc;display:block;}
+.fbox.inside-pred .fn{color:var(--dim2);font-size:.7rem;margin-top:6px;display:block;font-style:italic;}
+.dbox{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;margin:14px 0;overflow-x:auto;}
+.dcap{font-family:var(--mono);font-size:.71rem;color:var(--dim2);margin-top:8px;text-align:center;}
+
+/* ── PREP BOX ── */
+.prep-box{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.25);border-radius:10px;padding:22px 28px;margin-top:28px;}
+.prep-box h3{font-family:var(--head);font-size:clamp(1rem,1.15vw,1.3rem);font-weight:700;color:var(--ds2);margin-bottom:14px;}
+.prep-box p{font-size:.93rem;line-height:1.88;margin-bottom:10px;}
+.prep-box strong{color:#fff;}
+
+/* ── FOOTER ── */
+.site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:28px 5vw;text-align:center;font-family:var(--mono);font-size:.72rem;color:var(--dim);}
+.site-footer a{color:var(--dim2);text-decoration:none;margin:0 12px;transition:color .2s;}
+.site-footer a:hover{color:var(--ds2);}
+.footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
+
+/* ── MOBILE ── */
+@media(max-width:1100px){:root{--sidebar-w:270px;}}
+@media(max-width:900px){
+  .sidebar{position:fixed;top:0;left:0;height:100vh;z-index:99;background:var(--bg);transform:translateX(-100%);border-right:1px solid var(--border);transition:transform .3s ease;width:var(--sidebar-w);}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 40px rgba(0,0,0,.9);}
+  .sidebar-close{display:block;}
+  .sidebar-toggle{display:flex;}
+  .content{max-width:100%;padding:28px 20px;}
+  .pred-inner{padding:44px 20px;}
+  .pred-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .hero{padding:44px 18px 40px;}
+  .theory-block{padding:20px 16px;}
+  .pyq-section{padding:16px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <span class="tnlabel">EEDM · RTU</span>
+  <a class="tnlink" href="index.html">🏠 Home</a>
+  <a class="tnlink" href="unit1.html">🌱 U1: Introduction</a>
+  <a class="tnlink" href="unit2.html">🚰 U2: Water Supply System</a>
+  <a class="tnlink active" href="unit3.html">💧 U3: Drinking Water Quality</a>
+  <a class="tnlink" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+  <a class="tnlink" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink" href="pyq.html">📋 Solved PYQs</a>
+  <a class="tnlink pred" href="#predicted">🔮 Predicted 2026</a>
+</nav>
+
+<div class="credit-band">
+  <div class="credit-text">Crafted by <span>Mahansh Gaur</span> · B.Tech RTU Jaipur</div>
+  <a class="credit-link" href="https://www.instagram.com/mahansh.py/" target="_blank">📸 @mahansh.py</a>
+  <a class="credit-link" href="https://github.com/mahanshstarktech" target="_blank">🐙 GitHub</a>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>💧 B.Tech VII Sem · RTU Kota · 7AG6-60.2 · Unit 3 · Mid-Term 1 core unit</div>
+    <h1>Drinking Water <span>Quality</span>,<br>IS-10500 &amp; <em>Treatment</em></h1>
+    <p class="hero-sub">Complete Unit 3 coverage, explained from absolute scratch — physical/chemical/biological characteristics of water, every test and instrument used to measure them, the full IS-10500 standards table, conventional water treatment stage-by-stage, disinfection chemistry, and the importance of sanitation. Every RTU PYQ 2021–2025 solved, plus the 2026 Mid-Term 1 Predicted Paper questions that come from this unit.</p>
+    <div class="hero-badges">
+      <span class="badge badge-r">🔥 100% — every single paper tests this unit</span>
+      <span class="badge badge-gold">🔮 3 of 7 Predicted Mid-Term Qs are from Unit 3</span>
+      <span class="badge badge-v">Full IS-10500 Table — Desirable + Permissible</span>
+      <span class="badge badge-g">Water Treatment Flow Diagram + Equations</span>
+      <span class="badge badge-p">MPN / Coliform Test — Step by Step</span>
+    </div>
+  </div>
+</section>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<div class="layout">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Unit 3 Topics</div>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <a class="nav-item" href="#overview">📊 Importance Overview</a>
+  <a class="nav-item" href="#characteristics">🧾 Characteristics of Water<span class="nav-imp high">100%</span></a>
+  <a class="nav-item" href="#physical">🌫️ Physical Parameters &amp; Tests<span class="nav-imp high">85%</span></a>
+  <a class="nav-item" href="#chemical">⚗️ Chemical Parameters &amp; Tests<span class="nav-imp high">90%</span></a>
+  <a class="nav-item" href="#biological">🦠 Biological / Bacteriological<span class="nav-imp med">55%</span></a>
+  <a class="nav-item" href="#is10500">📐 IS-10500 Standards<span class="nav-imp high">100%</span></a>
+  <a class="nav-item" href="#sampling">🧪 Sampling &amp; Analysis<span class="nav-imp med">40%</span></a>
+  <a class="nav-item" href="#treatment">🏭 Water Treatment Stages<span class="nav-imp high">90%</span></a>
+  <a class="nav-item" href="#disinfection">🧴 Disinfection &amp; Chlorination<span class="nav-imp high">60%</span></a>
+  <a class="nav-item" href="#sanitation">🚻 Importance of Sanitation<span class="nav-imp med">55%</span></a>
+  <a class="nav-item" href="#predicted">🔮 2026 Predicted Paper</a>
+  <a class="nav-item" href="#pyq-master">📝 All PYQs</a>
+</nav>
+
+<main class="content">
+
+<!-- ═══════ SECTION 00: OVERVIEW ═══════ -->
+<section class="section" id="overview">
+  <div class="section-header"><span class="section-num">00</span><h2 class="section-title">Topic Importance — Unit 3</h2></div>
+  <div class="theory-block">
+    <p>Unit 3 is, quite simply, <strong>the most consistently tested unit in the entire EEDM syllabus</strong>. Look at the 5-paper spread: every single one — 2021, 2023, 2024, 2025, and the real Mid-Term 1 sample — asks something from "characteristics of drinking water quality" or "IS-10500 standards" or both, in some part of the paper. If you only had time to prepare one unit properly, this would be it.</p>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Characteristics of Water (Physical + Chemical + Biological)</span><span style="color:#ef4444">100% — every paper</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:100%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>IS-10500 Standards (numeric recall — pH/TDS/turbidity/etc.)</span><span style="color:#ef4444">100% — every paper</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:100%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Conventional Water Treatment (stages + diagram)</span><span style="color:#06b6d4">90% — MT1 real + 2025 Part C</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:90%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Chemical parameter deep-dive (hardness, pH, chlorides, nitrate)</span><span style="color:#06b6d4">90% — embedded in almost every answer</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:90%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Physical parameter deep-dive (colour, turbidity, taste, TDS)</span><span style="color:#06b6d4">85%</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:85%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Disinfection &amp; chlorination (equations, break-point)</span><span style="color:#06b6d4">60%</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:60%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Importance of Sanitation (definitions + impact)</span><span style="color:#f59e0b">55% — 2021 A4, 2023 A7</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:55%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Biological/Bacteriological tests (MPN, coliform)</span><span style="color:#f59e0b">55% — feeds "how to measure quality" answers</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:55%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Sampling &amp; Analysis procedure/precautions</span><span style="color:#f59e0b">40%</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:40%"></div></div>
+    </div>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection: Where Unit 3 sits in the big picture</div>
+        <p>Unit 1 told you Environmental Engineering's scope literally includes "water supply and treatment" as a core item — Unit 3 is that item, in full detail. Unit 2 got the water from its source to the treatment plant via intakes and conveyance; Unit 3 is what happens the moment that raw water arrives — testing it, judging it against a rulebook (IS-10500), and treating it until it's safe to drink. Later, Unit 4 treats water again, but in the opposite direction — <em>after</em> people have used it, to make it safe to release back into the environment. Same toolbox (sedimentation, filtration, some of the same tests like DO), opposite purpose.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 01: CHARACTERISTICS ═══════ -->
+<section class="section" id="characteristics">
+  <div class="section-header"><span class="section-num">01</span><h2 class="section-title">Characteristics of Drinking (Potable) Water</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Predicted Q4, 4 marks):</strong> This exact question is verbatim Q4 in the real Aug-2025 Mid-Term 1 paper: "Describe the important characteristics of drinking water quality. Give the IS-10500 permissible limit for each characteristic." The same theme repeats as 2023 Part B Q2 ("physical characteristics of water") and 2024 Part A Q9. This is the single most-repeated question in the whole subject — if you memorise ONE answer perfectly, make it this one.</div></div>
+  <div class="theory-block">
+    <h3>What does "water quality" even mean?</h3>
+    <p>Water looks the same to the naked eye whether it's safe or dangerous — you cannot tell by looking whether a glass of water carries typhoid bacteria or is perfectly safe. <span class="hl-v">Water quality</span> is the science of putting numbers and tests on water so we can judge it objectively, instead of just trusting our eyes.</p>
+    <div class="layman">Think of water quality testing like a full-body health checkup for the water itself. You don't just look at a patient and declare them healthy — you check their appearance (physical), run a blood test for what's dissolved inside them (chemical), and test for infections (biological). Water gets the exact same three-part checkup before anyone is allowed to drink it.</div>
+
+    <h3 class="cyan">Potable Water — Definition</h3>
+    <p><span class="hl-v">Potable water</span> (drinking water) is water that is safe and palatable enough for human consumption — free from disease-causing organisms, free from harmful chemical concentrations, and reasonably pleasant to look at, smell, and taste.</p>
+
+    <h3 class="orange">The Three Categories — Full Checklist</h3>
+    <p>Every characteristic of drinking water falls into exactly one of three buckets. This 3-way split is the skeleton of almost every Part A/B answer in this unit — always structure your answer around it.</p>
+    <div class="fbox">
+      <span class="flbl">Characteristics of Potable Water — Complete List (as per reference text)</span>
+      <div class="fl">PHYSICAL (judged by the senses):</div>
+      <div class="fl">  1. Clear, colourless and odourless</div>
+      <div class="fl">  2. Cool and pleasant to taste</div>
+      <div class="fl">  3. Free from suspended impurities (low turbidity)</div>
+      <div class="fl"></div>
+      <div class="fl">CHEMICAL (judged by lab tests — what's dissolved):</div>
+      <div class="fl">  4. Free from dissolved gases (CO2, H2S, NH3) and poisonous</div>
+      <div class="fl">     minerals (lead, arsenic, manganese)</div>
+      <div class="fl">  5. Hardness &lt; 500 ppm (mg/L)</div>
+      <div class="fl">  6. Chloride ion &lt; 250 ppm</div>
+      <div class="fl">  7. Fluoride ion &lt; 1.5 ppm</div>
+      <div class="fl">  8. TDS &lt; 500 ppm</div>
+      <div class="fl">  9. pH between 6.5 and 8.5</div>
+      <div class="fl"> 10. Sulphate ion &lt; 250 ppm</div>
+      <div class="fl"></div>
+      <div class="fl">BIOLOGICAL (judged by microbiology — living contaminants):</div>
+      <div class="fl"> 11. Free from harmful (pathogenic) bacteria and other microbes</div>
+      <div class="fn">Trick: notice items 5,6,7,8,10 are all "less than a number" — these five ARE the core of the IS-10500 table too. Learn this 11-point list and you have already learned half of IS-10500.</div>
+    </div>
+
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick — the 4-mark "characteristics + IS-10500" template</div>
+        <p>This exact question (Part B, 4 marks) appeared as real Mid-Term Q4. Fastest full-marks structure: (1) one line defining potable water, (2) three short sub-headings — Physical / Chemical / Biological — 2 lines each, (3) a small table with AT LEAST 4 IS-10500 parameters and their permissible limits (pH, TDS, Hardness, Chlorides are the safest picks — always memorised, always correct). Total: under 10 minutes, guaranteed 4/4.</p>
+      </div>
+    </div>
+
+    <div class="tip-box validate">
+      <div class="tip-icon">✅</div>
+      <div class="tip-content">
+        <div class="tip-title">Validation Trick</div>
+        <p>If your "characteristics" answer only lists physical properties (colour, taste, odour) and nothing else, you've answered an incomplete question — examiners specifically look for all three categories. Also double check: <em>fluoride</em> limit is small (1.0–1.5), don't confuse it with <em>chloride</em> whose limit is much bigger (250–1000) — they sound alike but are completely different ions with completely different numbers.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Characteristics of Water</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q2 (Part B). Describe physical characteristics of water.</div>
+      <div class="pyq-meta"><span>2023 Part B Q2 · 8 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">Physical Characteristics</span><span class="pred-tag">🔮 Overlaps CERTAIN Predicted Q4</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Physical Characteristics of Water:</strong><br><br>
+        Physical characteristics are the properties judged directly by the senses (sight, smell, taste, touch) without needing a chemistry lab.<br><br>
+        1. <strong>Colour:</strong> Drinking water should be colourless. Measured on the Hazen/cobalt scale using a tintometer; desirable limit 5 Hazen units, permissible 25 (only if no toxic substance is suspected).<br>
+        2. <strong>Turbidity:</strong> Should be free from suspended/colloidal matter. Measured in NTU using a turbidity rod (field) or Jackson/Baylis turbidimeter (lab). Desirable ≤1 NTU, permissible up to 5 NTU.<br>
+        3. <strong>Taste and Odour:</strong> Pure water is tasteless and odourless — any perceptible taste/odour signals pollution. Tested with an osmoscope; threshold number should not exceed 3.<br>
+        4. <strong>Temperature:</strong> Desirable temperature is around 10°C; above 25°C is considered objectionable. Cool water is more palatable and holds more dissolved oxygen.<br>
+        5. <strong>Total Dissolved Solids (TDS):</strong> Should not exceed 500 mg/L (desirable), 2000 mg/L (permissible) — affects taste and palatability.<br><br>
+        <strong>Why physical characteristics matter:</strong> even if water is chemically and biologically safe, poor physical quality (bad colour/taste/odour) makes people distrust and avoid it, sometimes pushing them toward unsafe alternative sources.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q9. What are the physical &amp; chemical parameter of the water quality?</div>
+      <div class="pyq-meta"><span>2024 Part A Q9 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">Characteristics</span><span class="pred-tag">🔮 Overlaps CERTAIN Predicted Q4</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Physical parameters:</strong> Colour, Turbidity, Taste, Odour, Temperature, TDS.<br>
+        <strong>Chemical parameters:</strong> pH, Hardness, Chlorides, Sulphates, Fluoride, Nitrate/Nitrite, dissolved gases (CO₂, H₂S, NH₃), Alkalinity, heavy metals (Fe, Mn, Cu, Zn, Al).<br><br>
+        (In a 2-mark answer, listing 4-5 items under each heading is enough — no need for full definitions.)
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q4 (Part B). Describe the important characteristics of drinking water quality. Give the Indian Standard (IS-10500) permissible limit for each characteristic.</div>
+      <div class="pyq-meta"><span>Real Mid-Term 1, Aug-2025 · Part B Q4 · 4 marks ⭐⭐⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">Characteristics + IS-10500</span><span class="pred-tag">🔮 CERTAIN return 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        See the full worked answer in the <strong>2026 Predicted Paper</strong> section below (Predicted Q4) — this is reproduced there in the exact reworded form you should expect, with the complete IS-10500 table extract.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 02: PHYSICAL PARAMETERS ═══════ -->
+<section class="section" id="physical">
+  <div class="section-header"><span class="section-num">02</span><h2 class="section-title">Physical Parameters &amp; Tests — In Detail</h2></div>
+  <div class="theory-block">
+    <h3>Colour</h3>
+    <p>Colour in water is undesirable and usually caused by dissolved organic matter (humic substances), metallic ions (iron, manganese), or industrial discharge.</p>
+    <div class="fbox">
+      <span class="flbl">Colour — Measurement</span>
+      <div class="fl">Instrument: TINTOMETER (an eyepiece with two holes — one shows a standard</div>
+      <div class="fl">coloured water slide, the other shows the test sample; you match them).</div>
+      <div class="fl">Unit: Hazen units / Cobalt scale — colour produced by 1 mg platinum-cobalt</div>
+      <div class="fl">      dissolved in 1 litre of distilled water = 1 unit.</div>
+      <div class="fl">Limit: should not exceed 20 (public supply), preferably under 10.</div>
+      <div class="fn">Memory hook: "Co-balt for CO-lour" — cobalt scale measures colour.</div>
+    </div>
+    <div class="layman">Colour testing is basically a side-by-side comparison — like holding a paint swatch next to a wall to check the shade. You look through a two-holed eyepiece: one side shows a "reference" clean water sample of known Hazen value, the other shows your test water. Wherever they visually match is your answer.</div>
+
+    <h3 class="cyan">Turbidity</h3>
+    <p><span class="hl-v">Turbidity</span> is the cloudiness of water caused by fine suspended and colloidal particles (clay, silt, organic matter) that scatter light passing through the water.</p>
+    <div class="fbox">
+      <span class="flbl">Turbidity — Measurement</span>
+      <div class="fl">Unit: NTU (Nephelometric Turbidity Unit) — book also mentions "ppm of</div>
+      <div class="fl">      suspended matter", using finely divided silica in distilled water as the</div>
+      <div class="fl">      standard reference.</div>
+      <div class="fl">Instruments: Turbidity rod (quick field test) · Jackson turbidimeter and</div>
+      <div class="fl">             Baylis turbidimeter (laboratory, more precise)</div>
+      <div class="fl">Limit: permissible range roughly 5–10 units (field text); IS-10500 desirable</div>
+      <div class="fl">       is stricter — 1 NTU acceptable, 5 NTU permissible.</div>
+    </div>
+    <div class="layman">Turbidity is exactly what "cloudy" means to your eye — like the difference between clear apple juice and a glass of milk. The cloudiness happens because millions of tiny floating particles bounce light around in every direction instead of letting it pass straight through, the same way fog scatters your car's headlights.</div>
+
+    <h3 class="orange">Taste and Odour</h3>
+    <p>Pure water is completely tasteless and odourless. ANY perceptible taste or smell — even if it isn't obviously "bad" — is a red flag, because it means something has dissolved into the water that shouldn't be there.</p>
+    <div class="fbox">
+      <span class="flbl">Taste &amp; Odour — Measurement</span>
+      <div class="fl">Instrument: OSMOSCOPE — two tubes, one connected to a flask of diluted</div>
+      <div class="fl">test water, the other to a flask of plain (odour-free) water — you compare.</div>
+      <div class="fl">Method: THRESHOLD NUMBER — keep diluting the sample with odour-free</div>
+      <div class="fl">water until the odour JUST becomes undetectable; the dilution ratio at that</div>
+      <div class="fl">point is the threshold number.</div>
+      <div class="fl">Limit: threshold number should not exceed 3 for public supply.</div>
+      <div class="fn">Common causes: algae → earthy/musty smell · H2S → rotten-egg smell ·</div>
+      <div class="fn">chlorine excess → medicinal/swimming-pool smell · industrial discharge → chemical smell.</div>
+    </div>
+
+    <h3 class="red">Temperature</h3>
+    <ul>
+      <li>Desirable temperature for potable water: <strong>~10°C</strong>; above <strong>25°C</strong> is considered objectionable.</li>
+      <li>Cooler water is more palatable and can hold more dissolved oxygen (gas solubility drops as temperature rises).</li>
+      <li>Air temperature at the time of sample collection should always be recorded alongside water temperature, for accurate interpretation.</li>
+      <li>Measured with an ordinary thermometer — the simplest test in the whole unit, a guaranteed easy Part A mark.</li>
+    </ul>
+
+    <h3 class="cyan">Total Dissolved Solids (TDS) — Physical/Chemical crossover</h3>
+    <p>TDS is the combined weight of all dissolved minerals and salts in water (calcium, magnesium, sodium, chlorides, sulphates, etc.) — it's often classified alongside physical tests because it directly affects taste, but it's fundamentally a chemical measurement.</p>
+    <div class="layman">TDS is "how much invisible stuff is dissolved in your glass of water." You can't see it (unlike turbidity), but you can often taste it — mineral water tastes different from distilled water purely because of dissolved solids content.</div>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Trick — the "Four T's" of physical parameters</div>
+        <p>Notice how many physical parameters literally start with T: <strong>T</strong>aste, <strong>T</strong>urbidity, <strong>T</strong>emperature, <strong>T</strong>DS. That's a genuine four-out-of-six memory hook — pair it with Colour and Odour and you have the complete physical checklist in seconds during an exam.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 03: CHEMICAL PARAMETERS ═══════ -->
+<section class="section" id="chemical">
+  <div class="section-header"><span class="section-num">03</span><h2 class="section-title">Chemical Parameters &amp; Tests — In Detail</h2></div>
+  <div class="theory-block">
+    <h3>Why chemical testing matters</h3>
+    <p>Chemical impurities are invisible and often tasteless in small amounts, yet they cause long-term health damage (fluorosis, methaemoglobinemia, heavy-metal poisoning) or infrastructure damage (corrosion, scaling) that physical inspection alone can never catch. This is why water quality is never judged by appearance alone.</p>
+
+    <h3 class="cyan">pH (Hydrogen-ion concentration)</h3>
+    <p><span class="hl-v">pH</span> measures how acidic or alkaline (basic) water is, on a 0–14 scale, where 7 is neutral.</p>
+    <div class="layman">Think of pH as a mood scale for water: 0 is furious/sour (very acidic), 14 is a totally calm base (very alkaline), and 7 is perfectly chill (neutral). Drinking water should stay close to neutral — too acidic and it "attacks" (corrodes) your pipes; too alkaline and it leaves a hard, scaly coating (incrustation) and tastes soapy.</div>
+    <div class="fbox">
+      <span class="flbl">pH — Measurement &amp; Limits</span>
+      <div class="fl">Desirable range for potable water: 6.5 – 8.5 (book text also states 7–8.5)</div>
+      <div class="fl">Methods:</div>
+      <div class="fl">  1. Electrometric method — a potentiometer measures the electrical</div>
+      <div class="fl">     "pressure" of H+ ions directly and converts it to a pH value.</div>
+      <div class="fl">  2. Colourimetric method — chemical indicator reagents are added; the</div>
+      <div class="fl">     resulting colour is compared against a standard colour chart.</div>
+      <div class="fn">Low pH (acidic) → tuberculation (pipe corrosion). High pH (alkaline) → incrustation (scale buildup).</div>
+    </div>
+
+    <h3 class="orange">Hardness</h3>
+    <p><span class="hl-v">Hardness</span> is the "soap-destroying power" of water — caused by dissolved calcium and magnesium salts, which react with soap to form an insoluble scum instead of lather.</p>
+    <div class="layman">Ever notice soap won't lather well in some areas, or your kettle gets a white crusty layer over time? That's hardness. Calcium and magnesium dissolved in the water "steal" the soap before it can foam, and when the water is boiled or evaporates, those minerals are left behind as a hard chalky deposit — scale.</div>
+    <div class="fbox">
+      <span class="flbl">Hardness — Two Types</span>
+      <div class="fl">TEMPORARY (Carbonate) hardness: caused by bicarbonates of Ca &amp; Mg.</div>
+      <div class="fl">  → Removed simply by BOILING, or by adding lime.</div>
+      <div class="fl">PERMANENT (Non-carbonate) hardness: caused by sulphates, chlorides,</div>
+      <div class="fl">  nitrates of Ca &amp; Mg.</div>
+      <div class="fl">  → Cannot be removed by boiling — needs water-softening treatment.</div>
+      <div class="fl"></div>
+      <div class="fl">Measured by: Soap solution test, or the EDTA titration method.</div>
+      <div class="fl">Limit: should not exceed 500 ppm (book); IS-10500 desirable 200 mg/L,</div>
+      <div class="fl">       permissible 600 mg/L (as CaCO3).</div>
+    </div>
+
+    <h3 class="red">Chlorides</h3>
+    <p>Chloride ions occur naturally (dissolution of salt deposits, sea-water intrusion in coastal areas) or from pollution (sewage discharge, irrigation drainage, industrial effluents, oil-well operations).</p>
+    <div class="fbox">
+      <span class="flbl">Chlorides — Argentometric (Mohr's) Method</span>
+      <div class="fl">Principle: titrate the water sample against standard silver nitrate (AgNO3),</div>
+      <div class="fl">using potassium chromate as indicator. AgNO3 reacts with chloride FIRST</div>
+      <div class="fl">(forms white AgCl precipitate); once all chloride is used up, AgNO3 reacts</div>
+      <div class="fl">with the chromate indicator to form a reddish precipitate — that colour</div>
+      <div class="fl">change marks the endpoint.</div>
+      <div class="fl"></div>
+      <div class="fl">Formula:  Chloride (mg/L) = (A − B) × N × 35.45 × 1000 / (mL of sample)</div>
+      <div class="fl">   A = mL AgNO3 used for sample, B = mL AgNO3 used for blank,</div>
+      <div class="fl">   N = normality of AgNO3</div>
+      <div class="fn">Limit: desirable 250 mg/L, permissible 1000 mg/L. High chloride affects taste, palatability and pipe corrosion.</div>
+    </div>
+
+    <h3 class="cyan">Dissolved Gases</h3>
+    <ul>
+      <li><strong>CO₂:</strong> indicates biological activity, causes corrosion, increases mineral solubility, affects taste.</li>
+      <li><strong>H₂S:</strong> gives a disagreeable rotten-egg odour even in tiny amounts (acceptable limit 0.05–0.1 mg/L).</li>
+      <li><strong>Methane:</strong> studied for its explosive property.</li>
+      <li><strong>Dissolved Oxygen (DO):</strong> comes from contact with atmosphere; pure natural surface water is usually saturated with it. Desirable DO for potable water ≈ 5–10 ppm. Measured by the classic <strong>Winkler Titration</strong> method.</li>
+    </ul>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection forward to Unit 4</div>
+        <p>Dissolved Oxygen (DO) shows up again — much more heavily — in Unit 4 (Wastewater), alongside its close cousin BOD (Biochemical Oxygen Demand). Here in Unit 3, DO is a simple water-quality health indicator (more DO = fresher/purer water). In Unit 4, BOD becomes the star metric for how POLLUTED wastewater is, because it measures how much oxygen bacteria consume while breaking down organic pollution — the more polluted the water, the higher the BOD. Same "oxygen" concept, opposite direction of meaning.</p>
+      </div>
+    </div>
+
+    <h3 class="orange">Alkalinity</h3>
+    <p><span class="hl-v">Alkalinity</span> is water's capacity to neutralise acid — caused by bicarbonate (HCO₃⁻), carbonate (CO₃²⁻) or hydroxide (OH⁻) ions.</p>
+    <div class="fbox">
+      <span class="flbl">Alkalinity — Measurement</span>
+      <div class="fl">Two components: Total alkalinity (above pH 4.5) and Caustic alkalinity</div>
+      <div class="fl">(above pH 8.2)</div>
+      <div class="fl">Indicators used in titration:</div>
+      <div class="fl">  Phenolphthalein — pink above pH 8.5, colourless below pH 8.2</div>
+      <div class="fl">  Methyl orange — red below pH 4.5, yellow-orange above pH 4.5</div>
+      <div class="fl"></div>
+      <div class="fl">Formula:  Alkalinity (mg/L as CaCO3) = (titration reading / sample volume in mL) × 1000</div>
+      <div class="fn">Limit: desirable 200 mg/L, permissible 600 mg/L.</div>
+    </div>
+
+    <h3 class="red">Nitrogen Compounds — Nitrate, Nitrite &amp; Blue Baby Syndrome ⭐ high-value topic</h3>
+    <p>Nitrogen appears in water in four forms: <strong>free ammonia, albuminoid ammonia, nitrites, and nitrates.</strong> This progression itself tells a story — it's the story of organic pollution being broken down over time.</p>
+    <div class="fbox">
+      <span class="flbl">Nitrogen Progression — What each form tells you</span>
+      <div class="fl">Free ammonia    → freshest sign of pollution (raw sewage nearby)</div>
+      <div class="fl">Albuminoid ammonia → nitrogen present BEFORE organic matter decomposed</div>
+      <div class="fl">Nitrites (NO2-) → INTERMEDIATE oxidation stage — organic matter is</div>
+      <div class="fl">                  only PARTIALLY oxidised. Should be NIL in potable water.</div>
+      <div class="fl">Nitrates (NO3-) → FULLY oxidised, most stable form — old pollution,</div>
+      <div class="fl">                  already broken down (though the nitrate itself is still</div>
+      <div class="fl">                  a health hazard). Desirable limit: 45 mg/L, no relaxation.</div>
+      <div class="fn">Free ammonia limit ≤0.15 ppm · Albuminoid ammonia limit ≤0.3 ppm.</div>
+    </div>
+    <div class="layman">Imagine sewage as a "freshness timeline." Fresh contamination shows up as ammonia. As bacteria slowly break it down over days, it becomes nitrite (halfway broken down — still dangerous, should be zero). Given more time it becomes nitrate (fully broken down, "old news" pollution) — but nitrate brings its own separate danger for babies.</div>
+    <div class="fbox">
+      <span class="flbl">Blue Baby Syndrome (Methaemoglobinemia) — Full Mechanism</span>
+      <div class="fl">1. Infant drinks water with high NITRATE.</div>
+      <div class="fl">2. An infant's stomach is LESS ACIDIC than an adult's — this lets intestinal</div>
+      <div class="fl">   bacteria survive and convert (reduce) nitrate → nitrite.</div>
+      <div class="fl">3. Nitrite enters the bloodstream. Haemoglobin has a GREATER affinity for</div>
+      <div class="fl">   nitrite than for oxygen.</div>
+      <div class="fl">4. Instead of oxyhaemoglobin (which carries O2), nitrite forms</div>
+      <div class="fl">   nitrosomyoglobin (methaemoglobin) — which CANNOT carry oxygen.</div>
+      <div class="fl">5. Tissues are starved of oxygen → skin turns bluish (cyanosis) →</div>
+      <div class="fl">   "blue baby syndrome."</div>
+      <div class="fn">Trick to remember the chain: Nitrate → (gut bacteria in low-acid infant stomach) → Nitrite → (binds Hb instead of O2) → Methaemoglobin → Blue skin.</div>
+    </div>
+    <div class="tip-box warning">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-content">
+        <div class="tip-title">Validation Trick — the one exception you must never get wrong</div>
+        <p>Almost every IS-10500 parameter has BOTH a desirable AND a relaxed "permissible" limit. Nitrate is a famous EXCEPTION — it has <strong>NO relaxation</strong>. If your answer gives nitrate a "permissible" value higher than 45 mg/L, it's wrong — the reason is precisely blue baby syndrome: there is no safe margin to relax for infant health.</p>
+      </div>
+    </div>
+
+    <h3 class="cyan">Fluoride</h3>
+    <ul>
+      <li>Should be kept "as low as possible" per the standard — desirable ~1.0 mg/L, permissible up to 1.5 mg/L.</li>
+      <li>High fluoride → <strong>fluorosis</strong> (mottled/discoloured teeth in mild cases, skeletal damage in severe/chronic cases).</li>
+      <li>Ironically, a small controlled amount of fluoride is actually beneficial (prevents tooth decay) — it's a classic "the dose makes the poison" example.</li>
+    </ul>
+
+    <h3 class="orange">Sulphate</h3>
+    <p>Desirable limit 200 mg/L, permissible 400 mg/L. Beyond the limit, causes gastro-intestinal irritation (laxative effect) — especially when combined with magnesium or sodium.</p>
+
+    <h3 class="red">Metals — Quick Reference</h3>
+    <table class="comp-table">
+      <tr><th>Metal</th><th>Effect Beyond Limit</th><th>Approx. Limit</th></tr>
+      <tr><td><strong>Iron (Fe)</strong></td><td>Reddish-brown colour, metallic taste, slimy coating in pipes (from iron bacteria)</td><td class="num">0.3 mg/L</td></tr>
+      <tr><td><strong>Manganese (Mn)</strong></td><td>Taste/appearance affected, black-brown staining</td><td class="num">0.1 mg/L</td></tr>
+      <tr><td><strong>Copper (Cu)</strong></td><td>Astringent taste, corrosion of steel fittings, staining of laundry &amp; sanitary ware</td><td class="num">0.05 mg/L</td></tr>
+      <tr><td><strong>Zinc (Zn)</strong></td><td>Undesirable astringent taste, opalescent/greasy film on boiling</td><td class="num">5 mg/L</td></tr>
+      <tr><td><strong>Aluminium (Al)</strong></td><td>Deposition of Al(OH)3 floc, cumulative effect linked to dementia</td><td class="num">0.03 mg/L</td></tr>
+      <tr><td><strong>Sodium (Na)</strong></td><td>Measured by flame photometer; average taste threshold ~200 mg/L</td><td class="num">—</td></tr>
+    </table>
+
+    <h3 class="cyan">Total Solids</h3>
+    <p>Total solids = dissolved solids + suspended solids, measured separately then added.</p>
+    <div class="fbox">
+      <span class="flbl">Total Solids — Method</span>
+      <div class="fl">Suspended solids: filter water through a fine filter, dry and weigh the</div>
+      <div class="fl">                  material retained on the filter.</div>
+      <div class="fl">Dissolved solids: evaporate the FILTERED water; the residue left behind</div>
+      <div class="fl">                  after evaporation = dissolved solids.</div>
+      <div class="fn">Limit: desirable 500 mg/L, permissible 1500–2000 mg/L.</div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Chemical Parameters</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q6. Define the pH of drinking water.</div>
+      <div class="pyq-meta"><span>2021 Part A Q6 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">pH</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        pH is a measure of the hydrogen-ion (H⁺) concentration in water, indicating how acidic or alkaline it is, on a scale of 0–14 (7 = neutral). For drinking water, the desirable pH range is <strong>6.5 to 8.5</strong>. Water outside this range affects the mucous membrane and can damage the water-supply system — low pH causes corrosion (tuberculation), high pH causes scaling (incrustation).
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q1 (Part B). What is hardness? Define Dissolve oxygen and Biological oxygen demand.</div>
+      <div class="pyq-meta"><span>2024 Part B Q1 · 4 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3/4</span><span class="topic-tag">Hardness / DO / BOD</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Hardness:</strong> The soap-destroying power of water, caused by dissolved calcium and magnesium salts. Two types — temporary (carbonate, removable by boiling) and permanent (non-carbonate, needs softening treatment). Desirable limit 200 mg/L, permissible 600 mg/L as CaCO₃.<br><br>
+        <strong>Dissolved Oxygen (DO):</strong> The amount of oxygen gas dissolved in water, obtained from contact with the atmosphere. Indicates freshness/purity of water — higher DO generally means less organic pollution. Measured by the Winkler titration method.<br><br>
+        <strong>Biological Oxygen Demand (BOD):</strong> The amount of oxygen consumed by micro-organisms while biologically decomposing organic matter present in water, measured over 5 days at 20°C (BOD₅). Higher BOD = more organic pollution = more oxygen being used up = less oxygen left for aquatic life. It is the standard indicator of the strength of organic pollution in wastewater (covered in depth in Unit 4).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 04: BIOLOGICAL PARAMETERS ═══════ -->
+<section class="section" id="biological">
+  <div class="section-header"><span class="section-num">04</span><h2 class="section-title">Biological / Bacteriological Parameters</h2></div>
+  <div class="theory-block">
+    <h3>Why biological testing is the most critical of the three</h3>
+    <p>Physically clear, chemically balanced water can still carry deadly pathogens invisible to the eye and undetectable by taste. Biological contamination is responsible for most acute water-borne disease outbreaks (cholera, typhoid, hepatitis A, diarrhoea) — which is why, despite being the shortest item on the 11-point characteristics list, it gets its own dedicated testing category.</p>
+    <div class="layman">If chemical testing is a blood test, biological testing is an infection screen — checking specifically for living organisms that can make you sick, rather than just chemical levels.</div>
+
+    <h3 class="cyan">Four Aspects of Biological Water Pollution</h3>
+    <div class="fbox">
+      <span class="flbl">Biological Contamination — 4 Categories</span>
+      <div class="fl">1. BACTERIOLOGICAL — coliform organisms, faecal streptococci, Cl.perfringens</div>
+      <div class="fl">2. VIRAL — e.g. Hepatitis A virus; needs specific disinfection dosing</div>
+      <div class="fl">3. PARASITOLOGICAL — protozoa &amp; helminths (Entamoeba histolytica,</div>
+      <div class="fl">   Giardia, Balantidium coli)</div>
+      <div class="fl">4. ALGAE — not disease-causing directly, but affects colour/odour/taste and</div>
+      <div class="fl">   some species produce toxins</div>
+    </div>
+
+    <h3 class="orange">Coliform Organisms — The Key Indicator</h3>
+    <p><span class="hl-v">Coliform bacteria</span> live naturally in the intestines of humans and warm-blooded animals. Their presence in water is not necessarily dangerous by itself — but it is a reliable <em>indicator</em> that faecal matter has entered the water, meaning more dangerous pathogens could be present too.</p>
+    <div class="layman">Think of coliform testing like a smoke detector rather than a fire detector — coliform bacteria themselves are usually harmless, but their presence is a warning sign ("smoke") that something more dangerous ("fire" — real disease-causing pathogens from faecal contamination) might also be there. We test for the easy-to-detect smoke instead of hunting for every possible dangerous germ individually.</div>
+    <ul>
+      <li><strong>Faecal streptococci:</strong> occur in faeces, give confirmatory evidence of RECENT faecal contamination.</li>
+      <li><strong>Cl. perfringens:</strong> resistant to chlorination, so its presence suggests contamination even after disinfection.</li>
+    </ul>
+
+    <h3 class="red">MPN Test (Most Probable Number) — Bacteriological Examination</h3>
+    <p>Since individual bacteria are too small to count directly under normal conditions, water quality engineers use a clever statistical approach instead of a literal head-count.</p>
+    <div class="layman">Instead of trying to count every single germ one by one (which is basically impossible), the MPN test plays a smart guessing game: dilute the water sample more and more, and see at which dilution level bacteria still show up (by producing gas bubbles when fermenting sugar). From the pattern of "still showing up" vs "not showing up" across different dilutions, statisticians calculate the MOST PROBABLE NUMBER of bacteria that must have been in the original sample.</p>
+    <div class="fbox">
+      <span class="flbl">MPN Test — 3 Stages (Trick: "Please Confirm Completely" = P → C → C)</span>
+      <div class="fl">STAGE 1 — PRESUMPTIVE TEST:</div>
+      <div class="fl">  Diluted water samples (e.g. 0.1cc, 1.0cc, 10cc) placed in fermentation</div>
+      <div class="fl">  tubes containing lactose broth, incubated at 37°C for 48 hours.</div>
+      <div class="fl">  → Gas produced = POSITIVE (coliforms likely present)</div>
+      <div class="fl">  → No gas = NEGATIVE = water presumed fit for drinking</div>
+      <div class="fl"></div>
+      <div class="fl">STAGE 2 — CONFIRMED TEST:</div>
+      <div class="fl">  Positive samples transferred to a tube with brilliant green lactose bile —</div>
+      <div class="fl">  a medium that suppresses non-coliform organisms. Gas after 48 hours =</div>
+      <div class="fl">  positive, confirming coliform presence.</div>
+      <div class="fl"></div>
+      <div class="fl">STAGE 3 — COMPLETED TEST:</div>
+      <div class="fl">  Bacterial colonies inoculated into fresh lactose broth AND agar tubes,</div>
+      <div class="fl">  incubated 24–48 hrs at 37°C. Gas again = positive = coliforms confirmed</div>
+      <div class="fl">  present; detailed follow-up tests identify the exact bacteria type.</div>
+      <div class="fn">B-coli index: a number representing approx. B-coli count per cc, calculated from the pattern of positive results across dilutions. Should be &lt;3 (preferably), never &gt;10.</div>
+    </div>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick</div>
+        <p>If a Part B/C question asks "how is water tested for bacteriological safety," write MPN with all 3 stages named IN ORDER plus what a positive/negative result means at each stage — examiners give partial marks per correctly named stage even if you run short on time for full detail.</p>
+      </div>
+    </div>
+
+    <h3 class="cyan">Total Count (Agar Plate Count) Test</h3>
+    <p>Bacteria are cultivated on agar medium at different dilutions, incubated 24 hrs at 37°C (hot count) or 48 hrs at 20°C (cold count), then colonies are counted and reported per cc. For potable water, total count should not exceed <strong>100 per cc</strong>.</p>
+
+    <h3 class="orange">Algae</h3>
+    <p>Algae growth affects water quality in multiple ways: gives characteristic colour/odour/taste, blocks light penetration (harming photosynthetic organisms deeper in the water body), and some species are directly toxic — <em>Microcystis</em> produces hepatotoxins (liver-damaging), while <em>Anabaena</em> and <em>Nostoc</em> produce neurotoxins.</p>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 05: IS-10500 ═══════ -->
+<section class="section" id="is10500">
+  <div class="section-header"><span class="section-num">05</span><h2 class="section-title">IS-10500 — Indian Standard Specification for Drinking Water</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Predicted Q3, 2 marks):</strong> Some IS-10500 numeric-recall question shows up in literally EVERY paper — 2021 Q6 (pH), 2024 Part A Q2, 2025 Part A Q4 (pH/TDS/NO3/turbidity) and Part B Q3 (full note on IS-10500:2012). The exact parameter asked rotates each year, so don't just memorise pH — know the whole table.</div></div>
+  <div class="theory-block">
+    <h3>What is IS-10500?</h3>
+    <p><span class="hl-v">IS-10500</span> is the Bureau of Indian Standards (BIS) specification that lays down exact numeric limits for every water-quality parameter — it's the official "rulebook" against which any water sample is legally and technically judged fit or unfit for drinking.</p>
+    <div class="layman">IS-10500 is like a strict recipe card issued by the government for what counts as "acceptable tap water." It doesn't just say "clean water" vaguely — it gives an exact number for everything (exactly how much salt, how much iron, how acidic) so that testing labs anywhere in India apply the exact same yardstick.</div>
+
+    <div class="fbox">
+      <span class="flbl">The Two-Column System — Desirable vs Permissible</span>
+      <div class="fl">DESIRABLE (Acceptable) LIMIT: the ideal target value — water at this level</div>
+      <div class="fl">  causes no undesirable effect at all.</div>
+      <div class="fl">PERMISSIBLE LIMIT (in absence of alternate source): the maximum value</div>
+      <div class="fl">  allowed ONLY IF no better source of water is available. Beyond the</div>
+      <div class="fl">  desirable limit but within permissible = usable, though not ideal</div>
+      <div class="fl">  (may cause mild issues like taste/corrosion/scaling, not acute health risk).</div>
+      <div class="fl">  Beyond the PERMISSIBLE limit = rejected outright.</div>
+    </div>
+
+    <div class="tip-box warning">
+      <div class="tip-icon">⚠️</div>
+      <div class="tip-content">
+        <div class="tip-title">Important note — 1991 vs 2012 editions</div>
+        <p>Your reference textbook tables are drawn from the older <strong>IS-10500:1991</strong> edition. RTU papers from 2025 onward explicitly say <strong>"IS-10500:2012"</strong>. The good news: the core numbers (pH, TDS, hardness, chlorides, fluoride, nitrate) are essentially UNCHANGED between the two editions — only some minor parameters and terminology were reorganised in 2012. For safety, always write <em>"as per IS-10500:2012"</em> in your answer since that's what's explicitly asked, and stick to the commonly-cited values below, which hold for both editions.</p>
+      </div>
+    </div>
+
+    <h3 class="cyan">Full Table — Core Parameters (Most Frequently Asked)</h3>
+    <table class="comp-table">
+      <tr><th>Parameter</th><th>Desirable (Acceptable)</th><th>Permissible (no alt. source)</th><th>Effect beyond desirable limit</th></tr>
+      <tr><td><strong>pH</strong></td><td class="num">6.5 – 8.5</td><td class="num">No relaxation</td><td>Affects mucous membrane &amp; distribution system</td></tr>
+      <tr><td><strong>Turbidity</strong> (NTU)</td><td class="num">1</td><td class="num">5</td><td>Consumer acceptance decreases</td></tr>
+      <tr><td><strong>Colour</strong> (Hazen)</td><td class="num">5</td><td class="num">25*</td><td>Above 5, consumer acceptance decreases (*only if no toxic substance suspected)</td></tr>
+      <tr><td><strong>TDS</strong> (mg/L)</td><td class="num">500</td><td class="num">2000</td><td>Palatability decreases, gastro-intestinal irritation</td></tr>
+      <tr><td><strong>Total Hardness</strong> as CaCO3 (mg/L)</td><td class="num">200</td><td class="num">600</td><td>Encrustation in pipes, scaling</td></tr>
+      <tr><td><strong>Chlorides</strong> as Cl (mg/L)</td><td class="num">250</td><td class="num">1000</td><td>Taste, corrosion, palatability affected</td></tr>
+      <tr><td><strong>Sulphate</strong> as SO4 (mg/L)</td><td class="num">200</td><td class="num">400</td><td>Gastro-intestinal irritation (worse with Mg/Na present)</td></tr>
+      <tr><td><strong>Nitrate</strong> as NO3 (mg/L)</td><td class="num">45</td><td class="num" style="color:#ef4444">NO relaxation</td><td>Methaemoglobinemia (blue baby syndrome)</td></tr>
+      <tr><td><strong>Fluoride</strong> as F (mg/L)</td><td class="num">1.0</td><td class="num">1.5</td><td>Fluorosis (dental/skeletal)</td></tr>
+      <tr><td><strong>Calcium</strong> as Ca (mg/L)</td><td class="num">75</td><td class="num">200</td><td>Encrustation, adverse domestic effects</td></tr>
+      <tr><td><strong>Magnesium</strong> as Mg (mg/L)</td><td class="num">30</td><td class="num">100</td><td>Encrustation, laxative effect at high levels</td></tr>
+      <tr><td><strong>Iron</strong> as Fe (mg/L)</td><td class="num">0.3</td><td class="num">1.0</td><td>Taste/appearance, promotes iron bacteria growth</td></tr>
+      <tr><td><strong>Manganese</strong> as Mn (mg/L)</td><td class="num">0.1</td><td class="num">0.3</td><td>Taste/appearance affected</td></tr>
+      <tr><td><strong>Copper</strong> as Cu (mg/L)</td><td class="num">0.05</td><td class="num">1.5</td><td>Astringent taste, corrosion, staining</td></tr>
+      <tr><td><strong>Zinc</strong> as Zn (mg/L)</td><td class="num">5</td><td class="num">15</td><td>Astringent taste, opalescence</td></tr>
+      <tr><td><strong>Aluminium</strong> as Al (mg/L)</td><td class="num">0.03</td><td class="num">0.2</td><td>Al(OH)3 floc deposition</td></tr>
+      <tr><td><strong>Total Alkalinity</strong> as CaCO3 (mg/L)</td><td class="num">200</td><td class="num">600</td><td>Unpleasant taste</td></tr>
+      <tr><td><strong>Residual Free Chlorine</strong> (mg/L)</td><td class="num">0.2 min.</td><td class="num">—</td><td>Applicable only when chlorinated; tested at consumer end</td></tr>
+      <tr><td><strong>Phenolic compounds</strong> (mg/L)</td><td class="num">0.001</td><td class="num">0.002</td><td>Objectionable taste and colour</td></tr>
+    </table>
+
+    <h3 class="red">Toxic Substances — Zero-Tolerance Group (no relaxation)</h3>
+    <p>These are tested only when pollution is specifically suspected, but if present beyond limit, water is <strong>always rejected — no permissible relaxation exists</strong> because they're directly toxic even at low concentration.</p>
+    <table class="comp-table">
+      <tr><th>Substance</th><th>Desirable Limit (mg/L)</th></tr>
+      <tr><td>Mercury (Hg)</td><td class="num">0.001</td></tr>
+      <tr><td>Cadmium (Cd)</td><td class="num">0.01</td></tr>
+      <tr><td>Selenium (Se)</td><td class="num">0.01</td></tr>
+      <tr><td>Arsenic (As)</td><td class="num">0.05</td></tr>
+      <tr><td>Lead (Pb)</td><td class="num">0.05</td></tr>
+      <tr><td>Cyanide (as CN)</td><td class="num">0.05</td></tr>
+      <tr><td>Anionic detergents</td><td class="num">1.0</td></tr>
+      <tr><td>Mineral Oil</td><td class="num">0.01</td></tr>
+      <tr><td>Boron</td><td class="num">1.0 (permissible 5)</td></tr>
+    </table>
+    <p>Radioactive materials — <strong>Alpha emitters:</strong> max 0.1 Bq/L, <strong>Beta emitters:</strong> max 1 Bq/L (tested only when contamination is suspected).</p>
+
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Master Trick — the "×2 to ×4" pattern</div>
+        <p>Most permissible limits are roughly a multiple of the desirable limit — TDS 500→2000 (×4), Hardness 200→600 (×3), Chlorides 250→1000 (×4), Sulphate 200→400 (×2), Fluoride 1.0→1.5 (×1.5). If you forget an exact permissible number under exam pressure, apply "roughly 2 to 4 times the desirable value" as an educated estimate — it works for almost every parameter <strong>except Nitrate</strong>, which has NO relaxation at all (memorise this exception separately, tied to blue baby syndrome).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — IS-10500 Standards</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q4 (Part B). Describe the quality standards for drinking water as per Indian Standards.</div>
+      <div class="pyq-meta"><span>2023 Part B Q4 · 8 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">IS-10500</span><span class="pred-tag">🔮 CERTAIN pattern 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>IS-10500 (Indian Standard for Drinking Water Quality):</strong> Issued by the Bureau of Indian Standards, it specifies two limits for each parameter — desirable (acceptable) and permissible (in absence of alternate source).<br><br>
+        Key parameters and their desirable / permissible limits (mg/L unless noted):<br>
+        pH: 6.5–8.5 (no relaxation) · Turbidity: 1 / 5 NTU · TDS: 500 / 2000 · Total Hardness: 200 / 600 · Chlorides: 250 / 1000 · Sulphate: 200 / 400 · Nitrate: 45 (no relaxation) · Fluoride: 1.0 / 1.5 · Iron: 0.3 / 1.0.<br><br>
+        <strong>Significance:</strong> These standards protect public health (nitrate, fluoride, toxic metals), protect infrastructure (hardness, alkalinity → scaling/corrosion), and ensure palatability (TDS, chlorides, sulphate → taste).
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q2. What are the standard of drinking water?</div>
+      <div class="pyq-meta"><span>2024 Part A Q2 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">IS-10500</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        Drinking water standards are laid down by IS-10500 (BIS). Key ones: pH 6.5–8.5, TDS ≤500 mg/L (desirable), Total Hardness ≤200 mg/L, Chlorides ≤250 mg/L, Nitrate ≤45 mg/L (no relaxation), Fluoride ≤1.0 mg/L, Turbidity ≤1 NTU. Each parameter also has a "permissible" ceiling allowed only when no alternate source exists.
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q4. State the desirable values/range of pH, TDS, NO3 and turbidity as per BIS standards for drinking water.</div>
+      <div class="pyq-meta"><span>2025 Part A Q4 · 2 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">IS-10500</span><span class="pred-tag">🔮 CERTAIN pattern 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>pH:</strong> 6.5 – 8.5 &nbsp; <strong>TDS:</strong> 500 mg/L (desirable) &nbsp; <strong>NO3 (Nitrate):</strong> 45 mg/L (desirable, no relaxation) &nbsp; <strong>Turbidity:</strong> 1 NTU (desirable).
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q3 (Part B). Write a note on BIS drinking water quality standards (IS 10500:2012).</div>
+      <div class="pyq-meta"><span>2025 Part B Q3 · 4 marks ⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">IS-10500</span><span class="pred-tag">🔮 CERTAIN pattern 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        IS-10500:2012 is the Bureau of Indian Standards specification for drinking water quality, listing desirable and permissible limits for physical, chemical, biological, radioactive and toxic parameters. It replaced/updated IS-10500:1991, keeping most core values (pH, TDS, hardness, chlorides, fluoride, nitrate) essentially unchanged while reorganising minor parameters. Purpose: give a single objective yardstick so water testing labs across India apply identical criteria when certifying a source as fit or unfit for drinking. [Include the core parameter table — see above.]
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 06: SAMPLING ═══════ -->
+<section class="section" id="sampling">
+  <div class="section-header"><span class="section-num">06</span><h2 class="section-title">Sampling &amp; Analysis of Water</h2></div>
+  <div class="theory-block">
+    <h3>Why sampling technique matters</h3>
+    <p>All the tests in this unit are only as trustworthy as the SAMPLE they're run on. A badly-collected sample can show contamination that isn't really there (false positive) or miss real contamination (false negative) — so RTU treats sampling procedure as exam-worthy content in its own right.</p>
+    <div class="layman">Sampling is like taking a blood sample for a lab test — if the needle or vial isn't clean, or you contaminate the sample after drawing it, the whole test result becomes meaningless no matter how good the lab equipment is.</div>
+
+    <h3 class="cyan">Sampling — Definition</h3>
+    <p><span class="hl-v">Sampling</span> is the process of collecting a representative portion of water — from a natural source, industrial site, or supply line — for analysis of its constituents. Analysis should be done <strong>immediately</strong> after collection; the quicker the analysis, the more accurate the result (bacteria multiply/die, gases escape, and chemical reactions continue inside the bottle over time).</p>
+
+    <h3 class="orange">Precautions During Sampling</h3>
+    <div class="fbox">
+      <span class="flbl">Sampling Precautions — Checklist</span>
+      <div class="fl">1. Use white-glass bottles with well-fitted stoppers. ~2L capacity for</div>
+      <div class="fl">   chemical analysis; smaller bottles suffice for bacteriological tests.</div>
+      <div class="fl">2. Bottles must be thoroughly cleaned, filled &amp; emptied THREE times with</div>
+      <div class="fl">   the sample water before final collection (unless pre-sterilised bottles</div>
+      <div class="fl">   direct from a lab are used).</div>
+      <div class="fl">3. From a TAP: let water run to waste for at least 2 minutes first (clears</div>
+      <div class="fl">   pipe-impurities). For bacteriological samples, flame the tap nozzle</div>
+      <div class="fl">   until unbearably hot, then cool with running water before filling.</div>
+      <div class="fl">4. From a LAKE/STREAM/WELL: submerge the whole stoppered bottle</div>
+      <div class="fl">   below the surface, THEN remove the stopper with a clean string and</div>
+      <div class="fl">   fill — this stops floating debris entering the bottle.</div>
+      <div class="fl">5. Hold the bottle far from its neck; water must NEVER touch your hand.</div>
+      <div class="fl">6. Reseal the stopper securely; label with source, date and time of</div>
+      <div class="fl">   collection.</div>
+    </div>
+
+    <h3 class="red">Analysis of Water — Three Test Categories</h3>
+    <p>Once collected, the sample undergoes the exact same 3-way split we saw in Section 01: <strong>Physical tests, Chemical tests, and Bacteriological tests</strong> — reinforcing why that 3-category structure is the backbone of this entire unit.</p>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection</div>
+        <p>This is the same physical / chemical / biological split from Section 01's "characteristics" list — sampling and analysis is simply the practical, hands-on procedure for measuring those same 11 characteristics in a real lab.</p>
+      </div>
+    </div>
+
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick</div>
+        <p>This topic answers RTU's classic 15-mark essay-style question: "How will you measure the quality of drinking water?" (2021 Part C Q3). Structure: (1) why sampling matters + 1-2 precautions, (2) the 3-category test split with 2-3 tests named under each, (3) close with IS-10500 as the benchmark used to judge the results. This single structure can fill a full-length answer even from partial memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 07: WATER TREATMENT ═══════ -->
+<section class="section" id="treatment">
+  <div class="section-header"><span class="section-num">07</span><h2 class="section-title">Introduction to Water Treatment for Safe Drinking</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — CERTAIN (Predicted Q7, 6 marks):</strong> "Propose a step-by-step plan to treat contaminated pond water for a village" is literally Q7 in the real Aug-2025 Mid-Term 1 paper. The 2025 end-term Part C Q2 asks the same theme directly: "Explain the various stages in conventional water treatment including their functions and significance." This diagram is one of the highest-value things you can draw in the whole subject.</div></div>
+  <div class="theory-block">
+    <h3>The Big Picture</h3>
+    <p>Water treatment removes three categories of impurity from raw source water before it's fit to drink: <strong>suspended impurities, colloidal impurities, and harmful pathogenic bacteria.</strong> Every stage in the process targets one or more of these three.</p>
+    <div class="layman">Think of water treatment like doing laundry, stage by stage: screen out big lint (screening), let it air out (aeration), let heavy dirt sink to the bottom (sedimentation), add a helper so tiny invisible dirt clumps together and falls out too (coagulation), strain through a fine cloth (filtration), and finally add a bit of disinfectant to kill any remaining germs (chlorination) before the "clean load" goes into storage.</div>
+
+    <h3 class="cyan">Conventional Treatment Flow — Diagram</h3>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 620 640" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="20" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Conventional Water Treatment — Full Flow</text>
+        <defs>
+          <marker id="arrU3" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0,0 L5,3 L0,6" fill="none" stroke="#527890" stroke-width="1.5"/></marker>
+        </defs>
+        <g font-family="JetBrains Mono, monospace" font-size="11">
+          <rect x="160" y="38" width="300" height="34" rx="6" fill="#152432" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="310" y="60" text-anchor="middle" fill="#22d3ee">Source Water (river / reservoir / well)</text>
+          <line x1="310" y1="72" x2="310" y2="90" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="90" width="300" height="34" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+          <text x="310" y="112" text-anchor="middle" fill="#10b981">1. SCREENING — removes floating matter</text>
+          <line x1="310" y1="124" x2="310" y2="142" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="142" width="300" height="34" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+          <text x="310" y="164" text-anchor="middle" fill="#10b981">2. AERATION — adds O2, removes Fe/Mn/gases</text>
+          <line x1="310" y1="176" x2="310" y2="194" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="194" width="300" height="34" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="310" y="216" text-anchor="middle" fill="#a78bfa">3a. PLAIN SEDIMENTATION — heavy solids settle</text>
+          <line x1="310" y1="228" x2="310" y2="246" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="90" y="246" width="150" height="46" rx="6" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="165" y="266" text-anchor="middle" fill="#f59e0b" font-size="10">+ Coagulant</text>
+          <text x="165" y="280" text-anchor="middle" fill="#dde8f2" font-size="9">alum / FeSO4</text>
+          <rect x="380" y="246" width="150" height="46" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+          <text x="455" y="266" text-anchor="middle" fill="#a78bfa" font-size="10">3b. COAGULATION</text>
+          <text x="455" y="280" text-anchor="middle" fill="#dde8f2" font-size="9">floc formation → settles</text>
+          <line x1="240" y1="269" x2="378" y2="269" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrU3)"/>
+          <line x1="310" y1="246" x2="240" y2="269" stroke="#527890" stroke-width="1" stroke-dasharray="3,2"/>
+          <line x1="455" y1="292" x2="310" y2="310" stroke="#527890" stroke-width="1.5"/>
+          <line x1="310" y1="292" x2="310" y2="310" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="310" width="300" height="34" rx="6" fill="#081420" stroke="#ef4444" stroke-width="1.5"/>
+          <text x="310" y="332" text-anchor="middle" fill="#ef4444">4. FILTRATION — gravity / pressure sand filter</text>
+          <line x1="310" y1="344" x2="310" y2="362" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="362" width="300" height="34" rx="6" fill="#081420" stroke="#f97316" stroke-width="1.5"/>
+          <text x="310" y="384" text-anchor="middle" fill="#f97316">5. DISINFECTION — chlorination / ozonation</text>
+          <line x1="310" y1="396" x2="310" y2="414" stroke="#527890" stroke-width="1.5" marker-end="url(#arrU3)"/>
+
+          <rect x="160" y="414" width="300" height="34" rx="6" fill="#152432" stroke="#22d3ee" stroke-width="1.5"/>
+          <text x="310" y="436" text-anchor="middle" fill="#22d3ee">6. STORAGE &amp; DISTRIBUTION</text>
+        </g>
+        <text x="310" y="470" text-anchor="middle" fill="#527890" font-family="JetBrains Mono, monospace" font-size="9">Targets removed at each stage: floating debris → dissolved gases/Fe/Mn → coarse solids →</text>
+        <text x="310" y="484" text-anchor="middle" fill="#527890" font-family="JetBrains Mono, monospace" font-size="9">fine colloidal solids → remaining fine particles &amp; some microbes → pathogenic bacteria</text>
+      </svg>
+      <div class="diagram-cap">Fig — Conventional municipal water treatment train, source to distribution. Draw this exact box-and-arrow flow in Part C answers for guaranteed structure marks.</div>
+    </div>
+
+    <h3 class="orange">Stage-by-Stage Explanation</h3>
+    <h4>1. Screening</h4>
+    <p>Water is passed through a screen (bars/mesh) to arrest floating matter — leaves, twigs, plastic, large debris — before it can damage or clog downstream equipment.</p>
+
+    <h4>2. Aeration</h4>
+    <p>Water is exposed to air, which (i) helps exchange gases between water and air, (ii) increases dissolved oxygen content, (iii) removes impurities like iron and manganese by precipitating them as insoluble hydroxides, and removes odour-causing gases like H₂S.</p>
+
+    <h4>3. Sedimentation (Plain + by Coagulation)</h4>
+    <div class="fbox">
+      <span class="flbl">Sedimentation — Two Types</span>
+      <div class="fl">(i) PLAIN SEDIMENTATION: water stored in large tanks for several hours;</div>
+      <div class="fl">    big/heavy suspended particles settle purely by gravity. Removes ~70%</div>
+      <div class="fl">    of solid particles.</div>
+      <div class="fl">(ii) SEDIMENTATION BY COAGULATION: fine suspended &amp; colloidal</div>
+      <div class="fl">    particles (too small/light to settle by gravity alone) are removed by</div>
+      <div class="fl">    adding COAGULANTS — alum, ferrous sulphate, sodium aluminate.</div>
+      <div class="fl">    "Floc formation" happens as hydroxide precipitates form and gather</div>
+      <div class="fl">    tiny particles together into bigger, heavier flocs that settle quickly.</div>
+    </div>
+    <div class="fbox">
+      <span class="flbl">Coagulation — Chemical Equations (faculty checks these!)</span>
+      <div class="fl">Al2(SO4)3 + 3 Ca(HCO3)2  →  2 Al(OH)3↓ + 3 CaSO4 + 6 CO2</div>
+      <div class="fl">   (alum)      (calcium bicarbonate)   (floc)</div>
+      <div class="fl"></div>
+      <div class="fl">NaAlO2 + 2 H2O  →  Al(OH)3↓ + NaOH</div>
+      <div class="fl"></div>
+      <div class="fl">FeSO4 + Mg(HCO3)2  →  Fe(OH)2 + MgCO3 + CO2 + H2O</div>
+      <div class="fl">4 Fe(OH)2 + O2 + 2H2O  →  4 Fe(OH)3</div>
+      <div class="fn">Trick to remember: "Alum + Bicarbonate → Floc + Gypsum + CO2" — AB→FGC. The ↓ symbol marks the insoluble floc precipitate that gets removed.</div>
+    </div>
+    <div class="layman">Coagulation is like dropping a magnet into a box of scattered iron filings — the coagulant chemical acts like glue that makes countless tiny, individually-too-light-to-sink particles clump into big, heavy clumps (flocs) that finally sink or can be filtered out easily.</div>
+
+    <h4>4. Filtration</h4>
+    <p>Water is passed through a porous bed to mechanically remove remaining suspended particles and some micro-organisms.</p>
+    <div class="fbox">
+      <span class="flbl">Filtration — Two Main Types</span>
+      <div class="fl">1. GRAVITY (Rapid) SAND FILTER — water flows down by gravity through</div>
+      <div class="fl">   a sand bed; most common in large municipal plants.</div>
+      <div class="fl">2. PRESSURE FILTER — water pumped through under pressure (3–7 kg/cm²).</div>
+      <div class="fl">   Filtration rate: 6000–15000 L/hr per m² of filter area.</div>
+      <div class="fl">   Less efficient than gravity filters for colour/turbidity/bacterial removal,</div>
+      <div class="fl">   but compact — used for small colonies, industries, swimming pools.</div>
+    </div>
+
+    <h4>5. Disinfection / Sterilisation</h4>
+    <p>The final and most critical step — killing pathogenic bacteria and micro-organisms so the water is truly "potable." Covered in full detail in the next section, since it carries its own set of equations and is a frequent standalone question.</p>
+
+    <h4>6. Storage &amp; Distribution</h4>
+    <p>Treated water is stored in clear-water reservoirs and distributed under pressure to consumers, keeping quality intact until it reaches the tap.</p>
+
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick — full-marks Part C structure</div>
+        <p>For "explain conventional water treatment" (6–10 marks): draw the flow diagram FIRST (guaranteed structure marks even if you blank on details after), then give 1-2 lines per stage (purpose + agent used), and include AT LEAST the coagulation equation (Al2(SO4)3 reaction) since faculty explicitly checks for formulas. This combination alone typically secures 80%+ of the available marks.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📝 RTU PYQs — Water Treatment</div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q2 (Part C). Explain the various stages in conventional water treatment including their functions and significance.</div>
+      <div class="pyq-meta"><span>2025 Part C Q2 · 10 marks ⭐⭐⭐⭐⭐</span><span class="unit-tag">Unit 3</span><span class="topic-tag">Water Treatment</span><span class="pred-tag">🔮 CERTAIN 2026</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        See the fully worked answer under <strong>2026 Predicted Paper → Predicted Q7</strong> below — the stage-by-stage explanation, diagram, and equations given there directly answer this question too (this is the end-term "big" version of the same Mid-Term Q7 pond-water scenario).
+      </div>
+    </div>
+    <div class="pyq-item">
+      <div class="pyq-q-text">Q3 (Part C). How will you measure the quality of drinking water? Why water is a unique source and how much water do we need daily?</div>
+      <div class="pyq-meta"><span>2021 Part C Q3 · 15 marks ⭐⭐⭐</span><span class="unit-tag">Unit 2/3</span><span class="topic-tag">Sampling + Treatment overview</span></div>
+      <button class="pyq-toggle" onclick="toggle(this)">▼ Show Answer</button>
+      <div class="answer-content">
+        <strong>Measuring water quality:</strong> Collect a representative sample following proper precautions (clean bottles, avoid hand contact, label source/date). Subject it to Physical tests (colour, turbidity, taste, odour, temperature), Chemical tests (pH, hardness, chlorides, alkalinity, nitrogen compounds, total solids), and Bacteriological tests (MPN — presumptive/confirmed/completed, total count). Compare results against IS-10500 desirable/permissible limits to judge fitness for drinking.<br><br>
+        <strong>Why water is unique:</strong> it is essential for all biological life, has no substitute, exists in fixed global quantity (the water cycle recirculates the same finite water), and is needed daily and continuously unlike most other resources.<br><br>
+        <strong>Daily requirement:</strong> covered in Unit 2 — urban India ~135–150 LPCD, rural ~40–55 LPCD (domestic use only, since rural areas lack the additional civic/fire/industrial demand that inflates urban figures).
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 08: DISINFECTION ═══════ -->
+<section class="section" id="disinfection">
+  <div class="section-header"><span class="section-num">08</span><h2 class="section-title">Disinfection &amp; Chlorination — Methods and Chemistry</h2></div>
+  <div class="theory-block">
+    <h3>Disinfection — Definition</h3>
+    <p><span class="hl-v">Disinfection (Sterilisation)</span> is the process of killing pathogenic bacteria and other harmful micro-organisms in water. The chemicals used are called <strong>disinfectants</strong>. Water free from pathogenic bacteria and safe to drink is called <strong>potable water</strong>.</p>
+    <div class="layman">Disinfection is the "kill the germs" step — like adding a measured dose of antiseptic to a wound. Too little and germs survive; too much and it irritates/burns (in water's case: bad taste and smell) — the entire art of disinfection is finding that sweet spot.</div>
+
+    <h3 class="cyan">Method 1 — Boiling</h3>
+    <p>Water boiled for 10–15 minutes kills most pathogenic bacteria. Simple, reliable, but impractical at municipal scale (fuel cost, capacity) — mainly a household-level or emergency method.</p>
+
+    <h3 class="orange">Method 2 — Bleaching Powder</h3>
+    <div class="fbox">
+      <span class="flbl">Bleaching Powder — Reaction</span>
+      <div class="fl">CaOCl2 + H2O  →  Ca(OH)2 + Cl2</div>
+      <div class="fl">Cl2 + H2O  →  HCl + HOCl</div>
+      <div class="fl">HOCl + Germs  →  Germs killed</div>
+      <div class="fn">Disadvantages: introduces Ca2+ hardness and lime residue; excess causes bad smell/taste and mucous membrane irritation.</div>
+    </div>
+
+    <h3 class="red">Method 3 — Chlorination</h3>
+    <div class="fbox">
+      <span class="flbl">Chlorination — Reaction &amp; Process</span>
+      <div class="fl">Cl2 + H2O  →  HCl + HOCl  (hypochlorous acid — the active disinfecting agent)</div>
+      <div class="fl">Bacteria + HOCl  →  killed bacteria</div>
+      <div class="fl"></div>
+      <div class="fl">Equipment: a CHLORINATOR — a tall tower with baffle plates. Water and</div>
+      <div class="fl">concentrated chlorine solution enter from the top, mix thoroughly while</div>
+      <div class="fl">passing down through the baffles, and sterilised water exits the bottom.</div>
+      <div class="fl"></div>
+      <div class="fl">Advantages: compact storage, effective &amp; economical, stable (doesn't</div>
+      <div class="fl">deteriorate), produces no harmful salts, near-ideal disinfectant.</div>
+      <div class="fl">Disadvantages: excess causes unpleasant taste/odour; more effective</div>
+      <div class="fl">below pH 6.5, less effective at higher pH.</div>
+    </div>
+
+    <h3 class="cyan">Break-Point Chlorination — the "sweet spot" dose</h3>
+    <p>Adding chlorine to water doesn't produce a simple straight-line increase in disinfecting power — it follows a distinct curve with four zones, because chlorine first has to "use up" reacting with organic matter and ammonia before any FREE (uncombined, most effective) residual chlorine appears.</p>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 560 320" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <text x="280" y="20" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold">Break-Point Chlorination Curve</text>
+        <line x1="60" y1="260" x2="520" y2="260" stroke="#527890" stroke-width="1.5"/>
+        <line x1="60" y1="260" x2="60" y2="45" stroke="#527890" stroke-width="1.5"/>
+        <text x="290" y="292" text-anchor="middle" fill="#527890" font-family="JetBrains Mono, monospace" font-size="10">Chlorine dose (mg/L) →</text>
+        <text x="30" y="150" text-anchor="middle" fill="#527890" font-family="JetBrains Mono, monospace" font-size="10" transform="rotate(-90 30 150)">Residual chlorine →</text>
+        <path d="M60,255 C90,250 110,235 130,225 C165,205 190,175 210,150 C230,175 250,215 270,235 C290,250 300,255 305,256 C330,240 370,190 420,140 C450,110 480,90 520,70" fill="none" stroke="#22d3ee" stroke-width="2.5"/>
+        <circle cx="305" cy="256" r="5" fill="#ef4444"/>
+        <line x1="305" y1="256" x2="305" y2="272" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,2"/>
+        <text x="305" y="286" text-anchor="middle" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="9" font-weight="bold">BREAK POINT</text>
+        <text x="120" y="240" fill="#f97316" font-family="JetBrains Mono, monospace" font-size="8">① destruction by</text>
+        <text x="120" y="250" fill="#f97316" font-family="JetBrains Mono, monospace" font-size="8">reducing agents</text>
+        <text x="190" y="130" fill="#a78bfa" font-family="JetBrains Mono, monospace" font-size="8">② chloramines &amp;</text>
+        <text x="190" y="140" fill="#a78bfa" font-family="JetBrains Mono, monospace" font-size="8">chloro-organics form</text>
+        <text x="240" y="200" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="8">③ destruction of</text>
+        <text x="240" y="210" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="8">chloramines</text>
+        <text x="400" y="115" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="8">④ FREE residual</text>
+        <text x="400" y="125" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="8">chlorine appears</text>
+      </svg>
+      <div class="diagram-cap">Fig — Chlorine dose vs residual chlorine. The dip (break point) marks where chloramines/chloro-organics have been fully destroyed; dosing PAST this point gives effective, stable free residual chlorine.</div>
+    </div>
+    <div class="fbox">
+      <span class="flbl">Break-Point Chlorination — Definition &amp; Purpose</span>
+      <div class="fl">Adding enough chlorine to oxidise: (a) organic matter, (b) reducing</div>
+      <div class="fl">substances, and (c) free ammonia in the raw water — leaving behind</div>
+      <div class="fl">mainly FREE chlorine, which has strong disinfecting action.</div>
+      <div class="fl">The dip/dose at which free residual chlorine BEGINS to appear is the</div>
+      <div class="fl">"break point."</div>
+      <div class="fl"></div>
+      <div class="fl">Advantages: (1) completely oxidises organics, ammonia, reducing</div>
+      <div class="fl">compounds (2) removes colour, odour, taste (3) removes disease-causing</div>
+      <div class="fl">bacteria completely (4) prevents weed growth in water.</div>
+    </div>
+
+    <h3 class="purple">De-chlorination</h3>
+    <p>Over-chlorinated water is corrected by passing it through activated carbon, or by adding SO2/sodium sulphite:</p>
+    <div class="fbox">
+      <div class="fl">SO2 + Cl2 + 2H2O  →  H2SO4 + 2HCl</div>
+      <div class="fl">Na2SO3 + Cl2 + H2O  →  Na2SO4 + 2HCl</div>
+    </div>
+
+    <h3 class="orange">Method 4 — Chloramine (NH2Cl)</h3>
+    <div class="fbox">
+      <div class="fl">Obtained by mixing chlorine and ammonia in 2:1 ratio.</div>
+      <div class="fl">NH3 + Cl2  →  HCl + NH2Cl</div>
+      <div class="fl">NH2Cl + H2O  →  NH3 + HOCl</div>
+      <div class="fn">Better bactericidal action than plain chlorine and more stable (doesn't dissipate as quickly), useful when residual disinfection needs to last longer through the distribution network.</div>
+    </div>
+
+    <h3 class="cyan">Method 5 — Ozonation</h3>
+    <div class="fbox">
+      <div class="fl">3 O2  →  2 O3  (ozone prepared by silent electric discharge through pure,</div>
+      <div class="fl">                dry oxygen)</div>
+      <div class="fl">O3  →  O2 + (O)  (nascent oxygen — this reactive atomic oxygen is what</div>
+      <div class="fl">                  actually kills bacteria and oxidises organic matter)</div>
+      <div class="fn">Advantages: removes colour, odour, taste effectively. Disadvantages: costly, and ozone is highly unstable (must be generated on-site, cannot be stored).</div>
+    </div>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Trick — comparing the 5 disinfection methods</div>
+        <p>If asked to "compare disinfection methods," rank them by a simple story: Boiling (simplest, household-only) → Bleaching powder (basic, adds hardness) → Chlorination (the industry standard — cheap, effective, but taste issues) → Chloramine (more stable/long-lasting than plain chlorine, used when distribution network is long) → Ozonation (best quality result, but expensive and can't be stored). This "story order" makes a 4-mark comparison question easy to reconstruct even from memory.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SECTION 09: SANITATION ═══════ -->
+<section class="section" id="sanitation">
+  <div class="section-header"><span class="section-num">09</span><h2 class="section-title">Importance of Sanitation</h2></div>
+  <div class="pred-banner"><span style="font-size:18px;flex-shrink:0">🔮</span><div class="pb-text"><strong>2026 Prediction — HIGH:</strong> "What is water sanitation?" appeared in 2021 Part A Q4; "What is importance of sanitation?" appeared in 2023 Part A Q7. Not in the real Aug-2025 Mid-Term sample, but present in 2 of 4 end-term papers as a reliable 2-mark Part A filler — keep the definitions crisp and ready.</div></div>
+  <div class="theory-block">
+    <h3>Sanitation — Definition</h3>
+    <p><span class="hl-v">Sanitation</span> is the process of keeping surroundings free from dirt, infection and disease by properly removing waste, trash and garbage, cleaning streets, ensuring personal hygiene, and providing safe drinking water. Formally: <em>the collection, transport, treatment, disposal and/or reuse of human excreta, domestic wastewater, and solid waste, along with the associated promotion of hygiene.</em></p>
+    <div class="layman">Water quality alone isn't enough — you can treat water perfectly, but if the surrounding environment is full of open drains, garbage and improper toilets, that clean water gets recontaminated almost immediately. Sanitation is "cleaning up everything AROUND the water," not just the water itself.</div>
+    <div class="tip-box connect">
+      <div class="tip-icon">🔗</div>
+      <div class="tip-content">
+        <div class="tip-title">Connection</div>
+        <p>Sanitation is the natural bridge from Unit 3 into Unit 4 (Wastewater &amp; Sewers) — the "collection, transport and treatment" of human excreta and domestic wastewater described here is exactly what Unit 4 studies in much greater depth (sewers, sewerage systems, wastewater treatment plants).</p>
+      </div>
+    </div>
+
+    <h3 class="orange">Key Definitions (frequently used as quick 2-mark Part A questions)</h3>
+    <table class="comp-table">
+      <tr><th>Term</th><th>Meaning</th></tr>
+      <tr><td><strong>Sewage</strong></td><td>Liquid waste from the community — includes sullage, discharge from latrines/urinals/stables, industrial wastewater and storm water. "Night soil" = human/animal excreta specifically.</td></tr>
+      <tr><td><strong>Sullage</strong></td><td>Wastewater from bathrooms and kitchens only — does NOT create bad smell (unlike sewage with excreta).</td></tr>
+      <tr><td><strong>Sewer</strong></td><td>The underground conduit/drain through which sewage is conveyed.</td></tr>
+      <tr><td><strong>Sewerage</strong></td><td>The entire SCIENCE/SYSTEM of collecting and carrying sewage via sewers to a disposal point (sewer = the pipe; sewerage = the whole system).</td></tr>
+      <tr><td><strong>Storm Water</strong></td><td>Rainwater runoff of the locality.</td></tr>
+      <tr><td><strong>Subsoil Water</strong></td><td>Groundwater that enters sewers through leaks/cracks.</td></tr>
+      <tr><td><strong>Refuse</strong></td><td>General term for rejected/worthless waste — split into 5 categories, including Garbage.</td></tr>
+      <tr><td><strong>Garbage</strong></td><td>DRY refuse — decayed fruit, grass, leaves, paper, vegetable waste.</td></tr>
+      <tr><td><strong>Invert</strong></td><td>The lowermost level/surface of a sewer — its level must be carefully checked during construction for the sewer to function (flow) correctly.</td></tr>
+    </table>
+    <div class="fbox">
+      <span class="flbl">Bacteria — 3 Groups (sanitary engineering classification)</span>
+      <div class="fl">AEROBIC: need light &amp; free oxygen to live and grow.</div>
+      <div class="fl">ANAEROBIC: do NOT need light/oxygen to live and grow.</div>
+      <div class="fl">FACULTATIVE: can survive with OR without oxygen, but thrive best in</div>
+      <div class="fl">             its absence.</div>
+    </div>
+
+    <h3 class="red">Steps in Sanitation — the full service chain</h3>
+    <div class="fbox">
+      <span class="flbl">5-Step Sanitation Chain</span>
+      <div class="fl">1. USER INTERFACE — a household or public latrine</div>
+      <div class="fl">2. COLLECTION — in sanitary pits or septic tanks</div>
+      <div class="fl">3. CONVEYANCE — through sewer systems or vacuum-suction tanks</div>
+      <div class="fl">4. TREATMENT — through appropriate technologies</div>
+      <div class="fl">5. DISPOSAL AND REUSE — through appropriate means</div>
+      <div class="fn">Trick: this is literally "toilet → pit → pipe → plant → back to nature/reuse" — five stops on a waste journey.</div>
+    </div>
+
+    <h3 class="cyan">Why Sanitation Matters — Two Angles</h3>
+    <p><strong>Direct/hygiene angle:</strong> prevents pest infestation, kills existing bacteria, reduces cross-contamination, increases food/product shelf life, minimises injury risk, creates a more pleasant living/working environment.</p>
+    <p><strong>Public-health/economic angle:</strong> improves overall health conditions and lowers health expenses, reduces mortality linked to poor sanitation, and delivers broader social and economic benefits (fewer missed school/work days, higher productivity).</p>
+
+    <h3 class="orange">Impacts of Poor Sanitation — Statistics Worth Quoting</h3>
+    <div class="fbox">
+      <span class="flbl">Poor Sanitation — Key Facts (good for a 2-mark "impact" answer)</span>
+      <div class="fl">Open defecation → major cause of diarrhoea → 750,000+ deaths of</div>
+      <div class="fl">                  children under 5, every year.</div>
+      <div class="fl">A child dies every 20 seconds due to poor sanitation.</div>
+      <div class="fl">80% of diseases in developing countries are caused by unsafe water</div>
+      <div class="fl">and poor sanitation.</div>
+      <div class="fl">Good sanitation + hygiene + safe water supply together could save</div>
+      <div class="fl">1.5 million children a year.</div>
+      <div class="fl">Poor sanitation causes significant economic losses in developing</div>
+      <div class="fl">countries (medical costs + lost productivity).</div>
+    </div>
+    <p><strong>Diseases linked to inadequate sanitation:</strong> Diarrhoea (1.5 million child deaths/year), Polio, Hepatitis A, Typhoid, Trachoma, Bilharzia (schistosomiasis), Hookworm/roundworm/whipworm infections.</p>
+    <div class="tip-box trick">
+      <div class="tip-icon">⚡</div>
+      <div class="tip-content">
+        <div class="tip-title">Exam Trick</div>
+        <p>For "importance of sanitation" (2 marks), don't try to write everything above — pick THREE punchy points: one hygiene point (prevents disease spread), one statistic (e.g. 80% of diseases in developing countries linked to unsafe water/sanitation), and one economic point (reduces health costs). Three crisp lines beat a long unfocused paragraph for a 2-mark question.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+</div><!-- /layout -->
+
+<!-- ═══════════════════════════════════════════
+     PREDICTED PAPER 2026 — UNIT 3 SLICE
+═══════════════════════════════════════════ -->
+<div class="predicted-section" id="predicted">
+  <div class="pred-inner">
+    <div class="pred-badge">🔮 AI-Powered Analysis — Mid-Term 1 (Aug-2025 real sample) + RTU End-Term 2021/2023/2024/2025 Cross-Referenced</div>
+    <div class="pred-sec-title">2026 Predicted Paper — the Unit 3 Questions</div>
+    <div class="pred-sec-sub">MID-TERM 1 IS OUT OF UNITS 1–3 ONLY · FULL 7-QUESTION PREDICTED PAPER IS ON THE <a href="index.html#predicted" style="color:var(--ds2)">HOME PAGE</a> · SHOWN HERE: THE 3 QUESTIONS THAT COME FROM UNIT 3</div>
+    <p class="pred-intro">The full predicted Mid-Term 1 paper (7 questions across Parts A/B/C) is built on the home page by cross-referencing the one real Mid-Term 1 sample against all four RTU end-term papers. Of those 7 questions, exactly THREE are Unit 3 territory: Q3 (Part A, IS-10500 numeric recall), Q4 (Part B, characteristics + IS-10500), and Q7 (Part C, water treatment). They're reproduced here in full depth — using everything covered across this entire unit page — since this is where you should actually study them from.</p>
+    <div class="disc-box">
+      <span style="font-size:18px;flex-shrink:0;">⚠️</span>
+      <p>Predictions are based on historical patterns across 1 real mid-term and 4 RTU end-terms. Actual paper may differ. Use this to prioritise study time — don't skip other Unit 1–3 topics entirely.</p>
+    </div>
+
+    <div class="pred-grid">
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Predicted Q3)</div>
+          <div class="pred-unit">Unit 3 | Drinking water standards</div>
+          <div class="pred-q">State the desirable range of pH and TDS for drinking water as per IS-10500.</div>
+          <div class="pred-reason">Some IS-10500 numeric-recall question appears in EVERY paper in the set: "define pH" (2021 Q6), "standards of drinking water" (2024 Part A Q2), "desirable values/range of pH, TDS, NO3, turbidity" (2025 Part A Q4), "note on IS-10500:2012" (2025 Part B Q3). The exact parameter rotates — so learn the whole table, not just pH/TDS.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="togglePred(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <div class="fbox inside-pred">
+            <span class="flbl">IS-10500 — Core Answer</span>
+            <div class="fl">pH               : 6.5 – 8.5 (no relaxation)</div>
+            <div class="fl">TDS              : 500 mg/L desirable (2000 mg/L permissible)</div>
+            <div class="fl">Turbidity        : 1 NTU desirable (5 NTU permissible)</div>
+            <div class="fl">Total Hardness   : 200 mg/L desirable (600 mg/L permissible)</div>
+            <div class="fn">Beyond the desirable limit but within permissible = usable only if no alternate source exists; causes mild taste/corrosion/scaling issues, not acute health risk.</div>
+          </div>
+          <p>Full parameter table is in Section 05 (IS-10500) above — revise the whole table since the exact parameter asked changes every year.</p>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Predicted Q4)</div>
+          <div class="pred-unit">Unit 3 | Drinking water quality</div>
+          <div class="pred-q">Describe the important physical, chemical and biological characteristics of drinking water quality. Give the IS-10500 permissible limit for at least four characteristics.</div>
+          <div class="pred-reason">This is verbatim Q4 in the real Aug-2025 Mid-Term 1 paper, and the same theme repeats as "physical characteristics of water" (2023 Part B Q2) and "note on IS-10500:2012" (2025 Part B Q3). It's the single most-repeated question in the entire subject.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="togglePred(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Physical:</strong> clear, colourless, odourless, cool and pleasant to taste, free from suspended impurities (low turbidity).</p>
+          <p><strong>Chemical:</strong> free from dissolved harmful gases (CO2, H2S, NH3) and poisonous minerals (lead, arsenic, manganese); correct pH, hardness, chloride, fluoride, sulphate and TDS levels.</p>
+          <p><strong>Biological:</strong> free from pathogenic bacteria, viruses and parasites — coliform organisms in particular must be absent, since their presence signals faecal contamination.</p>
+          <div class="fbox inside-pred">
+            <span class="flbl">IS-10500 Permissible Limits (pick any four for full marks)</span>
+            <div class="fl">pH           : 6.5 – 8.5 desirable, no relaxation</div>
+            <div class="fl">TDS          : 500 mg/L desirable → 2000 mg/L permissible</div>
+            <div class="fl">Hardness     : 200 mg/L desirable → 600 mg/L permissible</div>
+            <div class="fl">Chlorides    : 250 mg/L desirable → 1000 mg/L permissible</div>
+            <div class="fl">Fluoride     : 1.0 mg/L desirable → 1.5 mg/L permissible</div>
+            <div class="fl">Nitrate      : 45 mg/L — NO relaxation (infant health risk)</div>
+            <div class="fn">Nitrate has no relaxation because excess nitrate causes "blue baby syndrome" (methaemoglobinemia) in infants — nitrite formed in the gut competes with oxygen for haemoglobin.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Predicted Q7)</div>
+          <div class="pred-unit">Unit 3 | Water treatment</div>
+          <div class="pred-q">Describe, step by step, the stages involved in conventional water treatment for a municipal supply, explaining the purpose of each stage.</div>
+          <div class="pred-reason">Same theme as Q7 in the real Aug-2025 paper ("propose a step-by-step plan to treat contaminated pond water"), and near-identical to the 2025 RTU end-term Part C Q2 ("explain the various stages in conventional water treatment including their functions and significance"). Matches the syllabus flow diagram exactly.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="togglePred(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Flow:</strong> Source water → Screening → Aeration → Sedimentation (plain + coagulation) → Filtration → Disinfection → Storage &amp; Distribution. (Draw the full flow diagram from Section 07 above for guaranteed structure marks.)</p>
+          <p><strong>1. Screening:</strong> passed through a screen to remove floating debris before entering the works.</p>
+          <p><strong>2. Aeration:</strong> exchanges gases between water and air — increases dissolved oxygen, strips odour-causing gases, precipitates iron/manganese as hydroxides.</p>
+          <p><strong>3. Sedimentation &amp; Coagulation:</strong> heavy particles settle under gravity (plain sedimentation, ~70% removal); coagulants (alum, ferrous sulphate) added so fine/colloidal particles clump into flocs that settle quickly — <code>Al2(SO4)3 + 3Ca(HCO3)2 → 2Al(OH)3↓ + 3CaSO4 + 6CO2</code>.</p>
+          <p><strong>4. Filtration:</strong> passed through a porous bed (gravity sand or pressure filter) to remove remaining suspended particles and some micro-organisms.</p>
+          <p><strong>5. Disinfection:</strong> kills pathogenic bacteria — most commonly chlorination (<code>Cl2 + H2O → HCl + HOCl</code>, and HOCl kills germs); break-point chlorination ensures enough dose to leave effective free residual chlorine.</p>
+          <p><strong>6. Storage &amp; Distribution:</strong> treated water is stored in clear-water reservoirs and distributed under pressure, keeping quality intact until delivery.</p>
+        </div>
+      </div>
+
+    </div><!-- /pred-grid -->
+
+    <div class="prep-box">
+      <h3>✅ Quick Preparation Strategy — Unit 3 for Mid-Term 1, 2026</h3>
+      <p><strong>Certain (prepare with full detail — diagrams, equations, tables):</strong> characteristics of drinking water + IS-10500 limits (Predicted Q4 — verbatim repeat pattern), IS-10500 numeric recall of the full table not just one parameter (Predicted Q3), and the complete conventional water treatment flow diagram with equations (Predicted Q7) — all three are either verbatim repeats of the real Aug-2025 paper or match at least one other independent RTU paper.</p>
+      <p><strong>Strong secondary prep (good Part A/B backup, and useful essay filler):</strong> pH definition on its own (2021 Q6 pattern), hardness/DO/BOD definitions (2024 Part B Q1 pattern), disinfection &amp; chlorination methods with equations (feeds directly into the treatment answer for extra marks), and importance of sanitation definitions (2021 Q4 / 2023 Q7 pattern).</p>
+      <p><strong>Good page-filling material if a big Part C essay appears:</strong> sampling &amp; analysis procedure (2021's 15-mark "how will you measure water quality" question), and the biological/MPN test 3-stage procedure — both are genuinely testable and give you extra theory to write even from partial recall.</p>
+    </div>
+  </div>
+</div><!-- /predicted-section -->
+
+<!-- ═══════ PYQ MASTER LIST ═══════ -->
+<div class="layout">
+  <div style="width:var(--sidebar-w);min-width:var(--sidebar-w);flex-shrink:0;" class="sidebar-spacer-desktop"></div>
+  <div class="content">
+    <section class="section" id="pyq-master" style="margin-top:40px">
+      <div class="section-header"><span class="section-num">M</span><h2 class="section-title">All PYQs — Unit 3 Master List (2021–2025)</h2></div>
+      <div class="pyq-section">
+        <div class="pyq-header">📋 Complete PYQ Coverage — Unit 3 Topics Across All Papers</div>
+        <div class="pyq-item">
+          <div class="pyq-q-text">All Unit 3 Questions by Year — Click to Expand</div>
+          <button class="pyq-toggle" onclick="toggle(this)">▼ Show Full Master List</button>
+          <div class="answer-content">
+            <strong>From EEDM 2021 (7E1711):</strong><br>
+            Part A Q4: What is water sanitation? → Sanitation<br>
+            Part A Q6: Define the pH of drinking water → Chemical (pH)<br>
+            Part B Q2: Write in brief, standards of drinking water → IS-10500<br>
+            Part C Q3: How will you measure the quality of drinking water? → Sampling &amp; Analysis<br><br>
+
+            <strong>From EEDM 2023 (7E1711):</strong><br>
+            Part A Q7: What is importance of sanitation? → Sanitation<br>
+            Part B Q2: Describe physical characteristics of water → Physical Parameters<br>
+            Part B Q4: Describe the quality standards for drinking water as per Indian Standards → IS-10500<br><br>
+
+            <strong>From EEDM 2024 (7E1811):</strong><br>
+            Part A Q2: What are the standard of drinking water? → IS-10500<br>
+            Part A Q9: What are the physical &amp; chemical parameter of the water quality? → Characteristics<br>
+            Part B Q1: What is hardness? Define DO and BOD → Chemical (Hardness/DO/BOD)<br><br>
+
+            <strong>From EEDM 2025 (7E1811):</strong><br>
+            Part A Q4: State desirable values/range of pH, TDS, NO3 and turbidity as per BIS → IS-10500<br>
+            Part B Q3: Write a note on BIS drinking water quality standards (IS 10500:2012) → IS-10500<br>
+            Part C Q2: Explain the various stages in conventional water treatment → Water Treatment<br><br>
+
+            <strong>From EEDM Mid-Term 1, Aug-2025 (real sample):</strong><br>
+            Part B Q4: Describe important characteristics of drinking water quality + IS-10500 limits → Characteristics + IS-10500<br>
+            Part C Q7: Propose a step-by-step plan to treat contaminated pond water for a village → Water Treatment<br><br>
+
+            <strong>KEY PATTERNS:</strong><br>
+            Characteristics + IS-10500 (combined): 2021✓ 2023✓ 2024✓ 2025✓ MT1✓ → <span style="color:#ef4444">CERTAIN every single paper</span><br>
+            Water Treatment stages: MT1✓ (real), 2025 Part C✓ → <span style="color:#ef4444">CERTAIN 2026</span><br>
+            Importance of Sanitation: 2021✓ 2023✓ → <span style="color:#f59e0b">HIGH, 2-paper pattern</span><br>
+            Hardness / DO / BOD: 2024✓ → <span style="color:#f59e0b">moderate, single-paper anchor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<button class="sidebar-toggle" id="sidebarToggle" onclick="openSidebar()">☰</button>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">🌱 U1: Introduction</a>
+    <a href="unit2.html">🚰 U2: Water Supply</a>
+    <a href="unit3.html" style="color:var(--ds2)">💧 U3: Drinking Water Quality (current)</a>
+    <a href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+    <a href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+    <a href="pyq.html">📋 Solved PYQs</a>
+    <a href="#predicted" style="color:var(--upred)">🔮 Predicted 2026</a>
+  </div>
+  © 2026 Mahansh Gaur · EEDM RTU Study Guide · Unit 3 — Drinking Water Quality · 7AG6-60.2 · Educational use only.
+</footer>
+
+<script>
+function toggle(btn){
+  const ans=btn.nextElementSibling;
+  if(ans.classList.contains('open')){ans.classList.remove('open');btn.textContent=btn.textContent.replace('▲','▼');}
+  else{ans.classList.add('open');btn.textContent=btn.textContent.replace('▼','▲');}
+}
+function togglePred(btn){
+  const ans=btn.nextElementSibling;
+  if(ans.classList.contains('open')){ans.classList.remove('open');btn.textContent=btn.textContent.replace('▲','▼');}
+  else{ans.classList.add('open');btn.textContent=btn.textContent.replace('▼','▲');}
+}
+function openSidebar(){
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('visible');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('visible');
+}
+const sections=document.querySelectorAll('.section');
+const navItems=document.querySelectorAll('.nav-item');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      navItems.forEach(n=>{
+        n.classList.remove('active');
+        if(n.getAttribute('href')==='#'+e.target.id) n.classList.add('active');
+      });
+    }
+  });
+},{rootMargin:'-15% 0px -70% 0px'});
+sections.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
