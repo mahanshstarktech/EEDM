@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EEDM — RTU Exam Prep | B.Tech VII Sem</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root {
+  --bg:#050c0f;--bg2:#07121a;--surface:#0c1c28;--surface2:#102230;
+  --border:#193344;--border2:#0d1f2e;
+  --ds:#06b6d4;--ds2:#22d3ee;--dsdim:rgba(6,182,212,.12);
+  --u1:#22d3ee;--u2:#10b981;--u3:#ef4444;--u4:#a78bfa;--u5:#f97316;
+  --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
+  --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
+  --content-max:1440px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:20px;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.85;overflow-x:hidden;}
+@media(min-width:1400px){html{font-size:21px;}}
+@media(min-width:1800px){html{font-size:22px;}}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* NAV */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.topnav::-webkit-scrollbar{display:none;}
+.tnlabel{font-family:var(--mono);font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ds2);padding:15px 14px 15px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.tnlink{font-family:var(--mono);font-size:11.5px;padding:8px 14px;border-radius:6px;text-decoration:none;color:var(--dim2);white-space:nowrap;flex-shrink:0;transition:all .18s;border:1px solid transparent;}
+.tnlink:hover{color:var(--text);background:var(--surface2);}
+.tnlink.active{color:var(--ds2);background:rgba(6,182,212,.1);border-color:rgba(6,182,212,.3);}
+.tnlink.pyq{color:var(--upred);background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.22);}
+
+/* CREDIT */
+.credit-band{background:#060f18;border-bottom:1px solid var(--border2);padding:11px 32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.credit-text{font-family:var(--mono);font-size:11.5px;color:var(--dim2);}
+.credit-text span{color:var(--ds2);font-weight:600;}
+.credit-link{font-family:var(--mono);font-size:11px;padding:4px 14px;border-radius:5px;border:1px solid var(--border);color:var(--dim2);text-decoration:none;transition:all .2s;}
+.credit-link:hover{border-color:var(--ds2);color:var(--ds2);}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding:78px 5vw 68px;background:var(--bg);}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(6,182,212,.1) 1px,transparent 1px),radial-gradient(circle,rgba(16,185,129,.05) 1px,transparent 1px);background-size:44px 44px,88px 88px;background-position:0 0,22px 22px;animation:dotDrift 32s linear infinite;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 10% 50%,rgba(6,182,212,.09) 0%,transparent 65%),radial-gradient(ellipse 50% 45% at 85% 15%,rgba(16,185,129,.05) 0%,transparent 60%);pointer-events:none;}
+@keyframes dotDrift{0%{transform:translate(0,0);}100%{transform:translate(44px,44px);}}
+.hero-inner{position:relative;z-index:1;max-width:var(--content-max);margin:0 auto;}
+.hero-tag{font-family:var(--mono);font-size:12px;color:var(--ds2);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--ds2);box-shadow:0 0 14px var(--ds2);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(36px,5.6vw,74px);line-height:1.05;color:#fff;letter-spacing:-1.5px;margin-bottom:20px;}
+.hero h1 span{color:var(--ds2);}
+.hero h1 em{color:var(--u2);font-style:normal;}
+.hero-sub{color:var(--dim2);font-size:clamp(17px,1.7vw,21px);max-width:740px;line-height:1.85;margin-bottom:24px;}
+.hero-sub strong{color:var(--text);}
+.hero-badges{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:26px;}
+.badge{font-family:var(--mono);font-size:12px;padding:5px 15px;border-radius:5px;border:1px solid;}
+.badge-c{color:var(--ds2);border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.08);}
+.badge-r{color:var(--u3);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);}
+.badge-g{color:var(--u2);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08);}
+.badge-v{color:var(--u4);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08);}
+.badge-o{color:var(--u5);border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.08);}
+.badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+.crafted-by{display:flex;align-items:center;gap:13px;flex-wrap:wrap;}
+.crafted-label{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;}
+.crafted-name{font-family:var(--head);font-size:16px;font-weight:700;color:var(--text);font-style:italic;}
+.crafted-links{display:flex;gap:7px;}
+.crafted-link{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:5px 11px;border-radius:5px;text-decoration:none;color:var(--dim2);background:var(--surface);border:1px solid var(--border);transition:all .18s;}
+.crafted-link:hover{color:var(--ds2);border-color:var(--ds2);}
+.crafted-link svg{width:12px;height:12px;fill:currentColor;}
+
+/* PAGE WRAP */
+.page-wrap{max-width:var(--content-max);margin:0 auto;padding:0 clamp(22px,4.5vw,100px);}
+
+/* STATS STRIP */
+.stats-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-inner{max-width:var(--content-max);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));padding:28px clamp(22px,4.5vw,100px);}
+.stat-item{text-align:center;padding:8px 0;}
+.stat-num{font-family:var(--head);font-size:clamp(26px,4vw,42px);font-weight:800;color:var(--ds2);line-height:1;display:block;margin-bottom:5px;}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--dim2);text-transform:uppercase;letter-spacing:1.5px;}
+
+/* SECTIONS */
+.section-wrap{padding:60px 0;}
+.section-head{margin-bottom:30px;}
+.section-head h2{font-family:var(--head);font-size:clamp(24px,3.2vw,36px);font-weight:800;color:#fff;margin-bottom:7px;}
+.section-head .sub{font-family:var(--mono);font-size:.73rem;color:var(--dim2);letter-spacing:1.2px;}
+
+/* IMPORTANCE BARS */
+.imp-grid{display:flex;flex-direction:column;gap:14px;}
+.imp-row{display:grid;grid-template-columns:clamp(190px,26vw,320px) 1fr 56px;align-items:center;gap:16px;}
+.imp-label{font-family:var(--mono);font-size:.72rem;color:var(--dim2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.imp-label .scope{color:var(--dim);font-style:italic;}
+.imp-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.imp-bar-fill{height:100%;border-radius:4px;animation:barGrow 1.2s cubic-bezier(.22,1,.36,1) both;animation-delay:var(--bd,0s);}
+@keyframes barGrow{from{width:0!important;}}
+.fill-hot{background:var(--u3);}
+.fill-high{background:var(--ds2);}
+.fill-med{background:var(--upred);}
+.fill-low{background:var(--u2);}
+.imp-pct{font-family:var(--mono);font-size:.74rem;font-weight:700;text-align:right;}
+.pct-hot{color:var(--u3);}
+.pct-high{color:var(--ds2);}
+.pct-med{color:var(--upred);}
+.pct-low{color:var(--u2);}
+
+/* UNIT CARDS */
+.unit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;}
+.unit-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;text-decoration:none;transition:all .22s;display:block;position:relative;overflow:hidden;}
+.unit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.unit-card.u1::before{background:var(--u1);}
+.unit-card.u2::before{background:var(--u2);}
+.unit-card.u3::before{background:var(--u3);}
+.unit-card.u4::before{background:var(--u4);}
+.unit-card.u5::before{background:var(--u5);}
+.unit-card:hover{transform:translateY(-4px);border-color:var(--ds2);box-shadow:0 12px 44px rgba(6,182,212,.15);}
+.unit-num{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim2);margin-bottom:10px;}
+.unit-name{font-family:var(--head);font-size:clamp(17px,2vw,22px);font-weight:800;color:#fff;margin-bottom:10px;line-height:1.25;}
+.unit-topics{font-size:.87rem;color:var(--dim2);line-height:1.78;margin-bottom:16px;}
+.unit-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--border2);}
+.unit-go{font-family:var(--mono);font-size:11px;color:var(--ds2);transition:gap .2s;display:flex;align-items:center;gap:5px;}
+.unit-card:hover .unit-go{gap:9px;}
+.unit-tag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);}
+.unit-tag.hot{color:var(--u3);border-color:rgba(239,68,68,.25);background:rgba(239,68,68,.07);}
+.unit-tag.mid{color:var(--upred);border-color:rgba(245,158,11,.25);background:rgba(245,158,11,.07);}
+.unit-tag.ok{color:var(--u2);border-color:rgba(16,185,129,.25);background:rgba(16,185,129,.07);}
+
+/* PYQ SECTION */
+.pyq-header-row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+.pyq-view-all{font-family:var(--mono);font-size:11px;color:var(--upred);text-decoration:none;display:flex;align-items:center;gap:5px;transition:gap .2s;}
+.pyq-view-all:hover{gap:8px;}
+.pyq-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:16px;}
+.pyq-card{background:var(--surface);border:1px solid rgba(6,182,212,.22);border-radius:12px;padding:22px;text-decoration:none;transition:all .2s;display:block;}
+.pyq-card:hover{border-color:var(--ds2);transform:translateY(-2px);box-shadow:0 8px 30px rgba(6,182,212,.1);}
+.pyq-card.latest{background:linear-gradient(135deg,var(--surface) 0%,rgba(6,182,212,.05) 100%);}
+.pyq-year-badge{display:inline-block;font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ds2);margin-bottom:8px;}
+.pyq-title{font-family:var(--head);font-size:clamp(22px,2.5vw,30px);font-weight:800;color:#fff;margin-bottom:6px;line-height:1;}
+.pyq-code{font-family:var(--mono);font-size:.72rem;color:var(--dim2);margin-bottom:10px;}
+.pyq-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.pyq-tag{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:3px;background:var(--surface2);color:var(--dim2);}
+.pyq-go{font-family:var(--mono);font-size:11px;color:var(--ds2);}
+
+/* STRATEGY BOX */
+.strategy-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:28px 32px;margin-bottom:24px;}
+.strategy-box h3{font-family:var(--head);font-size:1.2rem;font-weight:700;color:var(--ds2);margin-bottom:16px;}
+.strategy-box h4{font-family:var(--mono);font-size:.72rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim2);margin:18px 0 8px;}
+.strat-table{width:100%;border-collapse:collapse;font-size:.86rem;display:block;overflow-x:auto;}
+.strat-table th{background:var(--surface2);padding:10px 14px;text-align:left;font-family:var(--head);font-weight:700;color:var(--ds2);border-bottom:1px solid var(--border);white-space:nowrap;}
+.strat-table td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65;}
+.strat-table tr:last-child td{border-bottom:none;}
+.strat-table tr:hover td{background:var(--surface2);}
+
+/* PREDICTED PAPER */
+.predicted-section{background:linear-gradient(135deg,var(--bg2) 0%,rgba(6,182,212,.04) 100%);border-top:1px solid rgba(6,182,212,.2);border-bottom:1px solid rgba(6,182,212,.2);}
+.pred-inner{max-width:var(--content-max);margin:0 auto;padding:68px clamp(22px,4.5vw,100px);}
+.pred-badge{display:inline-block;font-family:var(--mono);font-size:.78rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:5px 14px;border-radius:5px;margin-bottom:14px;}
+.pred-sec-title{font-family:var(--head);font-size:clamp(24px,3.2vw,38px);font-weight:800;color:#fff;margin-bottom:6px;}
+.pred-sec-sub{font-family:var(--mono);font-size:.73rem;color:var(--dim2);letter-spacing:1px;margin-bottom:14px;}
+.pred-intro{font-family:var(--mono);font-size:.79rem;color:var(--dim2);line-height:1.78;margin-bottom:20px;max-width:950px;}
+.part-divider{display:flex;align-items:center;gap:10px;margin:26px 0 -4px;font-family:var(--mono);font-size:.75rem;color:var(--ds2);letter-spacing:1.5px;text-transform:uppercase;}
+.part-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+.pred-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:24px;}
+.pred-card{background:var(--surface);border:1px solid rgba(6,182,212,.2);border-radius:12px;border-top:3px solid var(--ds2);overflow:hidden;}
+.pred-card-head{padding:20px 22px 14px;}
+.pred-part{font-family:var(--mono);font-size:.68rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.pred-unit{font-family:var(--mono);font-size:.65rem;color:var(--ds2);background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:7px;}
+.pred-q{font-family:var(--head);font-size:1rem;font-weight:700;color:#fff;line-height:1.42;margin-bottom:8px;}
+.pred-reason{font-size:.84rem;color:var(--dim2);line-height:1.72;margin-bottom:10px;}
+.pred-conf{font-family:var(--mono);font-size:.7rem;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;}
+.pred-conf.high{color:var(--u3);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);}
+.pred-conf.med{color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);}
+.pred-answer-toggle{width:100%;padding:11px 22px;background:var(--surface2);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.73rem;color:var(--ds2);text-align:left;transition:all .2s;}
+.pred-answer-toggle:hover{background:var(--ds2);color:#000;}
+.pred-answer{display:none;padding:20px 22px;border-top:1px solid var(--border);background:var(--bg);}
+.pred-answer.open{display:block;}
+.pred-answer p{font-size:.89rem;line-height:1.88;margin-bottom:12px;}
+.pred-answer strong{color:var(--ds2);}
+.pred-answer ul,.pred-answer ol{padding-left:22px;margin:8px 0;}
+.pred-answer li{font-size:.89rem;margin-bottom:7px;line-height:1.78;}
+
+/* FORMULA BOXES */
+.fbox{background:#040c12;border:1px solid rgba(6,182,212,.22);border-left:3px solid var(--ds2);border-radius:8px;padding:14px 18px;margin:12px 0;font-family:var(--mono);font-size:.77rem;color:#67e8f9;overflow-x:auto;line-height:1.72;}
+.fbox .flbl{font-size:.63rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;display:block;}
+.fbox .fl{color:#a5f3fc;font-size:.8rem;white-space:pre-wrap;}
+.fbox .fn{color:var(--dim2);font-size:.72rem;margin-top:6px;display:block;font-style:italic;}
+.dbox{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto;}
+.dcap{font-family:var(--mono);font-size:.7rem;color:var(--dim2);margin-top:8px;}
+
+/* DISC BOX */
+.disc-box{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:14px 18px;margin-bottom:22px;display:flex;gap:10px;}
+.disc-box p{font-size:.85rem;color:var(--text);}
+
+/* PREP BOX */
+.prep-box{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.25);border-radius:10px;padding:24px 28px;margin-top:30px;}
+.prep-box h3{font-family:var(--head);font-size:1.1rem;font-weight:700;color:var(--ds2);margin-bottom:14px;}
+.prep-box p{font-size:.89rem;line-height:1.88;}
+.prep-box strong{color:#fff;}
+
+/* FOOTER */
+.site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:28px 5vw;text-align:center;font-family:var(--mono);font-size:.73rem;color:var(--dim);}
+.site-footer a{color:var(--dim2);text-decoration:none;margin:0 12px;transition:color .2s;}
+.site-footer a:hover{color:var(--ds2);}
+.footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){.pred-grid{grid-template-columns:1fr;}.unit-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){.hero{padding:50px 20px 46px;}.pred-inner{padding:50px 20px;}.section-wrap{padding:40px 0;}.imp-row{grid-template-columns:1fr 1fr 50px;}.imp-label{white-space:normal;overflow:visible;text-overflow:unset;font-size:.71rem;}}
+@media(max-width:600px){html{font-size:18px;}.page-wrap{padding:0 18px;}.stats-inner{padding:22px 18px;}.pyq-grid{grid-template-columns:1fr;}}
+@media(max-width:480px){.hero h1{font-size:clamp(30px,10vw,46px);}}
+@media(max-width:900px) and (orientation:landscape){.hero{padding:36px 5vw;}.hero h1{font-size:clamp(26px,7vw,42px);}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <span class="tnlabel">EEDM · RTU</span>
+  <a class="tnlink active" href="index.html">🏠 Home</a>
+  <a class="tnlink" href="unit1.html">🌱 U1: Introduction</a>
+  <a class="tnlink" href="unit2.html">🚰 U2: Water Supply System</a>
+  <a class="tnlink" href="unit3.html">💧 U3: Drinking Water Quality</a>
+  <a class="tnlink" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+  <a class="tnlink" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink pyq" href="pyq.html">📋 Solved PYQs</a>
+</nav>
+
+<!-- CREDIT -->
+<div class="credit-band">
+  <div class="credit-text">Crafted by <span>Mahansh Gaur</span> · B.Tech RTU Jaipur</div>
+  <a class="credit-link" href="https://www.instagram.com/mahaanshgaur_6513" target="_blank">📸 @mahaanshgaur_6513</a>
+  <a class="credit-link" href="https://github.com/mahanshstarktech" target="_blank">🐙 GitHub</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>🌱 B.Tech VII Sem · RTU Kota · 7AG6-60.2 (Open Elective-I)</div>
+    <h1><span>Environmental Engineering</span><br>&amp; Disaster <em>Management</em></h1>
+    <p class="hero-sub">A <strong>complete exam-ready guide</strong> — safe water supply, domestic water demand, sources &amp; intakes, drinking water quality, IS-10500 standards, water treatment, wastewater &amp; sewers, solid waste, air pollution and disaster management — explained from scratch with RTU PYQs 2021–2025 mapped by unit + a fully answered predicted Mid-Term 1 paper for 2026.</p>
+    <div class="hero-badges">
+      <span class="badge badge-r">🔥 Drinking Water Quality — Every Paper</span>
+      <span class="badge badge-gold">🔮 Mid-Term 1 2026 Predicted + Full Answers</span>
+      <span class="badge badge-c">IS-10500 Standards — Explained</span>
+      <span class="badge badge-g">Water Treatment &amp; Intake Diagrams</span>
+      <span class="badge badge-v">Urban vs Rural Water Demand — Solved</span>
+      <span class="badge badge-o">Layman Explanations + Diagrams</span>
+    </div>
+    <div class="crafted-by">
+      <span class="crafted-label">crafted by</span>
+      <span class="crafted-name">Mahansh Gaur</span>
+      <div class="crafted-links">
+        <a class="crafted-link" href="https://github.com/mahanshstarktech" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub
+        </a>
+        <a class="crafted-link" href="https://www.instagram.com/mahaanshgaur_6513" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-label">Units Covered</span></div>
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">RTU PYQ Years</span></div>
+    <div class="stat-item"><span class="stat-num">88</span><span class="stat-label">PYQ Questions Mapped</span></div>
+    <div class="stat-item"><span class="stat-num">100%</span><span class="stat-label">Water Quality — Every Paper</span></div>
+    <div class="stat-item"><span class="stat-num">7</span><span class="stat-label">Mid-Term 1 Qs Predicted</span></div>
+    <div class="stat-item"><span class="stat-num">70</span><span class="stat-label">End-Term Max Marks</span></div>
+  </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrap">
+
+<!-- IMPORTANCE BARS -->
+<div class="section-wrap">
+  <div class="section-head">
+    <h2>Topic Importance — RTU EEDM Exam</h2>
+    <div class="sub">BASED ON 4-YEAR RTU PYQ ANALYSIS (2021 / 2023 / 2024 / 2025) + 1 REAL MID-TERM 1 SAMPLE · 7AG6-60.2</div>
+  </div>
+  <div class="imp-grid">
+    <div class="imp-row"><span class="imp-label">Drinking Water Quality + IS-10500</span><div class="imp-bar"><div class="imp-bar-fill fill-hot" style="width:100%;--bd:.05s"></div></div><span class="imp-pct pct-hot">100% 🔮</span></div>
+    <div class="imp-row"><span class="imp-label">Domestic Water Demand, Sources &amp; Supply</span><div class="imp-bar"><div class="imp-bar-fill fill-hot" style="width:100%;--bd:.1s"></div></div><span class="imp-pct pct-hot">100% 🔮</span></div>
+    <div class="imp-row"><span class="imp-label">Env. Engineering Definition + Scope <span class="scope">(1 Q cap)</span></span><div class="imp-bar"><div class="imp-bar-fill fill-hot" style="width:100%;--bd:.15s"></div></div><span class="imp-pct pct-hot">100% 🔮</span></div>
+    <div class="imp-row"><span class="imp-label">Disaster &amp; Disaster Management <span class="scope">(Unit 5)</span></span><div class="imp-bar"><div class="imp-bar-fill fill-high" style="width:80%;--bd:.2s"></div></div><span class="imp-pct pct-high">80%</span></div>
+    <div class="imp-row"><span class="imp-label">Air Pollution + BIS Air Standards <span class="scope">(Unit 5)</span></span><div class="imp-bar"><div class="imp-bar-fill fill-high" style="width:80%;--bd:.25s"></div></div><span class="imp-pct pct-high">80%</span></div>
+    <div class="imp-row"><span class="imp-label">Solid Waste Management <span class="scope">(Unit 5)</span></span><div class="imp-bar"><div class="imp-bar-fill fill-high" style="width:80%;--bd:.3s"></div></div><span class="imp-pct pct-high">80%</span></div>
+    <div class="imp-row"><span class="imp-label">Wastewater, Sewage &amp; Sewers <span class="scope">(Unit 4)</span></span><div class="imp-bar"><div class="imp-bar-fill fill-med" style="width:60%;--bd:.35s"></div></div><span class="imp-pct pct-med">60%</span></div>
+    <div class="imp-row"><span class="imp-label">Intakes — River / Reservoir / Lake / Canal</span><div class="imp-bar"><div class="imp-bar-fill fill-med" style="width:60%;--bd:.4s"></div></div><span class="imp-pct pct-med">60% 🔮</span></div>
+    <div class="imp-row"><span class="imp-label">Conventional Water Treatment Process</span><div class="imp-bar"><div class="imp-bar-fill fill-low" style="width:40%;--bd:.45s"></div></div><span class="imp-pct pct-low">40% 🔮</span></div>
+    <div class="imp-row"><span class="imp-label">Importance of Sanitation</span><div class="imp-bar"><div class="imp-bar-fill fill-low" style="width:40%;--bd:.5s"></div></div><span class="imp-pct pct-low">40%</span></div>
+  </div>
+</div>
+
+<!-- EXAM STRATEGY -->
+<div class="section-wrap" style="padding-top:0">
+  <div class="strategy-box">
+    <h3>⚡ Paper Structure &amp; Exam Strategy — EEDM</h3>
+
+    <h4>Mid-Term 1 — Units 1–3 only, 20 marks, 1:30 hrs</h4>
+    <table class="strat-table">
+      <tr><th>Part</th><th>Questions</th><th>Marks</th><th>Total</th><th>Strategy</th></tr>
+      <tr><td><strong>Part A</strong></td><td>3 compulsory</td><td>2 each</td><td>6</td><td>Definition-style recall. Unit 1 always gets exactly one question — memorise the Environmental Engineering definition cold.</td></tr>
+      <tr><td><strong>Part B</strong></td><td>2 compulsory</td><td>4 each</td><td>8</td><td>Analytical/comparison style — drinking water characteristics + IS-10500, and urban vs rural water demand are the two most repeated questions in the whole PYQ set.</td></tr>
+      <tr><td><strong>Part C</strong></td><td>Attempt 1 of 2</td><td>6 each</td><td>6</td><td>Descriptive/design — intake comparison or water treatment stages. Draw the flow diagram or intake sketch even in a mid-term; it earns marks fast.</td></tr>
+    </table>
+
+    <h4>End-Term — All 5 units, 70 marks, 3 hrs (most common variant)</h4>
+    <table class="strat-table">
+      <tr><th>Part</th><th>Questions</th><th>Marks</th><th>Total</th><th>Strategy</th></tr>
+      <tr><td><strong>Part A</strong></td><td>10 compulsory</td><td>2 each</td><td>20</td><td>≤25 words. Definition + one line of context. Drinking water quality and a Unit 5 topic (disaster/air pollution/solid waste) always show up here.</td></tr>
+      <tr><td><strong>Part B</strong></td><td>Attempt 5 of 7</td><td>4 each</td><td>20</td><td>Pick the questions with numeric standards (IS-10500) or a clear list structure (sources, sewer types) — fastest to score full marks on.</td></tr>
+      <tr><td><strong>Part C</strong></td><td>Attempt 3 of 5</td><td>30</td><td>30</td><td>Full structured answer. Water supply/treatment questions reward a diagram; disaster/solid-waste questions reward a bulleted classification.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- UNIT CARDS -->
+<div class="section-wrap" style="padding-top:0">
+  <div class="section-head">
+    <h2>All Units at a Glance</h2>
+    <div class="sub">CLICK ANY UNIT TO OPEN THE FULL STUDY GUIDE WITH PYQS AND DIAGRAMS</div>
+  </div>
+  <div class="unit-grid">
+    <a class="unit-card u1" href="unit1.html">
+      <div class="unit-num">Unit 01 — Introduction</div>
+      <div class="unit-name">Objective, Scope &amp; Outcome of the Course</div>
+      <div class="unit-topics">What is Environmental Engineering? · Scope &amp; interdisciplinary nature · What is environment? · What is a disaster? · Disaster management definition</div>
+      <div class="unit-footer"><span class="unit-go">Open guide →</span><span class="unit-tag mid">📝 1 Part A Q every paper</span></div>
+    </a>
+    <a class="unit-card u2" href="unit2.html">
+      <div class="unit-num">Unit 02 — Water Supply System</div>
+      <div class="unit-name">Safe Water Supply, Demand, Sources &amp; Intakes</div>
+      <div class="unit-topics">Importance of safe water supply · Domestic water requirement (urban/rural, LPCD) · Factors affecting demand · Sources — rivers, lakes, wells, springs · Intakes — river/reservoir/lake/canal · Transportation of water</div>
+      <div class="unit-footer"><span class="unit-go">Open guide →</span><span class="unit-tag hot">🔥 Mid-Term 1 core unit</span></div>
+    </a>
+    <a class="unit-card u3" href="unit3.html">
+      <div class="unit-num">Unit 03 — Drinking Water Quality</div>
+      <div class="unit-name">Standards, Water Treatment &amp; Sanitation</div>
+      <div class="unit-topics">Physical/chemical/biological characteristics · IS-10500 standards · pH, TDS, hardness, chlorides, fluoride, nitrate · Water treatment: screening → aeration → sedimentation → filtration → disinfection · Importance of sanitation</div>
+      <div class="unit-footer"><span class="unit-go">Open guide →</span><span class="unit-tag hot">🔥 100% — every paper</span></div>
+    </a>
+    <a class="unit-card u4" href="unit4.html">
+      <div class="unit-num">Unit 04 — Wastewater &amp; Sewers</div>
+      <div class="unit-name">Domestic Wastewater Quantity, Sewers &amp; Treatment</div>
+      <div class="unit-topics">Wastewater quantity &amp; characteristics · BOD, COD, TOC · Sewer types · Hydraulic design &amp; design discharge · Domestic wastewater treatment intro</div>
+      <div class="unit-footer"><span class="unit-go">Open guide →</span><span class="unit-tag mid">End-Term only</span></div>
+    </a>
+    <a class="unit-card u5" href="unit5.html">
+      <div class="unit-num">Unit 05 — Solid Waste, Air &amp; Disaster</div>
+      <div class="unit-name">Solid Waste, Air Pollution &amp; Disaster Management</div>
+      <div class="unit-topics">Solid waste quantity, characteristics &amp; disposal · Air pollution types &amp; effects · BIS standards for air pollutants · Disaster types · Importance of disaster management, NDMA</div>
+      <div class="unit-footer"><span class="unit-go">Open guide →</span><span class="unit-tag mid">End-Term only</span></div>
+    </a>
+    <a class="unit-card" href="pyq.html" style="border-color:rgba(245,158,11,.3);">
+      <div class="unit-num" style="color:var(--upred)">Solved PYQs</div>
+      <div class="unit-name">Previous Year Questions — Mapped by Unit</div>
+      <div class="unit-topics">2021 · 2023 · 2024 · 2025 · every question sorted into its unit · Mid-Term 1 (Aug-2025) sample fully solved · IS-10500 &amp; water-treatment worked answers</div>
+      <div class="unit-footer"><span class="unit-go" style="color:var(--upred)">Open PYQs →</span><span class="unit-tag mid">📋 4 Papers</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- PYQ QUICK-PICK -->
+<div class="section-wrap" style="padding-top:0">
+  <div class="pyq-header-row">
+    <div class="section-head" style="margin-bottom:0"><h2>Previous Year Papers — Quick Access</h2></div>
+    <a class="pyq-view-all" href="pyq.html">View all solutions →</a>
+  </div>
+  <div class="pyq-grid">
+    <a class="pyq-card latest" href="pyq.html#2025">
+      <div class="pyq-year-badge">LATEST · NOV-DEC 2025</div>
+      <div class="pyq-title">2025</div>
+      <div class="pyq-code">7E1811 · Nov-Dec 2025 · IT/EE</div>
+      <div class="pyq-tags">
+        <span class="pyq-tag">LPCD Urban/Rural</span>
+        <span class="pyq-tag">Intake Function</span>
+        <span class="pyq-tag">IS-10500</span>
+        <span class="pyq-tag">Water Treatment Stages</span>
+        <span class="pyq-tag">NDMA</span>
+      </div>
+      <div class="pyq-go">Open solved paper →</div>
+    </a>
+    <a class="pyq-card" href="pyq.html#2024">
+      <div class="pyq-year-badge">2024</div>
+      <div class="pyq-title">2024</div>
+      <div class="pyq-code">7E1811 · Main/Back 2024 · IT/EE</div>
+      <div class="pyq-tags">
+        <span class="pyq-tag">Safe Water Supply</span>
+        <span class="pyq-tag">Drinking Water Standards</span>
+        <span class="pyq-tag">COD / TOC</span>
+        <span class="pyq-tag">Wastewater Treatment</span>
+        <span class="pyq-tag">BIS Air Standards</span>
+      </div>
+      <div class="pyq-go">Open solved paper →</div>
+    </a>
+    <a class="pyq-card" href="pyq.html#2023">
+      <div class="pyq-year-badge">2023</div>
+      <div class="pyq-title">2023</div>
+      <div class="pyq-code">7E1711 · Main/Back Jan 2023 · IT/EE</div>
+      <div class="pyq-tags">
+        <span class="pyq-tag">Sources of Water Supply</span>
+        <span class="pyq-tag">IS Quality Standards</span>
+        <span class="pyq-tag">Sewer Types</span>
+        <span class="pyq-tag">Disaster Mgmt Cycle</span>
+        <span class="pyq-tag">Solid Waste Types</span>
+      </div>
+      <div class="pyq-go">Open solved paper →</div>
+    </a>
+    <a class="pyq-card" href="pyq.html#2021">
+      <div class="pyq-year-badge">2021</div>
+      <div class="pyq-title">2021</div>
+      <div class="pyq-code">7E1711 · Main Feb-Mar 2021 · Agri. Engg (OE-I)</div>
+      <div class="pyq-tags">
+        <span class="pyq-tag">EE Definition + Scope</span>
+        <span class="pyq-tag">pH of Drinking Water</span>
+        <span class="pyq-tag">Urban vs Rural Water Req</span>
+        <span class="pyq-tag">River/Reservoir Intake</span>
+        <span class="pyq-tag">Solid Waste Mgmt</span>
+      </div>
+      <div class="pyq-go">Open solved paper →</div>
+    </a>
+  </div>
+</div>
+</div><!-- /page-wrap -->
+
+<!-- ══════ PREDICTED PAPER — MID-TERM 1, 2026 ══════ -->
+<div class="predicted-section">
+  <div class="pred-inner">
+    <div class="pred-badge">🔮 AI-Powered Analysis — Mid-Term 1 (Aug-2025) + RTU End-Term 2021 / 2023 / 2024 / 2025 Cross-Referenced</div>
+    <div class="pred-sec-title">Predicted Paper — EEDM Mid-Term 1, 2026</div>
+    <div class="pred-sec-sub">BASED ON 1 REAL MID-TERM SAMPLE + 4 RTU PYQs, MAPPED TO UNIT 1–3 ONLY · 7AG6-60.2</div>
+    <p class="pred-intro">Every RTU end-term question was sorted by unit (Unit 1 = Introduction, Unit 2 = water supply system, Unit 3 = drinking water quality) using the syllabus and slide content — Units 4/5 (wastewater, solid waste, air pollution, disaster types) were discarded since the one real Mid-Term 1 paper never touches them. What's left was ranked by how often the same theme repeats. Domestic-water-requirement comparison and drinking-water-quality/IS-10500 are the most repeated items in the whole set — and they're already Q4/Q5 in the real Aug-2025 paper — so both return here, reworded rather than verbatim.</p>
+    <div class="disc-box">
+      <span style="font-size:18px;flex-shrink:0;">⚠️</span>
+      <p>Predictions are based on historical patterns across 1 real mid-term and 4 RTU end-terms. Actual paper may differ. Use this to prioritise study time — don't skip Unit 1–3 topics not listed here entirely.</p>
+    </div>
+
+    <div class="pred-grid">
+
+      <div class="part-divider">Part A — 2 marks each · all three compulsory</div>
+
+      <!-- PART A -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q1)</div>
+          <div class="pred-unit">Unit 1 | Introduction</div>
+          <div class="pred-q">Define Environmental Engineering and state its scope. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Unit 1 is a single 1-hour "compulsory intro" topic, so it only ever earns one light Part A question — exactly what happened in the real Aug-2025 paper (Q1, paraphrased as "ecological balance"). "Define Environmental Engineering" itself is the exact 2021 Q1 wording and reappears as "what is environment" in 2023 Q1. Strongest Unit 1 anchor available.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Environmental Engineering</strong> is the application of science and engineering principles to protect people from the adverse effects of their own activities, protect environmental systems from the adverse effects of human activities, and improve environmental quality for human health and ecological well-being.</p>
+          <p><strong>Scope:</strong> water supply and treatment, sewerage and sewage/wastewater treatment, solid waste management, air pollution control, industrial pollution prevention, environmental impact assessment, and disaster management planning. Because it draws on chemistry, biology, hydraulics and public health together, it is an inherently <em>interdisciplinary</em> field — no single traditional branch covers it alone.</p>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q2)</div>
+          <div class="pred-unit">Unit 2 | Sources of water supply</div>
+          <div class="pred-q">List the sources of water supply. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Exact phrasing in 2021 Q5. Reappears as "list two main sources of surface water supply" in 2025 Q2, and as a full Part B question ("describe different sources of water supply") in 2023. Present in 3 of the 4 RTU papers — never yet asked in the one real Mid-Term 1 sample, which makes it the strongest "new" Part A pick this cycle.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p>Sources of water supply are broadly split into surface and ground sources:</p>
+          <div class="fbox">
+            <span class="flbl">Sources of Water Supply</span>
+            <div class="fl">Surface sources     : Rivers, Lakes, Ponds, Streams, Storage reservoirs
+Ground sources      : Open wells, Tube wells, Artesian wells,
+                       Springs, Infiltration galleries
+Other               : Rain water, Sea water (needs desalination)</div>
+          </div>
+          <p>Rivers and storage reservoirs are the principal sources for large cities; lakes/streams suit hilly areas and small towns; wells remain the chief source for 75–85% of India's population.</p>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q3)</div>
+          <div class="pred-unit">Unit 3 | Drinking water standards</div>
+          <div class="pred-q">State the desirable range of pH and TDS for drinking water as per IS-10500. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Some IS-10500 numeric-recall question appears in literally every paper in the set: "define pH" (2021 Q6), "standards of drinking water" (2024 Q2), "desirable values/range of pH, TDS, NO₃, turbidity as per BIS" (2025 Q4), "quality standards as per Indian Standards" (2023 B4). The exact parameter asked varies year to year, so treat this as "some IS-10500 number", not this precise wording.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <div class="fbox">
+            <span class="flbl">IS-10500 — Selected Desirable Limits</span>
+            <div class="fl">pH                : 6.5 – 8.5
+TDS               : 500 mg/L  (2000 mg/L permissible, no alt. source)
+Turbidity         : 1 NTU     (5 NTU permissible)
+Total Hardness    : 200 mg/L as CaCO3 (600 mg/L permissible)</div>
+          </div>
+          <p>Beyond the desirable limit, water is still usable if no alternate source exists, up to the permissible limit — beyond that, taste, corrosion or health effects (e.g. scaling, gastro-intestinal irritation) become significant.</p>
+        </div>
+      </div>
+
+      <div class="part-divider">Part B — 4 marks each · both compulsory</div>
+
+      <!-- PART B -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q4)</div>
+          <div class="pred-unit">Unit 3 | Drinking water quality</div>
+          <div class="pred-q">Describe the important physical, chemical and biological characteristics of drinking water quality. Give the IS-10500 permissible limit for at least four characteristics. (🔮 PREDICTED)</div>
+          <div class="pred-reason">This is verbatim Q4 in the real Aug-2025 Mid-Term 1 paper, and the same theme repeats as "physical characteristics of water" (2023 B2) and "note on IS-10500:2012" (2025 B3). It's the single most-repeated question in the entire set — if any topic is asked again nearly unchanged, it's this one.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Physical:</strong> clear, colourless, odourless, cool and pleasant to taste, free from suspended impurities.</p>
+          <p><strong>Chemical:</strong> free from dissolved gases (CO₂, H₂S, NH₃) and toxic minerals (lead, arsenic, manganese); correct pH, hardness, chloride, fluoride, sulphate and TDS levels.</p>
+          <p><strong>Biological:</strong> free from pathogenic bacteria, viruses and parasites — coliform organisms must be absent, as their presence signals faecal contamination.</p>
+          <div class="fbox">
+            <span class="flbl">IS-10500 Permissible Limits (sample four)</span>
+            <div class="fl">Chlorides   : 250 mg/L desirable  → 1000 mg/L permissible
+Sulphate    : 200 mg/L desirable  → 400 mg/L permissible
+Fluoride    : 1.0 mg/L desirable  → 1.5 mg/L permissible
+Nitrate     : 45 mg/L  (no relaxation — infant health risk)</div>
+            <div class="fn">Nitrate has no relaxation because excess nitrate causes "blue baby syndrome" (methaemoglobinemia) in infants — nitrite formed in the gut competes with oxygen for haemoglobin.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q5)</div>
+          <div class="pred-unit">Unit 2 | Domestic water requirement</div>
+          <div class="pred-q">A town is rapidly turning into a city while a nearby village keeps its traditional lifestyle. Compare the domestic water requirement (demand and use) of urban and rural areas in India, and explain two factors that affect this demand. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Same theme as Q5 in the real Aug-2025 paper almost word for word, and the near-identical "compare domestic water requirements of urban and rural areas with suitable examples" appears as Part B Q1 in the 2025 RTU paper too. Two independent sources point to the same repeated question — reworded here since the exact phrasing was already used once.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <div class="fbox">
+            <span class="flbl">Urban vs Rural Domestic Water Requirement (India)</span>
+            <div class="fl">Per capita demand   : Urban 135–150 LPCD  |  Rural 40–55 LPCD
+Uses covered        : Urban — domestic + civic + fire + a share of
+                       industrial/commercial demand
+                       Rural — mostly drinking, cooking, bathing,
+                       washing and household sanitary use only
+Infrastructure      : Urban — treatment plant, pumped/piped
+                       distribution network, storage reservoirs,
+                       fire-fighting provision
+                       Rural — hand pumps/wells or simple gravity
+                       stand-posts, minimal treatment, no fire demand</div>
+          </div>
+          <p><strong>Two factors affecting demand:</strong> (1) <em>Habits and standard of living</em> — higher-value urban premises consume more per head than slum or rural areas; (2) <em>Climatic conditions</em> — hotter, drier regions raise consumption in both areas, but urban distribution pressure amplifies the effect through greater loss and wastage at higher pressure.</p>
+        </div>
+      </div>
+
+      <div class="part-divider">Part C — 6 marks · attempt any ONE of the two</div>
+
+      <!-- PART C -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q6)</div>
+          <div class="pred-unit">Unit 2 | Intakes</div>
+          <div class="pred-q">Compare river, reservoir and lake intakes. Explain how the type and location of an intake affects the quality of water drawn and the design of the conveyance system. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Exact theme as Q6 in the real Aug-2025 paper ("compare river and reservoir water intakes... effect on water quality"), and the syllabus deck devotes its longest single section to exactly this comparison (river, reservoir, lake, canal intakes). Very likely to return, reworded to add lake intake as a third point of comparison.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p>An <strong>intake</strong> is the structure that safely withdraws water from its source and delivers it into the conveyance conduit leading to the treatment plant.</p>
+          <div class="dbox">
+            <svg viewBox="0 0 560 190" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+              <text x="10" y="18" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold">Intake types — River vs Reservoir vs Lake</text>
+              <rect x="10" y="34" width="170" height="130" rx="6" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+              <text x="95" y="52" text-anchor="middle" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="9" font-weight="bold">RIVER INTAKE</text>
+              <rect x="35" y="62" width="120" height="20" fill="none" stroke="#6090a8" stroke-width="1"/>
+              <path d="M35 82 q30 10 60 0 t60 0" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+              <rect x="80" y="95" width="30" height="40" fill="#152432" stroke="#10b981" stroke-width="1.5"/>
+              <text x="95" y="145" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7">jack well +</text>
+              <text x="95" y="155" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7">inlet pipe</text>
+              <rect x="200" y="34" width="170" height="130" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+              <text x="285" y="52" text-anchor="middle" fill="#a78bfa" font-family="JetBrains Mono, monospace" font-size="9" font-weight="bold">RESERVOIR INTAKE</text>
+              <path d="M225 65 L225 140 L345 140 L345 100 L305 65 Z" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+              <line x1="230" y1="80" x2="340" y2="80" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+              <line x1="230" y1="105" x2="340" y2="105" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+              <line x1="230" y1="125" x2="340" y2="125" stroke="#22d3ee" stroke-width="1" stroke-dasharray="3,2"/>
+              <text x="285" y="155" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7">multi-level pipes</text>
+              <rect x="390" y="34" width="160" height="130" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+              <text x="470" y="52" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="9" font-weight="bold">LAKE INTAKE</text>
+              <ellipse cx="470" cy="105" rx="65" ry="35" fill="none" stroke="#10b981" stroke-width="1.5"/>
+              <circle cx="470" cy="105" r="8" fill="#152432" stroke="#22d3ee" stroke-width="1.5"/>
+              <text x="470" y="155" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7">submerged, if bank shallow</text>
+            </svg>
+            <div class="dcap">Fig — River intake (upstream, jack well), Reservoir intake (dam-slope tower, multiple levels), Lake intake (submerged, cheap construction)</div>
+          </div>
+          <p><strong>River intake:</strong> sited upstream of the city to minimise pollution; consists of an inlet well, inlet pipe and jack well; water quality varies with season (silt, dilution of upstream discharges), so the treatment plant must handle fluctuating turbidity.</p>
+          <p><strong>Reservoir intake:</strong> located near the upstream face of the dam where depth is greatest; intake pipes are provided at several levels because reservoir water level and quality (thermal stratification) change through the year — drawing from the best layer improves raw-water quality reaching the plant.</p>
+          <p><strong>Lake intake:</strong> similar to a reservoir intake where bank depth is adequate; where the bank is shallow, a cheap submerged intake (pipe + bell mouth, protected by a timber/concrete crib) is used at the deeper centre instead.</p>
+          <p><strong>Effect on conveyance design:</strong> the intake site is always chosen close to the treatment plant to cut conveyance cost, in the purer zone of the source, away from waste-disposal points and navigation channels, and where it stays accessible during floods — all of which directly size and route the pipes/aqueduct that follow.</p>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q7)</div>
+          <div class="pred-unit">Unit 3 | Water treatment</div>
+          <div class="pred-q">Describe, step by step, the stages involved in conventional water treatment for a municipal supply, explaining the purpose of each stage. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Same theme as Q7 in the real Aug-2025 paper ("propose a step-by-step plan to treat contaminated pond water"), and near-identical to the 2025 RTU Part C Q2 ("explain the various stages in conventional water treatment including their functions and significance"). Matches the syllabus flow diagram exactly — Screening → Aeration → Sedimentation → Filtration → Disinfection → Storage.</div>
+          <span class="pred-conf high">CERTAIN</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <div class="dbox">
+            <svg viewBox="0 0 300 340" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+              <text x="10" y="18" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold">Conventional water treatment train</text>
+              <g font-family="JetBrains Mono, monospace" font-size="9">
+                <rect x="60" y="28" width="180" height="28" rx="5" fill="#152432" stroke="#06b6d4" stroke-width="1.5"/>
+                <text x="150" y="46" text-anchor="middle" fill="#22d3ee">Source water</text>
+                <line x1="150" y1="56" x2="150" y2="70" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="70" width="180" height="28" rx="5" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="150" y="88" text-anchor="middle" fill="#10b981">1. Screening</text>
+                <line x1="150" y1="98" x2="150" y2="112" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="112" width="180" height="28" rx="5" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="150" y="130" text-anchor="middle" fill="#10b981">2. Aeration</text>
+                <line x1="150" y1="140" x2="150" y2="154" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="154" width="180" height="28" rx="5" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="150" y="172" text-anchor="middle" fill="#a78bfa">3. Coagulation + Sedimentation</text>
+                <line x1="150" y1="182" x2="150" y2="196" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="196" width="180" height="28" rx="5" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="150" y="214" text-anchor="middle" fill="#a78bfa">4. Filtration</text>
+                <line x1="150" y1="224" x2="150" y2="238" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="238" width="180" height="28" rx="5" fill="#081420" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="150" y="256" text-anchor="middle" fill="#f5b942">5. Disinfection</text>
+                <line x1="150" y1="266" x2="150" y2="280" stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr)"/>
+                <rect x="60" y="280" width="180" height="28" rx="5" fill="#152432" stroke="#06b6d4" stroke-width="1.5"/>
+                <text x="150" y="298" text-anchor="middle" fill="#22d3ee">Storage &amp; distribution</text>
+              </g>
+              <defs>
+                <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#6090a8"/>
+                </marker>
+              </defs>
+            </svg>
+            <div class="dcap">Fig — Conventional treatment train from raw source to distribution</div>
+          </div>
+          <p><strong>1. Screening:</strong> water is passed through a screen to remove floating debris before it enters the works.</p>
+          <p><strong>2. Aeration:</strong> exchanges gases between water and air — increases dissolved oxygen, strips odour-causing gases, and precipitates iron/manganese as hydroxides.</p>
+          <p><strong>3. Coagulation and sedimentation:</strong> large particles settle under gravity in plain sedimentation; coagulants (alum, ferrous sulphate) are added so fine/colloidal particles clump into flocs that settle quickly — e.g. Al₂(SO₄)₃ + 3 Ca(HCO₃)₂ → 2 Al(OH)₃↓ + 3 CaSO₄ + 6 CO₂.</p>
+          <p><strong>4. Filtration:</strong> water is passed through a porous bed (gravity sand or pressure filter) to remove remaining suspended particles and some micro-organisms.</p>
+          <p><strong>5. Disinfection:</strong> kills pathogenic bacteria — most commonly by chlorination (Cl₂ + H₂O → HCl + HOCl, and HOCl kills the germs); over-dosing is corrected by de-chlorination.</p>
+          <p><strong>6. Storage and distribution:</strong> treated water is stored in clear-water reservoirs and distributed under pressure to consumers, keeping quality intact until delivery.</p>
+        </div>
+      </div>
+
+    </div><!-- /pred-grid -->
+
+    <div class="prep-box">
+      <h3>✅ Quick preparation strategy — EEDM Mid-Term 1, 2026</h3>
+      <p><strong>Certain (prepare with the full IS-10500 table and the treatment flow diagram):</strong> drinking-water characteristics + IS-10500 limits (Q4), urban vs rural domestic water requirement comparison (Q5), river/reservoir/lake intake comparison (Q6), and the step-by-step conventional water treatment train (Q7) — all four are either verbatim repeats of the real Aug-2025 paper or match a second, independent RTU paper.<br><br>
+      <strong>Very high confidence:</strong> sources of water supply, list-and-classify style (Q2) — never asked in the one real sample, but present in 3 of 4 RTU papers, so treat it as the most likely "new" addition.<br><br>
+      <strong>Backup, in case Unit 1 gets more weight than usual:</strong> "What is a disaster?" / "What is disaster management?" (2021 Q2, 2023 Q8/Q10) — Unit 1's other recurring definitional pair, in case it's swapped in for the Environmental Engineering definition.<br><br>
+      <strong>Least certain slot:</strong> Q3 — an IS-10500 numeric-recall question shows up every year, but the exact parameter (pH, TDS, turbidity, chlorides…) rotates, so know the whole table rather than banking on pH/TDS specifically.</p>
+    </div>
+  </div>
+</div><!-- /predicted-section -->
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="unit1.html">🌱 U1: Introduction</a>
+    <a href="unit2.html">🚰 U2: Water Supply</a>
+    <a href="unit3.html">💧 U3: Drinking Water Quality</a>
+    <a href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+    <a href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+    <a href="pyq.html" style="color:var(--upred)">📋 Solved PYQs</a>
+  </div>
+  © 2026 Mahansh Gaur · EEDM RTU Study Guide · 7AG6-60.2 · Educational use only.
+</footer>
+
+<script>
+function toggle(btn){
+  const ans = btn.nextElementSibling;
+  if(ans.classList.contains('open')){
+    ans.classList.remove('open');
+    btn.textContent = btn.textContent.replace('▲','▼');
+  } else {
+    ans.classList.add('open');
+    btn.textContent = btn.textContent.replace('▼','▲');
+  }
+}
+</script>
+</body>
+</html>
