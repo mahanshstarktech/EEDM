@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 5 — Solid Waste, Air Pollution &amp; Disaster Management | EEDM RTU Exam Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#050c0f;--bg2:#07121a;--surface:#0c1c28;--surface2:#102230;
+  --border:#193344;--border2:#0d1f2e;
+  --ds:#06b6d4;--ds2:#22d3ee;--dsdim:rgba(6,182,212,.12);
+  --u1:#22d3ee;--u2:#10b981;--u3:#ef4444;--u4:#a78bfa;--u5:#f97316;--u5-bright:#fb923c;
+  --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
+  --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
+  --sidebar-w:320px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.82;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── RESPONSIVE FLUID TYPOGRAPHY (IPHONE MINI TO 65" TV) ── */
+html{font-size:clamp(17px, 1.25vw + 12px, 22px);-webkit-text-size-adjust:100%;}
+@media(min-width:1400px){html{font-size:clamp(19px, 1.15vw + 10px, 24px);}}
+@media(min-width:1800px){html{font-size:clamp(21px, 1.1vw + 9px, 27px);}}
+@media(min-width:2400px){html{font-size:clamp(25px, 1.0vw + 8px, 32px);}}
+@media(min-width:3400px){html{font-size:35px;}}
+@media(max-width:900px){html{font-size:17.5px;}}
+@media(max-width:480px){html{font-size:16.8px;}}
+
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--u5);}
+
+/* ── EXPANSIVE LAYOUT — FILLS WIDE MONITORS NATURALLY ── */
+.layout{display:flex;width:100%;max-width:100%;}
+.content{
+  flex:1;
+  padding:clamp(28px,2.6vw,56px) clamp(24px,3.4vw,76px);
+  max-width:100%;
+  overflow-x:hidden;
+  min-width:0;
+}
+@media(min-width:1600px){.content{padding:clamp(36px,2.4vw,64px) clamp(44px,4vw,110px);}}
+@media(min-width:2200px){.content{padding:clamp(44px,2.2vw,76px) clamp(60px,4.5vw,150px);}}
+@media(min-width:3000px){.content{padding:clamp(54px,2vw,90px) clamp(80px,5vw,200px);}}
+
+/* ── TOP NAVIGATION ── */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.topnav::-webkit-scrollbar{display:none;}
+.tnlabel{font-family:var(--mono);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--u5);padding:15px 14px 15px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.tnlink{font-family:var(--mono);font-size:.7rem;padding:8px 14px;border-radius:6px;text-decoration:none;color:var(--dim2);white-space:nowrap;flex-shrink:0;transition:all .18s;border:1px solid transparent;}
+.tnlink:hover{color:var(--text);background:var(--surface2);}
+.tnlink.active{color:var(--u5-bright);background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.35);}
+.tnlink.pred{color:var(--upred);background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.28);font-weight:600;}
+
+/* ── CREDIT BAND ── */
+.credit-band{background:#060f18;border-bottom:1px solid var(--border2);padding:11px 32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.credit-text{font-family:var(--mono);font-size:.72rem;color:var(--dim2);}
+.credit-text span{color:var(--u5);font-weight:600;}
+.credit-link{font-family:var(--mono);font-size:.7rem;padding:4px 14px;border-radius:5px;border:1px solid var(--border);color:var(--dim2);text-decoration:none;transition:all .2s;}
+.credit-link:hover{border-color:var(--u5);color:var(--u5);}
+
+/* ── HERO SECTION ── */
+.hero{position:relative;overflow:hidden;padding:clamp(52px,5vw,90px) clamp(24px,4vw,84px) clamp(44px,4vw,72px);background:var(--bg);}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(249,115,22,.1) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:44px 44px,88px 88px;background-position:0 0,22px 22px;animation:dotDrift 30s linear infinite;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 10% 50%,rgba(249,115,22,.09) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 85% 15%,rgba(239,68,68,.05) 0%,transparent 60%);pointer-events:none;}
+@keyframes dotDrift{0%{transform:translate(0,0);}100%{transform:translate(44px,44px);}}
+.hero-inner{position:relative;z-index:1;max-width:1800px;margin:0 auto;}
+.hero-tag{font-family:var(--mono);font-size:.74rem;color:var(--u5-bright);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--u5);box-shadow:0 0 14px var(--u5);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(32px,5.2vw,76px);line-height:1.06;color:#fff;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero h1 span{color:var(--u5-bright);}
+.hero h1 em{color:var(--ds2);font-style:normal;}
+.hero-sub{color:var(--dim2);font-size:clamp(16px,1.4vw,21px);max-width:980px;line-height:1.82;margin-bottom:24px;}
+.hero-badges{display:flex;gap:9px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:.7rem;padding:6px 15px;border-radius:6px;border:1px solid;font-weight:600;}
+.badge-o{color:var(--u5-bright);border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.08);}
+.badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+.badge-c{color:var(--ds2);border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.08);}
+.badge-g{color:var(--u2);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08);}
+.badge-r{color:var(--u3);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);}
+
+/* ── SIDEBAR NAVIGATION ── */
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);padding:28px 18px;border-right:1px solid var(--border);position:sticky;top:44px;height:calc(100vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;flex-shrink:0;background:var(--bg);}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sidebar-title{font-family:var(--mono);font-size:.65rem;color:var(--u5);letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+.sidebar-close{display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim2);cursor:pointer;padding:2px 9px;font-family:var(--mono);font-size:.7rem;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:7px;cursor:pointer;font-family:var(--head);font-size:.88rem;font-weight:600;color:var(--dim2);transition:all .2s;margin-bottom:3px;text-decoration:none;line-height:1.3;}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text);}
+.nav-item.active{color:var(--u5-bright);border-left:3px solid var(--u5);padding-left:10px;}
+.nav-imp{margin-left:auto;font-family:var(--mono);font-size:.64rem;padding:2px 8px;border-radius:4px;background:var(--surface2);white-space:nowrap;font-weight:600;}
+.nav-imp.high{color:var(--u3);background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);}
+.nav-imp.med{color:var(--upred);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);}
+.nav-imp.pred{color:var(--u5-bright);background:rgba(249,115,22,.14);border:1px solid rgba(249,115,22,.3);}
+.sidebar-toggle{display:none;position:fixed;bottom:22px;right:22px;z-index:1000;width:52px;height:52px;border-radius:50%;background:var(--u5);border:none;cursor:pointer;font-size:22px;color:#000;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(249,115,22,.5);transition:transform .2s;}
+.sidebar-toggle:hover{transform:scale(1.08);}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:98;backdrop-filter:blur(4px);}
+.sidebar-overlay.visible{display:block;}
+
+/* ── CONTENT SECTIONS ── */
+.section{margin-bottom:80px;scroll-margin-top:64px;}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.section-num{font-family:var(--mono);font-size:.76rem;color:var(--u5);background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);padding:6px 12px;border-radius:6px;min-width:44px;text-align:center;font-weight:700;}
+.section-title{font-family:var(--head);font-size:clamp(22px,2.6vw,38px);font-weight:800;color:#fff;letter-spacing:-.4px;}
+
+/* ── THEORY BLOCKS ── */
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(22px,2.5vw,42px) clamp(24px,3vw,50px);margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.theory-block h3{font-family:var(--head);font-size:clamp(18px,1.7vw,25px);font-weight:700;color:var(--u5-bright);margin-bottom:14px;letter-spacing:-.2px;}
+.theory-block h3.cyan{color:var(--ds2);}
+.theory-block h3.gold{color:var(--upred);}
+.theory-block h3.green{color:var(--u2);}
+.theory-block h3.red{color:var(--u3);}
+.theory-block p{margin-bottom:14px;font-size:1rem;line-height:1.92;color:#e2e8f0;}
+.theory-block p:last-child{margin-bottom:0;}
+.theory-block ul,.theory-block ol{padding-left:26px;margin:12px 0 16px;}
+.theory-block li{margin-bottom:10px;font-size:1rem;line-height:1.82;color:#cbd5e1;}
+.theory-block strong{color:#ffffff;font-weight:600;}
+.theory-block em{color:var(--u5-bright);font-style:italic;}
+h4{font-family:var(--head);font-size:1.1rem;font-weight:700;color:var(--text);margin:22px 0 12px;letter-spacing:-.2px;}
+
+/* ── LAYMAN EXPLANATION BOX ── */
+.layman{background:rgba(249,115,22,.07);border:1px solid rgba(249,115,22,.24);border-left:4px solid var(--u5);border-radius:10px;padding:16px 22px;font-family:var(--mono);font-size:.84rem;color:#ffedd5;margin:18px 0;line-height:1.8;}
+.layman::before{content:'💬 LAYMAN EXPLANATION: ';color:var(--u5-bright);font-weight:700;font-size:.85rem;display:inline-block;margin-right:6px;}
+
+/* ── FORMULA & CODE BOXES ── */
+.fbox{background:#03080e;border:1px solid rgba(249,115,22,.25);border-left:4px solid var(--u5);border-radius:12px;padding:18px 24px;margin:20px 0;font-family:var(--mono);font-size:.84rem;color:#fed7aa;overflow-x:auto;line-height:1.75;box-shadow:inset 0 2px 10px rgba(0,0,0,.5);}
+.fbox .flbl{font-size:.68rem;color:#94a3b8;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;display:block;font-weight:600;}
+.fbox .fl{color:#fff7ed;font-size:.88rem;display:block;white-space:pre-wrap;font-family:var(--mono);}
+.fbox .fn{color:#94a3b8;font-size:.76rem;margin-top:10px;display:block;font-style:italic;border-top:1px dashed rgba(25,51,68,.85);padding-top:8px;}
+
+/* ── TIP BOXES ── */
+.tip-box{border-radius:12px;padding:18px 22px;margin:18px 0;display:flex;gap:14px;align-items:flex-start;}
+.tip-box.trick{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.28);}
+.tip-box.connect{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);}
+.tip-box.warning{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28);}
+.tip-box.validate{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.28);}
+.tip-box.pred-tip{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.32);border-left:4px solid var(--upred);}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.tip-content{flex:1;}
+.tip-title{font-family:var(--head);font-size:.88rem;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+.tip-box.trick .tip-title{color:var(--gold);}
+.tip-box.connect .tip-title{color:var(--ds2);}
+.tip-box.warning .tip-title{color:var(--u3);}
+.tip-box.validate .tip-title{color:var(--u4);}
+.tip-box.pred-tip .tip-title{color:var(--upred);}
+.tip-content p{font-size:.95rem;color:var(--text);margin:0;line-height:1.78;}
+
+/* ── TABLES ── */
+.comp-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem;display:block;overflow-x:auto;}
+.comp-table th{background:var(--surface2);padding:12px 16px;text-align:left;font-family:var(--head);font-weight:700;color:var(--u5-bright);border-bottom:1px solid var(--border);white-space:nowrap;}
+.comp-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;color:#cbd5e1;line-height:1.7;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:rgba(16,34,48,.6);}
+.comp-table td.num{font-family:var(--mono);color:#67e8f9;white-space:nowrap;}
+.comp-table td strong{color:#ffffff;}
+
+/* ── PREDICTED BANNER IN TOPICS ── */
+.pred-banner{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(249,115,22,.08));border:1px solid rgba(245,158,11,.35);border-left:4px solid var(--upred);border-radius:10px;padding:14px 20px;margin:18px 0;font-family:var(--mono);font-size:.82rem;color:var(--upred);display:flex;gap:12px;align-items:flex-start;font-weight:600;}
+.pred-banner .pb-text{line-height:1.72;}
+
+/* ── IMPORTANCE BARS ── */
+.imp-bar-wrap{margin-bottom:16px;}
+.imp-bar-label{font-family:var(--mono);font-size:.78rem;color:var(--dim2);margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;}
+.imp-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.imp-bar-fill{height:100%;border-radius:4px;}
+.ibf-hot{background:var(--u3);}
+.ibf-high{background:var(--u5);}
+.ibf-med{background:var(--upred);}
+
+/* ── DIAGRAM WRAPPER ── */
+.diagram-wrap{background:#04090e;border:1px solid var(--border);border-radius:14px;padding:24px;margin:22px 0;text-align:center;overflow-x:auto;box-shadow:inset 0 2px 14px rgba(0,0,0,.6);}
+.diagram-wrap svg{display:block;margin:0 auto;max-width:960px;width:100%;height:auto;}
+.diagram-cap{font-family:var(--mono);font-size:.75rem;color:var(--dim2);margin-top:14px;text-align:center;}
+
+/* ── PYQ STYLES ── */
+.pyq-section{background:#050f17;border:1px solid rgba(245,158,11,.28);border-radius:16px;padding:clamp(22px,2.5vw,36px) clamp(22px,3vw,44px);margin-top:32px;box-shadow:0 8px 30px rgba(0,0,0,.35);}
+.pyq-header{font-family:var(--head);font-size:1.12rem;font-weight:700;color:var(--upred);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.pyq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:18px;}
+.pyq-q-text{font-family:var(--head);font-size:1.02rem;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.45;}
+.pyq-meta{font-family:var(--mono);font-size:.7rem;color:var(--dim2);margin-bottom:12px;display:flex;gap:10px;flex-wrap:wrap;}
+.topic-tag{background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);color:var(--u5-bright);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;font-weight:600;}
+.pred-tag{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--upred);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;font-weight:600;}
+.unit-tag{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.22);color:var(--ds2);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pyq-toggle{background:rgba(16,34,48,.8);border:1px solid var(--border);border-radius:6px;padding:8px 18px;cursor:pointer;font-family:var(--mono);font-size:.76rem;color:var(--upred);margin-top:10px;transition:all .2s;font-weight:600;}
+.pyq-toggle:hover{background:var(--upred);color:#000;}
+.answer-content{display:none;margin-top:16px;font-size:.96rem;line-height:1.92;padding-top:14px;border-top:1px solid var(--border);}
+.answer-content.open{display:block;}
+.answer-content strong{color:var(--u5-bright);}
+.answer-content ul,.answer-content ol{padding-left:24px;margin:10px 0;}
+.answer-content li{margin-bottom:8px;color:#e2e8f0;}
+
+/* ── PREDICTED SECTION ── */
+.predicted-section{background:linear-gradient(180deg,#04090e 0%,#020608 100%);border-top:1px solid rgba(249,115,22,.25);border-bottom:1px solid rgba(249,115,22,.25);}
+.pred-inner{max-width:100%;margin:0 auto;padding:clamp(44px,4vw,76px) clamp(24px,3.5vw,80px);}
+.pred-badge{display:inline-block;font-family:var(--mono);font-size:.76rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:6px 16px;border-radius:9999px;margin-bottom:16px;font-weight:600;}
+.pred-sec-title{font-family:var(--head);font-size:clamp(26px,3.2vw,44px);font-weight:800;color:#fff;margin-bottom:8px;}
+.pred-sec-sub{font-family:var(--mono);font-size:.74rem;color:var(--dim2);letter-spacing:1px;margin-bottom:16px;}
+.pred-intro{font-family:var(--body);font-size:clamp(.92rem,.2vw + .86rem,1.06rem);color:#94a3b8;max-width:1150px;line-height:1.82;margin-bottom:22px;}
+.pred-grid{display:flex;flex-direction:column;gap:clamp(18px,2vw,26px);margin-top:24px;width:100%;}
+.pred-card{background:rgba(12,28,40,.68);border:1px solid var(--border);border-left:4px solid var(--u5);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.3);}
+.pred-card-head{display:flex;flex-wrap:wrap;align-items:center;padding:clamp(20px,2.2vw,30px);gap:8px 12px;}
+.pred-part{order:1;font-family:var(--mono);font-size:.7rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+.pred-unit{order:2;font-family:var(--mono);font-size:.68rem;color:var(--u5-bright);background:rgba(249,115,22,.1);border:1px solid rgba(249,115,22,.3);padding:3px 10px;border-radius:5px;}
+.pred-conf{order:3;margin-left:auto;font-family:var(--mono);font-size:.68rem;padding:3px 10px;border-radius:5px;font-weight:600;}
+.pred-conf.high{color:#f87171;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);}
+.pred-conf.med{color:#fbbf24;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);}
+.pred-q{order:4;width:100%;font-family:var(--head);font-size:clamp(1.1rem,1.2vw + .65rem,1.5rem);font-weight:700;color:#fff;line-height:1.38;margin:8px 0 6px;}
+.pred-reason{order:5;width:100%;font-size:clamp(.86rem,.18vw + .8rem,.96rem);color:#94a3b8;line-height:1.75;background:rgba(5,12,15,.5);border-left:3px solid var(--u5);padding:10px 16px;border-radius:0 8px 8px 0;}
+.pred-answer-toggle{width:100%;padding:12px 24px;background:rgba(16,34,48,.75);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.76rem;color:var(--u5-bright);text-align:left;transition:all .2s;display:flex;align-items:center;justify-content:space-between;font-weight:600;}
+.pred-answer-toggle:hover{background:rgba(249,115,22,.18);color:#fff;}
+.pred-answer{display:none;padding:clamp(24px,3vw,38px) clamp(20px,2.5vw,34px);border-top:1px solid rgba(249,115,22,.2);background:rgba(5,12,15,.9);}
+.pred-answer.open{display:block;animation:fadeAns .2s ease-out;}
+@keyframes fadeAns{from{opacity:0;transform:translateY(-3px);}to{opacity:1;transform:translateY(0);}}
+.pred-answer p{font-size:.96rem;line-height:1.92;margin-bottom:14px;max-width:98ch;color:#e2e8f0;}
+.pred-answer strong{color:var(--u5-bright);}
+.pred-answer ul,.pred-answer ol{padding-left:24px;margin:10px 0 16px;max-width:98ch;}
+.pred-answer li{margin-bottom:8px;font-size:.94rem;color:#cbd5e1;}
+
+/* ── PREP BOX ── */
+.prep-box{background:linear-gradient(135deg,rgba(249,115,22,.08) 0%,rgba(6,182,212,.04) 100%);border:1px solid rgba(249,115,22,.3);border-radius:16px;padding:clamp(24px,3vw,38px) clamp(22px,3.2vw,44px);margin-top:34px;box-shadow:0 8px 30px rgba(0,0,0,.3);}
+.prep-box h3{font-family:var(--head);font-size:clamp(1.15rem,1.4vw,1.45rem);font-weight:700;color:var(--u5-bright);margin-bottom:16px;}
+.prep-box p{font-size:.94rem;line-height:1.88;color:#e2e8f0;margin-bottom:12px;}
+.prep-box strong{color:#fff;}
+
+/* ── SITE FOOTER ── */
+.site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:30px 5vw;text-align:center;font-family:var(--mono);font-size:.74rem;color:var(--dim);}
+.site-footer a{color:var(--dim2);text-decoration:none;margin:0 12px;transition:color .2s;}
+.site-footer a:hover{color:var(--u5-bright);}
+.footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
+
+/* ── RESPONSIVE OVERRIDES ── */
+@media(max-width:1100px){:root{--sidebar-w:280px;}}
+@media(max-width:900px){
+  .sidebar{position:fixed;top:0;left:0;height:100vh;z-index:99;background:var(--bg);transform:translateX(-100%);border-right:1px solid var(--border);transition:transform .3s ease;width:var(--sidebar-w);}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 40px rgba(0,0,0,.9);}
+  .sidebar-close{display:block;}
+  .sidebar-toggle{display:flex;}
+  .content{max-width:100%;padding:26px 18px;}
+  .pred-inner{padding:40px 18px;}
+}
+@media(max-width:600px){
+  .hero{padding:42px 16px 36px;}
+  .theory-block{padding:20px 16px;border-radius:12px;}
+  .pyq-section{padding:18px 14px;}
+  .pred-card-head{padding:18px 14px;}
+  .pred-answer{padding:20px 14px;}
+  .pred-conf{margin-left:0;}
+  .dbox svg{min-width:440px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<nav class="topnav">
+  <span class="tnlabel">EEDM · RTU</span>
+  <a class="tnlink" href="index.html">🏠 Home</a>
+  <a class="tnlink" href="unit1.html">🌱 U1: Introduction</a>
+  <a class="tnlink" href="unit2.html">🚰 U2: Water Supply System</a>
+  <a class="tnlink" href="unit3.html">💧 U3: Drinking Water Quality</a>
+  <a class="tnlink" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+  <a class="tnlink active" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink pred" href="index.html#predicted-midterm-2">🔮 Predicted Midterm 2</a>
+  <a class="tnlink" href="pyq.html">📋 Solved PYQs</a>
+</nav>
+
+<!-- CREDIT BAND -->
+<div class="credit-band">
+  <div class="credit-text">Crafted by <span>Mahansh Gaur</span> · B.Tech RTU Jaipur</div>
+  <a class="credit-link" href="https://www.instagram.com/mahaanshgaur_6513" target="_blank">📸 @mahaanshgaur_6513</a>
+  <a class="credit-link" href="https://github.com/mahanshstarktech" target="_blank">🐙 GitHub</a>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>🌫️ B.Tech VII Sem · RTU Kota · 7AG6-60.2 · Unit 5 · Heavyweight Unit</div>
+    <h1>Solid Waste, <span>Air Pollution</span> &amp;<br><em>Disaster Management</em></h1>
+    <p class="hero-sub">The complete exam blueprint for Unit 5 — compiled from SKIT faculty lecture slides, official RTU syllabus, and 4-year PYQs. Master municipal solid waste management (sanitary landfills, composting &amp; incineration), atmospheric chemistry &amp; air pollutants ($SO_x, NO_x, CO, PM_{10}, PM_{2.5}$), greenhouse effect, ozone layer depletion, acid rain, CPCB/NAAQS 2009 air standards, particulate control equipment (ESP, Cyclone, Baghouse), hazard vs disaster distinctions, natural &amp; manmade disasters, the complete Disaster Management Cycle, and the DM Act 2005 / NDMA institutional structure.</p>
+    <div class="hero-badges">
+      <span class="badge badge-o">🔥 Highest RTU Question Count: 56% of Unit 4/5 PYQs</span>
+      <span class="badge badge-gold">🔮 3 of 7 Midterm 2 Predicted Qs from Unit 5</span>
+      <span class="badge badge-c">Full CPCB / NAAQS 2009 Air Standards Table</span>
+      <span class="badge badge-g">Disaster Management Cycle Diagram (Pre/During/Post)</span>
+      <span class="badge badge-r">Sanitary Landfill, ESP &amp; Cyclone Separator Mechanics</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIDEBAR OVERLAY & TOGGLE -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
+
+<div class="layout">
+<!-- SIDEBAR NAVIGATION -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Unit 5 Syllabus</div>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <a class="nav-item" href="#overview">📊 Weightage &amp; Strategy</a>
+  <a class="nav-item" href="#swm-basics">🗑️ Solid Waste: Sources &amp; Types<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#swm-disposal">🚜 SWM Disposal: Landfills &amp; Composting<span class="nav-imp high">85%</span></a>
+  <a class="nav-item" href="#air-basics">🌫️ Air Pollution &amp; Atmosphere<span class="nav-imp pred">🔮 Q3</span></a>
+  <a class="nav-item" href="#air-pollutants">🏭 Types of Pollutants: Primary/Secondary<span class="nav-imp pred">🔮 Q3, Q7</span></a>
+  <a class="nav-item" href="#air-effects">🧪 Effects: Acid Rain, Smog &amp; Ozone<span class="nav-imp high">90%</span></a>
+  <a class="nav-item" href="#air-standards">📐 NAAQS Standards &amp; Abatement (ESP)<span class="nav-imp pred">🔮 Q7</span></a>
+  <a class="nav-item" href="#disaster-basics">⚡ Hazards vs Disasters &amp; Types<span class="nav-imp high">85%</span></a>
+  <a class="nav-item" href="#disaster-types">🌋 Natural &amp; Manmade Disasters<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#dm-cycle">🔄 Disaster Management Cycle<span class="nav-imp pred">🔮 Q5</span></a>
+  <a class="nav-item" href="#dm-india">🏛️ India's Profile &amp; NDMA Setup<span class="nav-imp high">75%</span></a>
+  <a class="nav-item" href="#predicted">🔮 2026 Midterm 2 Predicted</a>
+  <a class="nav-item" href="#pyq-master">📝 Master RTU PYQ Solutions</a>
+</nav>
+
+<main class="content">
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 00: TOPIC IMPORTANCE & EXAM CRACKING STRATEGY
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="overview">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">Topic Importance &amp; Exam Strategy — Unit 5</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>Why Unit 5 Dominates the Exam Paper</h3>
+    <p>Unit 5 is the <strong>broadest unit in the entire EEDM syllabus</strong>, combining three massive engineering branches: <em>Solid Waste Management</em>, <em>Air Pollution &amp; Global Climate Change</em>, and <em>Disaster Management</em>. In past RTU papers, Unit 5 alone generated over <strong>56% of all questions</strong> in the combined Unit 4/5 pool. In the 2025 paper, Unit 5 appeared in 4 Part A questions, 2 Part B questions, and 3 Part C questions — totaling over <strong>46 marks of choices</strong>!</p>
+
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Air Pollutants (Sources, Effects, NAAQS Standards &amp; Abatement)</span><span style="color:#ef4444">95% — Every Single Paper</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:95%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Disaster Management Cycle (Pre, During, Post Phases &amp; Diagram)</span><span style="color:#f97316">90% — Core Part B/C Question</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:90%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Solid Waste Disposal (Sanitary Landfill, Composting, Incineration)</span><span style="color:#f97316">85% — Repeated 10-Mark Theory</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:85%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Global Atmospheric Issues: Acid Rain, Ozone Hole, Greenhouse Effect</span><span style="color:#fbbf24">85% — High Priority Long Answer</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:85%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Natural vs Manmade Disasters &amp; Institutional Setup (NDMA, Act 2005)</span><span style="color:#fbbf24">80% — Definition &amp; Short Notes</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:80%"></div></div>
+    </div>
+  </div>
+
+  <div class="tip-box trick">
+    <div class="tip-icon">⚡</div>
+    <div class="tip-content">
+      <div class="tip-title">RTU Theory Exam Hack: How to Score Maximum Marks in Unit 5</div>
+      <p>Because Unit 5 has extensive descriptive theory, answers that consist of long unformatted paragraphs get graded low. To score 90%+ marks, always include: <strong>(1) A clean box diagram</strong> (e.g., the circular Disaster Management Cycle or the Sanitary Landfill liner), <strong>(2) Exact numeric values</strong> (e.g., NAAQS limits like $PM_{2.5} = 60\ \mu g/m^3$ or India's 57% earthquake vulnerability), and <strong>(3) Real-world case citations</strong> (e.g., 1984 Bhopal Gas Tragedy, Taj Mahal marble corrosion, 2004 Indian Ocean Tsunami). Evaluators reward specific facts over generic filler!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 01: SOLID WASTE MANAGEMENT — SOURCES & TYPES
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="swm-basics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Solid Waste Management: Sources, Quantity &amp; Classification</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>📋</span>
+    <div class="pb-text">ASKED IN 2025 (Part A Q3), 2024 (Part A Q3), 2023 (Part A Q9 &amp; Part C Q5), AND 2021 (Part C Q4): "What is solid waste? Describe the classification and sources of solid waste."</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is Solid Waste?</h3>
+    <p><strong>Solid Waste</strong> comprises any non-liquid, non-gaseous discarded or abandoned materials arising from human, commercial, agricultural, and industrial activities. It includes useless, unwanted, or discarded solid materials from a community that cannot be directly flushed down sewers.</p>
+
+    <div class="layman">
+      Think of everything you throw into your dustbin at home or on the street that is NOT liquid sewage. Vegetable peels, leftover food, plastic wrappers, cardboard boxes, broken glass, old batteries, and garden clippings — all of that solid trash is <strong>Solid Waste</strong>.
+    </div>
+
+    <h4>Standard Classification of Solid Waste:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Definition &amp; Composition</th>
+          <th>Decomposition Rate</th>
+          <th>Typical Examples</th>
+        </tr>
+        <tr>
+          <td><strong>Garbage</strong></td>
+          <td>Putrescible animal, fruit, or vegetable waste resulting from handling, storage, cooking, and consumption of food.</td>
+          <td>Rapidly decomposes (2–4 days); produces foul odors and attracts flies/rodents.</td>
+          <td>Vegetable peels, spoiled meat, fruit rinds, rotten food, restaurant kitchen waste.</td>
+        </tr>
+        <tr>
+          <td><strong>Rubbish</strong></td>
+          <td>Non-putrescible solid waste consisting of both combustible and non-combustible materials (excluding ashes).</td>
+          <td>Slow to non-biodegradable; dry and stable.</td>
+          <td><em>Combustible:</em> Paper, cardboard, wood, rags, plastic. <em>Non-combustible:</em> Glass, metal cans, ceramic pottery.</td>
+        </tr>
+        <tr>
+          <td><strong>Ashes &amp; Residues</strong></td>
+          <td>Incombustible mineral residue remaining after the burning of coal, wood, coke, and other combustible solids.</td>
+          <td>Completely inert; does not decompose.</td>
+          <td>Fly ash from thermal power plants, boiler slag, soot, household fireplace cinders.</td>
+        </tr>
+        <tr>
+          <td><strong>Municipal Solid Waste (MSW)</strong></td>
+          <td>Combined residential, commercial, and institutional waste collected by urban municipal corporations.</td>
+          <td>Mixed (35–45% organic, 20% recyclable, remainder inert).</td>
+          <td>Street sweepings, market refuse, school/office trash, discarded furniture.</td>
+        </tr>
+        <tr>
+          <td><strong>Bio-Medical Waste</strong></td>
+          <td>Waste generated during medical diagnosis, treatment, research, or immunization of humans and animals.</td>
+          <td>Highly hazardous &amp; infectious. Must be autoclaved or incinerated.</td>
+          <td>Used syringes, scalpels, anatomical body parts, blood-stained bandages, expired drugs.</td>
+        </tr>
+        <tr>
+          <td><strong>E-Waste (Electronic Waste)</strong></td>
+          <td>Discarded electronic and electrical devices containing toxic heavy metals ($Pb, Cd, Hg$).</td>
+          <td>Non-biodegradable; toxic leaching risk in soil.</td>
+          <td>Old computers, damaged smartphones, printed circuit boards (PCBs), cathode ray tubes.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>Quantity &amp; Composition of Municipal Solid Waste in India:</h4>
+    <p>In Indian cities, per-capita solid waste generation ranges from <strong>0.3 to 0.6 kg/capita/day</strong> (compared to 1.8–2.5 kg in Western nations). Indian MSW has distinct characteristics:</p>
+    <ul>
+      <li><strong>High Organic / Biodegradable Fraction:</strong> 40% to 55% of Indian waste is compostable wet kitchen waste.</li>
+      <li><strong>High Moisture Content:</strong> 40% to 60% moisture, which makes raw incineration difficult without supplementary fuel.</li>
+      <li><strong>High Inert Content:</strong> 30% to 40% consisting of street dust, silt, and construction stones.</li>
+      <li><strong>Calorific Value:</strong> Low to moderate (800 to 1200 kcal/kg).</li>
+    </ul>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 250" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <rect x="280" y="10" width="200" height="42" rx="8" fill="#152432" stroke="#f97316" stroke-width="2"/>
+        <text x="380" y="36" fill="#fb923c" font-family="JetBrains Mono, monospace" font-size="13" font-weight="bold" text-anchor="middle">SOLID WASTE</text>
+        
+        <!-- Lines from top -->
+        <path d="M380 52 L380 75 L120 75 L120 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+        <path d="M380 52 L380 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+        <path d="M380 52 L380 75 L640 75 L640 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+
+        <!-- 3 Main branches -->
+        <rect x="30" y="100" width="180" height="38" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="120" y="124" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Biodegradable (Wet)</text>
+        
+        <rect x="290" y="100" width="180" height="38" rx="6" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="380" y="124" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Non-Biodegradable (Dry)</text>
+        
+        <rect x="550" y="100" width="180" height="38" rx="6" fill="#081420" stroke="#ef4444" stroke-width="1.5"/>
+        <text x="640" y="124" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Hazardous / Special</text>
+
+        <!-- Sub descriptions -->
+        <text x="120" y="165" fill="#e2e8f0" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Garbage · Food waste · Peels</text>
+        <text x="120" y="185" fill="#34d399" font-family="Outfit, sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">Composting &amp; Biogas</text>
+
+        <text x="380" y="165" fill="#e2e8f0" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Paper · Plastics · Glass · Metals</text>
+        <text x="380" y="185" fill="#22d3ee" font-family="Outfit, sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">Recycling &amp; Landfill</text>
+
+        <text x="640" y="165" fill="#e2e8f0" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Hospital waste · E-waste · Toxics</text>
+        <text x="640" y="185" fill="#f87171" font-family="Outfit, sans-serif" font-size="10.5" font-weight="bold" text-anchor="middle">Incineration &amp; Secured Landfill</text>
+
+        <rect x="180" y="210" width="400" height="30" rx="6" fill="#102230" stroke="#f97316" stroke-width="1"/>
+        <text x="380" y="230" fill="#fb923c" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">The 3Rs Hierarchy: REDUCE → REUSE → RECYCLE</text>
+      </svg>
+      <div class="diagram-cap">Fig 5.1 — Classification &amp; Processing Hierarchy of Municipal Solid Waste</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 02: SOLID WASTE DISPOSAL METHODS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="swm-disposal">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Solid Waste Disposal: Landfills, Composting &amp; Incineration</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>📋</span>
+    <div class="pb-text">ASKED IN 2025 (Part B Q6 &amp; Part C Q3), 2023 (Part C Q2), AND 2021 (Part B Q4): "Describe composting as a method of solid waste management" and "Describe in detail the methods of solid waste disposal and their suitability under Indian conditions."</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>Engineering Methods of Solid Waste Disposal</h3>
+    <p>Open burning and crude dumping create air pollution, stench, and groundwater poisoning. Modern solid waste management relies on three engineered methods:</p>
+
+    <h4>1. Sanitary Landfilling (Secured Engineered Landfills)</h4>
+    <p><strong>Sanitary Landfilling</strong> is an engineered method of disposing of solid waste on land without creating nuisances or hazards to public health. Waste is spread in thin layers (1–2 m), compacted mechanically with heavy bulldozers, and covered with a layer of soil (15–20 cm) at the end of each working day.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 780 260" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- Landfill pit outline -->
+        <rect x="30" y="20" width="720" height="220" rx="10" fill="#081420" stroke="#f97316" stroke-width="1.5"/>
+        
+        <!-- Top soil cap -->
+        <rect x="50" y="40" width="680" height="24" fill="#3b2d18" stroke="#f59e0b" stroke-width="1"/>
+        <text x="390" y="56" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Top Soil &amp; Clay Cap (Restoration Cover)</text>
+
+        <!-- Compacted waste cell 1 -->
+        <rect x="50" y="70" width="680" height="38" fill="#102230" stroke="#193344" stroke-width="1"/>
+        <text x="390" y="94" fill="#cbd5e1" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Compacted Solid Waste Cell (1.5 m thickness)</text>
+
+        <!-- Daily soil cover -->
+        <rect x="50" y="112" width="680" height="14" fill="#3b2d18"/>
+        <text x="390" y="123" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Daily Earth Cover (15 cm layer)</text>
+
+        <!-- Compacted waste cell 2 -->
+        <rect x="50" y="130" width="680" height="38" fill="#102230" stroke="#193344" stroke-width="1"/>
+        <text x="390" y="154" fill="#cbd5e1" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Compacted Solid Waste Cell (1.5 m thickness)</text>
+
+        <!-- Bottom Leachate Collection Pipes -->
+        <rect x="50" y="174" width="680" height="22" fill="#04090e" stroke="#06b6d4" stroke-width="1.5"/>
+        <circle cx="150" cy="185" r="7" fill="#06b6d4"/>
+        <circle cx="300" cy="185" r="7" fill="#06b6d4"/>
+        <circle cx="450" cy="185" r="7" fill="#06b6d4"/>
+        <circle cx="600" cy="185" r="7" fill="#06b6d4"/>
+        <text x="390" y="189" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Perforated Leachate Collection Pipes</text>
+
+        <!-- Impermeable Liner -->
+        <rect x="50" y="200" width="680" height="12" fill="#ef4444"/>
+        <text x="390" y="210" fill="#fff" font-family="JetBrains Mono, monospace" font-size="9" font-weight="bold" text-anchor="middle">Impermeable Liner (Composite Clay + HDPE Geomembrane) Prevents Aquifer Poisoning!</text>
+      </svg>
+      <div class="diagram-cap">Fig 5.2 — Cross-Section of an Engineered Sanitary Landfill (Liner, Leachate System &amp; Daily Cover)</div>
+    </div>
+
+    <h4>Two Critical By-Products of Landfills (Must write in exams):</h4>
+    <ul>
+      <li><strong>Leachate:</strong> Highly toxic, blackish liquid formed when rainwater percolates through decomposing waste, dissolving heavy metals, organic acids, and salts. <em>Prevention:</em> Impermeable bottom geomembranes (HDPE) and perforated pipes pump leachate to treatment ponds to prevent groundwater contamination.</li>
+      <li><strong>Landfill Gas (LFG):</strong> Anaerobic digestion inside the sealed landfill produces gas composed of <strong>50–60% Methane ($CH_4$)</strong> and <strong>40–50% Carbon dioxide ($CO_2$)</strong>. Methane is explosive if trapped, but can be collected via vertical perforated pipes and burned as clean fuel to generate electricity!</li>
+    </ul>
+
+    <h4>2. Composting (Biological Decomposition of Organics)</h4>
+    <p><strong>Composting</strong> is an aerobic or anaerobic biological process in which organic biodegradable matter (kitchen waste, cattle dung, leaves) is converted into stable, dark, crumbly, nutrient-rich soil humus (manure) through the metabolic action of bacteria, fungi, and actinomycetes.</p>
+
+    <div class="layman">
+      Composting is nature's own recycling machine. Microscopic bacteria eat wet vegetable peels and food scraps, heat the pile up to 60°C to kill germs and weed seeds, and turn that stinky trash into rich, earthy black fertilizer called "compost" for gardens and farms.
+    </div>
+
+    <h4>Comparison of Composting Methods (Indore vs Bangalore Method):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Indore Method (Aerobic)</th>
+          <th>Bangalore Method (Anaerobic)</th>
+        </tr>
+        <tr>
+          <td><strong>Biological Nature</strong></td>
+          <td><strong>Aerobic decomposition</strong> (requires oxygen).</td>
+          <td><strong>Anaerobic decomposition</strong> (sealed without oxygen).</td>
+        </tr>
+        <tr>
+          <td><strong>Turning / Aeration</strong></td>
+          <td>Pile is turned mechanically or manually 3–4 times during composting.</td>
+          <td>Zero turning. Waste is placed in pits and sealed with a 15 cm soil layer.</td>
+        </tr>
+        <tr>
+          <td><strong>Process Duration</strong></td>
+          <td>Fast: Compost ready in <strong>2 to 3 months</strong>.</td>
+          <td>Slow: Takes <strong>4 to 6 months</strong> to stabilize.</td>
+        </tr>
+        <tr>
+          <td><strong>Odour &amp; Flies</strong></td>
+          <td>Minimal if turned regularly; high temperatures (60°C) kill pathogens.</td>
+          <td>Completely odourless and fly-free because the pit is airtight.</td>
+        </tr>
+        <tr>
+          <td><strong>Suitability in India</strong></td>
+          <td>Ideal where labour is available and fast manure is required.</td>
+          <td>Widely practiced in Indian municipalities due to zero operating cost.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>3. Incineration &amp; Pyrolysis (Thermal Waste-to-Energy)</h4>
+    <p><strong>Incineration</strong> is a controlled high-temperature combustion process (850°C to 1100°C) inside a furnace where organic solid wastes are burned in the presence of excess oxygen, converting them into ash, flue gases, and heat.</p>
+    <ul>
+      <li><strong>Volume Reduction:</strong> Reduces waste volume by <strong>85% to 90%</strong> and mass by 70%.</li>
+      <li><strong>Suitability in India:</strong> While excellent for infectious hospital / bio-medical waste, raw municipal solid waste in India is often unsuitable for self-sustaining incineration due to high moisture (50%) and low calorific value (&lt; 1000 kcal/kg). Requires pre-sorting into Refuse-Derived Fuel (RDF).</li>
+      <li><strong>Pyrolysis:</strong> Thermal degradation of organic waste at 400–800°C in the <em>total absence of oxygen</em>, yielding bio-char, bio-oil, and synthetic gas (syngas).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 03: INTRODUCTION TO AIR POLLUTION
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="air-basics">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Introduction to Air Pollution &amp; Atmospheric Chemistry</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q3) &amp; ASKED IN 2025 (Part A Q8), 2024 (Part B Q6), AND 2023 (Part B Q3): "Define air pollution. Discuss the normal composition of the atmosphere and sources of air pollution."</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is Air Pollution?</h3>
+    <p><strong>Air Pollution</strong> is defined as an atmospheric condition in which one or more contaminants or pollutants (such as dust, fumes, gas, mist, odour, smoke, or vapour) are present in the ambient air in such concentrations, and for such durations, as to be injurious or undesirable to humans, animals, vegetation, and property, or to unreasonably interfere with the comfortable enjoyment of life and property.</p>
+
+    <div class="layman">
+      Clean air has a fixed recipe: mostly nitrogen (78%) and oxygen (21%). When cars, factories, fires, and brick kilns dump dirty smoke, poison gases, and soot particles into that air until breathing it stings your eyes and damages your lungs, that is <strong>air pollution</strong>.
+    </div>
+
+    <h4>Standard Composition of Clean Dry Atmospheric Air:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Gas Component</th>
+          <th>Formula</th>
+          <th>Volume Percentage</th>
+          <th>Role in Atmosphere</th>
+        </tr>
+        <tr>
+          <td><strong>Nitrogen</strong></td>
+          <td class="num">N₂</td>
+          <td class="num">78.08%</td>
+          <td>Inert buffer gas; dilutes oxygen and prevents rapid burning.</td>
+        </tr>
+        <tr>
+          <td><strong>Oxygen</strong></td>
+          <td class="num">O₂</td>
+          <td class="num">20.95%</td>
+          <td>Essential for respiration of all living organisms and combustion.</td>
+        </tr>
+        <tr>
+          <td><strong>Argon</strong></td>
+          <td class="num">Ar</td>
+          <td class="num">0.93%</td>
+          <td>Inert noble gas.</td>
+        </tr>
+        <tr>
+          <td><strong>Carbon Dioxide</strong></td>
+          <td class="num">CO₂</td>
+          <td class="num">0.038% (380–420 ppm)</td>
+          <td>Essential for plant photosynthesis; primary natural greenhouse gas.</td>
+        </tr>
+        <tr>
+          <td><strong>Trace Constituents</strong></td>
+          <td class="num">Ne, He, CH₄, Kr, H₂</td>
+          <td class="num">&lt; 0.01%</td>
+          <td>Trace gases, moisture, and background dust.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>The Four Layers of the Atmosphere (Slide 2 Recap):</h4>
+    <ol>
+      <li><strong>Troposphere (0 to 12 km):</strong> The lowest atmospheric blanket containing 80% of total air mass and almost all water vapor. Temperature decreases with altitude ($6.5^\circ\text{C}$ per km). <em>All weather, clouds, and human air pollution reside here!</em></li>
+      <li><strong>Stratosphere (12 to 50 km):</strong> Calm, dry layer where temperature increases with height. Contains the life-saving <strong>Ozone Layer ($O_3$)</strong> at 20–30 km that shields Earth from solar ultraviolet-B radiation.</li>
+      <li><strong>Mesosphere (50 to 85 km):</strong> Coldest layer (drops to $-90^\circ\text{C}$); meteors burn up here.</li>
+      <li><strong>Thermosphere (85 to 600 km):</strong> Highly ionized layer containing the ionosphere; reflects radio communication waves.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 04: TYPES OF AIR POLLUTANTS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="air-pollutants">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Types of Air Pollutants: Primary vs Secondary &amp; Properties</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q3 &amp; Q7) &amp; ASKED IN 2025 (Part A Q9, Part C Q4), 2024 (Part A Q4), AND 2023 (Part B Q6): "List two gaseous air pollutants", "Differentiate primary vs secondary pollutants", and "Explain different air pollutants with their properties."</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>Classification of Air Pollutants</h3>
+    <p>Air pollutants are classified according to three fundamental criteria:</p>
+
+    <h4>1. Classification by Origin (Primary vs. Secondary Pollutants) — CRITICAL EXAM DISTINCTION</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Definition</th>
+          <th>Mechanism of Formation</th>
+          <th>Key Examples</th>
+        </tr>
+        <tr>
+          <td><strong>Primary Pollutants</strong></td>
+          <td>Pollutants that are emitted directly into the ambient atmosphere from an identifiable, distinct source.</td>
+          <td>Direct physical emission from tailpipes, factory chimneys, or forest fires.</td>
+          <td>
+            • Particulate Matter ($PM_{10}, PM_{2.5}$)<br>
+            • Sulfur dioxide ($SO_2$)<br>
+            • Nitrogen dioxide ($NO_2$), Nitric oxide ($NO$)<br>
+            • Carbon monoxide ($CO$)<br>
+            • Hydrocarbons ($CH_4$, benzene)<br>
+            • Lead compounds ($Pb$)
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Secondary Pollutants</strong></td>
+          <td>Pollutants that are NOT emitted directly, but are formed in the air through chemical and photochemical reactions between primary pollutants and atmospheric gases/sunlight.</td>
+          <td>Atmospheric oxidation, solar ultraviolet irradiation, and free radical chain reactions.</td>
+          <td>
+            • <strong>Ground-level Ozone ($O_3$)</strong>: $VOCs + NO_x + \text{sunlight}$<br>
+            • <strong>Peroxyacetyl Nitrate (PAN)</strong>: Severe eye irritant<br>
+            • <strong>Photochemical Smog</strong><br>
+            • <strong>Sulfuric Acid Mist ($H_2SO_4$)</strong>: $SO_2 + H_2O$<br>
+            • <strong>Nitric Acid Mist ($HNO_3$)</strong>: $NO_2 + H_2O$
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>2. Classification by State of Matter:</h4>
+    <ul>
+      <li><strong>Gaseous Pollutants:</strong> Colorless or colored gases: $CO, CO_2, SO_2, NO_2, O_3, NH_3$, and volatile organic hydrocarbons. They mix uniformly with air.</li>
+      <li><strong>Particulate Pollutants (PM):</strong> Solid particles or liquid droplets suspended in air:
+        <ul>
+          <li><em>Dust ($1\ \mu m \text{ to } 100\ \mu m$):</em> Solid particles formed by mechanical grinding, crushing, demolition, or wind erosion.</li>
+          <li><em>Smoke ($0.05\ \mu m \text{ to } 1\ \mu m$):</em> Finely divided solid or liquid carbonaceous particles resulting from incomplete combustion of coal, oil, wood, or diesel.</li>
+          <li><em>Fumes ($0.03\ \mu m \text{ to } 0.3\ \mu m$):</em> Extremely fine solid particles generated by condensation of volatilized metal vapors (e.g., zinc, lead, iron smelters).</li>
+          <li><em>Mist ($&gt; 1\ \mu m$):</em> Liquid droplets formed by condensation of vapor in air or chemical splashing (e.g., sulfuric acid mist).</li>
+          <li><em>Aerosols:</em> Colloidal dispersion of solid or liquid particles suspended in gas.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h4>Detailed Profile of the Top 5 Major Air Pollutants:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Pollutant</th>
+          <th>Major Emission Sources</th>
+          <th>Specific Health Effects on Humans</th>
+          <th>Environmental &amp; Material Impacts</th>
+        </tr>
+        <tr>
+          <td><strong>Carbon Monoxide (CO)</strong></td>
+          <td>Incomplete combustion of fuels; automobile exhausts (70%); cigarette smoke; faulty gas heaters.</td>
+          <td>Combines irreversibly with blood hemoglobin to form <strong>Carboxyhemoglobin (HbCO)</strong> with 210× higher affinity than oxygen! Deprives brain/heart of $O_2$, causing headaches, dizziness, coma, and asphyxiation death.</td>
+          <td>Does not harm plants or building materials; converts to $CO_2$ over long timescales.</td>
+        </tr>
+        <tr>
+          <td><strong>Sulfur Dioxide (SO₂)</strong></td>
+          <td>Combustion of coal and heavy fuel oil in thermal power plants; petroleum refineries; metal smelters.</td>
+          <td>Potent respiratory irritant; causes bronchospasm, asthma attacks, coughing, and lung tissue inflammation.</td>
+          <td><strong>Primary cause of Acid Rain</strong>; destroys chlorophyll in plants (causes <em>chlorosis</em> - leaf yellowing); dissolves limestone/marble monuments.</td>
+        </tr>
+        <tr>
+          <td><strong>Nitrogen Oxides (NOₓ)</strong></td>
+          <td>High-temperature combustion in automobile engines and power plants ($N_2 + O_2 \to 2NO$); chemical fertilizer plants.</td>
+          <td>Deep lung irritant; induces chronic bronchitis, pulmonary edema, emphysema; lowers resistance to pneumonia.</td>
+          <td>Key ingredient of <strong>Photochemical Smog</strong>; causes leaf drop and plant stunted growth; forms nitric acid rain ($HNO_3$).</td>
+        </tr>
+        <tr>
+          <td><strong>Particulate Matter (PM₁₀ &amp; PM₂.₅)</strong></td>
+          <td>Diesel vehicles, coal thermal stations, fly ash, construction dust, stone crushing, open biomass burning.</td>
+          <td>$PM_{10}$ penetrates past nasal hair into bronchi; <strong>$PM_{2.5}$ penetrates deep into alveoli and enters blood</strong>, causing heart attacks, strokes, asthma, and lung cancer.</td>
+          <td>Reduces visibility (atmospheric haze); soils clothes and buildings; covers plant leaves and blocks photosynthesis.</td>
+        </tr>
+        <tr>
+          <td><strong>Lead (Pb)</strong></td>
+          <td>Leaded petrol (historically), lead smelting, battery manufacturing, recycling factories, pigments and paints.</td>
+          <td>Potent cumulative neurotoxin! Attacks central nervous system, permanently lowers IQ and impairs memory in children, causes kidney damage and anemia.</td>
+          <td>Accumulates in food chain (bio-magnification); toxic to animals and soil microorganisms.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 05: HEALTH, ENVIRONMENTAL & GLOBAL EFFECTS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="air-effects">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Global Environmental Effects: Acid Rain, Smog &amp; Ozone</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. Acid Rain: Chemistry, Causes &amp; Effects</h3>
+    <p><strong>Acid Rain</strong> is precipitation (rain, snow, fog, dew) that has a <strong>pH lower than 5.6</strong>. Normal unpolluted rainwater is slightly acidic (pH ≈ 5.6) because atmospheric $CO_2$ naturally dissolves to form weak carbonic acid ($H_2CO_3$). But when industrial $SO_2$ and $NO_x$ react with moisture in clouds, they convert into strong mineral acids: <strong>Sulfuric Acid ($H_2SO_4$)</strong> and <strong>Nitric Acid ($HNO_3$)</strong>.</p>
+
+    <div class="fbox">
+      <span class="flbl">Chemical Mechanism of Acid Rain</span>
+      <div class="fl">1. Sulfur Dioxide Oxidation:
+   SO₂ + O₂  →  2 SO₃
+   SO₃ + H₂O →  H₂SO₄ (Sulfuric Acid - accounts for ~65% of acidity)
+
+2. Nitrogen Dioxide Oxidation:
+   4 NO₂ + 2 H₂O + O₂ →  4 HNO₃ (Nitric Acid - accounts for ~30% of acidity)</div>
+    </div>
+
+    <h4>Adverse Impacts of Acid Rain (Must cite Taj Mahal in RTU):</h4>
+    <ul>
+      <li><strong>Damage to Historical Architecture (Stone Leprosy):</strong> Acid rain dissolves calcium carbonate in marble and limestone monuments:
+        $$\text{CaCO}_3 + \text{H}_2\text{SO}_4 \to \text{CaSO}_4 + \text{H}_2\text{O} + \text{CO}_2$$
+        The resulting gypsum ($\text{CaSO}_4$) flakes off, causing yellowing and pitting. This is the exact reason why the Indian government established the <strong>Taj Trapezium Zone (TTZ)</strong> to ban coal-burning industries around the Taj Mahal!</li>
+      <li><strong>Terrestrial Ecosystems (Soil &amp; Trees):</strong> Acid rain leaches out essential nutrients (Calcium, Magnesium, Potassium) from topsoil and mobilizes toxic Aluminium ($Al^{3+}$) ions that poison plant roots. Causes widespread <strong>chlorosis</strong> (yellowing of foliage) and forest dieback.</li>
+      <li><strong>Aquatic Ecosystems:</strong> Water bodies turn acidic ($pH < 5.0$), which dissolves fish eggs, causes gill mucus clotting, and leads to sterile, lifeless "dead lakes".</li>
+    </ul>
+
+    <h3>2. Smog: Classical Smog vs. Photochemical Smog</h3>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Classical (London) Smog</th>
+          <th>Photochemical (Los Angeles) Smog</th>
+        </tr>
+        <tr>
+          <td><strong>Origin &amp; Climate</strong></td>
+          <td>Occurs in cool, humid, foggy winter climates (famous 1952 London Smog).</td>
+          <td>Occurs in warm, dry, sunny summer climates with heavy automobile traffic.</td>
+        </tr>
+        <tr>
+          <td><strong>Chemical Composition</strong></td>
+          <td>Mixture of coal smoke, fog, and sulfur dioxide ($SO_2$).</td>
+          <td>Mixture of nitrogen oxides ($NO_x$), volatile organic compounds (VOCs), and Ozone ($O_3$).</td>
+        </tr>
+        <tr>
+          <td><strong>Chemical Nature</strong></td>
+          <td><strong>Reducing Smog</strong> (high concentration of reducing $SO_2$).</td>
+          <td><strong>Oxidizing Smog</strong> (high concentration of oxidizing $O_3$ and PAN).</td>
+        </tr>
+        <tr>
+          <td><strong>Primary Health Impact</strong></td>
+          <td>Severe bronchial irritation, lung congestion, mortality in elderly.</td>
+          <td>Intense burning of eyes (caused by PAN), throat coughing, rubber cracking.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>3. Ozone Layer Depletion ($O_3$)</h3>
+    <p>The stratospheric ozone layer (located between 15 and 35 km) acts as Earth's natural sunscreen by absorbing 99% of lethal solar Ultraviolet-B and UV-C rays. It is depleted by manmade <strong>Chlorofluorocarbons (CFCs)</strong>, halons, and carbon tetrachloride used in old refrigerants and aerosol propellants.</p>
+
+    <div class="fbox">
+      <span class="flbl">Catalytic Ozone Breakdown Cycle</span>
+      <div class="fl">1. Solar UV radiation photolyzes CFCs, releasing a free Chlorine radical:
+   CFCl₃ + UV → CFCl₂ + Cl•
+
+2. The Chlorine radical destroys Ozone in a continuous catalytic cycle:
+   Cl• + O₃ → ClO• + O₂
+   ClO• + O  → Cl• + O₂
+   Net: O₃ + O → 2 O₂</div>
+      <div class="fn">A single free Chlorine atom can destroy more than 100,000 Ozone molecules before being removed from the stratosphere!</div>
+    </div>
+    <p><strong>Effects:</strong> Increased skin cancer (melanoma), cataracts in eyes, weakened human immune systems, stunted crop growth, and death of marine phytoplankton. <em>Solution:</em> The <strong>Montreal Protocol (1987)</strong> successfully phased out CFCs worldwide, replacing them with HCFCs and HFCs.</p>
+
+    <h3>4. Greenhouse Effect &amp; Global Warming</h3>
+    <p>The <strong>Greenhouse Effect</strong> is the natural phenomenon where atmospheric gases absorb outgoing longwave infrared radiation re-emitted by Earth's surface, keeping the planet warm at an average of $+15^\circ\text{C}$ (without it, Earth would be a frozen $-18^\circ\text{C}$). However, human combustion of fossil fuels has caused an enhanced greenhouse effect resulting in <strong>Global Warming</strong>.</p>
+    <ul>
+      <li><strong>Major Greenhouse Gases:</strong> Carbon dioxide ($CO_2 \approx 60\%$), Methane ($CH_4 \approx 20\%$, 25× more potent than $CO_2$), Nitrous Oxide ($N_2O \approx 6\%$), and CFCs/water vapor.</li>
+      <li><strong>Global Impacts:</strong> Melting polar ice caps and Himalayan glaciers, sea-level rise submerging coastal cities, shifts in monsoon precipitation cycles, increased frequency of extreme cyclones and droughts.</li>
+      <li><strong>International Accords:</strong> <strong>Kyoto Protocol (1997)</strong> (binding emission cuts) and <strong>Paris Agreement (2015)</strong> (limiting global warming to below $1.5^\circ\text{C}$).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 06: NAAQS AIR STANDARDS & ABATEMENT
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="air-standards">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">NAAQS Standards &amp; Air Pollution Control Technologies</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q7) &amp; ASKED IN 2024 (Part C Q4) &amp; 2023 (Part C Q3): "State the NAAQS/BIS standards for air pollutants and the engineering measures for their abatement."</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. National Ambient Air Quality Standards (NAAQS, CPCB 2009)</h3>
+    <p>In India, ambient air quality standards are formulated by the <strong>Central Pollution Control Board (CPCB)</strong> under the Air (Prevention and Control of Pollution) Act, 1981. Memorize this exact table for your RTU exam:</p>
+
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Pollutant</th>
+          <th>Time-Weighted Average</th>
+          <th>Industrial, Residential &amp; Rural Areas</th>
+          <th>Ecologically Sensitive Areas</th>
+        </tr>
+        <tr>
+          <td><strong>Sulfur Dioxide (SO₂)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">50 µg/m³<br>80 µg/m³</td>
+          <td class="num">20 µg/m³<br>80 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Nitrogen Dioxide (NO₂)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">40 µg/m³<br>80 µg/m³</td>
+          <td class="num">30 µg/m³<br>80 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Particulate Matter (PM₁₀)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">60 µg/m³<br>100 µg/m³</td>
+          <td class="num">60 µg/m³<br>100 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Particulate Matter (PM₂.₅)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">40 µg/m³<br>60 µg/m³</td>
+          <td class="num">40 µg/m³<br>60 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Ozone (O₃)</strong></td>
+          <td>8 Hours<br>1 Hour</td>
+          <td class="num">100 µg/m³<br>180 µg/m³</td>
+          <td class="num">100 µg/m³<br>180 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Lead (Pb)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">0.50 µg/m³<br>1.0 µg/m³</td>
+          <td class="num">0.50 µg/m³<br>1.0 µg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Carbon Monoxide (CO)</strong></td>
+          <td>8 Hours<br>1 Hour</td>
+          <td class="num">2.0 mg/m³<br>4.0 mg/m³</td>
+          <td class="num">2.0 mg/m³<br>4.0 mg/m³</td>
+        </tr>
+        <tr>
+          <td><strong>Ammonia (NH₃)</strong></td>
+          <td>Annual Average<br>24 Hours</td>
+          <td class="num">100 µg/m³<br>400 µg/m³</td>
+          <td class="num">100 µg/m³<br>400 µg/m³</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>2. Engineering Control Equipment for Particulates (Heavy RTU Weightage)</h3>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Equipment</th>
+          <th>Operating Principle</th>
+          <th>Particle Size Handled</th>
+          <th>Efficiency &amp; Use Case</th>
+        </tr>
+        <tr>
+          <td><strong>Electrostatic Precipitator (ESP)</strong></td>
+          <td>Dirty flue gas passes between high-voltage discharge wires (-50 kV) and grounded collector plates. Gas is ionized, dust particles acquire negative charge, and are attracted to positive collector plates where they are dislodged by mechanical rapping.</td>
+          <td>Sub-micron particles down to <strong>0.01 µm</strong>.</td>
+          <td><strong>99.5% efficiency</strong>. Universal choice for coal-fired thermal power plants and cement factories.</td>
+        </tr>
+        <tr>
+          <td><strong>Cyclone Separator</strong></td>
+          <td>Gas enters a conical chamber tangentially at high velocity. Centrifugal force flings heavier dust particles against the outer walls where they slide down into the hopper, while clean gas spirals up the center vortex pipe.</td>
+          <td>Medium to coarse dust: <strong>&gt; 10 µm</strong>.</td>
+          <td><strong>70% to 90% efficiency</strong>. Cheap, no moving parts; used as pre-cleaner before ESP or baghouse.</td>
+        </tr>
+        <tr>
+          <td><strong>Fabric Filter (Baghouse)</strong></td>
+          <td>Flue gas passes through woven fabric or felt tubular bags. Dust cakes on the outer surface of the bags and is periodically cleaned off by reverse pulse-jet compressed air.</td>
+          <td>Fine particles down to <strong>0.1 µm</strong>.</td>
+          <td><strong>99% efficiency</strong>. Sensitive to high moisture and acid condensation.</td>
+        </tr>
+        <tr>
+          <td><strong>Wet Scrubber (Venturi)</strong></td>
+          <td>Dirty gas is accelerated through a narrow venturi throat where high-pressure water spray atomizes into droplets, impinging on and capturing dust particles.</td>
+          <td>Particles down to <strong>0.5 µm</strong> and soluble gases.</td>
+          <td>High efficiency, handles hot sticky dust, but produces corrosive liquid sludge.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 07: DISASTER MANAGEMENT — BASICS & TERMS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="disaster-basics">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Introduction to Disasters: Hazards vs. Disasters</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>📋</span>
+    <div class="pb-text">ASKED IN 2024 (Part A Q5), 2023 (Part A Q8 &amp; Q10), AND 2021 (Part A Q2): "What is disaster? What is the difference between hazard and disaster? What is the purpose of disaster management?"</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is a Hazard vs a Disaster?</h3>
+    <p>In disaster management engineering, students often confuse hazard with disaster. Understand this fundamental distinction:</p>
+
+    <ul>
+      <li><strong>Hazard:</strong> A dangerous physical event, phenomenon, or human activity that has the <em>potential</em> to cause disruption, damage to property, or loss of life (e.g., an active volcano, a cyclone brewing in the ocean, a geological fault line). A hazard is a threat; it has not yet caused harm.</li>
+      <li><strong>Disaster:</strong> A serious disruption of the functioning of a community or a society causing widespread human, material, economic, or environmental losses which <em>exceed the ability of the affected community to cope using its own resources</em>.</li>
+    </ul>
+
+    <div class="fbox">
+      <span class="flbl">The Core Equation of Disaster Risk</span>
+      <div class="fl">Disaster Risk = (Hazard × Vulnerability) / Capacity
+
+Golden Proverb from Faculty Slides:
+"Hazards may be inevitable, but Disasters can be prevented!"</div>
+      <div class="fn">An earthquake of magnitude 7.0 hitting an uninhabited polar icecap is merely a HAZARD (zero casualties, zero economic loss). The exact same earthquake hitting an unreinforced brick slum in a dense city turns into a catastrophic DISASTER!</div>
+    </div>
+
+    <h4>The "DISASTER" Acronym (Given in Faculty PPTX):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Letter</th>
+          <th>Concept</th>
+          <th>Engineering Interpretation</th>
+        </tr>
+        <tr><td><strong>D</strong></td><td><strong>Destruction</strong></td><td>Destruction of buildings, bridges, and municipal infrastructure.</td></tr>
+        <tr><td><strong>I</strong></td><td><strong>Incidents</strong></td><td>Sudden triggering incidents (landslide, dam burst, chemical leak).</td></tr>
+        <tr><td><strong>S</strong></td><td><strong>Sufferings</strong></td><td>Physical trauma, injury, bereavement, and community distress.</td></tr>
+        <tr><td><strong>A</strong></td><td><strong>Administrative Failure</strong></td><td>Breakdown of normal civic governance and emergency services.</td></tr>
+        <tr><td><strong>S</strong></td><td><strong>Sentiments</strong></td><td>Emotional shocks, panic, psychological trauma.</td></tr>
+        <tr><td><strong>T</strong></td><td><strong>Tragedy</strong></td><td>Mass mortality and loss of breadwinners.</td></tr>
+        <tr><td><strong>E</strong></td><td><strong>Emergency</strong></td><td>Declaration of disaster emergency requiring immediate mobilized response.</td></tr>
+        <tr><td><strong>R</strong></td><td><strong>Recovery</strong></td><td>Long-term restoration, rehabilitation, and resilient reconstruction.</td></tr>
+      </table>
+    </div>
+
+    <h4>Primary Objectives of Disaster Management (Slide 5 List):</h4>
+    <ol>
+      <li><strong>To Avert a Disaster:</strong> Early warning and structural mitigation so hazards do not escalate.</li>
+      <li><strong>Rescue Operations:</strong> Swift search and evacuation of trapped victims.</li>
+      <li><strong>Relief Measures:</strong> Provide emergency clean drinking water, food, medical triage, and shelter.</li>
+      <li><strong>Rehabilitation Programs:</strong> Restore livelihoods, housing, schools, and health centres.</li>
+      <li><strong>Minimize Losses &amp; Control Death Rates:</strong> Lower mortality and preserve economic infrastructure.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 08: NATURAL & MANMADE DISASTERS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="disaster-types">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Natural &amp; Man-Made Disasters: Profiles &amp; Mechanics</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>📋</span>
+    <div class="pb-text">ASKED IN 2024 (Part C Q1: Landslides; Part C Q2: Deforestation; Part B Q4: Natural vs Manmade), 2023 (Part A Q5 &amp; Part C Q4), AND 2021 (Part B Q5: Slow-acting disasters).</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. Classification of Disasters</h3>
+    <p>Disasters are categorized based on their triggering origin and speed of onset:</p>
+
+    <h4>A. Natural Disasters (Triggered by Natural Earth Processes):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Disaster</th>
+          <th>Triggering Mechanism</th>
+          <th>Measurement Scale / Characteristics</th>
+          <th>High-Risk Indian Zones</th>
+        </tr>
+        <tr>
+          <td><strong>Earthquake</strong></td>
+          <td>Sudden release of elastic strain energy along tectonic fault lines in Earth's crust, propagating seismic waves ($P, S, L$ waves). Point of origin inside Earth is <strong>Focus (Hypocenter)</strong>; point directly above on surface is <strong>Epicenter</strong>.</td>
+          <td><strong>Richter Magnitude</strong> (logarithmic energy scale, each unit increases energy by ~31.6×); <strong>Modified Mercalli Intensity (MMI)</strong> (damage scale I to XII).</td>
+          <td>Himalayan belt, Kutch (Gujarat), Northeast India (Seismic Zones IV &amp; V).</td>
+        </tr>
+        <tr>
+          <td><strong>Tropical Cyclone</strong></td>
+          <td>Intense atmospheric low-pressure depression formed over warm tropical ocean waters ($&gt; 26.5^\circ\text{C}$). Characterized by spiraling hurricane-force winds ($&gt; 120\text{ km/h}$) and a calm central <strong>Eye</strong>.</td>
+          <td>Category 1 to 5; accompanied by catastrophic <strong>storm surges</strong> (ocean water dome flooding inland).</td>
+          <td>East Coast (Odisha, Andhra Pradesh, West Bengal, Tamil Nadu) &amp; Arabian Sea (Gujarat).</td>
+        </tr>
+        <tr>
+          <td><strong>Floods</strong></td>
+          <td>Abnormally intense rainfall exceeding river channel capacity, cloudbursts, dam bursts, or rapid Himalayan snowmelt.</td>
+          <td>Inundates fertile river plains; waterborne epidemic risks (cholera, leptospirosis).</td>
+          <td>Ganga and Brahmaputra basins (Assam, Bihar, UP, West Bengal) — 40 million hectares prone.</td>
+        </tr>
+        <tr>
+          <td><strong>Drought (Slow-Onset)</strong></td>
+          <td>Prolonged meteorological deficiency of rainfall (&gt; 25% below normal) leading to hydrological water depletion, crop failure, and famines.</td>
+          <td>Three types: <em>Meteorological</em> (rainfall deficit), <em>Hydrological</em> (drying of reservoirs/rivers), <em>Agricultural</em> (soil moisture failure).</td>
+          <td>Western Rajasthan, Gujarat, Marathwada (Maharashtra), Rayalaseema (AP) — 68% cultivable area.</td>
+        </tr>
+        <tr>
+          <td><strong>Tsunami</strong></td>
+          <td>Japanese term meaning "harbour wave". Giant sea wave train triggered by underwater subduction-zone earthquakes ($M &gt; 7.5$), submarine landslides, or marine volcanic eruptions.</td>
+          <td>Open ocean speed ≈ 700–800 km/h with low wave height (&lt; 1 m); upon reaching shallow shores, speed drops and wave height surges to 15–30 metres!</td>
+          <td>Indian Ocean coastal belt (2004 Tsunami caused 230,000 deaths across 14 countries).</td>
+        </tr>
+        <tr>
+          <td><strong>Landslide</strong></td>
+          <td>Downward movement of rock mass, soil, and debris along a slope under gravitational force, triggered by heavy monsoons, earthquakes, or road undercutting.</td>
+          <td>Aggravated by human <strong>deforestation</strong> (removal of tree roots that bind soil) and unscientific hill construction.</td>
+          <td>Western Ghats (Kerala, Maharashtra), Himalayas (Uttarakhand, Himachal Pradesh, Jammu &amp; Kashmir).</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>B. Man-Made / Anthropogenic Disasters:</h4>
+    <ul>
+      <li><strong>Chemical Disasters:</strong> Industrial explosions or release of toxic hazardous gases into inhabited areas. <em>Benchmark Case:</em> <strong>1984 Bhopal Gas Tragedy</strong>, where over 40 tons of lethal Methyl Isocyanate (MIC) gas leaked from the Union Carbide pesticide factory, killing over 3,000 instantly and crippling hundreds of thousands.</li>
+      <li><strong>Nuclear &amp; Radiation Emergencies:</strong> Uncontrolled core meltdown or radiation release from nuclear reactors (e.g., Chernobyl 1986, Fukushima Daiichi 2011).</li>
+      <li><strong>Bioterrorism &amp; Epidemics:</strong> Deliberate release of biological weapon agents (Anthrax spores, Smallpox virus) or rapid global transmission of novel pathogens (Influenza, COVID-19 pandemic).</li>
+      <li><strong>Transportation Disasters:</strong> Train collisions, aviation crashes, bridge collapses, maritime shipwrecks.</li>
+      <li><strong>War, Civil Strife &amp; Terrorism:</strong> Deliberate violent acts aimed at creating widespread fear, mass casualties, and economic collapse.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 09: DISASTER MANAGEMENT CYCLE (DMC)
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="dm-cycle">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">The Disaster Management Cycle: Pre-, During- &amp; Post-Phases</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q5) &amp; ASKED IN 2025 (Part B Q7, Part C Q5) AND 2023 (Part B Q7): "Explain the disaster management cycle with a neat diagram, stating the importance of disaster management." Absolute exam centerpiece!</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is the Disaster Management Cycle?</h3>
+    <p>The <strong>Disaster Management Cycle (DMC)</strong> is a continuous, cyclic framework of planned activities undertaken by governments, civil defence, engineers, and communities <em>before, during, and after</em> a disaster. It is divided into two broad strategic phases: <strong>Risk Reduction Phase (Pre-Disaster)</strong> and <strong>Crisis Management Phase (During &amp; Post-Disaster)</strong>.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 920 320" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr-dm" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#6090a8"/>
+          </marker>
+        </defs>
+
+        <!-- Top Labels -->
+        <text x="210" y="32" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">PRE-DISASTER · RISK REDUCTION</text>
+        <line x1="30" y1="42" x2="390" y2="42" stroke="#10b981" stroke-width="2"/>
+
+        <text x="690" y="32" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">POST-DISASTER · CRISIS MANAGEMENT</text>
+        <line x1="510" y1="42" x2="890" y2="42" stroke="#f59e0b" stroke-width="2"/>
+
+        <!-- Central Disaster Trigger Event -->
+        <rect x="410" y="70" width="100" height="50" rx="8" fill="#2d1218" stroke="#ef4444" stroke-width="2.5"/>
+        <text x="460" y="94" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">DISASTER</text>
+        <text x="460" y="110" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">EVENT</text>
+
+        <!-- Pre-disaster 3 boxes -->
+        <rect x="30" y="75" width="100" height="42" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="80" y="100" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">1. Prevention</text>
+
+        <rect x="160" y="75" width="100" height="42" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="210" y="100" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">2. Mitigation</text>
+
+        <rect x="290" y="75" width="100" height="42" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="340" y="100" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">3. Preparedness</text>
+
+        <!-- Connecting arrows top row -->
+        <g stroke="#6090a8" stroke-width="2" marker-end="url(#arr-dm)">
+          <line x1="130" y1="96" x2="160" y2="96"/>
+          <line x1="260" y1="96" x2="290" y2="96"/>
+          <line x1="390" y1="96" x2="410" y2="96"/>
+          <line x1="510" y1="96" x2="530" y2="96"/>
+        </g>
+
+        <!-- Post-disaster 3 boxes -->
+        <rect x="530" y="75" width="100" height="42" rx="6" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="580" y="100" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">4. Response</text>
+
+        <rect x="660" y="75" width="100" height="42" rx="6" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="710" y="100" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">5. Recovery</text>
+
+        <rect x="790" y="75" width="110" height="42" rx="6" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="845" y="100" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="bold" text-anchor="middle">6. Reconstruction</text>
+
+        <g stroke="#6090a8" stroke-width="2" marker-end="url(#arr-dm)">
+          <line x1="630" y1="96" x2="660" y2="96"/>
+          <line x1="760" y1="96" x2="790" y2="96"/>
+        </g>
+
+        <!-- Cyclic Return Loop -->
+        <path d="M845 117 L845 190 L80 190 L80 120" fill="none" stroke="#6090a8" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arr-dm)"/>
+        
+        <rect x="250" y="175" width="420" height="30" rx="6" fill="#102230" stroke="#22d3ee" stroke-width="1"/>
+        <text x="460" y="195" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">Development Phase: Build Back Better → Feeds back into Prevention</text>
+
+        <!-- Descriptive notes -->
+        <text x="210" y="245" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Hazard mapping · Building codes · Mock drills · Stockpiling</text>
+        <text x="690" y="245" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Evacuation · Medical relief · Debris removal · Livelihood restoration</text>
+      </svg>
+      <div class="diagram-cap">Fig 5.3 — The Complete Disaster Management Cycle: Pre-Disaster (Risk Reduction) vs Post-Disaster (Crisis Management)</div>
+    </div>
+
+    <h4>The Six Phases Explained (Must Memorize for 10-Mark Questions):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Phase</th>
+          <th>Strategic Goal</th>
+          <th>Concrete Engineering &amp; Administrative Actions</th>
+        </tr>
+        <tr>
+          <td><strong>1. Prevention</strong></td>
+          <td>Prevent hazards from turning into disasters altogether.</td>
+          <td>Environmental impact assessments, zoning laws prohibiting construction on steep slopes or river floodplains, hazard identification and risk mapping.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Mitigation</strong></td>
+          <td>Reduce the severity, human mortality, and physical impact of unavoidable hazards.</td>
+          <td>Enforcing earthquake-resistant building codes (IS 1893 / IS 13920), constructing river embankments, coastal sea walls, mangrove plantation belts, cyclone shelters.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Preparedness</strong></td>
+          <td>Prepare governments and communities beforehand to respond effectively when disaster strikes.</td>
+          <td>Setting up early warning radar networks (IMD Doppler radars), conducting community mock drills, training specialized response teams (NDRF), stockpiling emergency food, water, and medicines.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Response &amp; Relief</strong></td>
+          <td>Immediate emergency actions taken during and right after disaster impact to save lives.</td>
+          <td>Search and rescue operations, emergency medical triage, mass evacuation, provision of clean drinking water, temporary tent cities, preventing epidemic outbreaks.</td>
+        </tr>
+        <tr>
+          <td><strong>5. Recovery</strong></td>
+          <td>Restore basic lifeline municipal services and community stability.</td>
+          <td>Clearing debris and blocked roads, restoring drinking water and electrical grids, disease surveillance, restoring telecommunications.</td>
+        </tr>
+        <tr>
+          <td><strong>6. Reconstruction &amp; Rehabilitation</strong></td>
+          <td>Long-term rebuilding of physical, economic, and psychological community foundations.</td>
+          <td><strong>"Build Back Better" principle</strong>: constructing disaster-resilient houses, bridges, schools; micro-credit loans for damaged businesses; psychological trauma counseling.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 10: INDIA'S VULNERABILITY & NDMA SETUP
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="dm-india">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">India's Vulnerability Profile &amp; Institutional Setup (NDMA)</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🏛️</span>
+    <div class="pb-text">ASKED IN 2025 (Part A Q10: "What is the full form of NDMA? What is its main function?") AND 2021 (Part B Q6: "National Disaster Reduction Day").</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. India's Natural Vulnerability Profile (Slide 14 Statistics):</h3>
+    <p>Due to its unique geo-climatic conditions and high population density, India is one of the most disaster-prone nations in the world:</p>
+    <ul>
+      <li><strong>57% of Indian Landmass:</strong> Vulnerable to moderate to high-intensity <strong>Earthquakes</strong> (Seismic Zones III, IV, and V). Around 12% is in the highest damage risk zones (Zone V: Himalayan belt, Kutch, NE India).</li>
+      <li><strong>68% of Cultivable Area:</strong> Vulnerable to <strong>Drought</strong> (especially Rajasthan, Gujarat, and the Deccan plateau).</li>
+      <li><strong>12% of Total Land (40 million hectares):</strong> Highly prone to recurrent river <strong>Floods and erosion</strong>.</li>
+      <li><strong>7,516 km Coastline:</strong> Highly vulnerable to <strong>Cyclones and Tsunamis</strong>; about 8% of the country's geographical area is directly exposed to coastal cyclone surges.</li>
+    </ul>
+
+    <h3>2. Institutional Framework in India: The Disaster Management Act, 2005</h3>
+    <p>The landmark <strong>Disaster Management Act, 2005 (DM Act 2005)</strong> marked a paradigm shift in India from reactive post-disaster relief to proactive <strong>disaster preparedness and risk mitigation</strong>.</p>
+
+    <h4>Three-Tier Institutional Hierarchy in India:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Level</th>
+          <th>Authority Name</th>
+          <th>Chaired By</th>
+          <th>Key Functions</th>
+        </tr>
+        <tr>
+          <td><strong>National Level</strong></td>
+          <td><strong>NDMA</strong> (National Disaster Management Authority)</td>
+          <td><strong>Prime Minister of India</strong></td>
+          <td>Lays down national disaster policies, approves the National Disaster Management Plan, coordinates central disaster operations, and oversees NDRF.</td>
+        </tr>
+        <tr>
+          <td><strong>State Level</strong></td>
+          <td><strong>SDMA</strong> (State Disaster Management Authority)</td>
+          <td><strong>Chief Minister of the State</strong></td>
+          <td>Lays down the state disaster management plan, coordinates district authorities, and allocates state emergency relief funds.</td>
+        </tr>
+        <tr>
+          <td><strong>District Level</strong></td>
+          <td><strong>DDMA</strong> (District Disaster Management Authority)</td>
+          <td><strong>District Magistrate / Collector / Deputy Commissioner</strong></td>
+          <td>The actual on-ground operational execution arm. Directs local police, fire, health, and rescue operations during an emergency.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>Nodal Ministries for Specific Disasters in India (Slide 17 &amp; 18 List):</h4>
+    <ul>
+      <li><strong>Floods:</strong> Ministry of Water Resources / Central Water Commission (CWC).</li>
+      <li><strong>Cyclones:</strong> India Meteorological Department (IMD) / Ministry of Earth Sciences.</li>
+      <li><strong>Earthquakes:</strong> India Meteorological Department (IMD) / Ministry of Earth Sciences.</li>
+      <li><strong>Droughts:</strong> Ministry of Agriculture and Farmers Welfare.</li>
+      <li><strong>Chemical Disasters:</strong> Ministry of Environment, Forest and Climate Change (MoEFCC).</li>
+      <li><strong>Nuclear Emergencies:</strong> Department of Atomic Energy (DAE).</li>
+      <li><strong>Biological &amp; Pandemics:</strong> Ministry of Health and Family Welfare.</li>
+      <li><strong>National Disaster Reduction Day in India:</strong> Celebrated on <strong>29th October</strong> (international day is 13th October).</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 11: 2026 MIDTERM 2 PREDICTED PAPER (UNIT 5)
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="predicted">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2 class="section-title">2026 Midterm 2 Predicted Paper: Unit 5 Solved Set</h2>
+  </div>
+
+  <div class="theory-block">
+    <div class="pred-badge">🔮 AI-Powered Analysis · Cross-Referenced with Faculty Slides &amp; 4-Year RTU PYQs</div>
+    <p>Below are the 3 predicted questions from Unit 5 included in the <strong>2026 Mid-Term 2 Predicted Paper</strong>. Master these model answers for guaranteed top marks in your examinations!</p>
+
+    <div class="pred-grid">
+      <!-- Q3 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q3)</div>
+          <div class="pred-unit">Unit 5 | Air Pollution</div>
+          <div class="pred-conf high">VERY HIGH</div>
+          <div class="pred-q">Define air pollution. List two gaseous air pollutants. (🔮 PREDICTED)</div>
+          <div class="pred-reason">2025 Part A Q8 ("define air pollution") and Q9 ("list two gaseous air pollutants") were back-to-back, and 2021 asked "what is air pollutant". Air pollution is the single largest Unit 4/5 theme (29% of questions, present in all 4 papers). The slide 4 definition is the one to write.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>25-Word Definition:</strong> Air pollution is an atmospheric condition in which substances (gases or particulates) are present in concentrations harmful to human health, living beings, and the natural environment.</p>
+          <p><strong>Two Gaseous Pollutants:</strong> Sulfur dioxide ($SO_2$) and Carbon monoxide ($CO$) (or Nitrogen dioxide $NO_2$).</p>
+          <div class="fbox">
+            <span class="flbl">Quick Classification (Faculty Slides 11–14)</span>
+            <div class="fl">By Origin : Primary (directly emitted) - PM, SOx, NOx, CO
+             Secondary (formed in air) - Ozone, PAN, Photochemical Smog
+By State  : Gaseous - CO, CO2, NOx, SOx
+             Particulate - dust, smoke, mist, fumes, fly ash</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q5)</div>
+          <div class="pred-unit">Unit 5 | Disaster Management</div>
+          <div class="pred-conf high">VERY HIGH</div>
+          <div class="pred-q">Explain the disaster management cycle with a neat diagram, stating the importance of disaster management. (🔮 PREDICTED)</div>
+          <div class="pred-reason">"Disaster management cycle" was 2023 Part B Q7, "disaster preparedness" was 2025 Part B Q7, and "importance of disaster management in India, different phases" was 2025 Part C Q5. The faculty gives the cycle six slides including diagrams.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>Disaster Management</strong> is the systematic, planned set of actions taken <em>before, during, and after</em> a disaster to avoid it, reduce its impact, or recover from its losses (DM Act 2005). Its phases form the continuous <strong>Disaster Management Cycle</strong>:</p>
+          
+          <div class="fbox">
+            <span class="flbl">Phases with Concrete Examples</span>
+            <div class="fl">1. Pre-Disaster (Risk Reduction Phase):
+   • Prevention  : Hazard mapping and risk analysis (e.g. banning construction on fault lines).
+   • Mitigation  : Physical risk reduction (e.g. earthquake-resistant building codes, embankments).
+   • Preparedness: Early warning networks, mock drills, NDRF response teams, medicine stockpiles.
+
+2. Disaster Event: Sudden catastrophic impact triggering emergency response.
+
+3. Post-Disaster (Crisis Management Phase):
+   • Response/Relief : Immediate search, rescue, medical triage, and emergency food/shelter.
+   • Recovery        : Debris clearance, restoring water/power networks, epidemic surveillance.
+   • Reconstruction  : Long-term rebuilding under the 'Build Back Better' principle.</div>
+          </div>
+          <p><strong>Importance of Disaster Management:</strong> Averts disasters, conducts swift rescue, provides relief, restores livelihoods, minimizes economic disruption, and saves human lives.</p>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q7)</div>
+          <div class="pred-unit">Unit 5 | Air Pollution &amp; Standards</div>
+          <div class="pred-conf high">VERY HIGH</div>
+          <div class="pred-q">Discuss the types of air pollutants, their sources and effects on living beings. State the NAAQS/BIS standards for air pollutants and the measures for their abatement. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Air pollutants "types, sources and health/environmental impacts" was 2025 Part C Q4, "BIS standards for pollutants in air" was 2024 Part C Q4, "controlling air pollution" was 2023 Part C Q3, and "types of air pollutants with properties" was 2023 Part B Q6.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>1. Types of Pollutants &amp; Sources:</strong></p>
+          <ul>
+            <li><em>Primary:</em> Emitted directly ($CO$ from incomplete combustion, $SO_2$ from coal burning, $NO_x$ from automobile engines, $PM_{10}/PM_{2.5}$ from diesel exhaust and fly ash, $Pb$ from smelters).</li>
+            <li><em>Secondary:</em> Formed in atmosphere ($O_3$, PAN, and photochemical smog via reactions of $NO_x + \text{VOCs} + \text{sunlight}$; $H_2SO_4$ and $HNO_3$ acid mist).</li>
+          </ul>
+          <p><strong>2. Effects on Living Beings &amp; Materials:</strong></p>
+          <ul>
+            <li><em>Humans:</em> $CO$ blocks oxygen transport causing hypoxia; $SO_2/NO_x$ cause asthma and pulmonary edema; $PM_{2.5}$ penetrates alveoli causing cardiovascular disease; $Pb$ causes brain damage and lowered IQ in children.</li>
+            <li><em>Vegetation:</em> $SO_2$ causes chlorosis (chlorophyll destruction); ozone causes necrosis (leaf death); acid rain leaches soil nutrients.</li>
+            <li><em>Materials:</em> Acid rain attacks marble monuments ($\text{CaCO}_3 \to \text{CaSO}_4$ stone leprosy, e.g., Taj Mahal) and corrodes metals.</li>
+          </ul>
+          <p><strong>3. NAAQS 2009 Standards (CPCB):</strong></p>
+          <div class="fbox">
+            <span class="flbl">NAAQS 2009 Core Limits (Residential/Industrial Areas)</span>
+            <div class="fl">Pollutant    Annual Average         24-Hour Limit
+SO2          50 µg/m³               80 µg/m³
+NO2          40 µg/m³               80 µg/m³
+PM10         60 µg/m³               100 µg/m³
+PM2.5        40 µg/m³               60 µg/m³
+Lead (Pb)    0.50 µg/m³             1.0 µg/m³
+CO           2.0 mg/m³ (8-hour)     4.0 mg/m³ (1-hour)</div>
+          </div>
+          <p><strong>4. Abatement Technologies:</strong></p>
+          <ul>
+            <li><em>Source Control:</em> Low-sulfur fuels, CNG, Bharat Stage VI (BS-VI) vehicle emission norms, tall stacks for atmospheric dispersion.</li>
+            <li><em>Particulate Control Equipment:</em> Electrostatic Precipitators (ESP, 99.5% efficiency for power plants), Cyclone Separators (centrifugal force for coarse dust), Fabric Baghouse Filters (sub-micron dust).</li>
+            <li><em>Gaseous Control:</em> Flue Gas Desulfurization (FGD scrubbers for $SO_2$), Catalytic Converters (Platinum/Rhodium converting $CO, NO_x, HC \to CO_2, N_2, H_2O$).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 12: MASTER RTU SOLVED PYQS (2021–2025)
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="pyq-master">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2 class="section-title">Master RTU Solved PYQs (2021, 2023, 2024, 2025)</h2>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📋 Every Unit 5 Question from the Past 4 Years — Fully Solved</div>
+
+    <!-- 2025 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">1. What is the full form of NDMA? What is its main function?</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part A (Q10)</span>
+        <span class="topic-tag">2 Marks</span>
+        <span class="topic-tag">Disaster Management</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Full Form:</strong> <strong>National Disaster Management Authority</strong>.</p>
+        <p><strong>Main Function:</strong> Established under the Disaster Management Act 2005 and chaired by the <strong>Prime Minister of India</strong>, NDMA is the apex body responsible for laying down national policies, plans, and guidelines for disaster management, coordinating disaster response across ministries, and overseeing the National Disaster Response Force (NDRF).</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">2. Describe composting as a method of solid waste management.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part B (Q6)</span>
+        <span class="topic-tag">4 Marks</span>
+        <span class="topic-tag">Solid Waste</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Composting is the controlled aerobic or anaerobic biological decomposition of organic biodegradable solid waste (vegetable peels, food scraps, manure) by microorganisms into stable, dark, nutrient-rich soil humus called compost.</p>
+        <ul>
+          <li><strong>Indore Method:</strong> Aerobic process where waste is turned 3–4 times over 2–3 months; high temperature (55–60°C) destroys pathogens.</li>
+          <li><strong>Bangalore Method:</strong> Anaerobic process where waste is layered in trenches and sealed with earth for 4–6 months; clean, odourless, zero operational labour.</li>
+          <li><strong>Advantages:</strong> Enriches soil with N-P-K nutrients, improves moisture retention, reduces landfill volume by 50%, and is completely eco-friendly.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">3. Explain the concept of disaster preparedness and its importance.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part B (Q7)</span>
+        <span class="topic-tag">4 Marks</span>
+        <span class="topic-tag">Disaster Management</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Disaster preparedness encompasses the knowledge, capacities, and concrete actions developed by governments, response organizations, and communities to effectively anticipate, respond to, and recover from the impacts of likely, imminent, or current hazards.</p>
+        <p><strong>Importance:</strong> Pre-arranged early warning radar systems (IMD), trained rescue personnel (NDRF), pre-positioned emergency relief stockpiles (food, blankets, medicines), and public evacuation drills transform potential mass casualties into managed evacuations, saving thousands of lives (as demonstrated in Indian cyclone evacuations in Odisha).</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">4. Describe in detail the methods of solid waste disposal and their suitability under Indian conditions.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part C (Q3)</span>
+        <span class="topic-tag">10 Marks</span>
+        <span class="topic-tag">Solid Waste</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Three major engineered methods are evaluated for Indian conditions:</p>
+        <ol>
+          <li><strong>Sanitary Landfilling:</strong> Engineered compaction of waste in lined cells with daily soil cover, leachate treatment, and methane gas collection. <em>Suitability:</em> Highly suitable for inert waste, construction debris, and non-recyclables. Land availability near expanding metros is the primary constraint.</li>
+          <li><strong>Composting (Aerobic &amp; Vermicomposting):</strong> <em>Suitability:</em> <strong>Most suitable for India</strong> because Indian municipal solid waste contains 45%–55% biodegradable wet organic matter with high moisture. Produces agricultural fertilizer and diverts organic mass from landfills.</li>
+          <li><strong>Incineration (Waste-to-Energy):</strong> High-temperature burning (850–1100°C). <em>Suitability:</em> Unsuitable for raw unsegregated Indian municipal waste due to high moisture and low calorific value (&lt; 1000 kcal/kg), which requires expensive auxiliary fuel. However, it is mandatory and ideal for infectious bio-medical hospital waste.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 2024 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">5. What is a landslide? What are the causes of landslides? Explain.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2024 · Part C (Q1)</span>
+        <span class="topic-tag">10 Marks</span>
+        <span class="topic-tag">Natural Disasters</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> A <strong>landslide</strong> is the downward and outward movement of a mass of rock, earth, soil, or debris down a slope under the direct influence of gravity.</p>
+        <p><strong>Causes:</strong></p>
+        <ul>
+          <li><strong>Natural Causes:</strong> Heavy prolonged monsoon rainfall saturating soil pore spaces; seismic tremors from earthquakes shaking unstable hill faces; river undercutting of slope bases.</li>
+          <li><strong>Anthropogenic (Man-made) Causes:</strong> <em>Deforestation</em> (cutting down trees whose root networks mechanically anchor topsoil); unscientific hill road blasting; construction of heavy multi-story buildings on fragile slopes without retaining walls; blocking natural mountain drainage channels.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">6. Why are soiling and corrosion hidden costs of air pollution? Explain.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2024 · Part B (Q2)</span>
+        <span class="topic-tag">4 Marks</span>
+        <span class="topic-tag">Air Pollution Effects</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> While human health impacts are immediately visible, air pollution imposes massive "hidden" economic damage on materials:</p>
+        <ul>
+          <li><strong>Soiling Damage:</strong> Deposition of soot, tar, and particulate matter on buildings, solar panels, monuments, and painted surfaces requires frequent cleaning, repainting, and drastically lowers the efficiency of photovoltaic solar power generation.</li>
+          <li><strong>Corrosion Damage:</strong> Atmospheric $SO_2$ and acid rain accelerate the chemical oxidation and rusting of steel railway tracks, bridges, galvanized metal roofs, and electrical transmission lines, drastically cutting their design lifespan and costing billions in replacement.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2023 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">7. What are the characteristics of smoke? Enlist different types of pollutants.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2023 · Part A (Q2 &amp; Q4)</span>
+        <span class="topic-tag">4 Marks Combined</span>
+        <span class="topic-tag">Air Pollution</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Smoke Characteristics:</strong> Fine solid or liquid gas-borne particles resulting from incomplete combustion of carbonaceous materials (coal, oil, wood). Particle size is between 0.05 and 1.0 µm, appears dark grey or black, reduces visibility, and contains unburnt carbon, tarry droplets, and toxic polycyclic aromatic hydrocarbons (PAHs).</p>
+        <p><strong>Pollutant Types:</strong> (1) Primary Pollutants: $SO_2, NO_x, CO, PM_{10}, PM_{2.5}, Pb$. (2) Secondary Pollutants: Ozone ($O_3$), PAN, Photochemical Smog, Acid Rain ($H_2SO_4, HNO_3$).</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">8. When is the National Disaster Reduction Day celebrated in India and why?</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2021 · Part B (Q6)</span>
+        <span class="topic-tag">8 Marks</span>
+        <span class="topic-tag">Disaster Management</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Date:</strong> <strong>29th October</strong> is commemorated as National Disaster Reduction Day in India (designated following the super cyclone that devastated Odisha on 29th October 1999). Internationally, the UN observes the <em>International Day for Disaster Risk Reduction</em> on <strong>13th October</strong>.</p>
+        <p><strong>Objective &amp; Importance:</strong> To promote a nationwide culture of disaster awareness, risk mitigation, community resilience, and school emergency preparedness drills so that citizens and institutions move from passive victims to proactive first responders.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL EXAM STRATEGY BOX -->
+  <div class="prep-box">
+    <h3>✅ Final 24-Hour Exam Strategy for Unit 5</h3>
+    <p><strong>1. Certain Short Answers (Part A):</strong> Definition of Air Pollution &amp; gaseous pollutants (Q3), Definition of Solid Waste, Full form of NDMA (Prime Minister head), and Primary vs Secondary pollutant definition.</p>
+    <p><strong>2. Must-Draw Diagrams for Long Answers (Part B &amp; C):</strong>
+      <br>• The <strong>Disaster Management Cycle</strong> (draw the two halves: Pre-disaster Risk Reduction vs Post-disaster Crisis Management).
+      <br>• The <strong>Sanitary Landfill Liner Cross-Section</strong> (draw clay + geomembrane + leachate pipes).
+      <br>• The <strong>Electrostatic Precipitator (ESP)</strong> or <strong>Cyclone Separator</strong> for particulate control.
+    </p>
+    <p><strong>3. Numerical Recalls:</strong> Taj Mahal marble equation ($\text{CaCO}_3 + \text{H}_2\text{SO}_4 \to \text{CaSO}_4$), NAAQS 24-hr values ($PM_{10} = 100\ \mu g/m^3$, $PM_{2.5} = 60\ \mu g/m^3$, $SO_2 = 80\ \mu g/m^3$), India's 57% earthquake vulnerability figure.</p>
+  </div>
+</section>
+
+</main>
+</div><!-- /layout -->
+
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="unit1.html">Unit 1: Introduction</a>
+    <a href="unit2.html">Unit 2: Water Supply</a>
+    <a href="unit3.html">Unit 3: Drinking Water Quality</a>
+    <a href="unit4.html">Unit 4: Wastewater &amp; Sewers</a>
+    <a href="unit5.html" style="color:var(--u5-bright);">Unit 5: Solid Waste &amp; Disaster</a>
+    <a href="index.html#predicted-midterm-2">🔮 Predicted Midterm 2</a>
+    <a href="pyq.html">Solved PYQs</a>
+  </div>
+  <p>Crafted with pride by Mahansh Gaur · B.Tech RTU Kota · 7AG6-60.2 EEDM</p>
+</footer>
+
+<!-- SCRIPT: INTERACTION & ACCORDIONS -->
+<script>
+// Sidebar Toggle (Mobile Drawer)
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('visible');
+}
+function closeSidebar(){
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.remove('open');
+  ov.classList.remove('visible');
+}
+
+// Predicted Question Answer Toggle
+function toggleAns(btn){
+  const card = btn.closest('.pred-card');
+  const ans = card.querySelector('.pred-answer');
+  const isOpen = ans.classList.contains('open');
+  const span = btn.querySelector('span:first-child');
+  const arrow = btn.querySelector('.arrow-icon');
+  
+  if(isOpen){
+    ans.classList.remove('open');
+    if(span) span.textContent = '▼ Show Model Answer';
+    if(arrow) arrow.textContent = '▼';
+  } else {
+    ans.classList.add('open');
+    if(span) span.textContent = '▲ Hide Model Answer';
+    if(arrow) arrow.textContent = '▲';
+  }
+}
+
+// PYQ Accordion Toggle
+function togglePyq(btn){
+  const content = btn.nextElementSibling;
+  const isOpen = content.classList.contains('open');
+  if(isOpen){
+    content.classList.remove('open');
+    btn.textContent = 'View Solution →';
+  } else {
+    content.classList.add('open');
+    btn.textContent = 'Hide Solution ▲';
+  }
+}
+
+// Active link highlighting on scroll
+window.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.pageYOffset >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === '#' + current) {
+        item.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
+
