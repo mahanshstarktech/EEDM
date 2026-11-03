@@ -592,14 +592,16 @@ Per capita sewage ≈ 75% to 80% of per capita water supplied</div>
 
     <div class="fbox">
       <span class="flbl">1. The Rational Method (Standard Formula for Peak Runoff)</span>
-      <div class="fl">Q = (K × I × A) / 360
+      <div class="fl">          K  ×  I  ×  A
+Q_p  =  ─────────────────
+               360
 
 Where:
-  Q = Peak runoff in m³/sec (discharge)
-  K = Impermeability factor (run-off coefficient, 0.1 for parks to 0.9 for asphalt/roofs)
-  I = Intensity of rainfall in mm/hour
-  A = Drainage catchment area in hectares (ha)</div>
-      <div class="fn">Factor 360 converts mm/hr × ha into m³/sec directly! Formula derived from: 1 ha = 10,000 m², 1 mm = 0.001 m, 1 hr = 3600 sec → 10,000 × 0.001 / 3600 = 1/360.</div>
+  • Q_p = Peak stormwater runoff discharge (m³/s)
+  • K   = Impermeability factor (run-off coefficient: 0.10 for lawns/parks to 0.90 for asphalt/roofs)
+  • I   = Intensity of rainfall (mm/hour)
+  • A   = Catchment drainage area in hectares (ha)</div>
+      <div class="fn">Factor 360 directly converts mm/hr × ha to m³/s: (10,000 m²/ha × 0.001 m/mm) / 3600 sec/hr = 1 / 360.</div>
     </div>
 
     <div class="fbox">
@@ -647,13 +649,13 @@ Kuichling's Standard Equations:
           <td><strong>Colour</strong></td>
           <td>Greyish-brown (like soapy wash water)</td>
           <td>Dark grey to deep black</td>
-          <td>Black colour is caused by the formation of insoluble iron sulfide (FeS) from reaction of $H_2S$ with iron in the sewage.</td>
+          <td>Black colour is caused by the formation of insoluble iron sulfide (FeS) from reaction of H<sub>2</sub>S with iron in the sewage.</td>
         </tr>
         <tr>
           <td><strong>Odour</strong></td>
           <td>Mild, soapy or oily (inoffensive)</td>
           <td>Offensive, putrid, rotten-egg smell</td>
-          <td>Septic odour is caused by anaerobic gases: Hydrogen sulfide ($H_2S$), Methane ($CH_4$), Mercaptans, and Ammonia ($NH_3$).</td>
+          <td>Septic odour is caused by anaerobic gases: Hydrogen sulfide (H<sub>2</sub>S), Methane (CH<sub>4</sub>), Mercaptans, and Ammonia (NH<sub>3</sub>).</td>
         </tr>
         <tr>
           <td><strong>Temperature</strong></td>
@@ -687,19 +689,23 @@ Kuichling's Standard Equations:
 
       <div class="fbox">
         <span class="flbl">BOD Calculation Formula (Dilution Method)</span>
-        <div class="fl">BOD_5 (mg/L) = (DO_initial - DO_final) × Dilution Factor
+        <div class="fl">                     ( DO_initial  −  DO_final )  ×  Volume of Diluted Mixture
+BOD₅ (mg/L)   =  ───────────────────────────────────────────────────────────────
+                                    Volume of Raw Sewage Sample
+
+BOD₅ (mg/L)   =  ( DO_initial  −  DO_final )  ×  Dilution Factor (DF)
 
 Where:
-  DO_initial = Dissolved oxygen of diluted sample at Day 0 (mg/L)
-  DO_final   = Dissolved oxygen of diluted sample after 5 days at 20°C (mg/L)
-  Dilution Factor (DF) = (Total volume of diluted mixture) / (Volume of undiluted raw sewage)</div>
+  • DO_initial = Dissolved oxygen of diluted sample at Day 0 (mg/L)
+  • DO_final   = Dissolved oxygen of diluted sample after 5 days incubation at 20°C (mg/L)
+  • Dilution Factor (DF) = (Total Diluted Mixture Volume) / (Raw Sewage Sample Volume)</div>
         <div class="fn">Typical domestic sewage BOD ≈ 100 to 300 mg/L (average Indian domestic sewage is ~150–200 mg/L). Pure drinking water has BOD = 0 mg/L!</div>
       </div>
     </div>
 
     <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
       <h3 style="color:#22d3ee;font-size:1.15rem;">Chemical Oxygen Demand (COD)</h3>
-      <p><strong>Definition:</strong> COD is the amount of oxygen required to chemically oxidize <em>both biodegradable and non-biodegradable organic matter</em> present in wastewater into carbon dioxide ($CO_2$) and water ($H_2O$) using a strong boiling chemical oxidizing agent (Potassium Dichromate, $K_2Cr_2O_7$) in acidic medium ($H_2SO_4$).</p>
+      <p><strong>Definition:</strong> COD is the amount of oxygen required to chemically oxidize <em>both biodegradable and non-biodegradable organic matter</em> present in wastewater into carbon dioxide (CO<sub>2</sub>) and water (H<sub>2</sub>O) using a strong boiling chemical oxidizing agent (Potassium Dichromate, K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>) in an acidic medium (H<sub>2</sub>SO<sub>4</sub>).</p>
       
       <div class="layman">
         BOD only measures what living bacteria can digest. But chemicals like plastic additives, lignin, and industrial solvents cannot be eaten by bacteria. <strong>COD burns everything chemically</strong> in 2 hours with acid and oxidant. That is why COD is always bigger than BOD!
@@ -707,27 +713,27 @@ Where:
 
       <div class="fbox">
         <span class="flbl">BOD vs COD Universal Rules</span>
-        <div class="fl">1. COD is ALWAYS strictly greater than BOD (COD > BOD).
+        <div class="fl">1. COD is ALWAYS strictly greater than BOD (COD &gt; BOD).
 2. For typical domestic sewage:
      BOD ≈ 80 - 200 mg/L
      COD ≈ 150 - 450 mg/L
      Ratio (BOD / COD) ≈ 0.5 to 0.65  (Indicates good biodegradability)
-3. If BOD / COD < 0.2, the waste contains toxic or non-biodegradable industrial chemicals!</div>
+3. If BOD / COD &lt; 0.2, the waste contains toxic or non-biodegradable industrial chemicals!</div>
       </div>
     </div>
 
     <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
       <h3 style="color:#10b981;font-size:1.15rem;">Dissolved Oxygen (DO) &amp; Total Organic Carbon (TOC)</h3>
-      <p><strong>Dissolved Oxygen (DO):</strong> The amount of free $O_2$ dissolved in the wastewater. In fresh raw sewage, DO is nearly zero (0–1 mg/L). <em>Regulatory Mandate:</em> When treated sewage is discharged into a river or lake, a minimum of <strong>4.0 mg/L (4 ppm) of DO</strong> must be sustained in the receiving stream at all times to prevent fish kills and maintain aquatic fauna.</p>
+      <p><strong>Dissolved Oxygen (DO):</strong> The amount of free molecular oxygen (O<sub>2</sub>) dissolved in the wastewater. In fresh raw sewage, DO is nearly zero (0–1 mg/L). <em>Regulatory Mandate:</em> When treated sewage is discharged into a river or lake, a minimum of <strong>4.0 mg/L (4 ppm) of DO</strong> must be sustained in the receiving stream at all times to prevent fish kills and maintain aquatic fauna.</p>
       <p><strong>Total Organic Carbon (TOC):</strong> An instrumental test (combustion catalytic oxidation) that directly measures the organic carbon concentration in mg/L in just 5–10 minutes.</p>
-      <p><strong>pH of Wastewater:</strong> Fresh sewage is slightly alkaline or neutral (pH 7.3 to 7.8). In the sewer, anaerobic decomposition forms volatile fatty acids and $H_2S$, dropping the pH to acidic levels (5.5 to 6.5).</p>
+      <p><strong>pH of Wastewater:</strong> Fresh sewage is slightly alkaline or neutral (pH 7.3 to 7.8). In the sewer, anaerobic decomposition forms volatile fatty acids and H<sub>2</sub>S, dropping the pH to acidic levels (5.5 to 6.5).</p>
     </div>
 
     <h4>3. Biological / Bacteriological Characteristics</h4>
     <p>Raw domestic sewage contains roughly <strong>22 to 25 million microorganisms per litre</strong>. These are categorized into three groups based on their oxygen metabolism:</p>
     <ul>
-      <li><strong>Aerobic Bacteria:</strong> Require free dissolved molecular oxygen ($O_2$) to survive. They oxidize organic carbon to $CO_2$, nitrogen to nitrates ($NO_3^-$), and sulfur to sulfates ($SO_4^{2-}$). They produce clean, odourless, stable end products.</li>
-      <li><strong>Anaerobic Bacteria:</strong> Thrive exclusively in the absence of free oxygen. They obtain oxygen by breaking down organic chemical compounds, producing foul-smelling reduced gases ($CH_4, H_2S, NH_3$).</li>
+      <li><strong>Aerobic Bacteria:</strong> Require free dissolved molecular oxygen (O<sub>2</sub>) to survive. They oxidize organic carbon to CO<sub>2</sub>, nitrogen to nitrates (NO<sub>3</sub><sup>−</sup>), and sulfur to sulfates (SO<sub>4</sub><sup>2−</sup>). They produce clean, odourless, stable end products.</li>
+      <li><strong>Anaerobic Bacteria:</strong> Thrive exclusively in the absence of free oxygen. They obtain oxygen by breaking down organic chemical compounds, producing foul-smelling reduced gases (CH<sub>4</sub>, H<sub>2</sub>S, NH<sub>3</sub>).</li>
       <li><strong>Facultative Bacteria:</strong> Extremely adaptable organisms that can survive and carry out stabilization in either the presence or absence of dissolved oxygen.</li>
       <li><strong>Pathogenic Organisms:</strong> Disease-causing agents discharged in human faeces: <em>Salmonella typhi</em> (Typhoid), <em>Vibrio cholerae</em> (Cholera), <em>Shigella</em> (Bacillary dysentery), Hepatitis A virus, and parasitic worms.</li>
     </ul>
@@ -737,7 +743,7 @@ Where:
     <div class="tip-icon">✔️</div>
     <div class="tip-content">
       <div class="tip-title">Exam Validation Trick: BOD vs COD Values</div>
-      <p>In any numerical or descriptive question: <strong>COD must always exceed BOD</strong> (typically $\text{COD} \approx 1.5 \text{ to } 2 \times \text{BOD}$). If your answer sheet ever states $\text{BOD} > \text{COD}$, examiners immediately cut marks. Remember: COD oxidizes both biodegradable AND non-biodegradable matter, whereas BOD only oxidizes biodegradable matter.</p>
+      <p>In any numerical or descriptive question: <strong>COD must always exceed BOD</strong> (typically COD ≈ 1.5 to 2 × BOD). If your answer sheet ever states BOD &gt; COD, examiners immediately cut marks. Remember: COD oxidizes both biodegradable AND non-biodegradable matter, whereas BOD only oxidizes biodegradable matter.</p>
     </div>
   </div>
 </section>
@@ -788,7 +794,7 @@ Where:
         </tr>
         <tr>
           <td><strong>2. Zone of Active Decomposition</strong></td>
-          <td>Extremely dark, blackish, offensive odour of $H_2S$ and $CH_4$.</td>
+          <td>Extremely dark, blackish, offensive odour of H<sub>2</sub>S and CH<sub>4</sub>.</td>
           <td>DO plummets to ZERO (complete anaerobic state).</td>
           <td>All game fish die; only anaerobic bacteria and fungi survive.</td>
         </tr>
@@ -833,7 +839,7 @@ Where:
   <div class="theory-block">
     <h3>1. What is Sewage Sickness?</h3>
     <p><strong>Sewage Sickness</strong> is a diseased, suffocated state of agricultural land caused by the continuous, excessive application of sewage without adequate resting periods. Over time, the soil pores, capillary voids, and interstices become choked with organic solids, fibrous residues, grease, and colloidal films. This completely halts the free circulation of atmospheric air into the soil.</p>
-    <p>As oxygen is cut off, aerobic soil bacteria die off and are replaced by <strong>anaerobic bacteria</strong>. Anaerobic fermentation produces foul-smelling, noxious gases ($H_2S, CH_4, NH_3$), the land turns into a stagnant, foul-smelling marsh, and the soil loses its agricultural fertility completely.</p>
+    <p>As oxygen is cut off, aerobic soil bacteria die off and are replaced by <strong>anaerobic bacteria</strong>. Anaerobic fermentation produces foul-smelling, noxious gases (H<sub>2</sub>S, CH<sub>4</sub>, NH<sub>3</sub>), the land turns into a stagnant, foul-smelling marsh, and the soil loses its agricultural fertility completely.</p>
 
     <div class="layman">
       Soil breathes air through its tiny pores just like your skin. If you continuously smear greasy, muddy sewage over a field without letting it dry, the soil pores get permanently choked. The land literally "chokes to death", stinks like rotten eggs, and can no longer grow any crops. That condition is called <strong>Sewage Sickness</strong>.
@@ -904,9 +910,9 @@ Where:
     <p>Sewers are buried deep underground and subjected to soil loads, groundwater pressure, abrasive moving grit, and corrosive biogenic acids. A good sewer material must satisfy:</p>
     <ul>
       <li><strong>Resistance to Abrasion:</strong> Moving sewage carries hard silica sand and road grit at high velocities. The pipe interior must resist scour to preserve wall thickness.</li>
-      <li><strong>Resistance to Corrosion (Crown Rot Prevention):</strong> Anaerobic bacteria release hydrogen sulfide ($H_2S$) gas into the sewer headspace. Moisture and aerobic bacteria (<em>Thiobacillus</em>) on the sewer crown oxidize $H_2S$ into concentrated sulfuric acid ($H_2SO_4$). This destroys ordinary concrete pipes (a process called <strong>crown rot</strong>). Materials must resist acid attack!</li>
+      <li><strong>Resistance to Corrosion (Crown Rot Prevention):</strong> Anaerobic bacteria release hydrogen sulfide (H<sub>2</sub>S) gas into the sewer headspace. Moisture and aerobic bacteria (<em>Thiobacillus</em>) on the sewer crown oxidize H<sub>2</sub>S into concentrated sulfuric acid (H<sub>2</sub>SO<sub>4</sub>). This destroys ordinary concrete pipes (a process called <strong>crown rot</strong>). Materials must resist acid attack!</li>
       <li><strong>Structural Strength &amp; Imperviousness:</strong> Must withstand backfill earth pressure and vehicular traffic loads while preventing infiltration and exfiltration.</li>
-      <li><strong>Smooth Interior (Low Roughness $n$):</strong> High hydraulic efficiency with minimum friction coefficient.</li>
+      <li><strong>Smooth Interior (Low Roughness Coefficient (n)):</strong> High hydraulic efficiency with minimum friction coefficient.</li>
     </ul>
 
     <h4>Comparison of Sewer Pipe Materials:</h4>
@@ -927,7 +933,7 @@ Where:
         <tr>
           <td><strong>RCC (Reinforced Concrete)</strong></td>
           <td>High structural strength, available in huge diameters (up to 3 m), economical.</td>
-          <td>Vulnerable to biogenic sulfuric acid corrosion ($H_2SO_4$) at the pipe crown.</td>
+          <td>Vulnerable to biogenic sulfuric acid corrosion (H<sub>2</sub>SO<sub>4</sub>) at the pipe crown.</td>
           <td>Main and trunk sewers carrying large gravity flows.</td>
         </tr>
         <tr>
@@ -938,7 +944,7 @@ Where:
         </tr>
         <tr>
           <td><strong>HDPE / PVC / Plastic</strong></td>
-          <td>Completely immune to chemical corrosion, ultra-smooth ($n = 0.009$), lightweight, long lengths.</td>
+          <td>Completely immune to chemical corrosion, ultra-smooth (n = 0.009), lightweight, long lengths.</td>
           <td>Can deform under heavy soil overburden if not properly bedded; expensive in large sizes.</td>
           <td>Modern domestic building plumbing, industrial effluent conveyance.</td>
         </tr>
@@ -1017,19 +1023,19 @@ Where:
         </tr>
         <tr>
           <td><strong>1. Circular</strong></td>
-          <td>Uniform circle diameter $D$.</td>
+          <td>Uniform circle diameter D.</td>
           <td>Least wetted perimeter; maximum hydraulic radius when running full.</td>
           <td>Separate sanitary sewers; 90% of city sewers.</td>
         </tr>
         <tr>
           <td><strong>2. Standard Egg-Shaped</strong></td>
-          <td>Top crown radius $r_1 = D/2$, bottom invert radius $r_2 = D/4$, height $H = 1.5 D$.</td>
+          <td>Top crown radius r₁ = D/2, bottom invert radius r₂ = D/4, total height H = 1.5 D.</td>
           <td>Narrow bottom creates deep flow during low DWF, maintaining self-cleansing velocity!</td>
           <td>Combined sewerage systems across older cities.</td>
         </tr>
         <tr>
           <td><strong>3. New / Modified Egg</strong></td>
-          <td>Sharper bottom invert radius $r_2 = D/8$.</td>
+          <td>Sharper bottom invert radius r₂ = D/8.</td>
           <td>Even higher velocity at extremely small dry weather discharges.</td>
           <td>Combined systems with wide variation in seasonal flow.</td>
         </tr>
@@ -1090,7 +1096,7 @@ Where:
 
   <div class="theory-block">
     <h3>1. Core Principles of Sewer Hydraulics</h3>
-    <p>Unlike water supply pipes which run under high pump pressure, <strong>sewers are designed to flow under gravity as open channels</strong> with atmospheric pressure at the free water surface. To ensure proper ventilation of foul gases ($H_2S, CH_4$) and provide a buffer for unpredicted storm surges, sewers larger than 0.4 m diameter are designed to run <strong>0.5 to 0.8 full (never 100% full) at peak design discharge</strong>.</p>
+    <p>Unlike water supply pipes which run under high pump pressure, <strong>sewers are designed to flow under gravity as open channels</strong> with atmospheric pressure at the free water surface. To ensure proper ventilation of foul gases (H<sub>2</sub>S, CH<sub>4</sub>) and provide a buffer for unpredicted storm surges, sewers larger than 0.4 m diameter are designed to run <strong>0.5 to 0.8 full (never 100% full) at peak design discharge</strong>.</p>
 
     <h3>2. The Velocity Law: Self-Cleansing vs Non-Scouring Velocity</h3>
     <p>The flow velocity in a sewer must be kept within a strict engineering bracket:</p>
@@ -1110,17 +1116,20 @@ Where:
       </ul>
 
       <div class="fbox">
-        <span class="flbl">Shield's Formula for Self-Cleansing Velocity</span>
-        <div class="fl">V_s = √[ (8k / f) × ( (ρ_s - ρ) / ρ ) × g × d_s ]
+        <span class="flbl">Shield's Formula for Self-Cleansing Velocity (Scour Threshold)</span>
+        <div class="fl">             ┌   8k      (ρₛ  −  ρ)               ┐
+V_sc  =   √  │  ────  ×  ──────────  ×  g  ×  d   │
+             └   f           ρ                    ┘
 
 Where:
-  V_s = Self-cleansing minimum velocity (m/s)
-  k   = Dimensionless characteristic sediment constant (~0.04 to 0.06)
-  f   = Darcy-Weisbach friction factor (~0.03 for sewers)
-  ρ_s = Specific gravity of solid particles (1.2 for organic matter to 2.65 for sand/grit)
-  ρ   = Specific gravity of liquid sewage (≈ 1.0)
-  g   = Acceleration due to gravity (9.81 m/s²)
-  d_s = Diameter of solid particle to be transported (m)</div>
+  • V_sc = Minimum self-cleansing velocity (m/s) required to transport sediment without deposition
+  • k    = Dimensionless sediment particle characteristic (0.04 for clean sand, 0.06 for sticky organic grit)
+  • f    = Darcy-Weisbach pipe friction factor (≈ 0.03 for sewers)
+  • ρₛ   = Mass density of sediment particles (≈ 2650 kg/m³ for quartz sand, ~1200 kg/m³ for organic solids)
+  • ρ    = Mass density of sewage/water (1000 kg/m³)
+  • g    = Acceleration due to gravity (9.81 m/s²)
+  • d    = Diameter of sediment grain to be transported (m)</div>
+        <div class="fn">CPHEEO Design Norms: Minimum self-cleansing velocity = 0.45 m/s at minimum dry-weather flow (DWF) and 0.8–1.0 m/s at peak design flow. Non-scouring upper limit = 2.5–3.0 m/s.</div>
       </div>
     </div>
 
@@ -1141,28 +1150,39 @@ Where:
     </div>
 
     <h3>3. The Hydraulic Formulas for Sewer Flow</h3>
-    <p>Sanitary engineers calculate flow velocity $V$ and discharge $Q = A \times V$ using empirical formulas:</p>
+    <p>Sanitary engineers calculate flow velocity V and discharge Q = A × V using empirical formulas:</p>
 
     <div class="fbox">
       <span class="flbl">1. Manning's Formula (The Most Widely Used Formula)</span>
-      <div class="fl">V = (1 / n) × R^(2/3) × S^(1/2)
+      <div class="fl">       1
+V  =  ───  ×  R^(2/3)  ×  S^(1/2)
+       n
+
+Discharge Capacity:   Q  =  A  ×  V
 
 Where:
-  V = Velocity of flow in m/s
-  n = Manning's roughness coefficient (0.012 for RCC, 0.013 for vitrified clay)
-  R = Hydraulic mean depth (Hydraulic radius) = A / P  (Cross-sectional area / Wetted perimeter)
-  S = Bed slope of sewer (Hydraulic gradient)</div>
+  • V = Mean velocity of flow (m/s)
+  • Q = Volumetric discharge rate (m³/s)
+  • n = Manning's roughness coefficient (0.012 for RCC, 0.013 for vitrified stoneware)
+  • R = Hydraulic radius (Hydraulic mean depth) = A / P = (Cross-sectional Area) / (Wetted Perimeter)
+  • S = Longitudinal bed slope of sewer (Hydraulic gradient)</div>
       <div class="fn">Notice that if a circular sewer runs half full (depth = D/2): Area A = (π D²)/8, Wetted Perimeter P = (π D)/2 → Hydraulic Radius R = A / P = D/4!</div>
     </div>
 
     <div class="fbox">
-      <span class="flbl">2. Chezy's Formula &amp; Bazin's Equation</span>
-      <div class="fl">V = C × √(R × S)
+      <span class="flbl">2. Chezy's Formula &amp; Bazin's Coefficient</span>
+      <div class="fl">Velocity:   V  =  C  ×  √(R  ×  S)
 
-Where C is Chezy's coefficient. Bazin's formula to find C:
-  C = 157.6 / [ 1.81 + (K / √R) ]
+Where C is Chezy's coefficient, calculated using Bazin's Equation:
 
-K values: 0.109 (very smooth), 0.290 (bricks & concrete), 0.833 (rubble masonry).</div>
+                     157.6
+C  =  ───────────────────────────────────
+           1.81   +   ( K  /  √R )
+
+Bazin Roughness Constant (K):
+  • Very smooth cement / glazed pipe : K = 0.109
+  • Concrete / Brick masonry          : K = 0.290
+  • Rubble masonry / Ashlar stone     : K = 0.833</div>
     </div>
 
     <div class="fbox">
@@ -1272,14 +1292,14 @@ K values: 0.109 (very smooth), 0.290 (bricks & concrete), 0.833 (rubble masonry)
       <li><strong>Secondary / Biological Treatment:</strong>
         <ul>
           <li>Removes dissolved and colloidal organic matter that could not be settled in the primary clarifier.</li>
-          <li><strong>Activated Sludge Process (ASP):</strong> Settled sewage enters an aeration tank where air is continuously pumped in. Aerobic bacteria multiply rapidly into suspended bacterial gelatinous clusters called <em>flocs</em>. These flocs oxidize the dissolved organics into stable $CO_2$ and water. The mixture flows into a Secondary Clarifier where flocs settle out as *activated sludge*. A portion of this sludge is recycled back to the aeration tank to seed incoming waste, and excess is digested.</li>
+          <li><strong>Activated Sludge Process (ASP):</strong> Settled sewage enters an aeration tank where air is continuously pumped in. Aerobic bacteria multiply rapidly into suspended bacterial gelatinous clusters called <em>flocs</em>. These flocs oxidize the dissolved organics into stable CO<sub>2</sub> and water. The mixture flows into a Secondary Clarifier where flocs settle out as *activated sludge*. A portion of this sludge is recycled back to the aeration tank to seed incoming waste, and excess is digested.</li>
           <li><strong>Trickling Filter:</strong> An alternative attached-growth system where sewage is sprayed over a circular bed of crushed stones (20–100 mm). A biological slime layer of aerobic microbes coats the stones and absorbs organic food as wastewater trickles down.</li>
           <li><em>Overall Removal:</em> Secondary treatment achieves <strong>85% to 95% BOD reduction</strong>!</li>
         </ul>
       </li>
       <li><strong>Sludge Digestion &amp; Final Disinfection:</strong>
         <ul>
-          <li><em>Anaerobic Sludge Digestion:</em> The collected thick sludge is sealed inside an airtight, heated (35°C) digestion tank. Anaerobic bacteria break down volatile organics over 20–30 days, generating **Methane gas ($CH_4 \approx 65\%$)**, which is burned as clean fuel to power the plant, leaving behind an inert, dark, rich humus used as soil conditioner.</li>
+          <li><em>Anaerobic Sludge Digestion:</em> The collected thick sludge is sealed inside an airtight, heated (35°C) digestion tank. Anaerobic bacteria break down volatile organics over 20–30 days, generating <strong>Methane gas (CH<sub>4</sub> ≈ 65%)</strong>, which is burned as clean fuel to power the plant, leaving behind an inert, dark, rich humus used as soil conditioner.</li>
           <li><em>Disinfection:</em> Liquid chlorine (2–5 mg/L) is injected into the secondary effluent to destroy any surviving pathogens before final discharge into rivers or farmlands.</li>
         </ul>
       </li>
@@ -1360,7 +1380,7 @@ Sewerage : The complete collection, conveyance and treatment system.</div>
           <p><strong>1. Physical Characteristics:</strong></p>
           <ul>
             <li><strong>Colour:</strong> Fresh sewage is greyish-brown (soapy wash water colour); septic decomposed sewage is dark grey to deep black (due to iron sulfide FeS formation).</li>
-            <li><strong>Odour:</strong> Fresh sewage has an oily/soapy smell; septic stale sewage has an offensive rotten-egg odour due to $H_2S, CH_4$, and mercaptans.</li>
+            <li><strong>Odour:</strong> Fresh sewage has an oily/soapy smell; septic stale sewage has an offensive rotten-egg odour due to H<sub>2</sub>S, CH<sub>4</sub>, and mercaptans.</li>
             <li><strong>Temperature:</strong> Slightly higher than the city water supply (~20–35°C), which accelerates bacterial decomposition rates.</li>
             <li><strong>Turbidity &amp; Solids:</strong> High turbidity due to 350–1200 mg/L solids (99.5% water, 0.5% solids).</li>
           </ul>
@@ -1374,7 +1394,7 @@ Sewerage : The complete collection, conveyance and treatment system.</div>
           <p><strong>3. Biological Characteristics:</strong></p>
           <ul>
             <li>Contains 22–25 million microorganisms per litre.</li>
-            <li>Categorized by oxygen metabolism into <em>aerobic bacteria</em> (require dissolved $O_2$), <em>anaerobic bacteria</em> (thrive without oxygen), and <em>facultative bacteria</em> (survive in both).</li>
+            <li>Categorized by oxygen metabolism into <em>aerobic bacteria</em> (require dissolved O<sub>2</sub>), <em>anaerobic bacteria</em> (thrive without oxygen), and <em>facultative bacteria</em> (survive in both).</li>
             <li>Carries enteric pathogenic bacteria (typhoid, cholera) and viruses from human excreta.</li>
           </ul>
         </div>
@@ -1407,9 +1427,9 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
           </div>
           <p><strong>3. Hydraulic Design &amp; Velocity Limits:</strong></p>
           <ul>
-            <li><strong>Minimum (Self-Cleansing) Velocity:</strong> The velocity needed to prevent silting of sand, grit, and solids. Minimum value is <strong>0.45 m/s at minimum flow</strong> and <strong>0.90 m/s at peak design flow</strong>. Shield's formula: $V_s = \sqrt{\frac{8k}{f} \frac{\rho_s - \rho}{\rho} g d_s}$.</li>
+            <li><strong>Minimum (Self-Cleansing) Velocity:</strong> The velocity needed to prevent silting of sand, grit, and solids. Minimum value is <strong>0.45 m/s at minimum flow</strong> and <strong>0.90 m/s at peak design flow</strong>. Shield's formula: V<sub>s</sub> = √[ (8k/f) × ((ρ<sub>s</sub> − ρ)/ρ) × g × d ].</li>
             <li><strong>Maximum (Non-Scouring) Velocity:</strong> Limiting velocity to prevent abrasive grit from eroding and wearing away the pipe invert. Limiting value is <strong>2.5 to 3.0 m/s for concrete/stoneware</strong> and <strong>4.0 m/s for cast iron</strong>.</li>
-            <li><strong>Manning's Flow Equation:</strong> $V = \frac{1}{n} R^{2/3} S^{1/2}$ and $Q = A \times V$. Sewers are designed to run 0.5 to 0.8 full at peak flow.</li>
+            <li><strong>Manning's Flow Equation:</strong> V = (1/n) × R<sup>2/3</sup> × S<sup>1/2</sup> and Q = A × V. Sewers are designed to run 0.5 to 0.8 full at peak flow.</li>
           </ul>
         </div>
       </div>
@@ -1439,7 +1459,7 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
       </div>
       <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
       <div class="answer-content">
-        <p><strong>Solution:</strong> Biochemical Oxygen Demand (BOD) is the quantity of dissolved oxygen (in mg/L) required by aerobic bacteria to biologically oxidize and decompose the biodegradable organic matter present in a water or wastewater sample during an incubation period of <strong>5 days at 20°C</strong>. For typical domestic sewage, $\text{BOD}_5$ ranges from 80 to 200 mg/L.</p>
+        <p><strong>Solution:</strong> Biochemical Oxygen Demand (BOD) is the quantity of dissolved oxygen (in mg/L) required by aerobic bacteria to biologically oxidize and decompose the biodegradable organic matter present in a water or wastewater sample during an incubation period of <strong>5 days at 20°C</strong>. For typical domestic sewage, BOD₅ ranges from 80 to 200 mg/L.</p>
       </div>
     </div>
 
@@ -1486,7 +1506,7 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
         <ul>
           <li><strong>Preventing Silting (Self-Cleansing Velocity):</strong> Ensures flow velocity never drops below <strong>0.45 m/s at minimum flow</strong> so that sand, grit, and fecal matter do not settle, clog the sewer, or generate septic odours.</li>
           <li><strong>Preventing Pipe Abrasion (Non-Scouring Velocity):</strong> Caps velocity below <strong>2.5 to 3.0 m/s</strong> so moving grit particles do not scour or grind away the pipe walls.</li>
-          <li><strong>Preventing Overflows &amp; Gas Headroom:</strong> Ensures the sewer runs <strong>0.5 to 0.8 full</strong> at peak flow, leaving open headspace for ventilation of toxic $H_2S$ and $CH_4$ gases and preventing sewage backflow into homes.</li>
+          <li><strong>Preventing Overflows &amp; Gas Headroom:</strong> Ensures the sewer runs <strong>0.5 to 0.8 full</strong> at peak flow, leaving open headspace for ventilation of toxic H<sub>2</sub>S and CH<sub>4</sub> gases and preventing sewage backflow into homes.</li>
         </ul>
       </div>
     </div>
@@ -1502,8 +1522,8 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
       <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
       <div class="answer-content">
         <p><strong>Wastewater (Q6):</strong> Any spent water containing dissolved or suspended impurities (solids or gases) discharged from households, commercial complexes, and industries that is harmful to health or the environment if untreated.</p>
-        <p><strong>COD (Q7):</strong> The measure of oxygen equivalent needed to chemically oxidize both biodegradable and non-biodegradable organic matter in water using a boiling solution of potassium dichromate ($K_2Cr_2O_7$) in acidic medium ($H_2SO_4$). Domestic COD is typically 150–450 mg/L.</p>
-        <p><strong>TOC (Q8):</strong> Total Organic Carbon is a rapid instrumental measurement of the total amount of carbon bound in organic compounds in wastewater, determined by catalytic combustion at 680–950°C and infrared detection of evolved $CO_2$.</p>
+        <p><strong>COD (Q7):</strong> The measure of oxygen equivalent needed to chemically oxidize both biodegradable and non-biodegradable organic matter in water using a boiling solution of potassium dichromate (K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub>) in acidic medium (H<sub>2</sub>SO<sub>4</sub>). Domestic COD is typically 150–450 mg/L.</p>
+        <p><strong>TOC (Q8):</strong> Total Organic Carbon is a rapid instrumental measurement of the total amount of carbon bound in organic compounds in wastewater, determined by catalytic combustion at 680–950°C and infrared detection of evolved CO<sub>2</sub>.</p>
       </div>
     </div>
 
@@ -1521,7 +1541,7 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
           <li><strong>Preliminary Treatment:</strong>
             <ul>
               <li><em>Screens:</em> Remove floating debris, plastics, rags.</li>
-              <li><em>Grit Chamber:</em> Settles inorganic sand and gravel at $V \approx 0.3\text{ m/s}$.</li>
+              <li><em>Grit Chamber:</em> Settles inorganic sand and gravel at velocity V ≈ 0.3 m/s.</li>
               <li><em>Skimming Tank:</em> Removes floating grease and oil films by air flotation.</li>
             </ul>
           </li>
@@ -1534,7 +1554,7 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
           </li>
           <li><strong>Sludge Digestion &amp; Disinfection:</strong>
             <ul>
-              <li><em>Anaerobic Digester:</em> Thick sludge is converted to methane fuel ($CH_4$) and dry fertilizer.</li>
+              <li><em>Anaerobic Digester:</em> Thick sludge is converted to methane fuel (CH<sub>4</sub>) and dry fertilizer.</li>
               <li><em>Chlorination:</em> Final effluent is disinfected with 2–5 mg/L chlorine before release.</li>
             </ul>
           </li>
@@ -1555,7 +1575,7 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
         <p><strong>Solution:</strong> Sewers are classified by their cross-sectional profile into circular and non-circular shapes:</p>
         <ul>
           <li><strong>Circular Sewers:</strong> Most common, lowest perimeter per unit area, economical, uniform flow. Used for separate sanitary systems.</li>
-          <li><strong>Standard Egg-Shaped Sewers:</strong> Has top radius $D/2$ and narrow invert radius $D/4$. The narrow bottom maintains self-cleansing velocity during low dry weather flow (DWF), while the top accommodates monsoon runoff in combined systems.</li>
+          <li><strong>Standard Egg-Shaped Sewers:</strong> Has top radius D/2 and narrow invert radius D/4. The narrow bottom maintains self-cleansing velocity during low dry weather flow (DWF), while the top accommodates monsoon runoff in combined systems.</li>
           <li><strong>Horse-Shoe Sewers:</strong> Semi-circular arch roof with flat/dished invert. Carries heavy flows and provides headroom for worker entry. Used in large trunk tunnels.</li>
           <li><strong>Rectangular Sewers:</strong> Easy to construct with masonry or RCC slabs. Used for storm drains and large outfall channels.</li>
           <li><strong>Semi-Elliptical Sewers:</strong> Arch roof with elliptical invert; highly stable in soft soil conditions.</li>
@@ -1568,8 +1588,8 @@ Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
   <div class="prep-box">
     <h3>✅ Final 24-Hour Exam Strategy for Unit 4</h3>
     <p><strong>1. Certain to be tested:</strong> BOD vs COD definition &amp; numerical values (Q1), Sewage vs Sewer vs Sewerage definitions (Q2), Physical/Chemical/Biological characteristics (Q4), and Sewer shapes (Circular vs Egg-shaped vs Horseshoe).</p>
-    <p><strong>2. High Probability Long Answers:</strong> Hydraulic design of sewers (significance, self-cleansing velocity $0.45\text{ m/s}$, non-scouring velocity $2.5\text{–}3.0\text{ m/s}$, Manning's formula), Sewage Sickness of land with its 7 remedial measures, and the complete 4-stage domestic wastewater treatment flowsheet.</p>
-    <p><strong>3. Diagram Tip:</strong> When drawing the Egg-shaped sewer, clearly annotate the top width as $2D$, top radius $D/2$, and bottom invert radius $D/4$. When drawing the Wastewater Treatment plant, draw the sludge line going down into the Anaerobic Digester — faculty always checks for that!</p>
+    <p><strong>2. High Probability Long Answers:</strong> Hydraulic design of sewers (significance, self-cleansing velocity 0.45 m/s, non-scouring velocity 2.5–3.0 m/s, Manning's formula), Sewage Sickness of land with its 7 remedial measures, and the complete 4-stage domestic wastewater treatment flowsheet.</p>
+    <p><strong>3. Diagram Tip:</strong> When drawing the Egg-shaped sewer, clearly annotate the top width as 2D, top radius D/2, and bottom invert radius D/4. When drawing the Wastewater Treatment plant, draw the sludge line going down into the Anaerobic Digester — faculty always checks for that!</p>
   </div>
 </section>
 
