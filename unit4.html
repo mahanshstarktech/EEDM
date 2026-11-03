@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 4 — Domestic Wastewater &amp; Sewers | EEDM RTU Exam Prep</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#050c0f;--bg2:#07121a;--surface:#0c1c28;--surface2:#102230;
+  --border:#193344;--border2:#0d1f2e;
+  --ds:#06b6d4;--ds2:#22d3ee;--dsdim:rgba(6,182,212,.12);
+  --u1:#22d3ee;--u2:#10b981;--u3:#ef4444;--u4:#a78bfa;--u4-bright:#c4b5fd;--u5:#f97316;
+  --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
+  --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
+  --sidebar-w:320px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.82;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+
+/* ── RESPONSIVE FLUID TYPOGRAPHY (IPHONE MINI TO 65" TV) ── */
+html{font-size:clamp(17px, 1.25vw + 12px, 22px);-webkit-text-size-adjust:100%;}
+@media(min-width:1400px){html{font-size:clamp(19px, 1.15vw + 10px, 24px);}}
+@media(min-width:1800px){html{font-size:clamp(21px, 1.1vw + 9px, 27px);}}
+@media(min-width:2400px){html{font-size:clamp(25px, 1.0vw + 8px, 32px);}}
+@media(min-width:3400px){html{font-size:35px;}}
+@media(max-width:900px){html{font-size:17.5px;}}
+@media(max-width:480px){html{font-size:16.8px;}}
+
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--u4);}
+
+/* ── LAYOUT — FILLS EXPANSIVE SCREENS ── */
+.layout{display:flex;width:100%;max-width:100%;}
+.content{
+  flex:1;
+  padding:clamp(28px,2.6vw,56px) clamp(24px,3.4vw,76px);
+  max-width:100%;
+  overflow-x:hidden;
+  min-width:0;
+}
+@media(min-width:1600px){.content{padding:clamp(36px,2.4vw,64px) clamp(44px,4vw,110px);}}
+@media(min-width:2200px){.content{padding:clamp(44px,2.2vw,76px) clamp(60px,4.5vw,150px);}}
+@media(min-width:3000px){.content{padding:clamp(54px,2vw,90px) clamp(80px,5vw,200px);}}
+
+/* ── TOP NAVIGATION ── */
+.topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.96);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+.topnav::-webkit-scrollbar{display:none;}
+.tnlabel{font-family:var(--mono);font-size:.65rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--u4);padding:15px 14px 15px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.tnlink{font-family:var(--mono);font-size:.7rem;padding:8px 14px;border-radius:6px;text-decoration:none;color:var(--dim2);white-space:nowrap;flex-shrink:0;transition:all .18s;border:1px solid transparent;}
+.tnlink:hover{color:var(--text);background:var(--surface2);}
+.tnlink.active{color:var(--u4-bright);background:rgba(167,139,250,.12);border-color:rgba(167,139,250,.35);}
+.tnlink.pred{color:var(--upred);background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.28);font-weight:600;}
+
+/* ── CREDIT BAND ── */
+.credit-band{background:#060f18;border-bottom:1px solid var(--border2);padding:11px 32px;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+.credit-text{font-family:var(--mono);font-size:.72rem;color:var(--dim2);}
+.credit-text span{color:var(--u4);font-weight:600;}
+.credit-link{font-family:var(--mono);font-size:.7rem;padding:4px 14px;border-radius:5px;border:1px solid var(--border);color:var(--dim2);text-decoration:none;transition:all .2s;}
+.credit-link:hover{border-color:var(--u4);color:var(--u4);}
+
+/* ── HERO ── */
+.hero{position:relative;overflow:hidden;padding:clamp(52px,5vw,90px) clamp(24px,4vw,84px) clamp(44px,4vw,72px);background:var(--bg);}
+.hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(167,139,250,.1) 1px,transparent 1px),radial-gradient(circle,rgba(6,182,212,.05) 1px,transparent 1px);background-size:44px 44px,88px 88px;background-position:0 0,22px 22px;animation:dotDrift 30s linear infinite;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 10% 50%,rgba(167,139,250,.09) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 85% 15%,rgba(6,182,212,.05) 0%,transparent 60%);pointer-events:none;}
+@keyframes dotDrift{0%{transform:translate(0,0);}100%{transform:translate(44px,44px);}}
+.hero-inner{position:relative;z-index:1;max-width:1800px;margin:0 auto;}
+.hero-tag{font-family:var(--mono);font-size:.74rem;color:var(--u4);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.hero-dot{width:8px;height:8px;border-radius:50%;background:var(--u4);box-shadow:0 0 14px var(--u4);animation:blink 2.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.hero h1{font-family:var(--head);font-weight:800;font-size:clamp(32px,5.2vw,76px);line-height:1.06;color:#fff;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero h1 span{color:var(--u4-bright);}
+.hero h1 em{color:var(--ds2);font-style:normal;}
+.hero-sub{color:var(--dim2);font-size:clamp(16px,1.4vw,21px);max-width:960px;line-height:1.82;margin-bottom:24px;}
+.hero-badges{display:flex;gap:9px;flex-wrap:wrap;}
+.badge{font-family:var(--mono);font-size:.7rem;padding:6px 15px;border-radius:6px;border:1px solid;font-weight:600;}
+.badge-p{color:var(--u4-bright);border-color:rgba(167,139,250,.35);background:rgba(167,139,250,.08);}
+.badge-gold{color:var(--upred);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.08);}
+.badge-c{color:var(--ds2);border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.08);}
+.badge-g{color:var(--u2);border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.08);}
+.badge-r{color:var(--u3);border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.08);}
+
+/* ── SIDEBAR NAVIGATION ── */
+.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);padding:28px 18px;border-right:1px solid var(--border);position:sticky;top:44px;height:calc(100vh - 44px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;flex-shrink:0;background:var(--bg);}
+.sidebar::-webkit-scrollbar{width:4px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.sidebar-title{font-family:var(--mono);font-size:.65rem;color:var(--u4);letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+.sidebar-close{display:none;background:none;border:1px solid var(--border);border-radius:4px;color:var(--dim2);cursor:pointer;padding:2px 9px;font-family:var(--mono);font-size:.7rem;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:7px;cursor:pointer;font-family:var(--head);font-size:.9rem;font-weight:600;color:var(--dim2);transition:all .2s;margin-bottom:3px;text-decoration:none;line-height:1.3;}
+.nav-item:hover,.nav-item.active{background:var(--surface2);color:var(--text);}
+.nav-item.active{color:var(--u4-bright);border-left:3px solid var(--u4);padding-left:10px;}
+.nav-imp{margin-left:auto;font-family:var(--mono);font-size:.64rem;padding:2px 8px;border-radius:4px;background:var(--surface2);white-space:nowrap;font-weight:600;}
+.nav-imp.high{color:var(--u3);background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);}
+.nav-imp.med{color:var(--upred);background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);}
+.nav-imp.pred{color:var(--u4-bright);background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.3);}
+.sidebar-toggle{display:none;position:fixed;bottom:22px;right:22px;z-index:1000;width:52px;height:52px;border-radius:50%;background:var(--u4);border:none;cursor:pointer;font-size:22px;color:#000;align-items:center;justify-content:center;box-shadow:0 6px 28px rgba(167,139,250,.5);transition:transform .2s;}
+.sidebar-toggle:hover{transform:scale(1.08);}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:98;backdrop-filter:blur(4px);}
+.sidebar-overlay.visible{display:block;}
+
+/* ── CONTENT SECTIONS ── */
+.section{margin-bottom:80px;scroll-margin-top:64px;}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.section-num{font-family:var(--mono);font-size:.76rem;color:var(--u4);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);padding:6px 12px;border-radius:6px;min-width:44px;text-align:center;font-weight:700;}
+.section-title{font-family:var(--head);font-size:clamp(22px,2.6vw,38px);font-weight:800;color:#fff;letter-spacing:-.4px;}
+
+/* ── THEORY BLOCKS ── */
+.theory-block{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:clamp(22px,2.5vw,42px) clamp(24px,3vw,50px);margin-bottom:24px;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.theory-block h3{font-family:var(--head);font-size:clamp(18px,1.7vw,25px);font-weight:700;color:var(--u4-bright);margin-bottom:14px;letter-spacing:-.2px;}
+.theory-block h3.cyan{color:var(--ds2);}
+.theory-block h3.gold{color:var(--upred);}
+.theory-block h3.green{color:var(--u2);}
+.theory-block h3.red{color:var(--u3);}
+.theory-block p{margin-bottom:14px;font-size:1rem;line-height:1.92;color:#e2e8f0;}
+.theory-block p:last-child{margin-bottom:0;}
+.theory-block ul,.theory-block ol{padding-left:26px;margin:12px 0 16px;}
+.theory-block li{margin-bottom:10px;font-size:1rem;line-height:1.82;color:#cbd5e1;}
+.theory-block strong{color:#ffffff;font-weight:600;}
+.theory-block em{color:var(--u4-bright);font-style:italic;}
+h4{font-family:var(--head);font-size:1.1rem;font-weight:700;color:var(--text);margin:22px 0 12px;letter-spacing:-.2px;}
+
+/* ── LAYMAN EXPLANATION BOX ── */
+.layman{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.24);border-left:4px solid var(--u4);border-radius:10px;padding:16px 22px;font-family:var(--mono);font-size:.84rem;color:#e9d5ff;margin:18px 0;line-height:1.8;}
+.layman::before{content:'💬 LAYMAN EXPLANATION: ';color:var(--u4-bright);font-weight:700;font-size:.85rem;display:inline-block;margin-right:6px;}
+
+/* ── FORMULA & CODE BOXES ── */
+.fbox{background:#03080e;border:1px solid rgba(167,139,250,.25);border-left:4px solid var(--u4);border-radius:12px;padding:18px 24px;margin:20px 0;font-family:var(--mono);font-size:.84rem;color:#c4b5fd;overflow-x:auto;line-height:1.75;box-shadow:inset 0 2px 10px rgba(0,0,0,.5);}
+.fbox .flbl{font-size:.68rem;color:#94a3b8;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;display:block;font-weight:600;}
+.fbox .fl{color:#f5f3ff;font-size:.88rem;display:block;white-space:pre-wrap;font-family:var(--mono);}
+.fbox .fn{color:#94a3b8;font-size:.76rem;margin-top:10px;display:block;font-style:italic;border-top:1px dashed rgba(25,51,68,.85);padding-top:8px;}
+
+/* ── TIP BOXES (TRICK, CONNECT, WARNING, VALIDATE, PRED-TIP) ── */
+.tip-box{border-radius:12px;padding:18px 22px;margin:18px 0;display:flex;gap:14px;align-items:flex-start;}
+.tip-box.trick{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.28);}
+.tip-box.connect{background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.28);}
+.tip-box.warning{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.28);}
+.tip-box.validate{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.28);}
+.tip-box.pred-tip{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.32);border-left:4px solid var(--upred);}
+.tip-icon{font-size:22px;flex-shrink:0;margin-top:2px;}
+.tip-content{flex:1;}
+.tip-title{font-family:var(--head);font-size:.88rem;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+.tip-box.trick .tip-title{color:var(--gold);}
+.tip-box.connect .tip-title{color:var(--ds2);}
+.tip-box.warning .tip-title{color:var(--u3);}
+.tip-box.validate .tip-title{color:var(--u4-bright);}
+.tip-box.pred-tip .tip-title{color:var(--upred);}
+.tip-content p{font-size:.95rem;color:var(--text);margin:0;line-height:1.78;}
+
+/* ── TABLES ── */
+.comp-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.9rem;display:block;overflow-x:auto;}
+.comp-table th{background:var(--surface2);padding:12px 16px;text-align:left;font-family:var(--head);font-weight:700;color:var(--u4-bright);border-bottom:1px solid var(--border);white-space:nowrap;}
+.comp-table td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;color:#cbd5e1;line-height:1.7;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table tr:hover td{background:rgba(16,34,48,.6);}
+.comp-table td.num{font-family:var(--mono);color:#67e8f9;white-space:nowrap;}
+.comp-table td strong{color:#ffffff;}
+
+/* ── PREDICTED BANNER IN TOPICS ── */
+.pred-banner{background:linear-gradient(135deg,rgba(245,158,11,.12),rgba(167,139,250,.08));border:1px solid rgba(245,158,11,.35);border-left:4px solid var(--upred);border-radius:10px;padding:14px 20px;margin:18px 0;font-family:var(--mono);font-size:.82rem;color:var(--upred);display:flex;gap:12px;align-items:flex-start;font-weight:600;}
+.pred-banner .pb-text{line-height:1.72;}
+
+/* ── IMPORTANCE BARS ── */
+.imp-bar-wrap{margin-bottom:16px;}
+.imp-bar-label{font-family:var(--mono);font-size:.78rem;color:var(--dim2);margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;}
+.imp-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.imp-bar-fill{height:100%;border-radius:4px;}
+.ibf-hot{background:var(--u3);}
+.ibf-high{background:var(--u4);}
+.ibf-med{background:var(--upred);}
+
+/* ── DIAGRAM CONTAINER ── */
+.diagram-wrap{background:#04090e;border:1px solid var(--border);border-radius:14px;padding:24px;margin:22px 0;text-align:center;overflow-x:auto;box-shadow:inset 0 2px 14px rgba(0,0,0,.6);}
+.diagram-wrap svg{display:block;margin:0 auto;max-width:960px;width:100%;height:auto;}
+.diagram-cap{font-family:var(--mono);font-size:.75rem;color:var(--dim2);margin-top:14px;text-align:center;}
+
+/* ── HIGHLIGHT HELPERS ── */
+.hl-v{color:var(--ds2);font-weight:600;}
+.hl-p{color:var(--u4-bright);font-weight:600;}
+.hl-g{color:var(--u2);font-weight:600;}
+.hl-r{color:var(--u3);font-weight:600;}
+.hl-gold{color:var(--upred);font-weight:600;}
+code{font-family:var(--mono);background:var(--surface2);padding:2px 7px;border-radius:4px;font-size:.84rem;color:var(--u4-bright);}
+
+/* ── PYQ ITEMS ── */
+.pyq-section{background:#050f17;border:1px solid rgba(245,158,11,.28);border-radius:16px;padding:clamp(22px,2.5vw,36px) clamp(22px,3vw,44px);margin-top:32px;box-shadow:0 8px 30px rgba(0,0,0,.35);}
+.pyq-header{font-family:var(--head);font-size:1.12rem;font-weight:700;color:var(--upred);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.pyq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:18px;}
+.pyq-q-text{font-family:var(--head);font-size:1.02rem;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.45;}
+.pyq-meta{font-family:var(--mono);font-size:.7rem;color:var(--dim2);margin-bottom:12px;display:flex;gap:10px;flex-wrap:wrap;}
+.topic-tag{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);color:var(--u4-bright);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;font-weight:600;}
+.pred-tag{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--upred);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;font-weight:600;}
+.unit-tag{background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.22);color:var(--ds2);padding:2px 10px;border-radius:4px;font-family:var(--mono);font-size:.68rem;}
+.pyq-toggle{background:rgba(16,34,48,.8);border:1px solid var(--border);border-radius:6px;padding:8px 18px;cursor:pointer;font-family:var(--mono);font-size:.76rem;color:var(--upred);margin-top:10px;transition:all .2s;font-weight:600;}
+.pyq-toggle:hover{background:var(--upred);color:#000;}
+.answer-content{display:none;margin-top:16px;font-size:.96rem;line-height:1.92;padding-top:14px;border-top:1px solid var(--border);}
+.answer-content.open{display:block;}
+.answer-content strong{color:var(--u4-bright);}
+.answer-content ul,.answer-content ol{padding-left:22px;margin:10px 0;}
+.answer-content li{margin-bottom:8px;color:#e2e8f0;}
+
+/* ── PREDICTED PAPER SECTION ── */
+.predicted-section{background:linear-gradient(180deg,#04090e 0%,#020608 100%);border-top:1px solid rgba(167,139,250,.25);border-bottom:1px solid rgba(167,139,250,.25);}
+.pred-inner{max-width:100%;margin:0 auto;padding:clamp(44px,4vw,76px) clamp(24px,3.5vw,80px);}
+.pred-badge{display:inline-block;font-family:var(--mono);font-size:.76rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:6px 16px;border-radius:9999px;margin-bottom:16px;font-weight:600;}
+.pred-sec-title{font-family:var(--head);font-size:clamp(26px,3.2vw,44px);font-weight:800;color:#fff;margin-bottom:8px;}
+.pred-sec-sub{font-family:var(--mono);font-size:.74rem;color:var(--dim2);letter-spacing:1px;margin-bottom:16px;}
+.pred-intro{font-family:var(--body);font-size:clamp(.92rem,.2vw + .86rem,1.06rem);color:#94a3b8;max-width:1150px;line-height:1.82;margin-bottom:22px;}
+.disc-box{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:16px 20px;margin-bottom:26px;display:flex;gap:12px;align-items:flex-start;}
+.disc-box p{font-size:.88rem;color:#f1f5f9;line-height:1.75;}
+.pred-grid{display:flex;flex-direction:column;gap:clamp(18px,2vw,26px);margin-top:24px;width:100%;}
+.pred-card{background:rgba(12,28,40,.68);border:1px solid var(--border);border-left:4px solid var(--u4);border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.3);}
+.pred-card-head{display:flex;flex-wrap:wrap;align-items:center;padding:clamp(20px,2.2vw,30px);gap:8px 12px;}
+.pred-part{order:1;font-family:var(--mono);font-size:.7rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+.pred-unit{order:2;font-family:var(--mono);font-size:.68rem;color:var(--u4-bright);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);padding:3px 10px;border-radius:5px;}
+.pred-conf{order:3;margin-left:auto;font-family:var(--mono);font-size:.68rem;padding:3px 10px;border-radius:5px;font-weight:600;}
+.pred-conf.high{color:#f87171;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);}
+.pred-conf.med{color:#fbbf24;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);}
+.pred-q{order:4;width:100%;font-family:var(--head);font-size:clamp(1.1rem,1.2vw + .65rem,1.5rem);font-weight:700;color:#fff;line-height:1.38;margin:8px 0 6px;}
+.pred-reason{order:5;width:100%;font-size:clamp(.86rem,.18vw + .8rem,.96rem);color:#94a3b8;line-height:1.75;background:rgba(5,12,15,.5);border-left:3px solid var(--u4);padding:10px 16px;border-radius:0 8px 8px 0;}
+.pred-answer-toggle{width:100%;padding:12px 24px;background:rgba(16,34,48,.75);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.76rem;color:var(--u4-bright);text-align:left;transition:all .2s;display:flex;align-items:center;justify-content:space-between;font-weight:600;}
+.pred-answer-toggle:hover{background:rgba(167,139,250,.18);color:#fff;}
+.pred-answer{display:none;padding:clamp(24px,3vw,38px) clamp(20px,2.5vw,34px);border-top:1px solid rgba(167,139,250,.2);background:rgba(5,12,15,.9);}
+.pred-answer.open{display:block;animation:fadeAns .2s ease-out;}
+@keyframes fadeAns{from{opacity:0;transform:translateY(-3px);}to{opacity:1;transform:translateY(0);}}
+.pred-answer p{font-size:.96rem;line-height:1.92;margin-bottom:14px;max-width:98ch;color:#e2e8f0;}
+.pred-answer strong{color:var(--u4-bright);}
+.pred-answer ul,.pred-answer ol{padding-left:24px;margin:10px 0 16px;max-width:98ch;}
+.pred-answer li{margin-bottom:8px;font-size:.94rem;color:#cbd5e1;}
+
+/* ── PREP BOX ── */
+.prep-box{background:linear-gradient(135deg,rgba(167,139,250,.08) 0%,rgba(6,182,212,.04) 100%);border:1px solid rgba(167,139,250,.3);border-radius:16px;padding:clamp(24px,3vw,38px) clamp(22px,3.2vw,44px);margin-top:34px;box-shadow:0 8px 30px rgba(0,0,0,.3);}
+.prep-box h3{font-family:var(--head);font-size:clamp(1.15rem,1.4vw,1.45rem);font-weight:700;color:var(--u4-bright);margin-bottom:16px;}
+.prep-box p{font-size:.94rem;line-height:1.88;color:#e2e8f0;margin-bottom:12px;}
+.prep-box strong{color:#fff;}
+
+/* ── SITE FOOTER ── */
+.site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:30px 5vw;text-align:center;font-family:var(--mono);font-size:.74rem;color:var(--dim);}
+.site-footer a{color:var(--dim2);text-decoration:none;margin:0 12px;transition:color .2s;}
+.site-footer a:hover{color:var(--u4-bright);}
+.footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px;}
+
+/* ── RESPONSIVE OVERRIDES ── */
+@media(max-width:1100px){:root{--sidebar-w:280px;}}
+@media(max-width:900px){
+  .sidebar{position:fixed;top:0;left:0;height:100vh;z-index:99;background:var(--bg);transform:translateX(-100%);border-right:1px solid var(--border);transition:transform .3s ease;width:var(--sidebar-w);}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 40px rgba(0,0,0,.9);}
+  .sidebar-close{display:block;}
+  .sidebar-toggle{display:flex;}
+  .content{max-width:100%;padding:26px 18px;}
+  .pred-inner{padding:40px 18px;}
+}
+@media(max-width:600px){
+  .hero{padding:42px 16px 36px;}
+  .theory-block{padding:20px 16px;border-radius:12px;}
+  .pyq-section{padding:18px 14px;}
+  .pred-card-head{padding:18px 14px;}
+  .pred-answer{padding:20px 14px;}
+  .pred-conf{margin-left:0;}
+  .dbox svg{min-width:440px;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<nav class="topnav">
+  <span class="tnlabel">EEDM · RTU</span>
+  <a class="tnlink" href="index.html">🏠 Home</a>
+  <a class="tnlink" href="unit1.html">🌱 U1: Introduction</a>
+  <a class="tnlink" href="unit2.html">🚰 U2: Water Supply System</a>
+  <a class="tnlink" href="unit3.html">💧 U3: Drinking Water Quality</a>
+  <a class="tnlink active" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
+  <a class="tnlink" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink pred" href="index.html#predicted-midterm-2">🔮 Predicted Midterm 2</a>
+  <a class="tnlink" href="pyq.html">📋 Solved PYQs</a>
+</nav>
+
+<!-- CREDIT BAND -->
+<div class="credit-band">
+  <div class="credit-text">Crafted by <span>Mahansh Gaur</span> · B.Tech RTU Jaipur</div>
+  <a class="credit-link" href="https://www.instagram.com/mahaanshgaur_6513" target="_blank">📸 @mahaanshgaur_6513</a>
+  <a class="credit-link" href="https://github.com/mahanshstarktech" target="_blank">🐙 GitHub</a>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="hero-dot"></span>🚿 B.Tech VII Sem · RTU Kota · 7AG6-60.2 · Unit 4 · Mid-Term 2 Core Unit</div>
+    <h1>Domestic Wastewater, Sewers &amp;<br><span>Hydraulic Design</span> &amp; <em>Treatment</em></h1>
+    <p class="hero-sub">Master Unit 4 from absolute scratch — domestic wastewater quantity and characteristics (physical, chemical, BOD/COD, biological), disposal in urban/rural areas by dilution and land treatment, sewage sickness and its prevention, sewer materials and non-circular shapes, hydraulic design equations (Manning, Chezy, Bazin) with non-silting/non-scouring velocity limits, plus step-by-step wastewater treatment. All RTU PYQs 2021–2025 solved with 2026 Midterm 2 predicted anchors highlighted.</p>
+    <div class="hero-badges">
+      <span class="badge badge-p">🔥 14 Marks in 2025 Paper · Heavy Weightage</span>
+      <span class="badge badge-gold">🔮 4 of 7 Midterm 2 Predicted Qs from Unit 4</span>
+      <span class="badge badge-c">All 9 Sewer Cross-Sections Illustrated</span>
+      <span class="badge badge-g">Complete Wastewater Treatment Plant Flowsheet</span>
+      <span class="badge badge-r">BOD, COD, DO &amp; Self-Cleansing Velocity Laws</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIDEBAR OVERLAY & TOGGLE -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+<button class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
+
+<div class="layout">
+<!-- SIDEBAR NAVIGATION -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Unit 4 Syllabus</div>
+    <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+  </div>
+  <a class="nav-item" href="#overview">📊 Weightage &amp; Strategy</a>
+  <a class="nav-item" href="#basics">🚿 Wastewater Basics &amp; Terms<span class="nav-imp pred">🔮 Q2</span></a>
+  <a class="nav-item" href="#quantity">📈 Quantity: DWF &amp; Stormwater<span class="nav-imp high">75%</span></a>
+  <a class="nav-item" href="#characteristics">⚗️ Wastewater Characteristics<span class="nav-imp pred">🔮 Q1, Q4</span></a>
+  <a class="nav-item" href="#disposal">🌍 Disposal: Dilution vs Land<span class="nav-imp high">80%</span></a>
+  <a class="nav-item" href="#sickness">🌾 Sewage Sickness of Land<span class="nav-imp high">85%</span></a>
+  <a class="nav-item" href="#sewers-types">🧱 Sewer Materials &amp; Shapes<span class="nav-imp pred">🔮 Q2, Q6</span></a>
+  <a class="nav-item" href="#hydraulic-design">🌊 Hydraulic Design &amp; Velocity<span class="nav-imp pred">🔮 Q6</span></a>
+  <a class="nav-item" href="#treatment">🏭 Wastewater Treatment Train<span class="nav-imp high">90%</span></a>
+  <a class="nav-item" href="#predicted">🔮 2026 Midterm 2 Predicted</a>
+  <a class="nav-item" href="#pyq-master">📝 Master RTU PYQ Solutions</a>
+</nav>
+
+<main class="content">
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 00: TOPIC IMPORTANCE & EXAM CRACKING STRATEGY
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="overview">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <h2 class="section-title">Topic Importance &amp; Exam Strategy — Unit 4</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>Exam Blueprint: Why Unit 4 Decides Your Score</h3>
+    <p>Unit 4 carries <strong>10 teaching hours</strong> in the RTU syllabus and forms the backbone of both <strong>Mid-Term 2</strong> (where it shares 50% of the paper with Unit 5) and the <strong>RTU End-Term</strong> (where it accounts for 20–25% of all questions). In the 2025 RTU end-term paper, Unit 4 questions appeared in <em>Part A (3 questions: BOD, sewer types, primary treatment)</em>, <em>Part B (2 questions: sewer hydraulics, wastewater characteristics)</em>, and in previous papers as 15-mark Part C long answers.</p>
+
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Wastewater Characteristics (Physical, Chemical: BOD/COD, Biological)</span><span style="color:#ef4444">95% — Every Paper</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-hot" style="width:95%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Sewer Shapes (Standard Egg, New Egg, Horseshoe, Circular) &amp; Materials</span><span style="color:#a78bfa">90% — Heavy in Slides &amp; PYQs</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:90%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Hydraulic Design &amp; Velocity Limits (Self-Cleansing vs Scouring)</span><span style="color:#a78bfa">85% — Core Concept</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:85%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Domestic Wastewater Treatment Plant Stages (Screening to Activated Sludge)</span><span style="color:#a78bfa">85% — Repeated Part B/C</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-high" style="width:85%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Sewage Sickness of Land &amp; Preventive Measures</span><span style="color:#fbbf24">80% — Favorite Theory Topic</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:80%"></div></div>
+    </div>
+    <div class="imp-bar-wrap">
+      <div class="imp-bar-label"><span>Quantity of Wastewater: DWF, Infiltration &amp; Rational Method</span><span style="color:#fbbf24">70% — Formula &amp; Theory</span></div>
+      <div class="imp-bar"><div class="imp-bar-fill ibf-med" style="width:70%"></div></div>
+    </div>
+  </div>
+
+  <div class="tip-box trick">
+    <div class="tip-icon">⚡</div>
+    <div class="tip-content">
+      <div class="tip-title">RTU Theory Exam Hack: The "3-Tier Answer Template"</div>
+      <p>RTU evaluators check hundreds of copies under strict time pressure. To score 90%+ marks on any Unit 4 question, structure your answer into three visible tiers: <strong>(1) Bold 25-word definition</strong> with its layman takeaway, <strong>(2) A neat, labeled schematic sketch</strong> (e.g., egg-shaped sewer geometry or treatment flow diagram), and <strong>(3) A numbered bullet list or parameter comparison table</strong> with standard Indian values. Never write an unstructured wall of text.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 01: WASTEWATER BASICS & TERMINOLOGY
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="basics">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Wastewater Basics: Definitions &amp; Core Concepts</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 &amp; ASKED IN 2024 (Q6) &amp; 2023 (Q3): "What do you mean by wastewater?" and "What is sewage?"</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is Wastewater?</h3>
+    <p><strong>Wastewater</strong> is any liquid that contains dissolved or suspended impurities and pollutants in such a concentration that it becomes offensive, toxic, or hazardous to human health and the natural environment if discharged without treatment. It is the spent or used water discharged from residences, commercial complexes, public institutions, and industrial facilities.</p>
+
+    <div class="layman">
+      Think of clean drinking water that entered your house through the municipal pipe. The moment you use it for bathing, flushing, washing utensils, or running the washing machine, it gets dirty and flows down the drain. That used dirty water is <strong>wastewater</strong>.
+    </div>
+
+    <h4>The Three Critical Terms You Must Never Confuse in Exams:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Term</th>
+          <th>Technical Definition</th>
+          <th>Layman Meaning</th>
+          <th>Physical Nature</th>
+        </tr>
+        <tr>
+          <td><strong>Sewage</strong></td>
+          <td>The actual liquid waste generated from a community containing human excreta, wash water, food scraps, and sullage.</td>
+          <td>The dirty liquid flowing inside the pipe.</td>
+          <td>99.5% to 99.9% water + 0.1% to 0.5% organic and inorganic solids.</td>
+        </tr>
+        <tr>
+          <td><strong>Sewer</strong></td>
+          <td>An underground pipe or conduit specifically designed to collect and convey sewage under atmospheric pressure (gravity flow).</td>
+          <td>The underground pipe itself.</td>
+          <td>Concrete, vitrified clay, cast iron, or plastic pipeline laid on a downward slope.</td>
+        </tr>
+        <tr>
+          <td><strong>Sewerage</strong></td>
+          <td>The complete comprehensive civil engineering system consisting of sewers, manholes, pumping stations, and treatment plants for collection, conveyance, and safe disposal.</td>
+          <td>The entire infrastructure network.</td>
+          <td>The whole government department / city sanitation network.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>Classification of Domestic Wastewater: Blackwater vs Greywater</h4>
+    <p>Domestic wastewater generated inside houses is fundamentally divided into two streams based on contamination levels:</p>
+    <ul>
+      <li><strong>Blackwater (Foul Sewage):</strong> Wastewater originating exclusively from toilets and urinals. It contains human faeces, urine, paper, and millions of enteric pathogens (bacteria, viruses). It has very high BOD, high nitrogen, and poses severe epidemic risks.</li>
+      <li><strong>Greywater (Sullage):</strong> Wastewater originating from household washing activities — bathrooms, showers, washbasins, laundry, and kitchen sinks. It does <em>not</em> contain human excreta. It contains soap, grease, detergents, food particles, and hair. It has lower BOD and can be relatively easily recycled for flushing or landscaping irrigation.</li>
+      <li><strong>Stormwater:</strong> Rainwater runoff from rooftops, paved roads, and street pavements. While cleaner initially, its first flush washes street oils, tire dust, and animal waste.</li>
+    </ul>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 760 270" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <rect x="280" y="10" width="200" height="42" rx="8" fill="#152432" stroke="#a78bfa" stroke-width="2"/>
+        <text x="380" y="36" fill="#c4b5fd" font-family="JetBrains Mono, monospace" font-size="13" font-weight="bold" text-anchor="middle">TOTAL WASTEWATER</text>
+        
+        <!-- Lines from top -->
+        <path d="M380 52 L380 75 L120 75 L120 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+        <path d="M380 52 L380 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+        <path d="M380 52 L380 75 L640 75 L640 100" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+
+        <!-- 3 Main branches -->
+        <rect x="40" y="100" width="160" height="38" rx="6" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="120" y="124" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Stormwater Runoff</text>
+        
+        <rect x="300" y="100" width="160" height="38" rx="6" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+        <text x="380" y="124" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Industrial Wastewater</text>
+        
+        <rect x="560" y="100" width="160" height="38" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="2"/>
+        <text x="640" y="124" fill="#c4b5fd" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">Domestic Wastewater</text>
+
+        <!-- Domestic sub branches -->
+        <path d="M640 138 L640 160 L540 160 L540 180" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+        <path d="M640 138 L640 160 L740 160 L740 180" fill="none" stroke="#6090a8" stroke-width="1.5"/>
+
+        <rect x="470" y="180" width="140" height="36" rx="6" fill="#102230" stroke="#10b981" stroke-width="1.5"/>
+        <text x="540" y="202" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="bold" text-anchor="middle">Greywater (Sullage)</text>
+
+        <rect x="670" y="180" width="140" height="36" rx="6" fill="#102230" stroke="#ef4444" stroke-width="1.5"/>
+        <text x="740" y="202" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="bold" text-anchor="middle">Blackwater (Toilets)</text>
+
+        <!-- Details -->
+        <text x="540" y="235" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Baths · Sinks · Laundry</text>
+        <text x="540" y="250" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">(Lower BOD, reusable)</text>
+
+        <text x="740" y="235" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Faeces · Urine</text>
+        <text x="740" y="250" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">(High BOD &amp; Pathogens)</text>
+      </svg>
+      <div class="diagram-cap">Fig 4.1 — Complete Classification Hierarchy of Urban Wastewater</div>
+    </div>
+  </div>
+
+  <div class="tip-box connect">
+    <div class="tip-icon">🔗</div>
+    <div class="tip-content">
+      <div class="tip-title">Connection to Unit 2 (Water Demand)</div>
+      <p>Remember in Unit 2 where we solved Urban Water Requirement as <strong>135 to 150 LPCD</strong>? In sanitary engineering, environmental engineers assume that approximately <strong>75% to 80%</strong> of that municipal clean water supply turns directly into sewage (Dry Weather Flow). Thus, for a city supplied with 150 LPCD, about <strong>112 to 120 LPCD</strong> of sewage enters the sewers each day!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 02: QUANTITY OF WASTEWATER & STORMWATER
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="quantity">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Quantity Estimation: Dry Weather Flow &amp; Stormwater</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. Dry Weather Flow (D.W.F.)</h3>
+    <p><strong>Dry Weather Flow (DWF)</strong> is the normal volume of wastewater that flows through the sewer system during dry periods when there is zero precipitation or rainfall. It consists of two components: <em>(1) Domestic or sanitary sewage</em> from households and public buildings, and <em>(2) Permitted industrial sewage</em>.</p>
+
+    <div class="fbox">
+      <span class="flbl">Basic Equation for D.W.F.</span>
+      <div class="fl">Q_DWF = (Per capita sewage contributed per day) × (Forecasted Design Population)
+
+Standard Rule:
+Per capita sewage ≈ 75% to 80% of per capita water supplied</div>
+      <div class="fn">If a city of 200,000 people receives 150 LPCD, then DWF = 200,000 × (0.80 × 150) = 24,000,000 Litres/day = 24 MLD (Million Litres per Day).</div>
+    </div>
+
+    <h4>Four Key Factors Governing the Quantity of D.W.F.:</h4>
+    <ol>
+      <li><strong>Rate of Municipal Water Supply:</strong> If water is supplied at high pressure or higher per-capita rate, consumption increases and pipe/fixture leakage increases, directly increasing the sewage output.</li>
+      <li><strong>Population &amp; Design Period:</strong> Sewer systems must be designed not for today's population, but for the population forecasted 30–50 years into the future using geometric increase or incremental increase methods.</li>
+      <li><strong>Nature of Local Industries:</strong> Industrial areas (textile mills, slaughterhouses, chemical plants, breweries) generate heavy liquid effluents that dramatically inflate sewer volume.</li>
+      <li><strong>Infiltration and Exfiltration (Crucial Exam Concept):</strong>
+        <ul>
+          <li><strong>Infiltration:</strong> The unwanted leakage of underground water <em>into</em> the sewer pipe through cracked joints, damaged pipes, or loose manhole connections. Infiltration increases the hydraulic load on pipes and treatment plants.</li>
+          <li><strong>Exfiltration:</strong> The dangerous leakage of sewage <em>out</em> of the sewer pipe into the surrounding soil. This pollutes underground groundwater aquifers, wells, and causes soil contamination.</li>
+          <li><em>Exam Comparison:</em> <strong>Infiltration is preferred over exfiltration</strong> because while infiltration only increases pumping and plant cost, exfiltration directly poisons community drinking water aquifers!</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 700 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- Subsoil & Water table -->
+        <rect x="20" y="20" width="660" height="180" fill="#081420" stroke="#193344" stroke-width="1.5" rx="10"/>
+        <line x1="20" y1="65" x2="680" y2="65" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="35" y="55" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10">▼ Subsoil Ground Water Table (High Head)</text>
+
+        <!-- Sewer Pipe -->
+        <circle cx="230" cy="130" r="50" fill="#0d1f2e" stroke="#a78bfa" stroke-width="3"/>
+        <path d="M185 145 Q230 160 275 145" fill="#ef4444" opacity="0.4"/>
+        <text x="230" y="130" fill="#c4b5fd" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">INFILTRATION</text>
+        <!-- Inward arrows -->
+        <g stroke="#06b6d4" stroke-width="2" marker-end="url(#arr-in)">
+          <line x1="160" y1="100" x2="190" y2="115"/>
+          <line x1="230" y1="70" x2="230" y2="90"/>
+          <line x1="300" y1="100" x2="270" y2="115"/>
+        </g>
+        <text x="230" y="195" fill="#22d3ee" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Groundwater enters pipe (increases load)</text>
+
+        <!-- Exfiltration Pipe -->
+        <circle cx="490" cy="130" r="50" fill="#0d1f2e" stroke="#a78bfa" stroke-width="3"/>
+        <path d="M445 145 Q490 160 535 145" fill="#ef4444" opacity="0.6"/>
+        <text x="490" y="130" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">EXFILTRATION</text>
+        <!-- Outward arrows -->
+        <g stroke="#ef4444" stroke-width="2">
+          <line x1="450" y1="140" x2="420" y2="155"/>
+          <line x1="490" y1="170" x2="490" y2="190"/>
+          <line x1="530" y1="140" x2="560" y2="155"/>
+        </g>
+        <text x="490" y="195" fill="#f87171" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Raw sewage leaks OUT into soil &amp; aquifers (DANGEROUS!)</text>
+      </svg>
+      <div class="diagram-cap">Fig 4.2 — Infiltration vs Exfiltration Mechanics in Underground Sewers</div>
+    </div>
+
+    <h4>Standard Design Periods of Sewerage Components (Memorise for MCQs/Part A):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Component</th>
+          <th>Design Period (Years)</th>
+          <th>Engineering Justification</th>
+        </tr>
+        <tr>
+          <td><strong>Laterals (&lt; 15 cm diameter)</strong></td>
+          <td class="num">Full development (~50 yr)</td>
+          <td>Digging up narrow city lanes to replace laterals causes massive urban paralysis and prohibitive cost.</td>
+        </tr>
+        <tr>
+          <td><strong>Branch &amp; Main Sewers</strong></td>
+          <td class="num">30 to 50 years</td>
+          <td>Deep excavation and pipe laying under main arterial roads must last decades.</td>
+        </tr>
+        <tr>
+          <td><strong>Wastewater Treatment Plant (STP)</strong></td>
+          <td class="num">15 to 30 years</td>
+          <td>Modular units (tanks, filters) can be expanded in phases as population grows.</td>
+        </tr>
+        <tr>
+          <td><strong>Pumping Machinery / Pumps</strong></td>
+          <td class="num">5 to 10 years</td>
+          <td>Mechanical pumps suffer abrasive wear quickly; newer, higher-efficiency motors can be dropped in easily.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>2. Stormwater (Wet Weather Flow - W.W.F.)</h3>
+    <p>Stormwater is surface water runoff resulting from heavy rainfall or melting snow. If not collected and transported via drains, it floods low-lying basements, paralyses traffic, creates stagnant unhygienic pools where mosquitoes breed, and destabilises building foundations.</p>
+
+    <div class="fbox">
+      <span class="flbl">1. The Rational Method (Standard Formula for Peak Runoff)</span>
+      <div class="fl">Q = (K × I × A) / 360
+
+Where:
+  Q = Peak runoff in m³/sec (discharge)
+  K = Impermeability factor (run-off coefficient, 0.1 for parks to 0.9 for asphalt/roofs)
+  I = Intensity of rainfall in mm/hour
+  A = Drainage catchment area in hectares (ha)</div>
+      <div class="fn">Factor 360 converts mm/hr × ha into m³/sec directly! Formula derived from: 1 ha = 10,000 m², 1 mm = 0.001 m, 1 hr = 3600 sec → 10,000 × 0.001 / 3600 = 1/360.</div>
+    </div>
+
+    <div class="fbox">
+      <span class="flbl">2. Empirical Formulas for Rainfall Intensity (Kuichling's Formula)</span>
+      <div class="fl">General Empirical Form:
+  R = 25.4 a / (t + b)   [where t = storm duration in minutes]
+
+Kuichling's Standard Equations:
+  • For storms occurring once in 10 years : i = 2667 / (t + 20)
+  • For storms occurring once in 15 years : i = 3048 / (t + 20)
+  • For frequent storms (5-year return)  : i = 3430 / (t + 18)
+  • For 1-year frequent storms           : i = 180 / √t</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 03: WASTEWATER CHARACTERISTICS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="characteristics">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Wastewater Characteristics: Physical, Chemical &amp; Biological</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q1 &amp; Q4) &amp; ASKED IN 2025 (Part A Q5, Part B Q5) AND 2024 (Part A Q7, Q8, Part B Q1): "Define BOD &amp; COD", "Explain physical, chemical and biological characteristics of domestic wastewater".</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>Overview of Characteristics</h3>
+    <p>Fresh domestic sewage is a turbid grey liquid with floating debris and an oily/soapy odour. As bacteria begin anaerobic digestion, it rapidly becomes septic, turning dark brown/black and releasing offensive toxic gases. Sanitary engineers evaluate wastewater along three pillars: <strong>Physical, Chemical, and Biological</strong>.</p>
+
+    <h4>1. Physical Characteristics</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th>Fresh Sewage</th>
+          <th>Septic / Stale Sewage</th>
+          <th>Significance &amp; Exam Notes</th>
+        </tr>
+        <tr>
+          <td><strong>Colour</strong></td>
+          <td>Greyish-brown (like soapy wash water)</td>
+          <td>Dark grey to deep black</td>
+          <td>Black colour is caused by the formation of insoluble iron sulfide (FeS) from reaction of $H_2S$ with iron in the sewage.</td>
+        </tr>
+        <tr>
+          <td><strong>Odour</strong></td>
+          <td>Mild, soapy or oily (inoffensive)</td>
+          <td>Offensive, putrid, rotten-egg smell</td>
+          <td>Septic odour is caused by anaerobic gases: Hydrogen sulfide ($H_2S$), Methane ($CH_4$), Mercaptans, and Ammonia ($NH_3$).</td>
+        </tr>
+        <tr>
+          <td><strong>Temperature</strong></td>
+          <td>Slightly higher than city water (~15–30°C)</td>
+          <td>Can reach 35–40°C in warm sewers</td>
+          <td>Higher temperature accelerates biological breakdown, reduces oxygen solubility, and increases sewer corrosion rates.</td>
+        </tr>
+        <tr>
+          <td><strong>Turbidity</strong></td>
+          <td>High (milky / muddy)</td>
+          <td>Extremely high</td>
+          <td>Caused by suspended fecal matter, grease, soap, paper, and colloidal particles (350–1200 mg/L).</td>
+        </tr>
+        <tr>
+          <td><strong>Total Solids</strong></td>
+          <td colspan="2">Typically 0.1% to 0.5% (remainder 99.5% to 99.9% is pure water!)</td>
+          <td>Divided into: (1) Suspended Solids (~300 mg/L), (2) Dissolved Solids (~500 mg/L), and (3) Settleable Solids.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>2. Chemical Characteristics (BOD, COD, DO, pH) — The Heart of EEDM</h4>
+    
+    <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
+      <h3 style="color:#f59e0b;font-size:1.15rem;">Biochemical Oxygen Demand (BOD) — 100% Exam Guarantee</h3>
+      <p><strong>Definition:</strong> BOD is the amount of dissolved oxygen (in mg/L or ppm) required by aerobic bacteria to biologically decompose and stabilize the <em>biodegradable organic matter</em> present in a wastewater sample under controlled incubation conditions at <strong>20°C for 5 days</strong>.</p>
+      
+      <div class="layman">
+        Imagine millions of microscopic bacteria feasting on the sewage food (poop, sugar, soap). To breathe while eating that food, they consume oxygen dissolved in the water. <strong>BOD is literally the amount of oxygen those bacteria breathe up in 5 days.</strong> High BOD = huge bacterial feast = super dirty water!
+      </div>
+
+      <div class="fbox">
+        <span class="flbl">BOD Calculation Formula (Dilution Method)</span>
+        <div class="fl">BOD_5 (mg/L) = (DO_initial - DO_final) × Dilution Factor
+
+Where:
+  DO_initial = Dissolved oxygen of diluted sample at Day 0 (mg/L)
+  DO_final   = Dissolved oxygen of diluted sample after 5 days at 20°C (mg/L)
+  Dilution Factor (DF) = (Total volume of diluted mixture) / (Volume of undiluted raw sewage)</div>
+        <div class="fn">Typical domestic sewage BOD ≈ 100 to 300 mg/L (average Indian domestic sewage is ~150–200 mg/L). Pure drinking water has BOD = 0 mg/L!</div>
+      </div>
+    </div>
+
+    <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
+      <h3 style="color:#22d3ee;font-size:1.15rem;">Chemical Oxygen Demand (COD)</h3>
+      <p><strong>Definition:</strong> COD is the amount of oxygen required to chemically oxidize <em>both biodegradable and non-biodegradable organic matter</em> present in wastewater into carbon dioxide ($CO_2$) and water ($H_2O$) using a strong boiling chemical oxidizing agent (Potassium Dichromate, $K_2Cr_2O_7$) in acidic medium ($H_2SO_4$).</p>
+      
+      <div class="layman">
+        BOD only measures what living bacteria can digest. But chemicals like plastic additives, lignin, and industrial solvents cannot be eaten by bacteria. <strong>COD burns everything chemically</strong> in 2 hours with acid and oxidant. That is why COD is always bigger than BOD!
+      </div>
+
+      <div class="fbox">
+        <span class="flbl">BOD vs COD Universal Rules</span>
+        <div class="fl">1. COD is ALWAYS strictly greater than BOD (COD > BOD).
+2. For typical domestic sewage:
+     BOD ≈ 80 - 200 mg/L
+     COD ≈ 150 - 450 mg/L
+     Ratio (BOD / COD) ≈ 0.5 to 0.65  (Indicates good biodegradability)
+3. If BOD / COD < 0.2, the waste contains toxic or non-biodegradable industrial chemicals!</div>
+      </div>
+    </div>
+
+    <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
+      <h3 style="color:#10b981;font-size:1.15rem;">Dissolved Oxygen (DO) &amp; Total Organic Carbon (TOC)</h3>
+      <p><strong>Dissolved Oxygen (DO):</strong> The amount of free $O_2$ dissolved in the wastewater. In fresh raw sewage, DO is nearly zero (0–1 mg/L). <em>Regulatory Mandate:</em> When treated sewage is discharged into a river or lake, a minimum of <strong>4.0 mg/L (4 ppm) of DO</strong> must be sustained in the receiving stream at all times to prevent fish kills and maintain aquatic fauna.</p>
+      <p><strong>Total Organic Carbon (TOC):</strong> An instrumental test (combustion catalytic oxidation) that directly measures the organic carbon concentration in mg/L in just 5–10 minutes.</p>
+      <p><strong>pH of Wastewater:</strong> Fresh sewage is slightly alkaline or neutral (pH 7.3 to 7.8). In the sewer, anaerobic decomposition forms volatile fatty acids and $H_2S$, dropping the pH to acidic levels (5.5 to 6.5).</p>
+    </div>
+
+    <h4>3. Biological / Bacteriological Characteristics</h4>
+    <p>Raw domestic sewage contains roughly <strong>22 to 25 million microorganisms per litre</strong>. These are categorized into three groups based on their oxygen metabolism:</p>
+    <ul>
+      <li><strong>Aerobic Bacteria:</strong> Require free dissolved molecular oxygen ($O_2$) to survive. They oxidize organic carbon to $CO_2$, nitrogen to nitrates ($NO_3^-$), and sulfur to sulfates ($SO_4^{2-}$). They produce clean, odourless, stable end products.</li>
+      <li><strong>Anaerobic Bacteria:</strong> Thrive exclusively in the absence of free oxygen. They obtain oxygen by breaking down organic chemical compounds, producing foul-smelling reduced gases ($CH_4, H_2S, NH_3$).</li>
+      <li><strong>Facultative Bacteria:</strong> Extremely adaptable organisms that can survive and carry out stabilization in either the presence or absence of dissolved oxygen.</li>
+      <li><strong>Pathogenic Organisms:</strong> Disease-causing agents discharged in human faeces: <em>Salmonella typhi</em> (Typhoid), <em>Vibrio cholerae</em> (Cholera), <em>Shigella</em> (Bacillary dysentery), Hepatitis A virus, and parasitic worms.</li>
+    </ul>
+  </div>
+
+  <div class="tip-box validate">
+    <div class="tip-icon">✔️</div>
+    <div class="tip-content">
+      <div class="tip-title">Exam Validation Trick: BOD vs COD Values</div>
+      <p>In any numerical or descriptive question: <strong>COD must always exceed BOD</strong> (typically $\text{COD} \approx 1.5 \text{ to } 2 \times \text{BOD}$). If your answer sheet ever states $\text{BOD} > \text{COD}$, examiners immediately cut marks. Remember: COD oxidizes both biodegradable AND non-biodegradable matter, whereas BOD only oxidizes biodegradable matter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 04: DISPOSAL IN URBAN & RURAL AREAS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="disposal">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Disposal of Domestic Wastewater in Urban &amp; Rural Areas</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>Why Disposal Requires Engineered Methods</h3>
+    <p>Raw sewage cannot simply be dumped on open ground or into gullies. Uncontrolled disposal causes foul septic nuisances, fly and mosquito breeding, surface water contamination, and groundwater epidemic outbreaks. Sanitary engineers employ two primary natural disposal routes:</p>
+
+    <h4>1. Disposal by Dilution (Discharge into Water Bodies)</h4>
+    <p>In this method, raw or partially treated wastewater is discharged into large natural water bodies such as perennial rivers, lakes, creeks, estuaries, or oceans. The natural self-purification mechanisms of the receiving water body stabilize the remaining organic load over time.</p>
+
+    <div class="layman">
+      Disposal by dilution is like adding a single drop of ink into a swimming pool. If the river has a massive flow of clean water with lots of dissolved oxygen, the small sewage stream gets diluted, bacteria in the river eat the waste, and the river cleans itself.
+    </div>
+
+    <h4>Favourable Conditions for Disposal by Dilution (Must write in Part B/C):</h4>
+    <ol>
+      <li><strong>High Dilution Ratio:</strong> The volume of diluting water in the river or sea must be at least 150 to 500 times the volume of sewage discharge.</li>
+      <li><strong>High Dissolved Oxygen:</strong> Receiving river water must have high DO (at least 7–9 mg/L) so that decomposing sewage never drives river DO below 4.0 ppm.</li>
+      <li><strong>Favourable Currents:</strong> Water currents must sweep the discharged effluent away from city shores rather than piling it onto beaches.</li>
+      <li><strong>No Downstream Water Intake:</strong> The river stretch must NOT be used for public drinking water intakes or bathing for at least 15 to 25 km downstream.</li>
+      <li><strong>Fresh Sewage:</strong> Sewage must reach the outfall point within 4 to 5 hours of generation before becoming septic and foul.</li>
+    </ol>
+
+    <h4>The Self-Purification Zones of a Polluted River (Streeter-Phelps Principle):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Zone</th>
+          <th>Physical Appearance</th>
+          <th>DO Levels</th>
+          <th>Aquatic Life Status</th>
+        </tr>
+        <tr>
+          <td><strong>1. Zone of Degradation</strong></td>
+          <td>Turbid, dark water, floating scum, carbon dioxide bubbles.</td>
+          <td>DO drops rapidly from ~8 mg/L down to ~40% of saturation.</td>
+          <td>Fish become distressed; tubifex worms and sludge worms appear.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Zone of Active Decomposition</strong></td>
+          <td>Extremely dark, blackish, offensive odour of $H_2S$ and $CH_4$.</td>
+          <td>DO plummets to ZERO (complete anaerobic state).</td>
+          <td>All game fish die; only anaerobic bacteria and fungi survive.</td>
+        </tr>
+        <tr>
+          <td><strong>3. Zone of Recovery</strong></td>
+          <td>Water clears up, sunlight penetrates, algae emerge.</td>
+          <td>Atmospheric re-aeration raises DO back above 4.0 ppm.</td>
+          <td>Protozoa, rotifers, and tolerant fish return.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Zone of Clear Water</strong></td>
+          <td>Water returns to original clarity and natural stream appearance.</td>
+          <td>DO reaches near saturation (8–9 mg/L).</td>
+          <td>Normal game fish, aquatic flora, and clean stream ecology restored.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h4>2. Disposal by Land Treatment (Sewage Farming / Broad Irrigation)</h4>
+    <p>Raw or settled sewage is spread uniformly over agricultural soil. A fraction of the water evaporates, while the remainder percolates through the soil mantle where aerobic soil microorganisms digest the organic matter, and nutrients (Nitrogen, Phosphorus, Potassium) fertilize crops. The filtered subsoil water is collected via underground drains.</p>
+
+    <h4>Favourable Conditions for Land Treatment:</h4>
+    <ul>
+      <li><strong>Soil Texture:</strong> Sandy, loamy, or porous alluvial soils that provide rapid drainage and easy aeration. Heavy clay soil is unsuitable because it holds water and clogs rapidly.</li>
+      <li><strong>Groundwater Table:</strong> Deep water table (at least 3 to 4 metres below ground level even during rainy seasons) to prevent groundwater contamination.</li>
+      <li><strong>Rainfall &amp; Climate:</strong> Low annual rainfall with warm climate ensures high soil absorption capacity and rapid evaporation.</li>
+      <li><strong>Land Availability:</strong> Abundant, cheap, flat open land outside urban municipal limits.</li>
+      <li><strong>Crop Selection:</strong> High-yield non-food cash crops: cotton, timber, jute, sugarcane, fodder grasses. Raw salad vegetables (cabbage, carrots, tomatoes) must <em>never</em> be irrigated with sewage!</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 05: SEWAGE SICKNESS OF LAND
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="sickness">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Sewage Sickness of Land: Causes, Effects &amp; Prevention</h2>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. What is Sewage Sickness?</h3>
+    <p><strong>Sewage Sickness</strong> is a diseased, suffocated state of agricultural land caused by the continuous, excessive application of sewage without adequate resting periods. Over time, the soil pores, capillary voids, and interstices become choked with organic solids, fibrous residues, grease, and colloidal films. This completely halts the free circulation of atmospheric air into the soil.</p>
+    <p>As oxygen is cut off, aerobic soil bacteria die off and are replaced by <strong>anaerobic bacteria</strong>. Anaerobic fermentation produces foul-smelling, noxious gases ($H_2S, CH_4, NH_3$), the land turns into a stagnant, foul-smelling marsh, and the soil loses its agricultural fertility completely.</p>
+
+    <div class="layman">
+      Soil breathes air through its tiny pores just like your skin. If you continuously smear greasy, muddy sewage over a field without letting it dry, the soil pores get permanently choked. The land literally "chokes to death", stinks like rotten eggs, and can no longer grow any crops. That condition is called <strong>Sewage Sickness</strong>.
+    </div>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 740 240" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- Healthy Soil -->
+        <rect x="30" y="20" width="310" height="200" fill="#081420" stroke="#10b981" stroke-width="1.5" rx="10"/>
+        <text x="185" y="44" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">HEALTHY SEWAGE FARMING</text>
+        <circle cx="100" cy="90" r="14" fill="#102230" stroke="#6090a8"/>
+        <circle cx="170" cy="85" r="18" fill="#102230" stroke="#6090a8"/>
+        <circle cx="250" cy="95" r="16" fill="#102230" stroke="#6090a8"/>
+        <circle cx="130" cy="140" r="15" fill="#102230" stroke="#6090a8"/>
+        <circle cx="210" cy="145" r="17" fill="#102230" stroke="#6090a8"/>
+        <!-- Air flow arrows -->
+        <g stroke="#34d399" stroke-width="1.5" marker-end="url(#arr-air)">
+          <path d="M185 55 L185 75"/>
+          <path d="M135 105 L135 125"/>
+          <path d="M220 110 L220 130"/>
+        </g>
+        <text x="185" y="185" fill="#a7f3d0" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Open Voids → Free O₂ Air Circulation</text>
+        <text x="185" y="205" fill="#6ee7b7" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Aerobic decomposition · High crop fertility</text>
+
+        <!-- Sick Soil -->
+        <rect x="400" y="20" width="310" height="200" fill="#081420" stroke="#ef4444" stroke-width="1.5" rx="10"/>
+        <text x="555" y="44" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">SEWAGE SICKNESS OF LAND</text>
+        <!-- Choked pores -->
+        <rect x="430" y="70" width="250" height="85" fill="#2d1218" stroke="#ef4444" stroke-width="1" rx="6"/>
+        <text x="555" y="100" fill="#fca5a5" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Voids Clogged with Grease &amp; Sludge</text>
+        <text x="555" y="120" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">NO OXYGEN (ANAEROBIC)</text>
+        <text x="555" y="140" fill="#f87171" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Release of H₂S, CH₄ (Foul Odours)</text>
+        <text x="555" y="185" fill="#fca5a5" font-family="Outfit, sans-serif" font-size="11" text-anchor="middle">Land Waterlogged &amp; Marshy</text>
+        <text x="555" y="205" fill="#ef4444" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Crops wither and die · Zero yield</text>
+      </svg>
+      <div class="diagram-cap">Fig 4.3 — Soil Pore Mechanics: Healthy Aerated Soil vs Clogged Sewage-Sick Land</div>
+    </div>
+
+    <h4>2. Preventive and Remedial Measures (7 Bullet Points for Full Marks):</h4>
+    <ol>
+      <li><strong>Intermittent Application (Land Rest Periods):</strong> Sewage must never be applied continuously. Fields must be divided into plots and sewage applied on rotation (e.g., 2–3 days of sewage application followed by 10–14 days of resting and drying).</li>
+      <li><strong>Primary Pre-Treatment:</strong> Raw sewage must pass through screens and primary sedimentation tanks to remove grit, settleable solids, and grease before being discharged onto the soil.</li>
+      <li><strong>Crop Rotation:</strong> Rotate crops with differing rooting depths and nutrient uptakes. Deep-rooted fodder crops loosen the subsoil and reopen clogged channels.</li>
+      <li><strong>Subsoil Drainage (Under-drainage):</strong> Lay perforated agricultural tile drain pipes 1.0 to 1.5 m below ground level to drain away excess percolating water and prevent waterlogging.</li>
+      <li><strong>Controlled Depth of Application:</strong> Avoid deep flooding. Apply shallow, controlled layers of sewage suited to the soil's absorption capacity.</li>
+      <li><strong>Ploughing and Harrowing:</strong> When sick land is rested and dried, plow the surface deeply to break up the organic crust and re-expose soil particles to atmospheric oxygen.</li>
+      <li><strong>Alternative Disposal Provision:</strong> Maintain backup land or standby dilution facilities during peak monsoons when soil is naturally saturated with rainwater.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 06: SEWERS — TYPES, MATERIALS & SHAPES
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="sewers-types">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Sewers: Materials, Requirements &amp; Cross-Section Shapes</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q2 &amp; Q6) &amp; ASKED IN 2025 (Part A Q6: "Name two types of sewers") AND 2023 (Part B Q5: "Describe different types of sewer"): Heavy focus on sewer cross-section shapes and material selection!</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. Requirements of a Good Sewer Material</h3>
+    <p>Sewers are buried deep underground and subjected to soil loads, groundwater pressure, abrasive moving grit, and corrosive biogenic acids. A good sewer material must satisfy:</p>
+    <ul>
+      <li><strong>Resistance to Abrasion:</strong> Moving sewage carries hard silica sand and road grit at high velocities. The pipe interior must resist scour to preserve wall thickness.</li>
+      <li><strong>Resistance to Corrosion (Crown Rot Prevention):</strong> Anaerobic bacteria release hydrogen sulfide ($H_2S$) gas into the sewer headspace. Moisture and aerobic bacteria (<em>Thiobacillus</em>) on the sewer crown oxidize $H_2S$ into concentrated sulfuric acid ($H_2SO_4$). This destroys ordinary concrete pipes (a process called <strong>crown rot</strong>). Materials must resist acid attack!</li>
+      <li><strong>Structural Strength &amp; Imperviousness:</strong> Must withstand backfill earth pressure and vehicular traffic loads while preventing infiltration and exfiltration.</li>
+      <li><strong>Smooth Interior (Low Roughness $n$):</strong> High hydraulic efficiency with minimum friction coefficient.</li>
+    </ul>
+
+    <h4>Comparison of Sewer Pipe Materials:</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Material</th>
+          <th>Advantages</th>
+          <th>Disadvantages / Limitations</th>
+          <th>Typical Application</th>
+        </tr>
+        <tr>
+          <td><strong>Vitrified Clay / Stoneware</strong></td>
+          <td>100% resistant to chemical &amp; sulfuric acid corrosion; very smooth; highly durable.</td>
+          <td>Brittle, heavy, short pipe lengths (1–1.5 m), leaky joints if not socketed well.</td>
+          <td>House service connections, street laterals up to 300 mm diameter.</td>
+        </tr>
+        <tr>
+          <td><strong>RCC (Reinforced Concrete)</strong></td>
+          <td>High structural strength, available in huge diameters (up to 3 m), economical.</td>
+          <td>Vulnerable to biogenic sulfuric acid corrosion ($H_2SO_4$) at the pipe crown.</td>
+          <td>Main and trunk sewers carrying large gravity flows.</td>
+        </tr>
+        <tr>
+          <td><strong>Cast Iron (CI)</strong></td>
+          <td>High tensile strength, completely watertight, withstands heavy dynamic loads &amp; internal pressure.</td>
+          <td>Costly, heavy, subject to rust if unlined.</td>
+          <td>Pumping rising mains, outfall sewers under railways, bridges, and deep fills.</td>
+        </tr>
+        <tr>
+          <td><strong>HDPE / PVC / Plastic</strong></td>
+          <td>Completely immune to chemical corrosion, ultra-smooth ($n = 0.009$), lightweight, long lengths.</td>
+          <td>Can deform under heavy soil overburden if not properly bedded; expensive in large sizes.</td>
+          <td>Modern domestic building plumbing, industrial effluent conveyance.</td>
+        </tr>
+        <tr>
+          <td><strong>Brick Masonry</strong></td>
+          <td>Constructed in-situ into non-circular shapes (horseshoe, egg-shape).</td>
+          <td>High labour cost, mortar joints can erode.</td>
+          <td>Large combined storm outfall culverts.</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>2. Shapes of Sewer Pipes (Circular vs Non-Circular)</h3>
+    <p>While 90% of municipal sewers are circular, special non-circular cross-sections are constructed for combined systems and large outfall tunnels.</p>
+
+    <h4>Why Circular Sewers Dominate:</h4>
+    <ol>
+      <li><strong>Minimum Perimeter:</strong> A circle provides the maximum cross-sectional area for a given perimeter, which minimizes the quantity and cost of pipe material.</li>
+      <li><strong>Uniform Flow:</strong> Smooth boundary conditions mean no stagnant corners where sludge can deposit.</li>
+      <li><strong>Ease of Manufacturing &amp; Laying:</strong> Prefabricated concrete or clay pipes are easy to cast and handle.</li>
+    </ol>
+
+    <h4>Why Non-Circular Sewers are Used:</h4>
+    <p>In a <strong>combined sewerage system</strong>, the pipe must carry a gigantic volume of stormwater during monsoon downpours, but only a tiny trickle of domestic sewage during the 9 dry months of the year (DWF). If a large circular pipe is used, the DWF trickle spreads out into a paper-thin sheet across the wide bottom, the flow velocity drops near zero, and solids settle out, clogging the pipe. <strong>Non-circular shapes (especially egg-shaped) solve this by narrowing the bottom channel!</strong></p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 880 270" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <!-- 1. Circular -->
+        <g transform="translate(40, 20)">
+          <rect x="0" y="0" width="160" height="200" rx="8" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+          <text x="80" y="28" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">1. CIRCULAR</text>
+          <circle cx="80" cy="105" r="50" fill="#0d1f2e" stroke="#22d3ee" stroke-width="2"/>
+          <text x="80" y="172" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Most common</text>
+          <text x="80" y="188" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Least perimeter/material</text>
+        </g>
+
+        <!-- 2. Standard Egg Shaped -->
+        <g transform="translate(240, 20)">
+          <rect x="0" y="0" width="180" height="200" rx="8" fill="#081420" stroke="#a78bfa" stroke-width="2"/>
+          <text x="90" y="28" fill="#c4b5fd" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">2. STANDARD EGG</text>
+          <!-- Egg geometry -->
+          <path d="M90 60 C130 60 135 100 112 135 C104 146 97 155 90 155 C83 155 76 146 68 135 C45 100 50 60 90 60 Z" fill="#0d1f2e" stroke="#a78bfa" stroke-width="2"/>
+          <text x="90" y="172" fill="#34d399" font-family="Outfit, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Best for Combined</text>
+          <text x="90" y="188" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Keeps velocity during DWF</text>
+        </g>
+
+        <!-- 3. Horseshoe Section -->
+        <g transform="translate(460, 20)">
+          <rect x="0" y="0" width="180" height="200" rx="8" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+          <text x="90" y="28" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">3. HORSESHOE</text>
+          <path d="M50 150 L50 105 A40 40 0 0 1 130 105 L130 150 Q90 162 50 150 Z" fill="#0d1f2e" stroke="#10b981" stroke-width="2"/>
+          <text x="90" y="172" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Heavy Discharge Tunnel</text>
+          <text x="90" y="188" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Easy human walk-in entry</text>
+        </g>
+
+        <!-- 4. Rectangular Section -->
+        <g transform="translate(680, 20)">
+          <rect x="0" y="0" width="160" height="200" rx="8" fill="#081420" stroke="#f59e0b" stroke-width="1.5"/>
+          <text x="80" y="28" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" text-anchor="middle">4. RECTANGULAR</text>
+          <rect x="40" y="75" width="80" height="75" rx="4" fill="#0d1f2e" stroke="#f59e0b" stroke-width="2"/>
+          <text x="80" y="172" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="10" text-anchor="middle">Culvert / Outfall</text>
+          <text x="80" y="188" fill="#64748b" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Built easily with slabs</text>
+        </g>
+      </svg>
+      <div class="diagram-cap">Fig 4.4 — Key Sewer Cross-Sections: Circular, Standard Egg-Shaped, Horse-Shoe, and Rectangular</div>
+    </div>
+
+    <h4>Comprehensive Summary of All 9 Sewer Shapes (As given in SKIT Faculty Slides):</h4>
+    <div class="comp-table">
+      <table>
+        <tr>
+          <th>Sewer Shape</th>
+          <th>Geometric Profile</th>
+          <th>Key Hydraulic Advantage</th>
+          <th>Where Used</th>
+        </tr>
+        <tr>
+          <td><strong>1. Circular</strong></td>
+          <td>Uniform circle diameter $D$.</td>
+          <td>Least wetted perimeter; maximum hydraulic radius when running full.</td>
+          <td>Separate sanitary sewers; 90% of city sewers.</td>
+        </tr>
+        <tr>
+          <td><strong>2. Standard Egg-Shaped</strong></td>
+          <td>Top crown radius $r_1 = D/2$, bottom invert radius $r_2 = D/4$, height $H = 1.5 D$.</td>
+          <td>Narrow bottom creates deep flow during low DWF, maintaining self-cleansing velocity!</td>
+          <td>Combined sewerage systems across older cities.</td>
+        </tr>
+        <tr>
+          <td><strong>3. New / Modified Egg</strong></td>
+          <td>Sharper bottom invert radius $r_2 = D/8$.</td>
+          <td>Even higher velocity at extremely small dry weather discharges.</td>
+          <td>Combined systems with wide variation in seasonal flow.</td>
+        </tr>
+        <tr>
+          <td><strong>4. Horse-Shoe</strong></td>
+          <td>Semicircular arch roof with nearly vertical sides and flat/dished invert.</td>
+          <td>High structural stability; large vertical headroom allows maintenance staff to walk inside.</td>
+          <td>Large trunk tunnels and highway/railway culverts.</td>
+        </tr>
+        <tr>
+          <td><strong>5. Parabolic</strong></td>
+          <td>Parabolic arch crown with elliptical or flat invert.</td>
+          <td>Economical for small discharges with high earth cover.</td>
+          <td>Small culverts and drains.</td>
+        </tr>
+        <tr>
+          <td><strong>6. Semi-Elliptical</strong></td>
+          <td>Horizontal ellipse with arch roof.</td>
+          <td>Superior load-bearing arch action in unstable, soft subsoil conditions.</td>
+          <td>Soft muddy soils carrying large sewage flows.</td>
+        </tr>
+        <tr>
+          <td><strong>7. Rectangular / Box</strong></td>
+          <td>Vertical masonry or RCC walls with flat invert and top cover slab.</td>
+          <td>Extremely easy to construct in-situ without curved shuttering; huge capacity.</td>
+          <td>Open surface drains, covered stormwater culverts.</td>
+        </tr>
+        <tr>
+          <td><strong>8. U-Shaped Section</strong></td>
+          <td>Resembles capital letter 'U' with semicircular invert and vertical walls.</td>
+          <td>Combines good low-flow velocity at bottom with high storm capacity on top.</td>
+          <td>Combined outfall channels.</td>
+        </tr>
+        <tr>
+          <td><strong>9. Basket-Handle</strong></td>
+          <td>Small channel channel invert with wide arched basket-handle roof.</td>
+          <td>Small channel carries DWF, full section carries monsoons.</td>
+          <td>Older European brick sewer systems (now largely outdated).</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 07: HYDRAULIC DESIGN & VELOCITY LIMITS
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="hydraulic-design">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Hydraulic Design of Sewers &amp; Velocity Laws</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">PREDICTED FOR MIDTERM 2 (Q6) &amp; ASKED IN 2025 (Part B Q4: "Explain significance of hydraulic design of sewers"): Velocity limits (minimum self-cleansing vs maximum non-scouring) and flow equations!</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>1. Core Principles of Sewer Hydraulics</h3>
+    <p>Unlike water supply pipes which run under high pump pressure, <strong>sewers are designed to flow under gravity as open channels</strong> with atmospheric pressure at the free water surface. To ensure proper ventilation of foul gases ($H_2S, CH_4$) and provide a buffer for unpredicted storm surges, sewers larger than 0.4 m diameter are designed to run <strong>0.5 to 0.8 full (never 100% full) at peak design discharge</strong>.</p>
+
+    <h3>2. The Velocity Law: Self-Cleansing vs Non-Scouring Velocity</h3>
+    <p>The flow velocity in a sewer must be kept within a strict engineering bracket:</p>
+
+    <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
+      <h3 style="color:#22d3ee;font-size:1.15rem;">A. Minimum Velocity (Self-Cleansing Velocity)</h3>
+      <p><strong>Definition:</strong> Self-cleansing velocity is the minimum velocity of flow that must be generated inside the sewer at least once a day so that suspended silt, grit, and organic solids do not settle down at the bottom of the pipe.</p>
+      <ul>
+        <li>If velocity drops below this threshold, heavy sand and organic matter settle (silting), forming a sludge bank that obstructs flow, decomposes anaerobically, generates noxious gases, and eventually chokes the sewer completely.</li>
+        <li><strong>Standard Minimum Velocity Values:</strong>
+          <ul>
+            <li>At minimum flow (morning low flow ≈ 1/3 of average): <strong>At least 0.45 m/s</strong>.</li>
+            <li>At average flow: <strong>At least 0.60 to 0.75 m/s</strong>.</li>
+            <li>At maximum design flow: <strong>At least 0.90 to 1.0 m/s</strong>.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="fbox">
+        <span class="flbl">Shield's Formula for Self-Cleansing Velocity</span>
+        <div class="fl">V_s = √[ (8k / f) × ( (ρ_s - ρ) / ρ ) × g × d_s ]
+
+Where:
+  V_s = Self-cleansing minimum velocity (m/s)
+  k   = Dimensionless characteristic sediment constant (~0.04 to 0.06)
+  f   = Darcy-Weisbach friction factor (~0.03 for sewers)
+  ρ_s = Specific gravity of solid particles (1.2 for organic matter to 2.65 for sand/grit)
+  ρ   = Specific gravity of liquid sewage (≈ 1.0)
+  g   = Acceleration due to gravity (9.81 m/s²)
+  d_s = Diameter of solid particle to be transported (m)</div>
+      </div>
+    </div>
+
+    <div class="theory-block" style="background:#081622;border-color:rgba(167,139,250,.3);padding:24px 28px;">
+      <h3 style="color:#ef4444;font-size:1.15rem;">B. Maximum Velocity (Non-Scouring Velocity)</h3>
+      <p><strong>Definition:</strong> Non-scouring velocity is the maximum limiting velocity of flow beyond which the abrasive particles (grit, gravel) carried in sewage begin to scour, erode, and grind away the pipe material at the invert.</p>
+      <ul>
+        <li>Excessive velocity thins the pipe wall, destroys internal glaze, exposes reinforcing steel in RCC pipes, and ruins pipe joints.</li>
+        <li><strong>Limiting Scouring Velocities by Pipe Material:</strong>
+          <ul>
+            <li>Cast Iron pipes: <strong>3.5 to 4.5 m/s</strong></li>
+            <li>Vitrified Stoneware / Glazed tiles: <strong>2.5 to 3.0 m/s</strong></li>
+            <li>Cement Concrete (RCC): <strong>2.0 to 2.5 m/s</strong></li>
+            <li>Ordinary Brick Masonry: <strong>1.5 to 1.8 m/s</strong></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <h3>3. The Hydraulic Formulas for Sewer Flow</h3>
+    <p>Sanitary engineers calculate flow velocity $V$ and discharge $Q = A \times V$ using empirical formulas:</p>
+
+    <div class="fbox">
+      <span class="flbl">1. Manning's Formula (The Most Widely Used Formula)</span>
+      <div class="fl">V = (1 / n) × R^(2/3) × S^(1/2)
+
+Where:
+  V = Velocity of flow in m/s
+  n = Manning's roughness coefficient (0.012 for RCC, 0.013 for vitrified clay)
+  R = Hydraulic mean depth (Hydraulic radius) = A / P  (Cross-sectional area / Wetted perimeter)
+  S = Bed slope of sewer (Hydraulic gradient)</div>
+      <div class="fn">Notice that if a circular sewer runs half full (depth = D/2): Area A = (π D²)/8, Wetted Perimeter P = (π D)/2 → Hydraulic Radius R = A / P = D/4!</div>
+    </div>
+
+    <div class="fbox">
+      <span class="flbl">2. Chezy's Formula &amp; Bazin's Equation</span>
+      <div class="fl">V = C × √(R × S)
+
+Where C is Chezy's coefficient. Bazin's formula to find C:
+  C = 157.6 / [ 1.81 + (K / √R) ]
+
+K values: 0.109 (very smooth), 0.290 (bricks & concrete), 0.833 (rubble masonry).</div>
+    </div>
+
+    <div class="fbox">
+      <span class="flbl">3. Other Hydraulic Formulas Given in Faculty Slides</span>
+      <div class="fl">• Hazen-Williams Formula : V = 0.849 × C_HW × R^(0.63) × S^(0.54)
+• Crimp and Burge's Formula: V = 83.47 × R^(2/3) × S^(1/2)
+• Kutter's Formula for C   : C = [ 23 + (0.00155/S) + (1/n) ] / [ 1 + (23 + (0.00155/S)) × (n/√R) ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 08: WASTEWATER TREATMENT PLANT TRAIN
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="treatment">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Introduction to Domestic Wastewater Treatment</h2>
+  </div>
+
+  <div class="pred-banner">
+    <span>🔮</span>
+    <div class="pb-text">ASKED IN 2025 (Part A Q7), 2024 (Part B Q7, Part C Q3), AND 2023 (Part C Q1): "Write the different steps involved in a domestic wastewater treatment plant." Complete stage-by-stage engineering breakdown!</div>
+  </div>
+
+  <div class="theory-block">
+    <h3>Objectives of Wastewater Treatment</h3>
+    <p>Raw sewage cannot be disposed of directly into nature without risking catastrophic environmental collapse. The primary objectives of treatment are: <strong>(1)</strong> Remove floating rags, plastics, and settleable grit that damage pumps, <strong>(2)</strong> Remove organic biodegradable matter so river DO does not drop below 4 ppm, <strong>(3)</strong> Destroy pathogenic bacteria and viruses to prevent waterborne epidemics, and <strong>(4)</strong> Stabilize noxious sludge into odorless fertilizer and methane fuel.</p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 920 300" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#6090a8"/>
+          </marker>
+        </defs>
+
+        <!-- PRELIMINARY TREATMENT -->
+        <rect x="20" y="20" width="260" height="250" rx="10" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+        <text x="150" y="44" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">1. PRELIMINARY TREATMENT</text>
+        
+        <rect x="40" y="65" width="220" height="42" rx="6" fill="#102230" stroke="#06b6d4" stroke-width="1"/>
+        <text x="150" y="86" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Screens (Coarse &amp; Fine)</text>
+        <text x="150" y="99" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Removes rags, plastics, floating debris</text>
+
+        <rect x="40" y="125" width="220" height="42" rx="6" fill="#102230" stroke="#06b6d4" stroke-width="1"/>
+        <text x="150" y="146" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Grit Chamber</text>
+        <text x="150" y="159" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Settles sand, gravel (V ≈ 0.3 m/s)</text>
+
+        <rect x="40" y="185" width="220" height="42" rx="6" fill="#102230" stroke="#06b6d4" stroke-width="1"/>
+        <text x="150" y="206" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">Skimming Tank</text>
+        <text x="150" y="219" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Removes floating oils, grease, fats</text>
+
+        <!-- PRIMARY TREATMENT -->
+        <rect x="330" y="20" width="260" height="250" rx="10" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+        <text x="460" y="44" fill="#34d399" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">2. PRIMARY TREATMENT</text>
+
+        <rect x="350" y="65" width="220" height="60" rx="6" fill="#102230" stroke="#10b981" stroke-width="1"/>
+        <text x="460" y="90" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="bold" text-anchor="middle">Primary Clarifier (PST)</text>
+        <text x="460" y="105" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Quiescent settling for 2 to 2.5 hrs</text>
+        <text x="460" y="118" fill="#34d399" font-family="Outfit, sans-serif" font-size="8.5" text-anchor="middle">Removes 60% SS &amp; 35% BOD</text>
+
+        <path d="M460 125 L460 165" stroke="#ef4444" stroke-width="2" marker-end="url(#arr)"/>
+        <rect x="350" y="165" width="220" height="50" rx="6" fill="#2d1218" stroke="#ef4444" stroke-width="1"/>
+        <text x="460" y="186" fill="#fca5a5" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">Raw Primary Sludge</text>
+        <text x="460" y="202" fill="#f87171" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Sent to Anaerobic Sludge Digester</text>
+
+        <!-- SECONDARY TREATMENT -->
+        <rect x="640" y="20" width="260" height="250" rx="10" fill="#081420" stroke="#a78bfa" stroke-width="2"/>
+        <text x="770" y="44" fill="#c4b5fd" font-family="JetBrains Mono, monospace" font-size="12" font-weight="bold" text-anchor="middle">3. SECONDARY (BIOLOGICAL)</text>
+
+        <rect x="660" y="65" width="220" height="50" rx="6" fill="#102230" stroke="#a78bfa" stroke-width="1"/>
+        <text x="770" y="88" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">Aeration Tank / Trickling Filter</text>
+        <text x="770" y="102" fill="#c4b5fd" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Microorganisms consume dissolved BOD</text>
+
+        <rect x="660" y="130" width="220" height="50" rx="6" fill="#102230" stroke="#a78bfa" stroke-width="1"/>
+        <text x="770" y="152" fill="#fff" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">Secondary Clarifier (SST)</text>
+        <text x="770" y="166" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="9" text-anchor="middle">Settles bio-floc (90%+ BOD removed)</text>
+
+        <rect x="660" y="195" width="220" height="45" rx="6" fill="#102230" stroke="#fbbf24" stroke-width="1"/>
+        <text x="770" y="215" fill="#fbbf24" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold" text-anchor="middle">Disinfection (Chlorination)</text>
+        <text x="770" y="228" fill="#94a3b8" font-family="Outfit, sans-serif" font-size="8.5" text-anchor="middle">Safe discharge to river / irrigation</text>
+
+        <!-- Connecting flow arrows -->
+        <line x1="280" y1="145" x2="330" y2="145" stroke="#6090a8" stroke-width="2" marker-end="url(#arr)"/>
+        <line x1="590" y1="145" x2="640" y2="145" stroke="#6090a8" stroke-width="2" marker-end="url(#arr)"/>
+      </svg>
+      <div class="diagram-cap">Fig 4.5 — Complete Domestic Wastewater Treatment Process Flowsheet (Preliminary, Primary &amp; Secondary)</div>
+    </div>
+
+    <h4>The Four Progressive Stages of Treatment:</h4>
+    <ol>
+      <li><strong>Preliminary Treatment:</strong>
+        <ul>
+          <li><em>Bar Screens:</em> Metal bars spaced 20–50 mm apart. Catches coarse floating debris (plastics, rags, wood) to prevent clogging downstream pipes.</li>
+          <li><em>Grit Chamber:</em> Long narrow basin where flow velocity is decelerated to exactly **0.2 to 0.3 m/s**. At this velocity, heavy inorganic sand, gravel, and eggshells settle down by gravity, while lighter organic matter remains in suspension and flows ahead.</li>
+          <li><em>Skimming Tank:</em> Compressed air is blown from the tank bottom. Air bubbles carry oils, waxes, and soap grease to the surface where they are skimmed off.</li>
+        </ul>
+      </li>
+      <li><strong>Primary Treatment (Sedimentation Tank / Clarifier):</strong>
+        <ul>
+          <li>Sewage is held in large circular or rectangular tanks for 2 to 2.5 hours under calm, quiescent conditions.</li>
+          <li>Removes approximately <strong>50% to 70% of total suspended solids (SS)</strong> and <strong>30% to 40% of BOD</strong> purely by physical gravity settling.</li>
+          <li>The settled organic solids form <em>raw primary sludge</em>, which is pumped from the bottom into anaerobic sludge digesters.</li>
+        </ul>
+      </li>
+      <li><strong>Secondary / Biological Treatment:</strong>
+        <ul>
+          <li>Removes dissolved and colloidal organic matter that could not be settled in the primary clarifier.</li>
+          <li><strong>Activated Sludge Process (ASP):</strong> Settled sewage enters an aeration tank where air is continuously pumped in. Aerobic bacteria multiply rapidly into suspended bacterial gelatinous clusters called <em>flocs</em>. These flocs oxidize the dissolved organics into stable $CO_2$ and water. The mixture flows into a Secondary Clarifier where flocs settle out as *activated sludge*. A portion of this sludge is recycled back to the aeration tank to seed incoming waste, and excess is digested.</li>
+          <li><strong>Trickling Filter:</strong> An alternative attached-growth system where sewage is sprayed over a circular bed of crushed stones (20–100 mm). A biological slime layer of aerobic microbes coats the stones and absorbs organic food as wastewater trickles down.</li>
+          <li><em>Overall Removal:</em> Secondary treatment achieves <strong>85% to 95% BOD reduction</strong>!</li>
+        </ul>
+      </li>
+      <li><strong>Sludge Digestion &amp; Final Disinfection:</strong>
+        <ul>
+          <li><em>Anaerobic Sludge Digestion:</em> The collected thick sludge is sealed inside an airtight, heated (35°C) digestion tank. Anaerobic bacteria break down volatile organics over 20–30 days, generating **Methane gas ($CH_4 \approx 65\%$)**, which is burned as clean fuel to power the plant, leaving behind an inert, dark, rich humus used as soil conditioner.</li>
+          <li><em>Disinfection:</em> Liquid chlorine (2–5 mg/L) is injected into the secondary effluent to destroy any surviving pathogens before final discharge into rivers or farmlands.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 09: 2026 MIDTERM 2 PREDICTED PAPER (UNIT 4)
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="predicted">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2 class="section-title">2026 Midterm 2 Predicted Paper: Unit 4 Questions &amp; Full Model Answers</h2>
+  </div>
+
+  <div class="theory-block">
+    <div class="pred-badge">🔮 AI-Powered Analysis · Cross-Referenced with Faculty Slides &amp; 4-Year RTU PYQs</div>
+    <p>Below are the exact 4 questions that represent Unit 4 in the <strong>2026 Mid-Term 2 Predicted Paper</strong> (already synchronized in the home page). Master these answers to guarantee top marks in your midterm exams!</p>
+    
+    <div class="pred-grid">
+      <!-- Q1 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q1)</div>
+          <div class="pred-unit">Unit 4 | Wastewater Characteristics</div>
+          <div class="pred-conf high">CERTAIN</div>
+          <div class="pred-q">Define BOD and COD of wastewater. (🔮 PREDICTED)</div>
+          <div class="pred-reason">BOD was Part A Q5 in 2025, COD was Part A Q7 in 2024, and "DO and BOD" was a Part B question in 2024. Faculty slides give BOD, COD, and DO three dedicated slides with numeric values — the absolute easiest 2-mark pick for a short-answer slot.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>BOD (Biochemical Oxygen Demand):</strong> The amount of dissolved oxygen required by aerobic microorganisms to biologically oxidize biodegradable organic matter present in sewage at 20°C in 5 days (typical domestic sewage BOD ≈ 80–200 mg/L).</p>
+          <p><strong>COD (Chemical Oxygen Demand):</strong> The amount of oxygen required for chemical oxidation of all organic matter (both biodegradable and non-biodegradable) using a strong chemical oxidant (potassium dichromate in acidic medium). Domestic sewage COD ≈ 150–450 mg/L. Always COD &gt; BOD.</p>
+          <div class="fbox">
+            <span class="flbl">Quick Exam Comparison</span>
+            <div class="fl">Parameter : BOD                        | COD
+Agent     : Living aerobic bacteria    | Boiling K2Cr2O7 + H2SO4
+Duration  : 5 days (slow biological)   | 2 hours (fast chemical)
+Measures  : Biodegradable organics     | Total organics (both bio + non-bio)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q2)</div>
+          <div class="pred-unit">Unit 4 | Sewage &amp; Sewers</div>
+          <div class="pred-conf high">VERY HIGH</div>
+          <div class="pred-q">What is sewage? Name any two types of sewers. (🔮 PREDICTED)</div>
+          <div class="pred-reason">"What is sewage?" was 2023 Part A Q3 and "name any two types of sewers" was 2025 Part A Q6. The faculty opens the sewer section (slide 43) with exactly the sewage / sewer / sewerage definitions, and slides 49–53 cover sewer shapes.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>Sewage</strong> is the spent liquid waste from households, offices, commercial institutions and industries, containing organic/inorganic impurities and pathogenic bacteria (99.5% water, 0.5% solids).</p>
+          <p><strong>Types of sewers (by cross-sectional shape):</strong> Circular sewer and Standard Egg-shaped sewer (other valid types: Horseshoe, Parabolic, Semi-elliptical, Rectangular).</p>
+          <div class="fbox">
+            <span class="flbl">Three terms to keep crystal clear</span>
+            <div class="fl">Sewage   : The dirty liquid waste flowing out of houses.
+Sewer    : The underground pipe/conduit carrying sewage under gravity.
+Sewerage : The complete collection, conveyance and treatment system.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q4)</div>
+          <div class="pred-unit">Unit 4 | Wastewater Characteristics</div>
+          <div class="pred-conf high">VERY HIGH</div>
+          <div class="pred-q">Explain the physical, chemical and biological characteristics of domestic wastewater (sewage). (🔮 PREDICTED)</div>
+          <div class="pred-reason">Near-identical to 2025 Part B Q5 ("physical, chemical and biological characteristics of wastewater"). The faculty's physical/chemical/biological split (slides 18–27) matches the question wording exactly.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>1. Physical Characteristics:</strong></p>
+          <ul>
+            <li><strong>Colour:</strong> Fresh sewage is greyish-brown (soapy wash water colour); septic decomposed sewage is dark grey to deep black (due to iron sulfide FeS formation).</li>
+            <li><strong>Odour:</strong> Fresh sewage has an oily/soapy smell; septic stale sewage has an offensive rotten-egg odour due to $H_2S, CH_4$, and mercaptans.</li>
+            <li><strong>Temperature:</strong> Slightly higher than the city water supply (~20–35°C), which accelerates bacterial decomposition rates.</li>
+            <li><strong>Turbidity &amp; Solids:</strong> High turbidity due to 350–1200 mg/L solids (99.5% water, 0.5% solids).</li>
+          </ul>
+          <p><strong>2. Chemical Characteristics:</strong></p>
+          <ul>
+            <li><strong>pH:</strong> Raw sewage is slightly alkaline (7.2–7.8), becoming acidic (5.5–6.5) as anaerobic fatty acids develop.</li>
+            <li><strong>DO (Dissolved Oxygen):</strong> Essential to keep at least 4.0 ppm in receiving streams. Fresh sewage has 0–1 ppm DO; stale sewage has 0 ppm.</li>
+            <li><strong>BOD:</strong> 5-day biological demand at 20°C ≈ 80 to 200 mg/L for domestic sewage.</li>
+            <li><strong>COD:</strong> Total chemical oxidation demand ≈ 150 to 450 mg/L. Always COD &gt; BOD.</li>
+          </ul>
+          <p><strong>3. Biological Characteristics:</strong></p>
+          <ul>
+            <li>Contains 22–25 million microorganisms per litre.</li>
+            <li>Categorized by oxygen metabolism into <em>aerobic bacteria</em> (require dissolved $O_2$), <em>anaerobic bacteria</em> (thrive without oxygen), and <em>facultative bacteria</em> (survive in both).</li>
+            <li>Carries enteric pathogenic bacteria (typhoid, cholera) and viruses from human excreta.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q6)</div>
+          <div class="pred-unit">Unit 4 | Sewers &amp; Hydraulics</div>
+          <div class="pred-conf high">HIGH</div>
+          <div class="pred-q">Describe the types of sewers. Explain design discharge and the hydraulic design of sewers, including minimum and maximum velocity. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Sewers take about 30 of the 75 Unit IV faculty slides and the syllabus lists "types, design discharge and hydraulic design" as a primary topic line — making it the most likely Unit 4 long answer.</div>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggleAns(this)"><span>▼ Show Model Answer</span><span class="arrow-icon">▼</span></button>
+        <div class="pred-answer">
+          <p><strong>1. Types of Sewers (By Shape &amp; Function):</strong></p>
+          <ul>
+            <li><em>Circular Sewer:</em> Minimum wetted perimeter, lowest construction cost, uniform flow, most widely used.</li>
+            <li><em>Standard Egg-Shaped Sewer:</em> Narrow bottom invert generates self-cleansing velocity during dry-weather flow (DWF), while broad upper arch accommodates monsoon storm runoff. Ideal for combined systems.</li>
+            <li><em>Horse-Shoe Section:</em> Large tunnel-like culvert carrying heavy discharge; provides headroom for maintenance workers to enter.</li>
+            <li><em>Rectangular / Box Section:</em> Built with flat slabs; ideal for heavy open storm discharges and culverts.</li>
+          </ul>
+          <p><strong>2. Design Discharge:</strong></p>
+          <div class="fbox">
+            <div class="fl">Sanitary Sewage Discharge: Q_sanitary = Population × Per Capita Sewage × Peak Factor
+Per Capita Sewage = 75% to 80% of water supplied (e.g. 120 LPCD out of 150 LPCD)
+Stormwater (Rational Method): Q_storm = (K × I × A) / 360  [m³/s]
+Combined Discharge: Q_total = Q_sanitary + Q_storm</div>
+          </div>
+          <p><strong>3. Hydraulic Design &amp; Velocity Limits:</strong></p>
+          <ul>
+            <li><strong>Minimum (Self-Cleansing) Velocity:</strong> The velocity needed to prevent silting of sand, grit, and solids. Minimum value is <strong>0.45 m/s at minimum flow</strong> and <strong>0.90 m/s at peak design flow</strong>. Shield's formula: $V_s = \sqrt{\frac{8k}{f} \frac{\rho_s - \rho}{\rho} g d_s}$.</li>
+            <li><strong>Maximum (Non-Scouring) Velocity:</strong> Limiting velocity to prevent abrasive grit from eroding and wearing away the pipe invert. Limiting value is <strong>2.5 to 3.0 m/s for concrete/stoneware</strong> and <strong>4.0 m/s for cast iron</strong>.</li>
+            <li><strong>Manning's Flow Equation:</strong> $V = \frac{1}{n} R^{2/3} S^{1/2}$ and $Q = A \times V$. Sewers are designed to run 0.5 to 0.8 full at peak flow.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     SECTION 10: MASTER RTU SOLVED PYQS (2021–2025)
+     ══════════════════════════════════════════════════════════ -->
+<section class="section" id="pyq-master">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2 class="section-title">Master RTU Solved PYQs (2021, 2023, 2024, 2025)</h2>
+  </div>
+
+  <div class="pyq-section">
+    <div class="pyq-header">📋 Every Unit 4 Question from the Past 4 Years — Fully Solved</div>
+
+    <!-- 2025 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">1. Define BOD of wastewater.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part A (Q5)</span>
+        <span class="topic-tag">2 Marks</span>
+        <span class="pred-tag">🔮 Predicted Midterm 2</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Biochemical Oxygen Demand (BOD) is the quantity of dissolved oxygen (in mg/L) required by aerobic bacteria to biologically oxidize and decompose the biodegradable organic matter present in a water or wastewater sample during an incubation period of <strong>5 days at 20°C</strong>. For typical domestic sewage, $\text{BOD}_5$ ranges from 80 to 200 mg/L.</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">2. Name any two types of sewers.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part A (Q6)</span>
+        <span class="topic-tag">2 Marks</span>
+        <span class="pred-tag">🔮 Predicted Midterm 2</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Two common types of sewers based on cross-sectional shape are:</p>
+        <ol>
+          <li><strong>Circular Sewer:</strong> Most common pipe section offering minimum wetted perimeter, low material cost, and uniform flow.</li>
+          <li><strong>Standard Egg-Shaped Sewer:</strong> Designed with a narrow bottom invert to maintain self-cleansing velocity during low dry weather flows, used in combined systems.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">3. Give one example of primary treatment of wastewater.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part A (Q7)</span>
+        <span class="topic-tag">2 Marks</span>
+        <span class="topic-tag">Wastewater Treatment</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> <strong>Primary Clarifier (Primary Sedimentation Tank - PST):</strong> A quiescent settling tank where sewage is held for 2 to 2.5 hours. Approximately 50% to 70% of total suspended organic solids and 30% to 40% of BOD settle to the bottom by gravity as raw primary sludge.</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">4. Explain the significance of hydraulic design of sewers.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2025 · Part B (Q4)</span>
+        <span class="topic-tag">4 Marks</span>
+        <span class="pred-tag">🔮 Predicted Midterm 2</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> The hydraulic design of a sewer determines its cross-sectional area (diameter) and downward bed gradient (slope) to transport the maximum forecasted sewage discharge under gravity flow. Its primary significance includes:</p>
+        <ul>
+          <li><strong>Preventing Silting (Self-Cleansing Velocity):</strong> Ensures flow velocity never drops below <strong>0.45 m/s at minimum flow</strong> so that sand, grit, and fecal matter do not settle, clog the sewer, or generate septic odours.</li>
+          <li><strong>Preventing Pipe Abrasion (Non-Scouring Velocity):</strong> Caps velocity below <strong>2.5 to 3.0 m/s</strong> so moving grit particles do not scour or grind away the pipe walls.</li>
+          <li><strong>Preventing Overflows &amp; Gas Headroom:</strong> Ensures the sewer runs <strong>0.5 to 0.8 full</strong> at peak flow, leaving open headspace for ventilation of toxic $H_2S$ and $CH_4$ gases and preventing sewage backflow into homes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 2024 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">5. What do you mean by wastewater? Define chemical oxygen demand (COD) and total organic carbon (TOC).</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2024 · Part A (Q6, Q7, Q8)</span>
+        <span class="topic-tag">6 Marks Combined</span>
+        <span class="topic-tag">Core Definitions</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Wastewater (Q6):</strong> Any spent water containing dissolved or suspended impurities (solids or gases) discharged from households, commercial complexes, and industries that is harmful to health or the environment if untreated.</p>
+        <p><strong>COD (Q7):</strong> The measure of oxygen equivalent needed to chemically oxidize both biodegradable and non-biodegradable organic matter in water using a boiling solution of potassium dichromate ($K_2Cr_2O_7$) in acidic medium ($H_2SO_4$). Domestic COD is typically 150–450 mg/L.</p>
+        <p><strong>TOC (Q8):</strong> Total Organic Carbon is a rapid instrumental measurement of the total amount of carbon bound in organic compounds in wastewater, determined by catalytic combustion at 680–950°C and infrared detection of evolved $CO_2$.</p>
+      </div>
+    </div>
+
+    <div class="pyq-item">
+      <div class="pyq-q-text">6. Write the different steps involved in a domestic wastewater treatment plant.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2024 · Part B (Q7) &amp; Part C (Q3)</span>
+        <span class="topic-tag">4 / 10 Marks</span>
+        <span class="topic-tag">Treatment Train</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> The complete treatment train involves four consecutive stages:</p>
+        <ol>
+          <li><strong>Preliminary Treatment:</strong>
+            <ul>
+              <li><em>Screens:</em> Remove floating debris, plastics, rags.</li>
+              <li><em>Grit Chamber:</em> Settles inorganic sand and gravel at $V \approx 0.3\text{ m/s}$.</li>
+              <li><em>Skimming Tank:</em> Removes floating grease and oil films by air flotation.</li>
+            </ul>
+          </li>
+          <li><strong>Primary Treatment (PST):</strong> Gravity settling of suspended solids in primary clarifiers for 2–2.5 hours, removing 60% of suspended solids and 35% of BOD.</li>
+          <li><strong>Secondary / Biological Treatment:</strong>
+            <ul>
+              <li><em>Aeration Tank (ASP) / Trickling Filter:</em> Aerobic microorganisms consume dissolved organics.</li>
+              <li><em>Secondary Sedimentation Tank (SST):</em> Settles out microbial flocs as activated sludge (90%+ overall BOD removal).</li>
+            </ul>
+          </li>
+          <li><strong>Sludge Digestion &amp; Disinfection:</strong>
+            <ul>
+              <li><em>Anaerobic Digester:</em> Thick sludge is converted to methane fuel ($CH_4$) and dry fertilizer.</li>
+              <li><em>Chlorination:</em> Final effluent is disinfected with 2–5 mg/L chlorine before release.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- 2023 PYQs -->
+    <div class="pyq-item">
+      <div class="pyq-q-text">7. Describe different types of sewer.</div>
+      <div class="pyq-meta">
+        <span class="unit-tag">2023 · Part B (Q5)</span>
+        <span class="topic-tag">8 Marks</span>
+        <span class="pred-tag">🔮 Predicted Midterm 2</span>
+      </div>
+      <button class="pyq-toggle" onclick="togglePyq(this)">View Solution →</button>
+      <div class="answer-content">
+        <p><strong>Solution:</strong> Sewers are classified by their cross-sectional profile into circular and non-circular shapes:</p>
+        <ul>
+          <li><strong>Circular Sewers:</strong> Most common, lowest perimeter per unit area, economical, uniform flow. Used for separate sanitary systems.</li>
+          <li><strong>Standard Egg-Shaped Sewers:</strong> Has top radius $D/2$ and narrow invert radius $D/4$. The narrow bottom maintains self-cleansing velocity during low dry weather flow (DWF), while the top accommodates monsoon runoff in combined systems.</li>
+          <li><strong>Horse-Shoe Sewers:</strong> Semi-circular arch roof with flat/dished invert. Carries heavy flows and provides headroom for worker entry. Used in large trunk tunnels.</li>
+          <li><strong>Rectangular Sewers:</strong> Easy to construct with masonry or RCC slabs. Used for storm drains and large outfall channels.</li>
+          <li><strong>Semi-Elliptical Sewers:</strong> Arch roof with elliptical invert; highly stable in soft soil conditions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK PREP STRATEGY BOX -->
+  <div class="prep-box">
+    <h3>✅ Final 24-Hour Exam Strategy for Unit 4</h3>
+    <p><strong>1. Certain to be tested:</strong> BOD vs COD definition &amp; numerical values (Q1), Sewage vs Sewer vs Sewerage definitions (Q2), Physical/Chemical/Biological characteristics (Q4), and Sewer shapes (Circular vs Egg-shaped vs Horseshoe).</p>
+    <p><strong>2. High Probability Long Answers:</strong> Hydraulic design of sewers (significance, self-cleansing velocity $0.45\text{ m/s}$, non-scouring velocity $2.5\text{–}3.0\text{ m/s}$, Manning's formula), Sewage Sickness of land with its 7 remedial measures, and the complete 4-stage domestic wastewater treatment flowsheet.</p>
+    <p><strong>3. Diagram Tip:</strong> When drawing the Egg-shaped sewer, clearly annotate the top width as $2D$, top radius $D/2$, and bottom invert radius $D/4$. When drawing the Wastewater Treatment plant, draw the sludge line going down into the Anaerobic Digester — faculty always checks for that!</p>
+  </div>
+</section>
+
+</main>
+</div><!-- /layout -->
+
+<!-- SITE FOOTER -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="unit1.html">Unit 1: Introduction</a>
+    <a href="unit2.html">Unit 2: Water Supply</a>
+    <a href="unit3.html">Unit 3: Drinking Water Quality</a>
+    <a href="unit4.html" style="color:var(--u4-bright);">Unit 4: Wastewater &amp; Sewers</a>
+    <a href="unit5.html">Unit 5: Solid Waste &amp; Disaster</a>
+    <a href="index.html#predicted-midterm-2">🔮 Predicted Midterm 2</a>
+    <a href="pyq.html">Solved PYQs</a>
+  </div>
+  <p>Crafted with pride by Mahansh Gaur · B.Tech RTU Kota · 7AG6-60.2 EEDM</p>
+</footer>
+
+<!-- SCRIPT: INTERACTION & ACCORDIONS -->
+<script>
+// Sidebar Toggle (Mobile Drawer)
+function toggleSidebar(){
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('visible');
+}
+function closeSidebar(){
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.remove('open');
+  ov.classList.remove('visible');
+}
+
+// Predicted Question Answer Toggle
+function toggleAns(btn){
+  const card = btn.closest('.pred-card');
+  const ans = card.querySelector('.pred-answer');
+  const isOpen = ans.classList.contains('open');
+  const span = btn.querySelector('span:first-child');
+  const arrow = btn.querySelector('.arrow-icon');
+  
+  if(isOpen){
+    ans.classList.remove('open');
+    if(span) span.textContent = '▼ Show Model Answer';
+    if(arrow) arrow.textContent = '▼';
+  } else {
+    ans.classList.add('open');
+    if(span) span.textContent = '▲ Hide Model Answer';
+    if(arrow) arrow.textContent = '▲';
+  }
+}
+
+// PYQ Accordion Toggle
+function togglePyq(btn){
+  const content = btn.nextElementSibling;
+  const isOpen = content.classList.contains('open');
+  if(isOpen){
+    content.classList.remove('open');
+    btn.textContent = 'View Solution →';
+  } else {
+    content.classList.add('open');
+    btn.textContent = 'Hide Solution ▲';
+  }
+}
+
+// Active link highlighting on scroll
+window.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section');
+  const navItems = document.querySelectorAll('.nav-item');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 120;
+      if (window.pageYOffset >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('href') === '#' + current) {
+        item.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
+
