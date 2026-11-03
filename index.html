@@ -13,14 +13,18 @@
   --u1:#22d3ee;--u2:#10b981;--u3:#ef4444;--u4:#a78bfa;--u5:#f97316;
   --upred:#f59e0b;--gold:#fbbf24;--text:#dde8f2;--dim:#2d4a5e;--dim2:#527890;
   --mono:'JetBrains Mono',monospace;--head:'Fraunces',serif;--body:'Outfit',sans-serif;
-  --content-max:1440px;
+  --content-max:min(94vw, 1600px);
 }
+@media(min-width:1800px){:root{--content-max:min(92vw, 1920px);}}
+@media(min-width:2560px){:root{--content-max:min(90vw, 2400px);}}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;font-size:20px;}
-body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.85;overflow-x:hidden;}
-@media(min-width:1400px){html{font-size:21px;}}
-@media(min-width:1800px){html{font-size:22px;}}
-::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+html{scroll-behavior:smooth;font-size:clamp(16.5px, 0.42vw + 14.5px, 23px);-webkit-text-size-adjust:100%;}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+
+@media(min-width:2400px){html{font-size:clamp(23px, 0.38vw + 15px, 30px);}}
+@media(min-width:3400px){html{font-size:32px;}}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--ds2);}
 
 /* NAV */
 .topnav{position:sticky;top:0;z-index:100;background:rgba(5,12,15,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);padding:0 28px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
@@ -148,51 +152,535 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
 .strat-table tr:last-child td{border-bottom:none;}
 .strat-table tr:hover td{background:var(--surface2);}
 
-/* PREDICTED PAPER */
-.predicted-section{background:linear-gradient(135deg,var(--bg2) 0%,rgba(6,182,212,.04) 100%);border-top:1px solid rgba(6,182,212,.2);border-bottom:1px solid rgba(6,182,212,.2);}
-.pred-inner{max-width:var(--content-max);margin:0 auto;padding:68px clamp(22px,4.5vw,100px);}
-.pred-badge{display:inline-block;font-family:var(--mono);font-size:.78rem;color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);padding:5px 14px;border-radius:5px;margin-bottom:14px;}
-.pred-sec-title{font-family:var(--head);font-size:clamp(24px,3.2vw,38px);font-weight:800;color:#fff;margin-bottom:6px;}
-.pred-sec-sub{font-family:var(--mono);font-size:.73rem;color:var(--dim2);letter-spacing:1px;margin-bottom:14px;}
-.pred-intro{font-family:var(--mono);font-size:.79rem;color:var(--dim2);line-height:1.78;margin-bottom:20px;max-width:950px;}
-.part-divider{display:flex;align-items:center;gap:10px;margin:26px 0 -4px;font-family:var(--mono);font-size:.75rem;color:var(--ds2);letter-spacing:1.5px;text-transform:uppercase;}
-.part-divider::after{content:'';flex:1;height:1px;background:var(--border);}
-.pred-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;margin-top:24px;}
-.pred-card{background:var(--surface);border:1px solid rgba(6,182,212,.2);border-radius:12px;border-top:3px solid var(--ds2);overflow:hidden;}
-.pred-card-head{padding:20px 22px 14px;}
-.pred-part{font-family:var(--mono);font-size:.68rem;color:var(--dim2);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.pred-unit{font-family:var(--mono);font-size:.65rem;color:var(--ds2);background:rgba(6,182,212,.1);border:1px solid rgba(6,182,212,.25);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:7px;}
-.pred-q{font-family:var(--head);font-size:1rem;font-weight:700;color:#fff;line-height:1.42;margin-bottom:8px;}
-.pred-reason{font-size:.84rem;color:var(--dim2);line-height:1.72;margin-bottom:10px;}
-.pred-conf{font-family:var(--mono);font-size:.7rem;padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:14px;}
-.pred-conf.high{color:var(--u3);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);}
-.pred-conf.med{color:var(--upred);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);}
-.pred-answer-toggle{width:100%;padding:11px 22px;background:var(--surface2);border:none;border-top:1px solid var(--border);cursor:pointer;font-family:var(--mono);font-size:.73rem;color:var(--ds2);text-align:left;transition:all .2s;}
-.pred-answer-toggle:hover{background:var(--ds2);color:#000;}
-.pred-answer{display:none;padding:20px 22px;border-top:1px solid var(--border);background:var(--bg);}
-.pred-answer.open{display:block;}
-.pred-answer p{font-size:.89rem;line-height:1.88;margin-bottom:12px;}
-.pred-answer strong{color:var(--ds2);}
-.pred-answer ul,.pred-answer ol{padding-left:22px;margin:8px 0;}
-.pred-answer li{font-size:.89rem;margin-bottom:7px;line-height:1.78;}
+/* ══════════════════════════════════════════════════════════════
+   PREDICTED PAPERS (APPLE HIG REDESIGN & WIDESCREEN ADAPTATION)
+   ══════════════════════════════════════════════════════════════ */
+.predicted-section{
+  background:radial-gradient(ellipse 90% 60% at 50% 0%, rgba(6,182,212,.06) 0%, transparent 75%), linear-gradient(180deg, var(--bg2) 0%, #03080c 100%);
+  border-top:1px solid rgba(6,182,212,.22);
+  border-bottom:1px solid rgba(6,182,212,.22);
+}
+.pred-inner{
+  max-width:var(--content-max);
+  margin:0 auto;
+  padding:clamp(44px, 5vw, 84px) clamp(16px, 3.5vw, 64px);
+}
+.pred-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:clamp(.72rem, .2vw + .65rem, .82rem);
+  color:var(--upred);
+  background:rgba(245,158,11,.1);
+  border:1px solid rgba(245,158,11,.3);
+  padding:6px 16px;
+  border-radius:9999px;
+  margin-bottom:16px;
+  font-weight:600;
+  letter-spacing:.5px;
+}
+.pred-sec-title{
+  font-family:var(--head);
+  font-size:clamp(26px, 3.2vw, 46px);
+  font-weight:800;
+  color:#fff;
+  margin-bottom:8px;
+  letter-spacing:-.5px;
+  line-height:1.2;
+}
+.pred-sec-sub{
+  font-family:var(--mono);
+  font-size:clamp(.72rem, .2vw + .65rem, .84rem);
+  color:var(--dim2);
+  letter-spacing:1px;
+  margin-bottom:18px;
+}
+.pred-intro{
+  font-family:var(--body);
+  font-size:clamp(.92rem, .2vw + .86rem, 1.08rem);
+  color:#94a3b8;
+  line-height:1.82;
+  margin-bottom:24px;
+  max-width:115ch;
+}
+.disc-box{
+  background:rgba(239,68,68,.08);
+  border:1px solid rgba(239,68,68,.25);
+  border-radius:14px;
+  padding:16px 22px;
+  margin-bottom:28px;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  max-width:115ch;
+}
+.disc-box p{
+  font-size:clamp(.86rem, .18vw + .8rem, .98rem);
+  color:#f1f5f9;
+  line-height:1.75;
+}
 
-/* FORMULA BOXES */
-.fbox{background:#040c12;border:1px solid rgba(6,182,212,.22);border-left:3px solid var(--ds2);border-radius:8px;padding:14px 18px;margin:12px 0;font-family:var(--mono);font-size:.77rem;color:#67e8f9;overflow-x:auto;line-height:1.72;}
-.fbox .flbl{font-size:.63rem;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;display:block;}
-.fbox .fl{color:#a5f3fc;font-size:.8rem;white-space:pre-wrap;}
-.fbox .fn{color:var(--dim2);font-size:.72rem;margin-top:6px;display:block;font-style:italic;}
-.dbox{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto;}
-.dcap{font-family:var(--mono);font-size:.7rem;color:var(--dim2);margin-top:8px;}
+/* ACCORDIONS LIST */
+.pred-papers-list{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(20px, 2.4vw, 36px);
+  margin-top:24px;
+}
+.pred-accordion{
+  background:rgba(12,28,40,.6);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(6,182,212,.22);
+  border-radius:clamp(14px, 1.6vw, 22px);
+  overflow:hidden;
+  transition:border-color .25s cubic-bezier(.16,1,.3,1), box-shadow .25s cubic-bezier(.16,1,.3,1);
+}
+.pred-accordion:hover{
+  border-color:rgba(6,182,212,.48);
+}
+.pred-accordion.open{
+  border-color:var(--ds2);
+  box-shadow:0 12px 48px rgba(6,182,212,.14), 0 2px 4px rgba(0,0,0,.4);
+}
+.pred-accordion-btn{
+  width:100%;
+  padding:clamp(18px, 2.2vw, 28px) clamp(20px, 2.6vw, 36px);
+  background:rgba(12,28,40,.85);
+  border:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  text-align:left;
+  transition:background .2s;
+  color:inherit;
+  font-family:inherit;
+}
+.pred-accordion-btn:hover{
+  background:rgba(16,38,54,.95);
+}
+.pred-accordion.open .pred-accordion-btn{
+  background:rgba(16,38,54,.95);
+  border-bottom:1px solid rgba(25,51,68,.85);
+}
+.pred-acc-left{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+.pred-acc-badges{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.pred-acc-tag{
+  font-family:var(--mono);
+  font-size:clamp(.65rem, .18vw + .58rem, .75rem);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:4px 10px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  color:var(--dim2);
+  background:var(--surface2);
+  font-weight:600;
+}
+.pred-acc-tag.avail{
+  color:var(--u2);
+  background:rgba(16,185,129,.1);
+  border-color:rgba(16,185,129,.35);
+}
+.pred-acc-tag.pend{
+  color:var(--upred);
+  background:rgba(245,158,11,.1);
+  border-color:rgba(245,158,11,.35);
+}
+.pred-acc-tag.unit{
+  color:var(--ds2);
+  background:rgba(6,182,212,.1);
+  border-color:rgba(6,182,212,.3);
+}
+.pred-acc-title{
+  font-family:var(--head);
+  font-size:clamp(1.2rem, 1.8vw, 1.75rem);
+  font-weight:800;
+  color:#fff;
+  line-height:1.25;
+  letter-spacing:-.3px;
+}
+.pred-acc-sub{
+  font-family:var(--body);
+  font-size:clamp(.85rem, .2vw + .78rem, 1rem);
+  color:#8da4b7;
+  line-height:1.5;
+}
+.pred-acc-toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:clamp(.72rem, .18vw + .65rem, .82rem);
+  color:var(--ds2);
+  background:rgba(6,182,212,.08);
+  padding:9px 18px;
+  border-radius:9999px;
+  border:1px solid rgba(6,182,212,.25);
+  flex-shrink:0;
+  transition:all .2s cubic-bezier(.16,1,.3,1);
+  font-weight:600;
+}
+.pred-accordion-btn:hover .pred-acc-toggle{
+  background:rgba(6,182,212,.18);
+  border-color:var(--ds2);
+  color:#fff;
+}
+.pred-accordion.open .pred-acc-toggle{
+  background:rgba(6,182,212,.14);
+  border-color:var(--ds2);
+}
+.pred-acc-toggle .arrow-icon{
+  font-size:10px;
+  display:inline-block;
+}
 
-/* DISC BOX */
-.disc-box{background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.25);border-radius:8px;padding:14px 18px;margin-bottom:22px;display:flex;gap:10px;}
-.disc-box p{font-size:.85rem;color:var(--text);}
+.pred-accordion-body{
+  display:none;
+  padding:clamp(26px, 3.5vw, 44px) clamp(18px, 3vw, 40px);
+  background:linear-gradient(180deg, rgba(8,18,26,.95) 0%, rgba(5,12,15,.98) 100%);
+}
+.pred-accordion.open .pred-accordion-body{
+  display:block;
+}
+
+/* NO DATA AVAILABLE BOX */
+.no-data-box{
+  text-align:center;
+  padding:clamp(48px, 6vw, 76px) 24px;
+  background:rgba(12,28,40,.4);
+  border:1px dashed rgba(6,182,212,.28);
+  border-radius:16px;
+  margin:12px 0;
+}
+.no-data-icon{
+  font-size:44px;
+  margin-bottom:14px;
+  opacity:.88;
+}
+.no-data-text{
+  font-family:var(--head);
+  font-size:clamp(22px, 2.5vw, 28px);
+  font-weight:700;
+  color:#fff;
+  margin-bottom:10px;
+}
+.no-data-sub{
+  font-family:var(--mono);
+  font-size:clamp(.78rem, .2vw + .7rem, .88rem);
+  color:var(--dim2);
+  max-width:540px;
+  margin:0 auto;
+  line-height:1.75;
+}
+
+/* PART DIVIDERS */
+.part-divider{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:32px 0 12px;
+  font-family:var(--mono);
+  font-size:clamp(.78rem, .2vw + .72rem, .92rem);
+  color:var(--ds2);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:600;
+  width:100%;
+}
+.part-divider::after{
+  content:'';
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg, rgba(6,182,212,.4), rgba(25,51,68,.4));
+}
+
+/* QUESTION CARDS CONTAINER (EXPANSIVE STACK, NOT SQUEEZED GRID!) */
+.pred-grid{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(18px, 2vw, 26px);
+  margin-top:20px;
+  width:100%;
+}
+
+/* APPLE-INSPIRED QUESTION CARD */
+.pred-card{
+  background:rgba(12,28,40,.68);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(25,51,68,.85);
+  border-left:4px solid var(--ds2);
+  border-radius:clamp(14px, 1.5vw, 18px);
+  overflow:hidden;
+  transition:border-color .22s cubic-bezier(.16,1,.3,1), box-shadow .22s cubic-bezier(.16,1,.3,1), transform .22s cubic-bezier(.16,1,.3,1);
+  width:100%;
+}
+.pred-card:hover{
+  border-color:rgba(6,182,212,.4);
+  border-left-color:#67e8f9;
+  box-shadow:0 10px 32px rgba(0,0,0,.35), 0 0 24px rgba(6,182,212,.08);
+  transform:translateY(-2px);
+}
+.pred-card-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  padding:clamp(20px, 2.4vw, 32px);
+  gap:8px 12px;
+}
+.pred-part{
+  order:1;
+  margin:0;
+  font-family:var(--mono);
+  font-size:clamp(.7rem, .18vw + .65rem, .8rem);
+  color:var(--dim2);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-weight:600;
+}
+.pred-unit{
+  order:2;
+  margin:0;
+  font-family:var(--mono);
+  font-size:clamp(.68rem, .18vw + .62rem, .78rem);
+  color:var(--ds2);
+  background:rgba(6,182,212,.1);
+  border:1px solid rgba(6,182,212,.3);
+  padding:3px 10px;
+  border-radius:5px;
+}
+.pred-conf{
+  order:3;
+  margin:0 0 0 auto;
+  font-family:var(--mono);
+  font-size:clamp(.68rem, .18vw + .62rem, .78rem);
+  padding:3px 10px;
+  border-radius:5px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+.pred-conf.high{
+  color:#f87171;
+  background:rgba(239,68,68,.12);
+  border:1px solid rgba(239,68,68,.3);
+}
+.pred-conf.med{
+  color:#fbbf24;
+  background:rgba(245,158,11,.12);
+  border:1px solid rgba(245,158,11,.3);
+}
+.pred-q{
+  order:4;
+  width:100%;
+  margin:10px 0 6px;
+  font-family:var(--head);
+  font-size:clamp(1.15rem, 1.3vw + .65rem, 1.6rem);
+  font-weight:700;
+  color:#ffffff;
+  line-height:1.35;
+  letter-spacing:-.2px;
+  max-width:105ch;
+}
+.pred-reason{
+  order:5;
+  width:100%;
+  margin:6px 0 0;
+  font-size:clamp(.86rem, .18vw + .8rem, .98rem);
+  color:#94a3b8;
+  line-height:1.75;
+  background:rgba(5,12,15,.45);
+  border-left:3px solid var(--ds2);
+  padding:10px 16px;
+  border-radius:0 8px 8px 0;
+  max-width:110ch;
+}
+
+/* TOGGLE ANSWER BUTTON (APPLE STYLE PILL STRIP) */
+.pred-answer-toggle{
+  width:100%;
+  padding:clamp(12px, 1.4vw, 16px) clamp(20px, 2.4vw, 32px);
+  background:rgba(16,34,48,.7);
+  border:none;
+  border-top:1px solid rgba(25,51,68,.85);
+  cursor:pointer;
+  font-family:var(--mono);
+  font-size:clamp(.75rem, .18vw + .7rem, .85rem);
+  font-weight:600;
+  color:var(--ds2);
+  text-align:left;
+  transition:all .2s cubic-bezier(.16,1,.3,1);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.pred-answer-toggle:hover{
+  background:rgba(6,182,212,.16);
+  color:#ffffff;
+}
+
+/* EXPANSIVE ANSWER BODY */
+.pred-answer{
+  display:none;
+  padding:clamp(24px, 3vw, 40px) clamp(20px, 2.5vw, 36px);
+  border-top:1px solid rgba(6,182,212,.2);
+  background:rgba(5,12,15,.88);
+}
+.pred-answer.open{
+  display:block;
+  animation:answerFadeIn .22s ease-out;
+}
+@keyframes answerFadeIn{
+  from{opacity:0;transform:translateY(-3px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.pred-answer p{
+  font-size:clamp(.94rem, .2vw + .88rem, 1.1rem);
+  line-height:1.88;
+  margin-bottom:14px;
+  max-width:96ch;
+  color:#e2e8f0;
+}
+.pred-answer strong{
+  color:var(--ds2);
+  font-weight:600;
+}
+.pred-answer em{
+  color:#a78bfa;
+  font-style:italic;
+}
+.pred-answer ul, .pred-answer ol{
+  padding-left:24px;
+  margin:12px 0 16px;
+  max-width:96ch;
+}
+.pred-answer li{
+  font-size:clamp(.94rem, .2vw + .88rem, 1.08rem);
+  margin-bottom:8px;
+  line-height:1.82;
+  color:#e2e8f0;
+}
+
+/* FORMULA & TABLE BOXES (FULL HORIZONTAL FREEDOM) */
+.fbox{
+  background:#03080c;
+  border:1px solid rgba(6,182,212,.25);
+  border-left:4px solid var(--ds2);
+  border-radius:12px;
+  padding:clamp(16px, 2vw, 24px) clamp(18px, 2.4vw, 30px);
+  margin:20px 0;
+  font-family:var(--mono);
+  font-size:clamp(.82rem, .2vw + .76rem, .96rem);
+  color:#67e8f9;
+  overflow-x:auto;
+  line-height:1.78;
+  box-shadow:inset 0 2px 10px rgba(0,0,0,.45);
+}
+.fbox::-webkit-scrollbar{
+  height:6px;
+}
+.fbox::-webkit-scrollbar-track{
+  background:#03080c;
+}
+.fbox::-webkit-scrollbar-thumb{
+  background:var(--border);
+  border-radius:3px;
+}
+.fbox::-webkit-scrollbar-thumb:hover{
+  background:var(--ds2);
+}
+.fbox .flbl{
+  font-size:clamp(.68rem, .18vw + .62rem, .76rem);
+  color:#7dd3fc;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  display:block;
+  font-weight:600;
+}
+.fbox .fl{
+  color:#e0f2fe;
+  font-size:inherit;
+  white-space:pre-wrap;
+  font-family:var(--mono);
+  letter-spacing:.2px;
+}
+.fbox .fn{
+  color:#94a3b8;
+  font-size:clamp(.72rem, .18vw + .66rem, .84rem);
+  margin-top:12px;
+  display:block;
+  font-style:italic;
+  border-top:1px dashed rgba(25,51,68,.8);
+  padding-top:8px;
+  line-height:1.65;
+}
+
+/* DIAGRAM BOXES */
+.dbox{
+  background:#040a0f;
+  border:1px solid rgba(25,51,68,.9);
+  border-radius:14px;
+  padding:clamp(20px, 2.5vw, 32px);
+  margin:22px 0;
+  text-align:center;
+  overflow-x:auto;
+  box-shadow:inset 0 2px 12px rgba(0,0,0,.5);
+}
+.dbox svg{
+  display:block;
+  margin:0 auto;
+  max-width:860px;
+  width:100%;
+  height:auto;
+}
+.dcap{
+  font-family:var(--mono);
+  font-size:clamp(.72rem, .18vw + .66rem, .82rem);
+  color:#94a3b8;
+  margin-top:14px;
+  letter-spacing:.5px;
+}
 
 /* PREP BOX */
-.prep-box{background:rgba(6,182,212,.06);border:1px solid rgba(6,182,212,.25);border-radius:10px;padding:24px 28px;margin-top:30px;}
-.prep-box h3{font-family:var(--head);font-size:1.1rem;font-weight:700;color:var(--ds2);margin-bottom:14px;}
-.prep-box p{font-size:.89rem;line-height:1.88;}
-.prep-box strong{color:#fff;}
+.prep-box{
+  background:linear-gradient(135deg, rgba(6,182,212,.08) 0%, rgba(16,185,129,.05) 100%);
+  border:1px solid rgba(6,182,212,.3);
+  border-radius:clamp(14px, 1.8vw, 20px);
+  padding:clamp(22px, 3vw, 36px) clamp(22px, 3.2vw, 40px);
+  margin-top:36px;
+  box-shadow:0 8px 30px rgba(0,0,0,.25);
+}
+.prep-box h3{
+  font-family:var(--head);
+  font-size:clamp(1.15rem, 1.5vw, 1.5rem);
+  font-weight:700;
+  color:var(--ds2);
+  margin-bottom:16px;
+  letter-spacing:-.2px;
+}
+.prep-box p{
+  font-size:clamp(.92rem, .2vw + .86rem, 1.08rem);
+  line-height:1.88;
+  color:#e2e8f0;
+}
+.prep-box strong{
+  color:#ffffff;
+  font-weight:600;
+}
 
 /* FOOTER */
 .site-footer{background:#030a0d;border-top:1px solid var(--border2);padding:28px 5vw;text-align:center;font-family:var(--mono);font-size:.73rem;color:var(--dim);}
@@ -200,12 +688,53 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
 .site-footer a:hover{color:var(--ds2);}
 .footer-links{margin-bottom:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;}
 
-/* RESPONSIVE */
-@media(max-width:1000px){.pred-grid{grid-template-columns:1fr;}.unit-grid{grid-template-columns:1fr;}}
-@media(max-width:768px){.hero{padding:50px 20px 46px;}.pred-inner{padding:50px 20px;}.section-wrap{padding:40px 0;}.imp-row{grid-template-columns:1fr 1fr 50px;}.imp-label{white-space:normal;overflow:visible;text-overflow:unset;font-size:.71rem;}}
-@media(max-width:600px){html{font-size:18px;}.page-wrap{padding:0 18px;}.stats-inner{padding:22px 18px;}.pyq-grid{grid-template-columns:1fr;}}
-@media(max-width:480px){.hero h1{font-size:clamp(30px,10vw,46px);}}
-@media(max-width:900px) and (orientation:landscape){.hero{padding:36px 5vw;}.hero h1{font-size:clamp(26px,7vw,42px);}}
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE & ADAPTIVE DISPLAY SCALING (IPHONE MINI TO 65" TV)
+   ══════════════════════════════════════════════════════════════ */
+@media(min-width:2000px){
+  .pred-card-head{padding:32px 42px;}
+  .pred-answer{padding:38px 48px;}
+  .fbox{padding:24px 34px;}
+  .dbox svg{max-width:1150px;}
+}
+@media(min-width:3200px){
+  .pred-card-head{padding:42px 52px;}
+  .pred-answer{padding:48px 60px;}
+  .fbox{padding:28px 40px;}
+  .dbox svg{max-width:1450px;}
+}
+
+@media(max-width:1000px){
+  .unit-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .hero{padding:50px 20px 46px;}
+  .section-wrap{padding:40px 0;}
+  .imp-row{grid-template-columns:1fr 1fr 50px;}
+  .imp-label{white-space:normal;overflow:visible;text-overflow:unset;font-size:.71rem;}
+}
+@media(max-width:600px){
+  .page-wrap{padding:0 16px;}
+  .stats-inner{padding:22px 16px;}
+  .pyq-grid{grid-template-columns:1fr;}
+  .pred-accordion-btn{padding:18px 16px;flex-direction:column;align-items:flex-start;gap:14px;}
+  .pred-acc-toggle{align-self:flex-start;}
+  .pred-accordion-body{padding:22px 14px;}
+  .pred-card-head{padding:18px 16px;}
+  .pred-conf{margin-left:0;}
+  .pred-answer{padding:20px 16px;}
+  .pred-answer-toggle{padding:14px 16px;}
+  .dbox svg{min-width:440px;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:clamp(30px,10vw,46px);}
+  .pred-card{border-radius:14px;}
+  .fbox{padding:14px 14px;font-size:.82rem;}
+}
+@media(max-width:900px) and (orientation:landscape){
+  .hero{padding:36px 5vw;}
+  .hero h1{font-size:clamp(26px,7vw,42px);}
+}
 </style>
 </head>
 <body>
@@ -219,6 +748,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
   <a class="tnlink" href="unit3.html">💧 U3: Drinking Water Quality</a>
   <a class="tnlink" href="unit4.html">🚿 U4: Wastewater &amp; Sewers</a>
   <a class="tnlink" href="unit5.html">🌫️ U5: Solid Waste, Air &amp; Disaster</a>
+  <a class="tnlink pyq" href="#predicted" style="color:var(--upred);background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.28);">🔮 Predicted Papers</a>
   <a class="tnlink pyq" href="pyq.html">📋 Solved PYQs</a>
 </nav>
 
@@ -234,10 +764,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
   <div class="hero-inner">
     <div class="hero-tag"><span class="hero-dot"></span>🌱 B.Tech VII Sem · RTU Kota · 7AG6-60.2 (Open Elective-I)</div>
     <h1><span>Environmental Engineering</span><br>&amp; Disaster <em>Management</em></h1>
-    <p class="hero-sub">A <strong>complete exam-ready guide</strong> — safe water supply, domestic water demand, sources &amp; intakes, drinking water quality, IS-10500 standards, water treatment, wastewater &amp; sewers, solid waste, air pollution and disaster management — explained from scratch with RTU PYQs 2021–2025 mapped by unit + a fully answered predicted Mid-Term 1 paper for 2026.</p>
+    <p class="hero-sub">A <strong>complete exam-ready guide</strong> — safe water supply, domestic water demand, sources &amp; intakes, drinking water quality, IS-10500 standards, water treatment, wastewater &amp; sewers, solid waste, air pollution and disaster management — explained from scratch with RTU PYQs 2021–2025 mapped by unit + a fully answered predicted Mid-Term 1 &amp; Mid-Term 2 paper for 2026.</p>
     <div class="hero-badges">
       <span class="badge badge-r">🔥 Drinking Water Quality — Every Paper</span>
-      <span class="badge badge-gold">🔮 Mid-Term 1 2026 Predicted + Full Answers</span>
+      <a href="#predicted" class="badge badge-gold" style="text-decoration:none;cursor:pointer;">🔮 Predicted Papers (Mid-Term 1, 2 &amp; RTU)</a>
       <span class="badge badge-c">IS-10500 Standards — Explained</span>
       <span class="badge badge-g">Water Treatment &amp; Intake Diagrams</span>
       <span class="badge badge-v">Urban vs Rural Water Demand — Solved</span>
@@ -425,21 +955,47 @@ body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:
 </div>
 </div><!-- /page-wrap -->
 
-<!-- ══════ PREDICTED PAPER — MID-TERM 1, 2026 ══════ -->
-<div class="predicted-section">
+<!-- ══════ PREDICTED PAPERS ══════ -->
+<div class="predicted-section" id="predicted">
   <div class="pred-inner">
-    <div class="pred-badge">🔮 AI-Powered Analysis — Mid-Term 1 (Aug-2025) + RTU End-Term 2021 / 2023 / 2024 / 2025 Cross-Referenced</div>
-    <div class="pred-sec-title">Predicted Paper — EEDM Mid-Term 1, 2026</div>
-    <div class="pred-sec-sub">BASED ON 1 REAL MID-TERM SAMPLE + 4 RTU PYQs, MAPPED TO UNIT 1–3 ONLY · 7AG6-60.2</div>
-    <p class="pred-intro">Every RTU end-term question was sorted by unit (Unit 1 = Introduction, Unit 2 = water supply system, Unit 3 = drinking water quality) using the syllabus and slide content — Units 4/5 (wastewater, solid waste, air pollution, disaster types) were discarded since the one real Mid-Term 1 paper never touches them. What's left was ranked by how often the same theme repeats. Domestic-water-requirement comparison and drinking-water-quality/IS-10500 are the most repeated items in the whole set — and they're already Q4/Q5 in the real Aug-2025 paper — so both return here, reworded rather than verbatim.</p>
-    <div class="disc-box">
-      <span style="font-size:18px;flex-shrink:0;">⚠️</span>
-      <p>Predictions are based on historical patterns across 1 real mid-term and 4 RTU end-terms. Actual paper may differ. Use this to prioritise study time — don't skip Unit 1–3 topics not listed here entirely.</p>
+    <div class="section-head" style="margin-bottom:28px;">
+      <div class="pred-badge">🔮 AI-Powered Exam Predictions · 2026 Series</div>
+      <h2>Predicted Examination Papers</h2>
+      <div class="sub">CURATED PREDICTIONS FOR MID-TERM 1, MID-TERM 2 &amp; RTU END-TERM EXAMINATIONS</div>
     </div>
 
-    <div class="pred-grid">
+    <div class="pred-papers-list">
 
-      <div class="part-divider">Part A — 2 marks each · all three compulsory</div>
+      <!-- ══════ PREDICTED PAPER: MIDTERM 1 ══════ -->
+      <div class="pred-accordion open" id="predicted-midterm-1">
+        <button class="pred-accordion-btn" onclick="togglePaper(this)" aria-expanded="true">
+          <div class="pred-acc-left">
+            <div class="pred-acc-badges">
+              <span class="pred-acc-tag avail">Ready · 7 Qs Solved</span>
+              <span class="pred-acc-tag unit">Units 1–3</span>
+              <span class="pred-acc-tag">20 Marks</span>
+            </div>
+            <h3 class="pred-acc-title">🔮 Predicted Paper — Midterm 1</h3>
+            <div class="pred-acc-sub">Environmental Engineering Scope · Water Sources &amp; Demand · Drinking Water Quality &amp; Treatment</div>
+          </div>
+          <div class="pred-acc-toggle">
+            <span class="toggle-text">Collapse</span>
+            <span class="arrow-icon">▲</span>
+          </div>
+        </button>
+        <div class="pred-accordion-body">
+          <div class="pred-badge">🔮 AI-Powered Analysis — Mid-Term 1 (Aug-2025) + RTU End-Term 2021 / 2023 / 2024 / 2025 Cross-Referenced</div>
+          <div class="pred-sec-title">Predicted Paper — EEDM Mid-Term 1, 2026</div>
+          <div class="pred-sec-sub">BASED ON 1 REAL MID-TERM SAMPLE + 4 RTU PYQs, MAPPED TO UNIT 1–3 ONLY · 7AG6-60.2</div>
+          <p class="pred-intro">Every RTU end-term question was sorted by unit (Unit 1 = Introduction, Unit 2 = water supply system, Unit 3 = drinking water quality) using the syllabus and slide content — Units 4/5 (wastewater, solid waste, air pollution, disaster types) were discarded since the one real Mid-Term 1 paper never touches them. What's left was ranked by how often the same theme repeats. Domestic-water-requirement comparison and drinking-water-quality/IS-10500 are the most repeated items in the whole set — and they're already Q4/Q5 in the real Aug-2025 paper — so both return here, reworded rather than verbatim.</p>
+          <div class="disc-box">
+            <span style="font-size:18px;flex-shrink:0;">⚠️</span>
+            <p>Predictions are based on historical patterns across 1 real mid-term and 4 RTU end-terms. Actual paper may differ. Use this to prioritise study time — don't skip Unit 1–3 topics not listed here entirely.</p>
+          </div>
+
+                <div class="pred-grid">
+
+            <div class="part-divider">Part A — 2 marks each · all three compulsory</div>
 
       <!-- PART A -->
       <div class="pred-card">
@@ -500,7 +1056,7 @@ Total Hardness    : 200 mg/L as CaCO3 (600 mg/L permissible)</div>
         </div>
       </div>
 
-      <div class="part-divider">Part B — 4 marks each · both compulsory</div>
+            <div class="part-divider">Part B — 4 marks each · both compulsory</div>
 
       <!-- PART B -->
       <div class="pred-card">
@@ -554,7 +1110,7 @@ Infrastructure      : Urban — treatment plant, pumped/piped
         </div>
       </div>
 
-      <div class="part-divider">Part C — 6 marks · attempt any ONE of the two</div>
+            <div class="part-divider">Part C — 6 marks · attempt any ONE of the two</div>
 
       <!-- PART C -->
       <div class="pred-card">
@@ -652,15 +1208,409 @@ Infrastructure      : Urban — treatment plant, pumped/piped
         </div>
       </div>
 
-    </div><!-- /pred-grid -->
+          </div><!-- /pred-grid -->
 
-    <div class="prep-box">
-      <h3>✅ Quick preparation strategy — EEDM Mid-Term 1, 2026</h3>
-      <p><strong>Certain (prepare with the full IS-10500 table and the treatment flow diagram):</strong> drinking-water characteristics + IS-10500 limits (Q4), urban vs rural domestic water requirement comparison (Q5), river/reservoir/lake intake comparison (Q6), and the step-by-step conventional water treatment train (Q7) — all four are either verbatim repeats of the real Aug-2025 paper or match a second, independent RTU paper.<br><br>
-      <strong>Very high confidence:</strong> sources of water supply, list-and-classify style (Q2) — never asked in the one real sample, but present in 3 of 4 RTU papers, so treat it as the most likely "new" addition.<br><br>
-      <strong>Backup, in case Unit 1 gets more weight than usual:</strong> "What is a disaster?" / "What is disaster management?" (2021 Q2, 2023 Q8/Q10) — Unit 1's other recurring definitional pair, in case it's swapped in for the Environmental Engineering definition.<br><br>
-      <strong>Least certain slot:</strong> Q3 — an IS-10500 numeric-recall question shows up every year, but the exact parameter (pH, TDS, turbidity, chlorides…) rotates, so know the whole table rather than banking on pH/TDS specifically.</p>
-    </div>
+          <div class="prep-box">
+            <h3>✅ Quick preparation strategy — EEDM Mid-Term 1, 2026</h3>
+            <p><strong>Certain (prepare with the full IS-10500 table and the treatment flow diagram):</strong> drinking-water characteristics + IS-10500 limits (Q4), urban vs rural domestic water requirement comparison (Q5), river/reservoir/lake intake comparison (Q6), and the step-by-step conventional water treatment train (Q7) — all four are either verbatim repeats of the real Aug-2025 paper or match a second, independent RTU paper.<br><br>
+            <strong>Very high confidence:</strong> sources of water supply, list-and-classify style (Q2) — never asked in the one real sample, but present in 3 of 4 RTU papers, so treat it as the most likely "new" addition.<br><br>
+            <strong>Backup, in case Unit 1 gets more weight than usual:</strong> "What is a disaster?" / "What is disaster management?" (2021 Q2, 2023 Q8/Q10) — Unit 1's other recurring definitional pair, in case it's swapped in for the Environmental Engineering definition.<br><br>
+            <strong>Least certain slot:</strong> Q3 — an IS-10500 numeric-recall question shows up every year, but the exact parameter (pH, TDS, turbidity, chlorides…) rotates, so know the whole table rather than banking on pH/TDS specifically.</p>
+          </div>
+        </div>
+      </div><!-- /#predicted-midterm-1 -->
+
+      <!-- ══════ PREDICTED PAPER: MIDTERM 2 ══════ -->
+      <div class="pred-accordion" id="predicted-midterm-2">
+        <button class="pred-accordion-btn" onclick="togglePaper(this)" aria-expanded="false">
+          <div class="pred-acc-left">
+            <div class="pred-acc-badges">
+              <span class="pred-acc-tag avail">Ready · 7 Qs Solved</span>
+              <span class="pred-acc-tag unit">Units 4–5</span>
+              <span class="pred-acc-tag">20 Marks</span>
+            </div>
+            <h3 class="pred-acc-title">🔮 Predicted Paper — Midterm 2</h3>
+            <div class="pred-acc-sub">Domestic Wastewater &amp; Sewers · Air Pollution · Disaster Management</div>
+          </div>
+          <div class="pred-acc-toggle">
+            <span class="toggle-text">Expand</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+        </button>
+        <div class="pred-accordion-body">
+          <div class="pred-badge">🔮 AI-Powered Analysis — Faculty Slides (Unit IV + Unit V) + RTU End-Term 2021 / 2023 / 2024 / 2025 Cross-Referenced</div>
+          <div class="pred-sec-title">Predicted Paper — EEDM Mid-Term 2, 2026</div>
+          <div class="pred-sec-sub">BASED ON FACULTY SLIDES + 4 RTU PYQs, MAPPED TO UNIT 4–5 ONLY · 7AG6-60.2</div>
+          <p class="pred-intro">Every RTU end-term question was sorted by unit using the syllabus (Unit 4 = domestic wastewater, sewers; Unit 5 = solid waste, air pollution, disaster), and Units 1–3 questions were discarded. That left 52 Unit 4/5 questions across the four papers. By share: <strong>air pollution 29%</strong> (15 Qs), <strong>disaster 27%</strong> (14), <strong>wastewater 23%</strong> (12), <strong>solid waste 15%</strong> (8), <strong>sewers 6%</strong> (3). Air pollution, disaster and solid waste appear in all 4 papers; wastewater treatment in 3 of 4. There is no real Mid-Term 2 sample to anchor on, so the faculty slides are the second signal: sewers get ~30 of 75 Unit IV slides and the disaster-management cycle gets 6 slides of its own, so both are pulled up even though sewers are rarer in end-terms.</p>
+          <div class="disc-box">
+            <span style="font-size:18px;flex-shrink:0;">⚠️</span>
+            <p>Predictions are based on 4 RTU end-terms and the faculty slides — there is no real Mid-Term 2 paper to confirm against. Solid waste and wastewater-treatment slides were not in the files provided, so those topics sit in the backup list. Use this to prioritise study time — don't skip Unit 4–5 topics not listed here entirely.</p>
+          </div>
+
+          <div class="pred-grid">
+
+            <div class="part-divider">Part A — 2 marks each · all three compulsory</div>
+
+      <!-- PART A -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q1)</div>
+          <div class="pred-unit">Unit 4 | Wastewater characteristics</div>
+          <div class="pred-q">Define BOD and COD of wastewater. (🔮 PREDICTED)</div>
+          <div class="pred-reason">BOD was Part A Q5 in 2025, COD was Part A Q7 in 2024, and "DO and BOD" was a Part B question in 2024. Wastewater characteristics are 2 of 4 papers, and the faculty slides give BOD, COD and DO three dedicated slides (21–23) with numeric values — an easy 2-mark pick for a short-answer slot.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>25-word answer:</strong> BOD: oxygen bacteria need to oxidise organic matter in wastewater. COD: oxygen needed to chemically oxidise it. COD is always greater than BOD.</p>
+          <p><strong>Layman version:</strong> BOD is how much oxygen the germs "eat" while digesting the dirt in the water; COD is how much oxygen a strong chemical would use to burn the same dirt.</p>
+          <div class="fbox">
+            <span class="flbl">Values quoted on the faculty slide (sewage)</span>
+            <div class="fl">BOD : amount of O2 for bacteria to oxidise organic matter
+       -> about 80 mg/L
+COD : amount of O2 for chemical oxidation of organic matter
+       -> about 150 mg/L
+DO  : O2 dissolved in wastewater; at least 4 ppm needed in
+       the receiving stream, otherwise fish are killed</div>
+            <div class="fn">Why COD &gt; BOD: the chemical oxidant also attacks matter bacteria cannot break down. Textbooks often quote higher BOD for strong raw sewage, but write the slide values if asked for numbers.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q2)</div>
+          <div class="pred-unit">Unit 4 | Sewage &amp; sewers</div>
+          <div class="pred-q">What is sewage? Name any two types of sewers. (🔮 PREDICTED)</div>
+          <div class="pred-reason">"What is sewage?" was 2023 Part A Q3 and "name any two types of sewers" was 2025 Part A Q6, with "types of sewer" as a full Part B in 2023. The faculty opens the sewer section (slide 43) with exactly the sewage / sewer / sewerage definitions, and slides 49–53 cover sewer shapes.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>25-word answer:</strong> Sewage is liquid waste from homes, offices and industry. Sewers are closed underground gravity pipes carrying it; types: circular and non-circular (egg-shaped, horseshoe).</p>
+          <div class="fbox">
+            <span class="flbl">Three terms to keep apart</span>
+            <div class="fl">Sewage   : liquid waste produced as a result of water use
+Sewer    : the pipe/conduit that carries sewage (closed,
+           flows under gravity at atmospheric pressure)
+Sewerage : the whole system that collects wastewater and
+           conveys it to the point of final disposal</div>
+            <div class="fn">Other valid "types" if you want a second answer: by function — sanitary, storm and combined sewers (standard textbook classification, not on the slides).</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📝 Part A — 2 marks (Q3)</div>
+          <div class="pred-unit">Unit 5 | Air pollution</div>
+          <div class="pred-q">Define air pollution. List two gaseous air pollutants. (🔮 PREDICTED)</div>
+          <div class="pred-reason">2025 Part A Q8 ("define air pollution") and Q9 ("list two gaseous air pollutants") were back-to-back, and 2021 asked "what is air pollutant". Air pollution is the single largest Unit 4/5 theme (29% of questions, present in all 4 papers). The slide 4 definition is the one to write.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>25-word answer:</strong> Air pollution is the presence of substances in air in concentrations harmful to humans and the environment. Gaseous pollutants: SO₂ and CO.</p>
+          <div class="fbox">
+            <span class="flbl">Quick classification (slides 11–14)</span>
+            <div class="fl">By origin : Primary (directly emitted) - PM, SOx, NOx, CO
+             Secondary (formed in air) - ozone, PAN, smog
+By state  : Gaseous - CO, CO2, NOx, SOx, hydrocarbons
+             Particulate - dust, smoke, mist, fog, fumes, ash</div>
+          </div>
+        </div>
+      </div>
+
+            <div class="part-divider">Part B — 4 marks each · both compulsory</div>
+
+      <!-- PART B -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q4)</div>
+          <div class="pred-unit">Unit 4 | Wastewater characteristics</div>
+          <div class="pred-q">Explain the physical, chemical and biological characteristics of domestic wastewater (sewage). (🔮 PREDICTED)</div>
+          <div class="pred-reason">Near-identical to 2025 Part B Q5 ("physical, chemical and biological characteristics of wastewater"), and the 2024 paper split the same ground across Part A (wastewater, COD, TOC, pollutants) and Part B (DO, BOD). The faculty's physical / chemical / biological split (slides 18–27) matches the question wording exactly.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Physical:</strong> colour is grey-brown when fresh (soap-solution colour) and dark grey when decomposed; fresh sewage has a soapy/oily odour, stale sewage smells offensive from H₂S and CH₄; temperature is slightly higher than the water supply, which speeds up biological activity; very turbid because of suspended solids (350–1200 mg/L).</p>
+          <p><strong>Chemical:</strong> complex compounds from urine, faeces and inorganic chemicals. Key parameters are pH (raw sewage 5–8), DO (needs ≥ 4 ppm in the receiving stream), BOD (≈ 80 mg/L) and COD (≈ 150 mg/L).</p>
+          <p><strong>Biological:</strong> bacteria, algae, fungi and protozoa — roughly 22–25 million organisms per litre, some of them pathogenic. By oxygen need, bacteria are <em>aerobic</em> (need free O₂), <em>anaerobic</em> (survive without it) or <em>facultative</em> (either); they are what breaks down complex organic matter into simple stable compounds.</p>
+          <div class="fbox">
+            <span class="flbl">One-line summary table</span>
+            <div class="fl">Physical   : colour, odour, temperature, turbidity, solids
+Chemical   : pH, DO, BOD, COD
+Biological : bacteria (aerobic/anaerobic/facultative),
+             algae, fungi, protozoa, pathogens</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📋 Part B — 4 marks (Q5)</div>
+          <div class="pred-unit">Unit 5 | Disaster management</div>
+          <div class="pred-q">Explain the disaster management cycle with a neat diagram, stating the importance of disaster management. (🔮 PREDICTED)</div>
+          <div class="pred-reason">"Disaster management cycle" was 2023 Part B Q7, "disaster preparedness" was 2025 Part B Q7, and "importance of disaster management in India, different phases" was 2025 Part C Q5. Disaster is 27% of all Unit 4/5 questions and in all 4 papers. The faculty gives the cycle six slides (6–12) including two diagrams, and the syllabus names "importance of disaster management" explicitly.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p>Disaster management is the systematic, planned set of actions taken <em>before, during and after</em> a disaster to avoid it, reduce its impact or recover from its losses (DM Act 2005). It is fundamentally <strong>disaster risk management</strong>, and its phases together form the <strong>Disaster Management Cycle</strong>.</p>
+          <div class="dbox">
+            <svg viewBox="0 0 560 175" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#6090a8"/>
+                </marker>
+              </defs>
+              <text x="10" y="16" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold">Disaster management cycle</text>
+              <text x="124" y="38" text-anchor="middle" fill="#10b981" font-family="JetBrains Mono, monospace" font-size="8" font-weight="bold">PRE-DISASTER · risk reduction</text>
+              <line x1="13" y1="44" x2="235" y2="44" stroke="#10b981" stroke-width="1.5"/>
+              <text x="436" y="38" text-anchor="middle" fill="#f5b942" font-family="JetBrains Mono, monospace" font-size="8" font-weight="bold">POST-DISASTER · crisis management</text>
+              <line x1="325" y1="44" x2="547" y2="44" stroke="#f5b942" stroke-width="1.5"/>
+              <g font-family="JetBrains Mono, monospace" font-size="7.5" text-anchor="middle">
+                <rect x="13" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="46" y="75" fill="#10b981">Prevention</text>
+                <rect x="91" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="124" y="75" fill="#10b981">Mitigation</text>
+                <rect x="169" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="202" y="75" fill="#10b981">Preparedness</text>
+                <rect x="247" y="54" width="66" height="34" rx="5" fill="#152432" stroke="#ef4444" stroke-width="1.5"/>
+                <text x="280" y="75" fill="#ef4444" font-weight="bold">DISASTER</text>
+                <rect x="325" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="358" y="75" fill="#f5b942">Response</text>
+                <rect x="403" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="436" y="75" fill="#f5b942">Recovery</text>
+                <rect x="481" y="54" width="66" height="34" rx="5" fill="#081420" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="514" y="75" fill="#f5b942">Reconstruction</text>
+              </g>
+              <g stroke="#6090a8" stroke-width="1.5" marker-end="url(#arr2)">
+                <line x1="79" y1="71" x2="90" y2="71"/>
+                <line x1="157" y1="71" x2="168" y2="71"/>
+                <line x1="235" y1="71" x2="246" y2="71"/>
+                <line x1="313" y1="71" x2="324" y2="71"/>
+                <line x1="391" y1="71" x2="402" y2="71"/>
+                <line x1="469" y1="71" x2="480" y2="71"/>
+              </g>
+              <path d="M514 88 L514 124 L46 124 L46 90" fill="none" stroke="#6090a8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+              <text x="280" y="140" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7.5">Development (sustainable livelihoods, resilience) → back to Prevention</text>
+              <text x="280" y="162" text-anchor="middle" fill="#6090a8" font-family="JetBrains Mono, monospace" font-size="7">Alternate slide version: Relief/Response → Recovery → Rehabilitation → Reconstruction</text>
+            </svg>
+            <div class="dcap">Fig — Disaster management cycle: pre-disaster (risk reduction) and post-disaster (crisis management) phases</div>
+          </div>
+          <div class="fbox">
+            <span class="flbl">Phases with examples (slides 10–12)</span>
+            <div class="fl">Prevention     : hazard identification, risk analysis;
+                 e.g. public awareness, environmental scanning
+Mitigation     : reduce harm to health and property;
+                 e.g. mock drills, building codes, zoning
+Preparedness   : design the response structure beforehand;
+                 e.g. emergency/communication plan, disaster
+                 teams, food-clothing-shelter stock
+Response       : save lives, stop further damage;
+                 e.g. triage, medical care, evacuation
+Recovery       : return to normal or safer;
+                 e.g. disease surveillance, psychological
+                 support, temporary housing
+Reconstruction : physical, social, economic, psychological
+                 rehabilitation; e.g. rebuild houses and roads</div>
+          </div>
+          <p><strong>Importance:</strong> avert a disaster, rescue and relief, rehabilitation, reduce trauma, control the death rate, protect the environment and minimise losses. Hazards may be inevitable, but disasters can be prevented.</p>
+        </div>
+      </div>
+
+            <div class="part-divider">Part C — 6 marks · attempt any ONE of the two</div>
+
+      <!-- PART C -->
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q6)</div>
+          <div class="pred-unit">Unit 4 | Sewers</div>
+          <div class="pred-q">Describe the types of sewers. Explain design discharge and the hydraulic design of sewers, including minimum and maximum velocity. (🔮 PREDICTED)</div>
+          <div class="pred-reason">"Types of sewer" was 2023 Part B Q5, "two types of sewers" was 2025 Part A Q6 and "significance of hydraulic design of sewers" was 2025 Part B Q4. Sewers are only 6% of past end-term questions, but they take about 30 of the 75 Unit IV slides and the syllabus lists "types, design discharge and hydraulic design" as one line — so it is the most likely Unit 4 long answer.</div>
+          <span class="pred-conf high">HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <div class="dbox">
+            <svg viewBox="0 0 560 170" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+              <text x="10" y="18" fill="#22d3ee" font-family="JetBrains Mono, monospace" font-size="10" font-weight="bold">Common sewer cross-sections</text>
+              <g font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle">
+                <rect x="10" y="30" width="130" height="120" rx="6" fill="#081420" stroke="#06b6d4" stroke-width="1.5"/>
+                <text x="75" y="46" fill="#22d3ee" font-weight="bold">CIRCULAR</text>
+                <circle cx="75" cy="92" r="30" fill="none" stroke="#22d3ee" stroke-width="1.5"/>
+                <text x="75" y="142" fill="#6090a8" font-size="7">most common, easy to build</text>
+
+                <rect x="150" y="30" width="130" height="120" rx="6" fill="#081420" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="215" y="46" fill="#a78bfa" font-weight="bold">EGG-SHAPED</text>
+                <path d="M215 62 C245 62 250 91 232 114 C226 122 221 128 215 128 C209 128 204 122 198 114 C180 91 185 62 215 62 Z" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="215" y="142" fill="#6090a8" font-size="7">combined sewers, dry-weather flow</text>
+
+                <rect x="290" y="30" width="130" height="120" rx="6" fill="#081420" stroke="#10b981" stroke-width="1.5"/>
+                <text x="355" y="46" fill="#10b981" font-weight="bold">HORSE-SHOE</text>
+                <path d="M325 124 L325 94 A30 30 0 0 1 385 94 L385 124 Q355 133 325 124 Z" fill="none" stroke="#10b981" stroke-width="1.5"/>
+                <text x="355" y="142" fill="#6090a8" font-size="7">tunnel-like, heavy discharge</text>
+
+                <rect x="430" y="30" width="120" height="120" rx="6" fill="#081420" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="490" y="46" fill="#f5b942" font-weight="bold">RECTANGULAR</text>
+                <rect x="460" y="66" width="60" height="56" fill="none" stroke="#f5b942" stroke-width="1.5"/>
+                <text x="490" y="142" fill="#6090a8" font-size="7">large sewers, easy upkeep</text>
+              </g>
+            </svg>
+            <div class="dcap">Fig — Circular, egg-shaped, horse-shoe and rectangular sewer sections</div>
+          </div>
+          <p><strong>1. Types of sewers</strong></p>
+          <div class="fbox">
+            <span class="flbl">By shape (slides 49–53)</span>
+            <div class="fl">Circular   : least perimeter, smooth inside so uniform flow
+             and no deposition, easy to construct
+Egg-shaped : used in combined sewers; keeps self-cleansing
+             velocity in dry-weather flow
+Horse-shoe : tunnel-like, carries heavy discharge, easy
+             maintenance inside
+Parabolic  : small discharges
+Semi-elliptical : soft soil, large flows
+Rectangular / U-shaped : large, heavy discharges, easy upkeep
+Semi-circular, basket-handle : outdated</div>
+          </div>
+          <div class="fbox">
+            <span class="flbl">By material (slides 46–48)</span>
+            <div class="fl">Asbestos cement, PCC / RCC, brick (large and storm sewers),
+GI/corrugated iron (storm), cast iron (under pressure, below
+roads and rail), steel, stoneware/vitrified clay (house
+connections), plastic / HDPE, GRP, pitch fibre</div>
+            <div class="fn">Material choice criteria: strength, durability, resistance to abrasion and to corrosion (H₂S turns to sulphuric acid), light weight, imperviousness, low cost, smooth interior.</div>
+          </div>
+          <p><strong>2. Design discharge</strong> — the flow the sewer must carry at the end of its design period.</p>
+          <div class="fbox">
+            <span class="flbl">Design discharge relations</span>
+            <div class="fl">Sanitary flow = per-capita sewage x forecast population
+Per-capita sewage = 75-80% of per-capita water supplied
+Design discharge depends on: design period, population
+  forecast, tributary area, per-capita flow, infiltration,
+  commercial/institutional sewage, peak factor
+
+Storm water (Rational method):  Q = K I A / 360
+  Q = peak runoff (m3/s)   K = impermeability factor
+  I = rainfall intensity (mm/h)   A = catchment area (ha)</div>
+            <div class="fn">Design periods (slide 59): laterals under 15 cm - full development; trunk/main sewers 40-50 yr; treatment units 15-20 yr; pumping plant 5-10 yr.</div>
+          </div>
+          <p><strong>3. Hydraulic design</strong> — finding the sewer section (size) and gradient so that flow is non-silting and non-scouring.</p>
+          <div class="fbox">
+            <span class="flbl">Velocity limits and flow depth</span>
+            <div class="fl">Minimum velocity : self-cleansing, so solids do not settle
+  -> at least 0.45 m/s at minimum flow (1/3 of average)
+Required velocity : at least 0.9 m/s at maximum flow
+Maximum velocity  : non-scouring limit, depends on pipe
+  material (abrasion by grit roughens the pipe)
+Flow depth : sewers over 0.4 m dia designed 2/3 to 3/4 full
+  at maximum discharge (slide 56 gives 0.5-0.8 full)
+Flow equation : Q = A x V, with V from Manning's formula
+  V = (1/n) R^(2/3) S^(1/2)</div>
+            <div class="fn">Depth of flow changes with discharge, so hydraulic mean depth (r) and velocity change too — check the sewer at minimum, average and maximum flow. Slides 64–72 carry the formulas as images; if your faculty used Chezy or a different formula, replace the Manning line with that.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pred-card">
+        <div class="pred-card-head">
+          <div class="pred-part">📖 Part C — 6 marks (Q7)</div>
+          <div class="pred-unit">Unit 5 | Air pollution</div>
+          <div class="pred-q">Discuss the types of air pollutants, their sources and effects on living beings. State the NAAQS/BIS standards for air pollutants and the measures for their abatement. (🔮 PREDICTED)</div>
+          <div class="pred-reason">Air pollutants "types, sources and health/environmental impacts" was 2025 Part C Q4, "BIS standards for pollutants in air" was 2024 Part C Q4, "controlling air pollution" was 2023 Part C Q3, and "types of air pollutants with properties" was 2023 Part B Q6. The syllabus line itself reads "types of pollutants, properties and their effects… BIS standards for pollutants in air and their abatements", so this question is the whole Unit 5 air-pollution line merged into one.</div>
+          <span class="pred-conf high">VERY HIGH</span>
+        </div>
+        <button class="pred-answer-toggle" onclick="toggle(this)">▼ Show Answer</button>
+        <div class="pred-answer">
+          <p><strong>Air pollution</strong> is an atmospheric condition in which substances are present in concentrations that produce undesirable effects on humans and their environment. Sources are natural (volcanoes, forest fires, dust storms, salt spray) and man-made (fuel combustion, vehicle exhaust, industries, thermal and nuclear power plants, mining, agriculture).</p>
+          <div class="fbox">
+            <span class="flbl">Types of pollutants</span>
+            <div class="fl">By origin : Primary   - emitted directly (PM, SOx, NOx, CO)
+             Secondary - formed in air by reactions
+                         (ozone, PAN, photochemical smog)
+By state  : Gaseous    - CO, CO2, NOx, SOx, hydrocarbons
+             Particulate - dust, smoke, mist, fog, fumes,
+                           ash, spray
+By place  : Indoor (stoves, cigarette smoke, pesticides)
+             Outdoor (vehicles, industry, mining)</div>
+          </div>
+          <div class="fbox">
+            <span class="flbl">Key pollutants — source and effect (slides 26–36)</span>
+            <div class="fl">PM        : diesel engines, industry, dust -> asthma,
+             bronchitis, lung/heart disease, haze
+Lead (Pb) : leaded petrol, smelters, batteries -> brain and
+             nerve damage (esp. children), kidney damage
+Ozone O3  : VOC + NOx in sunlight -> chest pain, asthma,
+             reduced breathing capacity
+NO2       : fossil fuels, vehicles, power plants -> lung
+             problems, acid rain
+CO        : incomplete combustion -> blocks O2 carrying
+             capacity of blood, headache, death at high conc.
+SO2       : coal and oil burning -> eye and respiratory
+             irritation, harms plant growth, acid rain
+Hydrocarbons : petrol evaporation, exhaust -> cancer,
+             photochemical smog</div>
+          </div>
+          <p><strong>Effects:</strong> on <em>humans</em> — eye irritation, respiratory disease (silicosis, asbestosis), lead poisoning, cadmium-linked heart, kidney and liver damage; on <em>animals</em> — fluorine, lead and arsenic poisoning; on <em>plants</em> — SO₂ causes chlorosis, NO₂ causes leaf fall, ozone causes necrosis; on <em>materials</em> — corrosion, abrasion, chemical attack; on <em>climate</em> — CO₂ raises temperature, ozone depletion lets in more UV.</p>
+          <div class="fbox">
+            <span class="flbl">NAAQS 2009 (CPCB) — industrial, residential, rural areas</span>
+            <div class="fl">Pollutant   Annual avg          Short-term
+SO2         50 ug/m3             80 ug/m3  (24 h)
+NO2         40 ug/m3             80 ug/m3  (24 h)
+PM10        60 ug/m3             100 ug/m3 (24 h)
+PM2.5       40 ug/m3             60 ug/m3  (24 h)
+Ozone       -                    100 ug/m3 (8 h), 180 (1 h)
+Lead        0.5 ug/m3            1.0 ug/m3 (24 h)
+CO          -                    2 mg/m3 (8 h), 4 mg/m3 (1 h)
+NH3         100 ug/m3            400 ug/m3 (24 h)</div>
+            <div class="fn">These numbers come from the CPCB National Ambient Air Quality Standards (2009), not from your faculty slides — the slide titled "BIS standards" only covers abatement. Learn the SO₂, NO₂, PM10 and PM2.5 rows first.</div>
+          </div>
+          <p><strong>Abatement (slides 24–25, 74–78):</strong> <em>source control</em> — low-sulphur fuel, CNG or natural gas instead of coal, process modification, proper siting and zoning; <em>equipment control</em> — collect pollutants, thermal or catalytic combustion, catalytic converters, tall chimneys for dispersion; <em>containment</em> — enclosures, ventilation, air cleaning; <em>replacement</em> — electricity instead of coal, eco-friendly vehicles; plus green belts, traffic management, vehicle tuning and Bharat Stage emission norms, and legislation (Montreal Protocol 1987, Kyoto Protocol 1997).</p>
+        </div>
+      </div>
+
+          </div><!-- /pred-grid -->
+
+          <div class="prep-box">
+            <h3>✅ Quick preparation strategy — EEDM Mid-Term 2, 2026</h3>
+            <p><strong>Very high (prepare with the diagrams):</strong> BOD/COD definitions (Q1), sewage and sewer types (Q2), air pollution definition and gaseous pollutants (Q3), wastewater characteristics (Q4), disaster management cycle with diagram (Q5), and the air-pollutant types / effects / NAAQS / abatement answer (Q7). Each one matches a repeated end-term question and a dedicated block of faculty slides.<br><br>
+            <strong>High but less certain:</strong> Q6 sewers (types + design discharge + hydraulic design). Sewers are rare in end-terms but heavy in the slides, so treat it as the likeliest Part C Unit 4 pick.<br><br>
+            <strong>Backups, in case a slot is swapped:</strong> disposal of domestic wastewater by dilution and land treatment, plus sewage sickness and its preventive measures (slides 28–42); characteristics of sewage versus quantity (infiltration, exfiltration, dry-weather flow, storm water); types of disaster, natural versus man-made (slides 6–7); acid rain, ozone depletion and the greenhouse effect; NDMA full form and function; nodal agencies for each disaster type; India's vulnerability figures (57% earthquake, 68% drought, 12% flood, 8% cyclone).<br><br>
+            <strong>Syllabus topics with no slides in the files:</strong> solid waste (quantity, characteristics, disposal) and an introduction to wastewater treatment. Solid waste is 15% of past end-term questions and in all 4 papers, so skim it even though it is not in the predicted seven.<br><br>
+            <strong>Exam tricks:</strong> in Part A write one definition sentence plus one example and stop at 25 words; in Parts B and C always draw the diagram (disaster cycle, sewer shapes) because faculty checks them first; check your numbers — sewage is about 75–80% of water supplied, sewer velocity must sit between 0.45 and 0.9 m/s, COD is always above BOD, and rain below pH 5.6 is acid rain.</p>
+          </div>
+        </div>
+      </div><!-- /#predicted-midterm-2 -->
+
+      <!-- ══════ RTU PREDICTED PAPER ══════ -->
+      <div class="pred-accordion" id="predicted-rtu">
+        <button class="pred-accordion-btn" onclick="togglePaper(this)" aria-expanded="false">
+          <div class="pred-acc-left">
+            <div class="pred-acc-badges">
+              <span class="pred-acc-tag pend">Upcoming</span>
+              <span class="pred-acc-tag unit">Units 1–5 Complete Syllabus</span>
+              <span class="pred-acc-tag">70 Marks</span>
+            </div>
+            <h3 class="pred-acc-title">🎓 RTU Predicted Paper</h3>
+            <div class="pred-acc-sub">Full Syllabus End-Term Examination Prediction · Parts A, B &amp; C</div>
+          </div>
+          <div class="pred-acc-toggle">
+            <span class="toggle-text">Expand</span>
+            <span class="arrow-icon">▼</span>
+          </div>
+        </button>
+        <div class="pred-accordion-body">
+          <div class="no-data-box">
+            <div class="no-data-icon">🎓</div>
+            <div class="no-data-text">No data available.</div>
+            <p class="no-data-sub">The comprehensive RTU End-Term predicted paper is currently not available. Complete 70-mark predicted questions across all 5 units will be published here following the mid-term exams.</p>
+          </div>
+        </div>
+      </div><!-- /#predicted-rtu -->
+
+    </div><!-- /pred-papers-list -->
   </div>
 </div><!-- /predicted-section -->
 
@@ -683,12 +1633,42 @@ function toggle(btn){
   const ans = btn.nextElementSibling;
   if(ans.classList.contains('open')){
     ans.classList.remove('open');
-    btn.textContent = btn.textContent.replace('▲','▼');
+    btn.textContent = '▼ Show Answer';
   } else {
     ans.classList.add('open');
-    btn.textContent = btn.textContent.replace('▼','▲');
+    btn.textContent = '▲ Hide Answer';
   }
 }
+
+function togglePaper(btn){
+  const acc = btn.closest('.pred-accordion');
+  const isOpen = acc.classList.contains('open');
+  const toggleText = btn.querySelector('.toggle-text');
+  const arrowIcon = btn.querySelector('.arrow-icon');
+  
+  if(isOpen){
+    acc.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    if(toggleText) toggleText.textContent = 'Expand';
+    if(arrowIcon) arrowIcon.textContent = '▼';
+  } else {
+    acc.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    if(toggleText) toggleText.textContent = 'Collapse';
+    if(arrowIcon) arrowIcon.textContent = '▲';
+  }
+}
+
+// Auto-expand accordion if URL hash targets it
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target && target.classList.contains('pred-accordion') && !target.classList.contains('open')) {
+      const btn = target.querySelector('.pred-accordion-btn');
+      if (btn) togglePaper(btn);
+    }
+  }
+});
 </script>
 </body>
 </html>
